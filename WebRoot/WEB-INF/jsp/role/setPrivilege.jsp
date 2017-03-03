@@ -123,7 +123,7 @@
 
 		var zNodes =[
 					  { id:0, pId:0, name:"全选", open:true},
-		              ${zTreeJson} 
+		              <n:html value="${zTreeJson}"></n:html> 
 		];
 		
 		function setFunctionPointIdsValue(){

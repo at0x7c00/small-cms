@@ -55,7 +55,7 @@
 									varStatus="stauts">
 									<tr>
 										<td>
-											${fp.name}
+											<n:html value="${fp.name}"/>
 										</td>
 										<td>
 											${fp.url}

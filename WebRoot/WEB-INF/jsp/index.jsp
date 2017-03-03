@@ -166,9 +166,11 @@
 
 			<nav>
 				<ul>
+				<%--
 					<li class="">
 						<a href="${basePath}monthSummary/list.do" title="首页"><i class="fa fa-lg fa-fw fa-home"></i> <span class="menu-item-parent">首页</span></a>
 					</li>
+				 --%>
 					<c:forEach var="top" items="${sessionScope['LOGIN_INFO_IN_SESSION'].topFunctionPoints}" varStatus="s1">
 						<c:if test="${top.isDisplay==1}">
 							<li>

@@ -403,4 +403,34 @@
 	</tag>
 	
 	
+	<tag>
+		<description>
+		 	仅做简单输出，不做任何处理，用于替换原先的c:out标签
+		</description>
+		<name>out</name>
+		<tag-class>me.huqiao.smallcms.taglib.NovotsOutTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<description>需要简写的内容</description>
+			<name>value</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	
+			<tag>
+		<description>
+		 	输出HTML文本
+		</description>
+		<name>html</name>
+		<tag-class>me.huqiao.smallcms.taglib.NovotsHtmlTag</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+			<description>需要简写的内容</description>
+			<name>value</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	
 </taglib>
