@@ -9,6 +9,7 @@ import javax.validation.Valid;
 
 import me.huqiao.smallcms.common.controller.BaseController;
 import me.huqiao.smallcms.common.entity.Select2;
+import me.huqiao.smallcms.common.entity.enumtype.UseStatus;
 import me.huqiao.smallcms.ppll.entity.Apply;
 import me.huqiao.smallcms.ppll.service.IApplyService;
 import me.huqiao.smallcms.util.Md5Util;
@@ -85,6 +86,7 @@ public class ApplyController  extends BaseController {
      */
 	public void listFormParam(HttpServletRequest request,Apply apply,Page pageInfo){
 		//复杂关联关系数据准备
+		request.setAttribute("useStatusMap",UseStatus.useStatusMap);
 	}
     /**
      * 添加会员入会申请页面

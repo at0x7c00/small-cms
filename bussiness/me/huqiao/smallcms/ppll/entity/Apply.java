@@ -1,11 +1,15 @@
 package me.huqiao.smallcms.ppll.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+
+import me.huqiao.smallcms.common.entity.enumtype.UseStatus;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 /**
@@ -47,6 +51,27 @@ private String industry;
 private String bandNum;
 /**备注*/
 private String remark;
+
+/**状态*/
+private UseStatus status;
+
+
+/**
+ * @return UseStatus 状态 
+ */
+@Column(name="status",nullable=true,columnDefinition="enum('InUse','UnUse')")
+@Enumerated(EnumType.STRING)
+public UseStatus getStatus(){
+		return this.status;	
+}
+
+/**
+ * @param status 要设置的状态
+ */
+public void setStatus(UseStatus status){
+    this.status = status;
+}
+
 	/**MD5管理ID*/
 	protected String manageKey;
 	/**@return String MD5管理ID */

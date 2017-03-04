@@ -1,17 +1,6 @@
 <%@page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 					<section class="col col-2">
 						<label class="input"> 
-										<label class="select">
-										<form:select id="picture" path="picture" cssClass="required comboxed">
-										<option value="">-<spring:message code="props.me.huqiao.smallcms.cms.entity.Carousel.picture"/>-</option>
-											<form:options  items="${commonFileList}" itemValue="manageKey" itemLabel="manageKey"/>
-										</form:select>
-										<i></i>
-										</label>
-				</label>
-				</section>
-					<section class="col col-2">
-						<label class="input"> 
 										<form:input path="url"
 											id="carousel.url"
 											cssClass="textInput"

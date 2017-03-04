@@ -4,23 +4,14 @@
 		${tempBean.name}
 		</td>
 		<td>
-		${tempBean.address}
-		</td>
-		<td>
 		${tempBean.contact}
 		</td>
 		<td>
 		${tempBean.tel}
 		</td>
 		<td>
-		${tempBean.registMoney}
-		</td>
-		<td>
-		${tempBean.industry}
-		</td>
-		<td>
-		${tempBean.bandNum}
-		</td>
-		<td>
 		${tempBean.remark}
+		</td>
+		<td>
+		${useStatusMap[tempBean.status]}
 		</td>

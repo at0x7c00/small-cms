@@ -1,6 +1,8 @@
 package me.huqiao.smallcms.ppll.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,6 +13,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import me.huqiao.smallcms.common.entity.CommonFile;
+import me.huqiao.smallcms.common.entity.enumtype.UseStatus;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.hibernate.annotations.Fetch;
@@ -133,6 +136,25 @@ public String getArea(){
  */
 public void setJob(String job){
     this.job = job;
+}
+/**状态*/
+private UseStatus status;
+
+
+/**
+ * @return UseStatus 状态 
+ */
+@Column(name="status",nullable=true,columnDefinition="enum('InUse','UnUse')")
+@Enumerated(EnumType.STRING)
+public UseStatus getStatus(){
+		return this.status;	
+}
+
+/**
+ * @param status 要设置的状态
+ */
+public void setStatus(UseStatus status){
+    this.status = status;
 }
 /**
  * @return String 职务 

@@ -7,12 +7,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
   <head>
     <base href="<%=basePath%>">
-    <title>品牌力量信息管理系统</title>
+    <title></title>
   </head>
   
   <body>
   <script type="text/javascript">
-  window.location.href = "<%=basePath%>index.do";
+  window.location.href = "<%=basePath%>frontend/index.do";
   </script>
   </body>
 </html>

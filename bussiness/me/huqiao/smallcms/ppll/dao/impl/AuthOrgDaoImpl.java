@@ -142,6 +142,11 @@ criteria.add(Restrictions.le("coroprateTo",authOrg.getCoroprateToEnd()));
 				if(authOrg.getCertFile()!=null && authOrg.getCertFile().getId() != null ){
 					criteria.add(Restrictions.eq("certFile",authOrg.getCertFile()));
 				}
+				
+				if(authOrg.getStatus()!=null
+						){
+								criteria.add(Restrictions.eq("status",authOrg.getStatus()));
+						}
     }
 	@Override
 	public AuthOrg findByVersion(Integer version) {

@@ -1,5 +1,6 @@
 package me.huqiao.smallcms.cms.controller;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -22,6 +23,7 @@ import me.huqiao.smallcms.sys.entity.User;
 import me.huqiao.smallcms.sys.entity.propertyeditor.UserEditor;
 import me.huqiao.smallcms.sys.service.IUserService;
 import me.huqiao.smallcms.util.Md5Util;
+import me.huqiao.smallcms.util.StringUtil;
 import me.huqiao.smallcms.util.web.JsonResult;
 import me.huqiao.smallcms.util.web.Page;
 
@@ -87,10 +89,23 @@ public class ChapterController  extends BaseController {
      * 
      */
     @RequestMapping(value="/list")
-    public void list(HttpServletRequest request,Chapter chapter,Page pageInfo) {
-        Page<Chapter> chapterPage = chapterService.getListPage(chapter,pageInfo);
-        request.setAttribute("pageBean", chapterPage);
+    public String list(HttpServletRequest request,Chapter chapter,Page pageInfo,@RequestParam(value = "pageKey",required = false)String pageKey) {
 		listFormParam(request,chapter,pageInfo);
+		if(StringUtil.isEmpty(pageKey) && chapter.getPage()==null){
+			List<WebPage> webPages = webPageService.getByProperties(WebPage.class, new String[]{"status"}, new Object[]{UseStatus.InUse}, "orderNum", null);
+			request.setAttribute("webPages", webPages);
+			request.setAttribute("pageBean", pageInfo);
+			return "chapter/list-pageSelect";
+		}else{
+			if(chapter.getPage()==null){
+				chapter.setPage(webPageService.getEntityByProperty(WebPage.class, "manageKey", pageKey));
+			}
+			request.getSession().setAttribute("cPage",chapter.getPage());
+			Page<Chapter> chapterPage = chapterService.getListPage(chapter,pageInfo);
+	        request.setAttribute("pageBean", chapterPage);
+	        request.setAttribute("chapter", chapter);
+			return "chapter/list";
+		}
     }
  	/**
      * 为文章分页查询表单准备数据
@@ -101,13 +116,12 @@ public class ChapterController  extends BaseController {
      */
 	public void listFormParam(HttpServletRequest request,Chapter chapter,Page pageInfo){
 		//复杂关联关系数据准备
-					List<User> userList = userService.getByProperties(User.class,null,null,null,null);
-	request.setAttribute("userList",userList);
-					List<WebPage> webPageList = webPageService.getByProperties(WebPage.class,new String[]{"status"},new Object[]{UseStatus.InUse},null,null);
-	request.setAttribute("webPageList",webPageList);
-					List<CommonFile> commonFileList = commonFileService.getByProperties(CommonFile.class,null,null,null,null);
-	request.setAttribute("commonFileList",commonFileList);
-request.setAttribute("useStatusMap",UseStatus.useStatusMap);
+		List<User> userList = userService.getByProperties(User.class,null,null,null,null);
+		request.setAttribute("userList",userList);
+		request.setAttribute("useStatusMap",UseStatus.useStatusMap);
+		
+		List<WebPage> webPages = webPageService.getByProperties(WebPage.class, new String[]{"status"}, new Object[]{UseStatus.InUse}, "orderNum", null);
+		request.setAttribute("webPageList",webPages);
 	}
     /**
      * 添加文章页面
@@ -141,18 +155,17 @@ request.setAttribute("useStatusMap",UseStatus.useStatusMap);
 	@RequestParam(value = "callBack",required = false)String callBack,
 	BindingResult result) {
     	JsonResult jsonResult = new JsonResult();
-    	//默认系统时间类型保存
-	/*
-		#ONE_TO_MANY_VALUE_SAVE_ADD
-	*/
-	    //保存多对多关联关系
-	//保持一对多关联关系
-	chapter.setManageKey(Md5Util.getManageKey());
+    	chapter.setCreator(getCurrentUser());
+    	chapter.setCreateTime(new Date());
+    	chapter.setPage((WebPage)request.getSession().getAttribute("cPage"));
+    	chapter.setCover(parseFilee(request,"coverKeys"));
+    	chapter.setManageKey(Md5Util.getManageKey());
     	chapterService.add(chapter);
         jsonResult.setMessage(getI18NMessage(request, "base.common.controller.operate.add.success"));
         return jsonResult;
     }
-    /**
+   
+	/**
      * 修改文章页面
      * @param chapter 需要修改的对象实体
      * @param request HttpServletRequest请求对象
@@ -190,8 +203,7 @@ request.setAttribute("useStatusMap",UseStatus.useStatusMap);
     	if(!validate(jsonResult,result)){
     		return jsonResult;
     	}
-	    //保存多对多关联关系
-		//保持一对多关联关系
+    	chapter.setCover(parseFilee(request,"coverKeys"));
         chapterService.update(chapter);
 	// jsonResult.setNavTabId(rel);
         jsonResult.setMessage(getI18NMessage(request, "base.common.controller.operate.update.success"));

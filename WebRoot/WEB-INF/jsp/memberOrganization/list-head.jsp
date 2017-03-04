@@ -12,3 +12,6 @@
 			<th align="center" data-sortfield="certFile" class="${nfn:sortClass(pageBean,'certFile')}">
 			<spring:message code="props.me.huqiao.smallcms.ppll.entity.MemberOrganization.certFile"/>
 		</th>
+			<th align="center" data-sortfield="status" class="${nfn:sortClass(pageBean,'status')}">
+			<spring:message code="props.me.huqiao.smallcms.ppll.entity.MemberOrganization.status"/>
+		</th>

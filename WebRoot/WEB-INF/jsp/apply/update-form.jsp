@@ -1,5 +1,5 @@
 <%@page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-				<section class="col col-3">
+				<section class="col col-12">
 					<label class="input">
 						<spring:message code="props.me.huqiao.smallcms.ppll.entity.Apply.name"/>:
 							<font style='color:red' class="required-mark">*</font>
@@ -9,7 +9,7 @@
 											maxlength="255" />
 					</label>
 				</section>
-				<section class="col col-3">
+				<section class="col col-12">
 					<label class="input">
 						<spring:message code="props.me.huqiao.smallcms.ppll.entity.Apply.address"/>:
 							<font style='color:red' class="required-mark">*</font>
@@ -67,7 +67,8 @@
 											maxlength="255" />
 				</label>
 				</section>
-				<section class="col col-3">
+
+				<section class="col col-12">
 					<label class="input">
 						<spring:message code="props.me.huqiao.smallcms.ppll.entity.Apply.remark"/>:
 										<form:input path="remark"

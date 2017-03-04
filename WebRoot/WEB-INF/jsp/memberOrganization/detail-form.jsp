@@ -29,13 +29,3 @@
 			</span>
 		</label>
 	</section>
-	<section class="col col-3">
-		<label class="input"
-						   <c:if test="${checkResult['certFile'].changed}">title= "${checkResult['certFile'].info}";</c:if>
-						   >
-			<span class="${checkResult['certFile'].changed ? 'change-markup':''}">
-						<spring:message code="props.me.huqiao.smallcms.ppll.entity.MemberOrganization.certFile"/>:
-									${tempBean.certFile.name}
-			</span>
-		</label>
-	</section>

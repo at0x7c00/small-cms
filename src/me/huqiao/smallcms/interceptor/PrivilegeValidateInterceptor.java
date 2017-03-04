@@ -41,6 +41,7 @@ public class PrivilegeValidateInterceptor extends HandlerInterceptorAdapter {
     	"user/waitForUpload.do",
     	"changeLocale.do",
     	"filee/viewPic.do",
+    	"frontend/"
 	};
 	private static final String[] urlsWithLogin = new String[] {// 只需要登录就能拥有的权限
 		"home.do",
@@ -108,6 +109,8 @@ public class PrivilegeValidateInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response,Object handler) throws Exception {
         LoginInfo loginInfo = (LoginInfo)request.getSession().getAttribute(Constants.LOGIN_INFO_IN_SESSION);
+        
+        request.setAttribute("file_format_picture", ".jpg,.jpeg,.png,.bmp,.gif");
         
         /*if(1==1){
         	 return super.preHandle(request, response, handler);

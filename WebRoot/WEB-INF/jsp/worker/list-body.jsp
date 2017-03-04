@@ -3,7 +3,13 @@
 		<td>
 		${tempBean.workNum}
 		</td>
-			<td>${tempBean.photoFile}</td>
+		<td>
+			<c:if test="${not empty tempBean.photoFile }">
+			<a href="${basePasth }filee/viewPic.do?manageKey=${tempBean.photoFile.manageKey}" target="_blank">
+				<img alt="" src="${basePasth }filee/viewPic.do?manageKey=${tempBean.photoFile.manageKey}" class="table-pic"/>
+			</a>
+			</c:if>
+		</td>
 		<td>
 		${tempBean.name}
 		</td>
@@ -12,4 +18,7 @@
 		</td>
 		<td>
 		${tempBean.job}
+		</td>
+		<td>
+		${useStatusMap[tempBean.status]}
 		</td>

@@ -64,3 +64,14 @@
 											maxlength="255"  size="12" placeholder="${nfn:i18nMessage(reqCtx,'props.me.huqiao.smallcms.ppll.entity.Apply.remark')}"/>
 				</label>
 				</section>
+				<section class="col col-2">
+						<label class="input"> 
+								<label class="select">
+								<form:select id="status" path="status" cssClass="comboxed">
+								<option value="">-${nfn:i18nMessage(reqCtx,'props.me.huqiao.smallcms.ppll.entity.Apply.status')}-</option>
+									<form:options  items="${useStatusMap}"/>
+								</form:select>
+								<i></i>
+								</label>
+				</label>
+				</section>

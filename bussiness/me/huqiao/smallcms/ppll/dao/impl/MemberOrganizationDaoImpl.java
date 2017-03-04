@@ -134,6 +134,11 @@ criteria.add(Restrictions.le("corporateTo",memberOrganization.getCorporateToEnd(
 				if(memberOrganization.getCertFile()!=null && memberOrganization.getCertFile().getId() != null ){
 					criteria.add(Restrictions.eq("certFile",memberOrganization.getCertFile()));
 				}
+				
+				if(memberOrganization.getStatus()!=null
+						){
+								criteria.add(Restrictions.eq("status",memberOrganization.getStatus()));
+						}
     }
 	@Override
 	public MemberOrganization findByVersion(Integer version) {

@@ -39,6 +39,9 @@ public void setId(Integer id){this.id=id;}
 @Column(columnDefinition="integer")
 	/**@return Integer 唯一标示号*/
 public Integer getId(){return this.id;}
+
+private String title;
+
 /**图片*/
 private CommonFile picture;
 	/**图片模糊查询条件*/
@@ -80,7 +83,7 @@ public void setPictureQuery(String pictureQuery){
 /**
  * @return CommonFile 图片 
  */
-@ManyToOne(targetEntity=me.huqiao.smallcms.common.entity.CommonFile.class,fetch=FetchType.LAZY)
+@ManyToOne(targetEntity=me.huqiao.smallcms.common.entity.CommonFile.class,fetch=FetchType.EAGER)
 @JoinColumn(name="picture",nullable=true)
 @Fetch(FetchMode.SELECT)
 @JsonIgnore
@@ -190,4 +193,13 @@ public UseStatus getStatus(){
 	public String toString() {
 		return "Carousel [manageKey=" + manageKey + "]";
 	}
+	
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	
+	
 }

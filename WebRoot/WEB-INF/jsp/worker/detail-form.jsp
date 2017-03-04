@@ -11,16 +11,6 @@
 	</section>
 	<section class="col col-3">
 		<label class="input"
-						   <c:if test="${checkResult['photoFile'].changed}">title= "${checkResult['photoFile'].info}";</c:if>
-						   >
-			<span class="${checkResult['photoFile'].changed ? 'change-markup':''}">
-						<spring:message code="props.me.huqiao.smallcms.ppll.entity.Worker.photoFile"/>:
-									${tempBean.photoFile}
-			</span>
-		</label>
-	</section>
-	<section class="col col-3">
-		<label class="input"
 						   <c:if test="${checkResult['name'].changed}">title= "${checkResult['name'].info}";</c:if>
 						   >
 			<span class="${checkResult['name'].changed ? 'change-markup':''}">

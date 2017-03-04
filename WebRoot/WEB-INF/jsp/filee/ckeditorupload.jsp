@@ -1,7 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/jsp/common/taglib.jsp" %>
 <script type="text/javascript">
-	window.parent.CKEDITOR.tools.callFunction('${CKEditorFuncNum}','${basePath}admin/filee/${type eq 'images'?'viewPic':'downloadFile'}.do?${type eq 'images'?'manageKey':'key'}=${fileeManageKey}',function() {
+	window.parent.CKEDITOR.tools.callFunction('${CKEditorFuncNum}','${basePath}filee/${type eq 'images'?'viewPic':'downloadFile'}.do?${type eq 'images'?'manageKey':'key'}=${fileeManageKey}',function() {
 	    if(${!empty errorMessage}){
 	    	if("${errorMessage}" =="file size out of limit"){
 	    		alert("<spring:message code="base.common.upload.sizeoutoflimit"/>");
@@ -14,7 +14,7 @@
 	    if ( dialog.getName() == 'link' ) {
 	        oEditor = dialog.getParentEditor();
 	        var newElement = window.parent.CKEDITOR.dom.element.createFromHtml( "<a "
-	        		+ "href='${basePath}admin/filee/${type eq 'images'?'viewPic':'downloadFile'}.do?${type eq 'images'?'manageKey':'key'}=${fileeManageKey}'>${oriFileName}</a>", oEditor.document );
+	        		+ "href='${basePath}filee/${type eq 'images'?'viewPic':'downloadFile'}.do?${type eq 'images'?'manageKey':'key'}=${fileeManageKey}'>${oriFileName}</a>", oEditor.document );
 	    	oEditor.insertElement( newElement );
 	    	dialog.hide();
 		    return false;

@@ -14,5 +14,5 @@
 			+ path + "/";
 	request.setAttribute("basePath", basePath);
 	request.setAttribute("reqCtx", request);
-	request.setAttribute("systemTitle", "Aimme-v1.0");
+	request.setAttribute("systemTitle", "质量维护工程");
 %>

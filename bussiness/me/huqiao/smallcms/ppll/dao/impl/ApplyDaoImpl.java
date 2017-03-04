@@ -147,6 +147,10 @@ public class ApplyDaoImpl extends BaseDaoImpl<Apply> implements IApplyDao {
  && ! apply.getRemark().trim().equals("")){
 		criteria.add(Restrictions.like("remark",apply.getRemark(),MatchMode.ANYWHERE));
 }
+       if(apply.getStatus()!=null
+    		   ){
+    		   		criteria.add(Restrictions.eq("status",apply.getStatus()));
+    		   }
     }
 	@Override
 	public Apply findByVersion(Integer version) {

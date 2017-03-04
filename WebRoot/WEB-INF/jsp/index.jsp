@@ -325,6 +325,9 @@
 		<!-- FastClick: For mobile devices: you can disable this in app.js -->
 		<script src="${basePath}js/plugin/fastclick/fastclick.js"></script>
 		
+		<script src="${basePath}js/ckeditor/ckeditor.js" type="text/javascript"></script>
+		<script src="${basePath}js/ckeditor/adapters/jquery.js" type="text/javascript"></script>
+		
 
 		<!--[if IE 7]>
 

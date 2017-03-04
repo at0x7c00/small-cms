@@ -1,4 +1,14 @@
 <%@page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<section class="col col-2">
+						<label class="input"> 
+										<label class="select">
+										<form:select id="page" path="page" cssClass="required comboxed change-to-refresh">
+											<form:options  items="${webPageList}" itemValue="manageKey" itemLabel="name"/>
+										</form:select>
+										<i></i>
+										</label>
+				</label>
+				</section>
 					<section class="col col-2">
 						<label class="input"> 
 										<label class="select">
@@ -8,13 +18,6 @@
 										</form:select>
 										<i></i>
 										</label>
-				</label>
-				</section>
-					<section class="col col-2">
-						<label class="input"> 
-								<form:input path="readCount"
-									id="chapter.readCount" type="text"
-									cssClass="textInputdigits" size="12" placeholder="${nfn:i18nMessage(reqCtx,'props.me.huqiao.smallcms.cms.entity.Chapter.readCount')}"/>
 				</label>
 				</section>
 					<section class="col col-2">
@@ -52,35 +55,7 @@
 											 placeholder="${nfn:i18nMessage(reqCtx,'props.me.huqiao.smallcms.cms.entity.Chapter.content')}"/>
 					</label>
 				</section>
-					<section class="col col-2">
-						<label class="input"> 
-										<label class="select">
-										<form:select id="page" path="page" cssClass="required comboxed">
-										<option value="">-<spring:message code="props.me.huqiao.smallcms.cms.entity.Chapter.page"/>-</option>
-											<form:options  items="${webPageList}" itemValue="manageKey" itemLabel="name"/>
-										</form:select>
-										<i></i>
-										</label>
-				</label>
-				</section>
-					<section class="col col-2">
-						<label class="input"> 
-										<label class="select">
-										<form:select id="cover" path="cover" cssClass=" comboxed">
-										<option value="">-<spring:message code="props.me.huqiao.smallcms.cms.entity.Chapter.cover"/>-</option>
-											<form:options  items="${commonFileList}" itemValue="manageKey" itemLabel="manageKey"/>
-										</form:select>
-										<i></i>
-										</label>
-				</label>
-				</section>
-					<section class="col col-2">
-						<label class="input"> 
-								<form:input path="orderNum"
-									id="chapter.orderNum" type="text"
-									cssClass="textInputdigits" size="12" placeholder="${nfn:i18nMessage(reqCtx,'props.me.huqiao.smallcms.cms.entity.Chapter.orderNum')}"/>
-				</label>
-				</section>
+					
 					<section class="col col-2">
 						<label class="input"> 
 								<label class="select">

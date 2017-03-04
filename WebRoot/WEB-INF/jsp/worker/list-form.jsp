@@ -9,17 +9,6 @@
 				</section>
 					<section class="col col-2">
 						<label class="input"> 
-										<label class="select">
-										<form:select id="photoFile" path="photoFile" cssClass=" comboxed">
-										<option value="">-<spring:message code="props.me.huqiao.smallcms.ppll.entity.Worker.photoFile"/>-</option>
-											<form:options  items="${commonFileList}" itemValue="manageKey" itemLabel="manageKey"/>
-										</form:select>
-										<i></i>
-										</label>
-				</label>
-				</section>
-					<section class="col col-2">
-						<label class="input"> 
 										<form:input path="name"
 											id="worker.name"
 											cssClass="textInput"
@@ -40,5 +29,17 @@
 											id="worker.job"
 											cssClass="textInput"
 											maxlength="255"  size="12" placeholder="${nfn:i18nMessage(reqCtx,'props.me.huqiao.smallcms.ppll.entity.Worker.job')}"/>
+				</label>
+				</section>
+				
+								<section class="col col-2">
+						<label class="input"> 
+								<label class="select">
+								<form:select id="status" path="status" cssClass="comboxed">
+								<option value="">-${nfn:i18nMessage(reqCtx,'props.me.huqiao.smallcms.ppll.entity.Worker.status')}-</option>
+									<form:options  items="${useStatusMap}"/>
+								</form:select>
+								<i></i>
+								</label>
 				</label>
 				</section>

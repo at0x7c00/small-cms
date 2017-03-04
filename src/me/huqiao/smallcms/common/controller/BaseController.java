@@ -1074,6 +1074,22 @@ private Object getSerivceByName(String modelClassName){
 		return null;
 	}
 	
+	@Resource
+	private ICommonFileService commonFileService;
+	
+	 protected CommonFile parseFilee(HttpServletRequest request,String keyName) {
+	    	String[] coverKeys = request.getParameterValues(keyName);
+	    	String coverKey = null;
+	    	if(coverKeys!=null && coverKeys.length>0){
+	    		coverKey = coverKeys[0];
+	    	}
+	    	if(StringUtil.isNotEmpty(coverKey)){
+	    		CommonFile file = commonFileService.getEntityByProperty(CommonFile.class, "manageKey", coverKey);
+	    		return file;
+	    	}
+			return null;
+		}
+	
 	
 }
 

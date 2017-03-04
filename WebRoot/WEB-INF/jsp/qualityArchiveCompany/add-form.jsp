@@ -1,5 +1,5 @@
 <%@page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-				<section class="col col-3">
+				<section class="col col-12">
 					<label class="input">
 						<spring:message code="props.me.huqiao.smallcms.ppll.entity.QualityArchiveCompany.name"/>:
 							<font style='color:red' class="required-mark">*</font>
@@ -28,7 +28,7 @@
 									cssClass="textInput required digits" />
 				</label>
 				</section>
-				<section class="col col-3">
+				<section class="col col-12">
 					<label class="input">
 						<spring:message code="props.me.huqiao.smallcms.ppll.entity.QualityArchiveCompany.address"/>:
 							<font style='color:red' class="required-mark">*</font>
@@ -41,7 +41,7 @@
 										</label>
 					</label>
 				</section>
-				<section class="col col-3">
+				<section class="col col-12">
 					<label class="input">
 						<spring:message code="props.me.huqiao.smallcms.ppll.entity.QualityArchiveCompany.tradeScope"/>:
 							<font style='color:red' class="required-mark">*</font>

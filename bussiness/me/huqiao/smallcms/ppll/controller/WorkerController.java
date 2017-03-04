@@ -10,6 +10,7 @@ import javax.validation.Valid;
 import me.huqiao.smallcms.common.controller.BaseController;
 import me.huqiao.smallcms.common.entity.CommonFile;
 import me.huqiao.smallcms.common.entity.Select2;
+import me.huqiao.smallcms.common.entity.enumtype.UseStatus;
 import me.huqiao.smallcms.common.entity.propertyeditor.CommonFileEditor;
 import me.huqiao.smallcms.common.service.ICommonFileService;
 import me.huqiao.smallcms.ppll.entity.Worker;
@@ -90,8 +91,7 @@ public class WorkerController  extends BaseController {
      */
 	public void listFormParam(HttpServletRequest request,Worker worker,Page pageInfo){
 		//复杂关联关系数据准备
-					List<CommonFile> commonFileList = commonFileService.getByProperties(CommonFile.class,null,null,null,null);
-	request.setAttribute("commonFileList",commonFileList);
+		request.setAttribute("useStatusMap",UseStatus.useStatusMap);
 	}
     /**
      * 添加工作人员页面
@@ -121,11 +121,7 @@ public class WorkerController  extends BaseController {
 	BindingResult result) {
     	JsonResult jsonResult = new JsonResult();
     	//默认系统时间类型保存
-	/*
-		#ONE_TO_MANY_VALUE_SAVE_ADD
-	*/
-	    //保存多对多关联关系
-	//保持一对多关联关系
+    	worker.setPhotoFile(parseFilee(request, "photoFileKeys"));
 	worker.setManageKey(Md5Util.getManageKey());
     	workerService.add(worker);
         jsonResult.setMessage(getI18NMessage(request, "base.common.controller.operate.add.success"));
@@ -161,8 +157,7 @@ public class WorkerController  extends BaseController {
     	if(!validate(jsonResult,result)){
     		return jsonResult;
     	}
-	    //保存多对多关联关系
-		//保持一对多关联关系
+    	worker.setPhotoFile(parseFilee(request, "photoFileKeys"));
         workerService.update(worker);
 	// jsonResult.setNavTabId(rel);
         jsonResult.setMessage(getI18NMessage(request, "base.common.controller.operate.update.success"));

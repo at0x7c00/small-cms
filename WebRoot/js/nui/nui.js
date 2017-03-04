@@ -357,6 +357,36 @@ function initUI(panelType){
 		}
 	});
 	
+	
+	$(".page-select-div",panel).click(function(){
+		var _this = $(this);
+		$("#pageKey",panel).val(_this.data("page-key"));
+		_this.parents("form").first().submit();
+	});
+	
+    $(".change-to-refresh",panel).change(function(){
+    	$(this).parents("form").first().submit();
+    });
+	
+    
+    $(".ckeditor-able").ckeditor({
+		toolbar: [
+				//{ name: 'document', items: [ 'Source', '-', 'NewPage', 'Preview', '-', 'Templates' ] },	// Defines toolbar group with name (used to create voice label) and items in 3 subgroups.
+				[ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ],			// Defines toolbar group without name.
+				['Bold','Italic','Underline','Strike','Subscript','Superscript','Image','Flash'],
+				['-','Outdent','Indent'],
+				//左对齐             居中对齐          右对齐          两端对齐
+				['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
+				// 样式       格式      字体    字体大小
+                ['Styles','Format','Font','FontSize'],
+				//文本颜色     背景颜色
+                ['TextColor','BGColor','FullPage']
+			], 
+		width:800,
+		height:150,
+		language: 'zh-cn' //简体中文
+	});
+    
 }
 
 function loadProvinces(areaKey){

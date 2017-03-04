@@ -135,7 +135,7 @@
 									<section class="col col-6"  style="padding-left:0px;">
 											<label class="label"><spring:message code="base.common.login.checkcode"></spring:message></label>
 											<label class="input"> <i class="icon-append fa  fa-check-square-o"></i>
-												<input type="text" name="checkcode">
+												<input type="text" name="checkcode" value="1111"/>
 												<b class="tooltip tooltip-top-right"><i class="fa  fa-check-square-o txt-color-teal"></i> 请输入验证码</b> </label>
 									</section>
 									

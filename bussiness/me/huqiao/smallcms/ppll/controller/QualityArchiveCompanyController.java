@@ -86,7 +86,7 @@ public class QualityArchiveCompanyController  extends BaseController {
      */
 	public void listFormParam(HttpServletRequest request,QualityArchiveCompany qualityArchiveCompany,Page pageInfo){
 		//复杂关联关系数据准备
-request.setAttribute("useStatusMap",UseStatus.useStatusMap);
+		request.setAttribute("useStatusMap",UseStatus.useStatusMap);
 	}
     /**
      * 添加质量档案公司页面

@@ -1,5 +1,6 @@
 package me.huqiao.smallcms.ppll.controller;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 
@@ -97,11 +98,9 @@ public class QualityArchiveController  extends BaseController {
      */
 	public void listFormParam(HttpServletRequest request,QualityArchive qualityArchive,Page pageInfo){
 		//复杂关联关系数据准备
-					List<CommonFile> commonFileList = commonFileService.getByProperties(CommonFile.class,null,null,null,null);
-	request.setAttribute("commonFileList",commonFileList);
-					List<User> userList = userService.getByProperties(User.class,null,null,null,null);
-	request.setAttribute("userList",userList);
-request.setAttribute("useStatusMap",UseStatus.useStatusMap);
+		List<User> userList = userService.getByProperties(User.class,null,null,null,null);
+		request.setAttribute("userList",userList);
+		request.setAttribute("useStatusMap",UseStatus.useStatusMap);
 	}
     /**
      * 添加质量档案页面
@@ -135,10 +134,7 @@ request.setAttribute("useStatusMap",UseStatus.useStatusMap);
 		@RequestParam(value="gloryDisplayKeys",required=false)String[] gloryDisplayKeys,
 	BindingResult result) {
     	JsonResult jsonResult = new JsonResult();
-    	//默认系统时间类型保存
-	/*
-		#ONE_TO_MANY_VALUE_SAVE_ADD
-	*/
+    	
 	    //保存多对多关联关系
 		//设置产品展示
 		HashSet<CommonFile> productDisplay = new HashSet<CommonFile>();
@@ -148,6 +144,9 @@ request.setAttribute("useStatusMap",UseStatus.useStatusMap);
 			productDisplay.add(commonFileService.getEntityByProperty(CommonFile.class, "manageKey", key));
 			}
 		}
+		qualityArchive.setCreateTime(new Date());
+		qualityArchive.setCreator(getCurrentUser());
+		qualityArchive.setDetailCover(parseFilee(request, "videoOrPictureKeys"));
 		qualityArchive.setProductDisplay(productDisplay);
 		//设置荣誉展示
 		HashSet<CommonFile> gloryDisplay = new HashSet<CommonFile>();
@@ -199,7 +198,6 @@ request.setAttribute("useStatusMap",UseStatus.useStatusMap);
     	if(!validate(jsonResult,result)){
     		return jsonResult;
     	}
-	    //保存多对多关联��系
 		//设置产品展示
 		HashSet<CommonFile> productDisplay = new HashSet<CommonFile>();
 		if(productDisplayKeys!=null){
@@ -208,6 +206,7 @@ request.setAttribute("useStatusMap",UseStatus.useStatusMap);
 				productDisplay.add(commonFileService.getEntityByProperty(CommonFile.class, "manageKey", key));
 			}
 		}
+		
 		qualityArchive.getProductDisplay().clear();
 		qualityArchive.getProductDisplay().addAll(productDisplay);
 		//设置荣誉展示
@@ -220,6 +219,11 @@ request.setAttribute("useStatusMap",UseStatus.useStatusMap);
 		}
 		qualityArchive.getGloryDisplay().clear();
 		qualityArchive.getGloryDisplay().addAll(gloryDisplay);
+
+		qualityArchive.setCreateTime(new Date());
+		qualityArchive.setCreator(getCurrentUser());
+		qualityArchive.setDetailCover(parseFilee(request, "videoOrPictureKeys"));
+		
 		//保持一对多关联关系
         qualityArchiveService.update(qualityArchive);
 	// jsonResult.setNavTabId(rel);

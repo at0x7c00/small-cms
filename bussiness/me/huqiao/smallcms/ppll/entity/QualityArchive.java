@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -160,6 +161,7 @@ public void setProductDisplay(Set<CommonFile> productDisplay){
 @ManyToMany(targetEntity=me.huqiao.smallcms.common.entity.CommonFile.class)
 @JoinTable(name="quality_archive_product_display_filee",joinColumns={@JoinColumn(name="qualityarchive_id")},inverseJoinColumns={@JoinColumn(name="commonfile_id")})
 @JsonIgnore
+@OrderBy("id asc")
 public Set<CommonFile> getProductDisplay(){
 		return this.productDisplay;	
 }
@@ -204,6 +206,7 @@ public void setGloryDisplay(Set<CommonFile> gloryDisplay){
 @ManyToMany(targetEntity=me.huqiao.smallcms.common.entity.CommonFile.class)
 @JoinTable(name="",joinColumns={@JoinColumn(name="qualityarchive_id")},inverseJoinColumns={@JoinColumn(name="commonfile_id")})
 @JsonIgnore
+@OrderBy("id asc")
 public Set<CommonFile> getGloryDisplay(){
 		return this.gloryDisplay;	
 }

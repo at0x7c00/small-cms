@@ -35,8 +35,8 @@
 							<font style='color:red' class="required-mark">*</font>
 								<label class="input">
 								<i class="icon-append fa fa-calendar"></i>
-								<input name="coroprateFrom" id="authOrg.coroprateFrom" onclick="WdatePicker({dateFmt:'${applicationScope.EN_YEAR_MONTH_DAY_HOUR_MIN_SEC}'});"
-								value="<fmt:formatDate pattern='${applicationScope.EN_YEAR_MONTH_DAY_HOUR_MIN_SEC}' value='${tempBean.coroprateFrom}'/>" class="date_required required textInput valid"/>
+								<input name="coroprateFrom" id="authOrg.coroprateFrom" onclick="WdatePicker({dateFmt:'${applicationScope.EN_YEAR_MONTH_DAY}'});"
+								value="<fmt:formatDate pattern='${applicationScope.EN_YEAR_MONTH_DAY}' value='${tempBean.coroprateFrom}'/>" class="date_required required textInput valid"/>
 								</label>
 				</label>
 				</section>
@@ -46,20 +46,8 @@
 							<font style='color:red' class="required-mark">*</font>
 								<label class="input">
 								<i class="icon-append fa fa-calendar"></i>
-								<input name="coroprateTo" id="authOrg.coroprateTo" onclick="WdatePicker({dateFmt:'${applicationScope.EN_YEAR_MONTH_DAY_HOUR_MIN_SEC}'});"
-								value="<fmt:formatDate pattern='${applicationScope.EN_YEAR_MONTH_DAY_HOUR_MIN_SEC}' value='${tempBean.coroprateTo}'/>" class="date_required required textInput valid"/>
+								<input name="coroprateTo" id="authOrg.coroprateTo" onclick="WdatePicker({dateFmt:'${applicationScope.EN_YEAR_MONTH_DAY}'});"
+								value="<fmt:formatDate pattern='${applicationScope.EN_YEAR_MONTH_DAY}' value='${tempBean.coroprateTo}'/>" class="date_required required textInput valid"/>
 								</label>
-				</label>
-				</section>
-				<section class="col col-3">
-					<label class="input">
-						<spring:message code="props.me.huqiao.smallcms.ppll.entity.AuthOrg.certFile"/>:
-							<font style='color:red' class="required-mark">*</font>
-										<label class="select">
-										<form:select id="certFile" path="certFile" cssClass="required comboxed">
-										<option value=""><spring:message code="base.common.selectone"/></option>
-											<form:options  items="${commonFileList}" itemValue="manageKey" itemLabel="manageKey"/>
-										</form:select><i></i>
-										</label>
 				</label>
 				</section>

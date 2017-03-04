@@ -12,3 +12,4 @@
 			<td><fmt:formatDate value="${tempBean.coroprateFrom}" pattern="${applicationScope.EN_YEAR_MONTH_DAY_HOUR_MIN_SEC}"/></td>
 			<td><fmt:formatDate value="${tempBean.coroprateTo}" pattern="${applicationScope.EN_YEAR_MONTH_DAY_HOUR_MIN_SEC}"/></td>
 			<td>${tempBean.certFile.name}</td>
+			<td>${useStatusMap[tempBean.status]}</td>

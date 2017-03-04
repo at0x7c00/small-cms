@@ -1,17 +1,22 @@
 <%@page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-	<td>${tempBean.id}</td>
-			<td>${tempBean.creator.chineseName}</td>
+		<td>${tempBean.id}</td>
 		<td>
-		${tempBean.readCount}
+		<strong>${tempBean.title}</strong><br/>
+		<ul class="chapter-detail">
+		<li>
+		<spring:message code="props.me.huqiao.smallcms.cms.entity.Chapter.creator"/>:${tempBean.creator.chineseName}
+		</li>
+		<li>
+		<spring:message code="props.me.huqiao.smallcms.cms.entity.Chapter.createTime"/>:<fmt:formatDate value="${tempBean.createTime}" pattern="${applicationScope.EN_YEAR_MONTH_DAY_HOUR_MIN_SEC}"/>
+		</li>
+		<li>
+		<spring:message code="props.me.huqiao.smallcms.cms.entity.Chapter.page"/>:${tempBean.page.name}
+		</li>
+		<li>
+		<spring:message code="props.me.huqiao.smallcms.cms.entity.Chapter.readCount"/>:${tempBean.readCount}
+		</li>
+		</ul>
 		</td>
-			<td><fmt:formatDate value="${tempBean.createTime}" pattern="${applicationScope.EN_YEAR_MONTH_DAY_HOUR_MIN_SEC}"/></td>
-		<td>
-		${tempBean.title}
-		</td>
-		<td>
-		${tempBean.content}
-		</td>
-			<td>${tempBean.page.name}</td>
 		<td>
 		${tempBean.orderNum}
 		</td>

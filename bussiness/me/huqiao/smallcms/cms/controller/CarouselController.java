@@ -91,9 +91,7 @@ public class CarouselController  extends BaseController {
      */
 	public void listFormParam(HttpServletRequest request,Carousel carousel,Page pageInfo){
 		//复杂关联关系数据准备
-					List<CommonFile> commonFileList = commonFileService.getByProperties(CommonFile.class,null,null,null,null);
-	request.setAttribute("commonFileList",commonFileList);
-request.setAttribute("useStatusMap",UseStatus.useStatusMap);
+		request.setAttribute("useStatusMap",UseStatus.useStatusMap);
 	}
     /**
      * 添加轮播页面
@@ -123,13 +121,8 @@ request.setAttribute("useStatusMap",UseStatus.useStatusMap);
 	@RequestParam(value = "callBack",required = false)String callBack,
 	BindingResult result) {
     	JsonResult jsonResult = new JsonResult();
-    	//默认系统时间类型保存
-	/*
-		#ONE_TO_MANY_VALUE_SAVE_ADD
-	*/
-	    //保存多对多关联关系
-	//保持一对多关联关系
-	carousel.setManageKey(Md5Util.getManageKey());
+    	carousel.setPicture(parseFilee(request, "pictureKeys"));
+    	carousel.setManageKey(Md5Util.getManageKey());
     	carouselService.add(carousel);
         jsonResult.setMessage(getI18NMessage(request, "base.common.controller.operate.add.success"));
         return jsonResult;
@@ -165,10 +158,8 @@ request.setAttribute("useStatusMap",UseStatus.useStatusMap);
     	if(!validate(jsonResult,result)){
     		return jsonResult;
     	}
-	    //保存多对多关联关系
-		//保持一对多关联关系
+    	carousel.setPicture(parseFilee(request, "pictureKeys"));
         carouselService.update(carousel);
-	// jsonResult.setNavTabId(rel);
         jsonResult.setMessage(getI18NMessage(request, "base.common.controller.operate.update.success"));
         return jsonResult;
     }

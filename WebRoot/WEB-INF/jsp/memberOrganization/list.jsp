@@ -70,7 +70,7 @@
 							<tbody>
 								<c:if test="${empty pageBean.list}">
 									<tr>
-										<td colspan="6">
+										<td colspan="7">
 											<center>
 												<font style="color: gray;"><spring:message code="base.function.table.info.nodata" /> </font>
 											</center>

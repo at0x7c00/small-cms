@@ -10,6 +10,7 @@ import javax.validation.Valid;
 import me.huqiao.smallcms.common.controller.BaseController;
 import me.huqiao.smallcms.common.entity.CommonFile;
 import me.huqiao.smallcms.common.entity.Select2;
+import me.huqiao.smallcms.common.entity.enumtype.UseStatus;
 import me.huqiao.smallcms.common.entity.propertyeditor.CommonFileEditor;
 import me.huqiao.smallcms.common.service.ICommonFileService;
 import me.huqiao.smallcms.ppll.entity.AuthOrg;
@@ -90,8 +91,7 @@ public class AuthOrgController  extends BaseController {
      */
 	public void listFormParam(HttpServletRequest request,AuthOrg authOrg,Page pageInfo){
 		//复杂关联关系数据准备
-					List<CommonFile> commonFileList = commonFileService.getByProperties(CommonFile.class,null,null,null,null);
-	request.setAttribute("commonFileList",commonFileList);
+		request.setAttribute("useStatusMap",UseStatus.useStatusMap);
 	}
     /**
      * 添加授权机构页面
@@ -102,8 +102,6 @@ public class AuthOrgController  extends BaseController {
     @RequestMapping(value="/add",method=RequestMethod.GET)
     public void addUI(HttpServletRequest request,@RequestParam(value = "callBack",required = false)String callBack) {
     	//复杂关联关系数据准备
-					List<CommonFile> commonFileList = commonFileService.getByProperties(CommonFile.class,null,null,null,null);
-	request.setAttribute("commonFileList",commonFileList);
 		//clearTempDataList(request.getSession(),"authOrg");
 		request.setAttribute("callBack", callBack);
     }
@@ -120,13 +118,8 @@ public class AuthOrgController  extends BaseController {
 	@RequestParam(value = "callBack",required = false)String callBack,
 	BindingResult result) {
     	JsonResult jsonResult = new JsonResult();
-    	//默认系统时间类型保存
-	/*
-		#ONE_TO_MANY_VALUE_SAVE_ADD
-	*/
-	    //��存多对多关联关系
-	//保持一对多关联关系
-	authOrg.setManageKey(Md5Util.getManageKey());
+    	authOrg.setCertFile(parseFilee(request, "certFileKeys"));
+    	authOrg.setManageKey(Md5Util.getManageKey());
     	authOrgService.add(authOrg);
         jsonResult.setMessage(getI18NMessage(request, "base.common.controller.operate.add.success"));
         return jsonResult;
@@ -141,9 +134,7 @@ public class AuthOrgController  extends BaseController {
 	public void updateUI(@ModelAttribute(value="authOrg") AuthOrg authOrg,HttpServletRequest request) {
 	request.setAttribute("tempBean", authOrg);
     	//复杂关联关系数据准备
-					List<CommonFile> commonFileList = commonFileService.getByProperties(CommonFile.class,null,null,null,null);
-	request.setAttribute("commonFileList",commonFileList);
-	//clearTempDataList(request.getSession(),"authOrg");
+		//clearTempDataList(request.getSession(),"authOrg");
     }
     /**
      *  修改授权机构 
@@ -161,8 +152,7 @@ public class AuthOrgController  extends BaseController {
     	if(!validate(jsonResult,result)){
     		return jsonResult;
     	}
-	    //保存多对多关联关系
-		//保持一对多关联关系
+    	authOrg.setCertFile(parseFilee(request, "certFileKeys"));
         authOrgService.update(authOrg);
 	// jsonResult.setNavTabId(rel);
         jsonResult.setMessage(getI18NMessage(request, "base.common.controller.operate.update.success"));

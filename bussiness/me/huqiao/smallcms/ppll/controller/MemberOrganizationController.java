@@ -10,6 +10,7 @@ import javax.validation.Valid;
 import me.huqiao.smallcms.common.controller.BaseController;
 import me.huqiao.smallcms.common.entity.CommonFile;
 import me.huqiao.smallcms.common.entity.Select2;
+import me.huqiao.smallcms.common.entity.enumtype.UseStatus;
 import me.huqiao.smallcms.common.entity.propertyeditor.CommonFileEditor;
 import me.huqiao.smallcms.common.service.ICommonFileService;
 import me.huqiao.smallcms.ppll.entity.MemberOrganization;
@@ -90,8 +91,7 @@ public class MemberOrganizationController  extends BaseController {
      */
 	public void listFormParam(HttpServletRequest request,MemberOrganization memberOrganization,Page pageInfo){
 		//复杂关联关系数据准备
-					List<CommonFile> commonFileList = commonFileService.getByProperties(CommonFile.class,null,null,null,null);
-	request.setAttribute("commonFileList",commonFileList);
+		request.setAttribute("useStatusMap",UseStatus.useStatusMap);
 	}
     /**
      * 添加会员单位页面
@@ -102,8 +102,6 @@ public class MemberOrganizationController  extends BaseController {
     @RequestMapping(value="/add",method=RequestMethod.GET)
     public void addUI(HttpServletRequest request,@RequestParam(value = "callBack",required = false)String callBack) {
     	//复杂关联关系数据准备
-					List<CommonFile> commonFileList = commonFileService.getByProperties(CommonFile.class,null,null,null,null);
-	request.setAttribute("commonFileList",commonFileList);
 		//clearTempDataList(request.getSession(),"memberOrganization");
 		request.setAttribute("callBack", callBack);
     }
@@ -121,11 +119,7 @@ public class MemberOrganizationController  extends BaseController {
 	BindingResult result) {
     	JsonResult jsonResult = new JsonResult();
     	//默认系统时间类型保存
-	/*
-		#ONE_TO_MANY_VALUE_SAVE_ADD
-	*/
-	    //保存多对多关联关系
-	//保持一对多关联关系
+    	memberOrganization.setCertFile(parseFilee(request, "certFileKeys"));
 	memberOrganization.setManageKey(Md5Util.getManageKey());
     	memberOrganizationService.add(memberOrganization);
         jsonResult.setMessage(getI18NMessage(request, "base.common.controller.operate.add.success"));
@@ -141,9 +135,7 @@ public class MemberOrganizationController  extends BaseController {
 	public void updateUI(@ModelAttribute(value="memberOrganization") MemberOrganization memberOrganization,HttpServletRequest request) {
 	request.setAttribute("tempBean", memberOrganization);
     	//复杂关联关系数据准备
-					List<CommonFile> commonFileList = commonFileService.getByProperties(CommonFile.class,null,null,null,null);
-	request.setAttribute("commonFileList",commonFileList);
-	//clearTempDataList(request.getSession(),"memberOrganization");
+		//clearTempDataList(request.getSession(),"memberOrganization");
     }
     /**
      *  修改��员单位 
@@ -161,8 +153,7 @@ public class MemberOrganizationController  extends BaseController {
     	if(!validate(jsonResult,result)){
     		return jsonResult;
     	}
-	    //保存多对多关联关系
-		//保持一对多关联关系
+    	memberOrganization.setCertFile(parseFilee(request, "certFileKeys"));
         memberOrganizationService.update(memberOrganization);
 	// jsonResult.setNavTabId(rel);
         jsonResult.setMessage(getI18NMessage(request, "base.common.controller.operate.update.success"));

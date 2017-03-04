@@ -134,7 +134,12 @@ public class WorkerDaoImpl extends BaseDaoImpl<Worker> implements IWorkerDao {
  && ! worker.getJob().trim().equals("")){
 		criteria.add(Restrictions.like("job",worker.getJob(),MatchMode.ANYWHERE));
 }
+       if(worker.getStatus()!=null
+    		   ){
+    		   		criteria.add(Restrictions.eq("status",worker.getStatus()));
+    		   }
     }
+    
 	@Override
 	public Worker findByVersion(Integer version) {
 		AuditReader reader = AuditReaderFactory.get(getSession());

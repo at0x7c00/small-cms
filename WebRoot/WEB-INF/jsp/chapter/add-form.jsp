@@ -1,36 +1,5 @@
 <%@page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-				<section class="col col-3">
-					<label class="input">
-						<spring:message code="props.me.huqiao.smallcms.cms.entity.Chapter.creator"/>:
-							<font style='color:red' class="required-mark">*</font>
-										<label class="select">
-										<form:select id="creator" path="creator" cssClass="required comboxed">
-										<option value=""><spring:message code="base.common.selectone"/></option>
-											<form:options  items="${userList}" itemValue="username" itemLabel="chineseName"/>
-										</form:select><i></i>
-										</label>
-				</label>
-				</section>
-				<section class="col col-3">
-					<label class="input">
-						<spring:message code="props.me.huqiao.smallcms.cms.entity.Chapter.readCount"/>:
-								<form:input path="readCount"
-									id="chapter.readCount" type="text"
-									cssClass="textInput  digits" />
-				</label>
-				</section>
-				<section class="col col-3">
-					<label class="input">
-						<spring:message code="props.me.huqiao.smallcms.cms.entity.Chapter.createTime"/>:
-							<font style='color:red' class="required-mark">*</font>
-								<label class="input">
-								<i class="icon-append fa fa-calendar"></i>
-								<input name="createTime" id="chapter.createTime" onclick="WdatePicker({dateFmt:'${applicationScope.EN_YEAR_MONTH_DAY_HOUR_MIN_SEC}'});"
-								value="<fmt:formatDate pattern='${applicationScope.EN_YEAR_MONTH_DAY_HOUR_MIN_SEC}' value='${tempBean.createTime}'/>" class="date_required required textInput valid"/>
-								</label>
-				</label>
-				</section>
-				<section class="col col-3">
+				<section class="col col-12">
 					<label class="input">
 						<spring:message code="props.me.huqiao.smallcms.cms.entity.Chapter.title"/>:
 							<font style='color:red' class="required-mark">*</font>
@@ -40,7 +9,7 @@
 											maxlength="255" />
 					</label>
 				</section>
-				<section class="col col-3">
+				<section class="col col-12">
 					<label class="input">
 						<spring:message code="props.me.huqiao.smallcms.cms.entity.Chapter.content"/>:
 							<font style='color:red' class="required-mark">*</font>
@@ -48,33 +17,10 @@
 										<form:textarea path="content"
 											id="chapter.content" cols="60"
 											rows="5"
-											cssClass="required"
+											cssClass="required ckeditor-able"
 											 />
 										</label>
 					</label>
-				</section>
-				<section class="col col-3">
-					<label class="input">
-						<spring:message code="props.me.huqiao.smallcms.cms.entity.Chapter.page"/>:
-							<font style='color:red' class="required-mark">*</font>
-										<label class="select">
-										<form:select id="page" path="page" cssClass="required comboxed">
-										<option value=""><spring:message code="base.common.selectone"/></option>
-											<form:options  items="${webPageList}" itemValue="manageKey" itemLabel="name"/>
-										</form:select><i></i>
-										</label>
-				</label>
-				</section>
-				<section class="col col-3">
-					<label class="input">
-						<spring:message code="props.me.huqiao.smallcms.cms.entity.Chapter.cover"/>:
-										<label class="select">
-										<form:select id="cover" path="cover" cssClass=" comboxed">
-										<option value=""><spring:message code="base.common.selectone"/></option>
-											<form:options  items="${commonFileList}" itemValue="manageKey" itemLabel="manageKey"/>
-										</form:select><i></i>
-										</label>
-				</label>
 				</section>
 				<section class="col col-3">
 					<label class="input">

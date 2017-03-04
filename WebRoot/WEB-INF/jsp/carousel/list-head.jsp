@@ -3,8 +3,8 @@
 			<th align="center" data-sortfield="picture" class="${nfn:sortClass(pageBean,'picture')}">
 			<spring:message code="props.me.huqiao.smallcms.cms.entity.Carousel.picture"/>
 		</th>
-			<th align="center" data-sortfield="url" class="${nfn:sortClass(pageBean,'url')}">
-			<spring:message code="props.me.huqiao.smallcms.cms.entity.Carousel.url"/>
+			<th align="center" data-sortfield="title" class="${nfn:sortClass(pageBean,'title')}">
+			<spring:message code="props.me.huqiao.smallcms.cms.entity.Carousel.title"/>
 		</th>
 			<th align="center" data-sortfield="orderNum" class="${nfn:sortClass(pageBean,'orderNum')}">
 			<spring:message code="props.me.huqiao.smallcms.cms.entity.Carousel.orderNum"/>

@@ -43,14 +43,15 @@
 									   />
 				</label>
 				</section>
-					<section class="col col-2">
+				
+				<section class="col col-2">
 						<label class="input"> 
-										<label class="select">
-										<form:select id="certFile" path="certFile" cssClass="required comboxed">
-										<option value="">-<spring:message code="props.me.huqiao.smallcms.ppll.entity.MemberOrganization.certFile"/>-</option>
-											<form:options  items="${commonFileList}" itemValue="manageKey" itemLabel="manageKey"/>
-										</form:select>
-										<i></i>
-										</label>
+								<label class="select">
+								<form:select id="status" path="status" cssClass="comboxed">
+								<option value="">-${nfn:i18nMessage(reqCtx,'props.me.huqiao.smallcms.ppll.entity.MemberOrganization.status')}-</option>
+									<form:options  items="${useStatusMap}"/>
+								</form:select>
+								<i></i>
+								</label>
 				</label>
 				</section>

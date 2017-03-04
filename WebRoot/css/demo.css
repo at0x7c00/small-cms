@@ -210,3 +210,41 @@
 	table{
 		font-size:12px;
 	}
+	
+	.page-select-div{
+		padding:10px;
+		margin:15px; 10px;
+		cursor:pointer;
+		border:1px solid #ddd;
+		border-radius:5px;
+	}
+	
+	.page-select-div:hover{
+		-webkit-box-shadow: 0 0px 12px rgba(0,0,0,0.15);
+	    box-shadow: 0 0px 12px rgba(0,0,0,0.15);
+	}
+	
+	.chapter-detail>li{
+		list-style-type: none;
+		display:inline-block;
+		padding:0px 5px;
+		border-left:1px solid #ddd;
+	}
+	
+	.table-pic{
+		width : 50px;
+		height:auto;
+		padding:5px;
+		border:1px solid #ddd;
+	}
+	.table-pic-lg{
+		width :250px;
+		height:auto;
+		padding:5px;
+		border:1px solid #ddd;
+		margin:10px;
+	}
+	.hover-able:hover{
+		-webkit-box-shadow: 0 0px 12px rgba(0,0,0,0.15);
+	    box-shadow: 0 0px 12px rgba(0,0,0,0.15);
+	}

@@ -1,11 +1,13 @@
 <%@page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-	<section class="col col-3">
+	<section class="col col-12">
 		<label class="input"
 						   <c:if test="${checkResult['name'].changed}">title= "${checkResult['name'].info}";</c:if>
 						   >
 			<span class="${checkResult['name'].changed ? 'change-markup':''}">
 						<spring:message code="props.me.huqiao.smallcms.ppll.entity.QualityArchiveCompany.name"/>:
+									<strong>
 									<c:out value="${tempBean.name}"/>
+									</strong>
 			</span>
 		</label>
 	</section>
@@ -29,7 +31,7 @@
 			</span>
 		</label>
 	</section>
-	<section class="col col-3">
+	<section class="col col-12">
 		<label class="input"
 						   <c:if test="${checkResult['address'].changed}">title= "${checkResult['address'].info}";</c:if>
 						   >
@@ -39,7 +41,7 @@
 			</span>
 		</label>
 	</section>
-	<section class="col col-3">
+	<section class="col col-12">
 		<label class="input"
 						   <c:if test="${checkResult['tradeScope'].changed}">title= "${checkResult['tradeScope'].info}";</c:if>
 						   >
