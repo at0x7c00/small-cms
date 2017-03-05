@@ -21,24 +21,24 @@
 		  					<a class="more" href="#"></a>
 		  				</div>
 		  				<ul class="module-content">
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
+		  					<li><a href="${basePath}frontend/danganDetail.do">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
+		  					<li><a href="${basePath}frontend/danganDetail.do">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
+		  					<li><a href="${basePath}frontend/danganDetail.do">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
+		  					<li><a href="${basePath}frontend/danganDetail.do">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
+		  					<li><a href="${basePath}frontend/danganDetail.do">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
+		  					<li><a href="${basePath}frontend/danganDetail.do">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
+		  					<li><a href="${basePath}frontend/danganDetail.do">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
+		  					<li><a href="${basePath}frontend/danganDetail.do">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
+		  					<li><a href="${basePath}frontend/danganDetail.do">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
+		  					<li><a href="${basePath}frontend/danganDetail.do">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
+		  					<li><a href="${basePath}frontend/danganDetail.do">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
+		  					<li><a href="${basePath}frontend/danganDetail.do">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
+		  					<li><a href="${basePath}frontend/danganDetail.do">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
+		  					<li><a href="${basePath}frontend/danganDetail.do">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
+		  					<li><a href="${basePath}frontend/danganDetail.do">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
+		  					<li><a href="${basePath}frontend/danganDetail.do">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
+		  					<li><a href="${basePath}frontend/danganDetail.do">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
+		  					<li><a href="${basePath}frontend/danganDetail.do">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
 		  				</ul>
 		  				
 		  				<div class="page-bar">

@@ -41,6 +41,10 @@ public class FrontendController  extends BaseController {
 	public void hangyezixun(){
 		
 	}
+	@RequestMapping("danganDetail")
+	public void danganDetail(){
+		 
+	}
 	
 	@RequestMapping("about")
 	public void about(){

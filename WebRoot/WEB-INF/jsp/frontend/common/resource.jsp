@@ -14,6 +14,5 @@ var basePath = '${basePath}';
 <link rel="stylesheet" type="text/css" media="screen" href="${basePath}js/jquery.bxslider/jquery.bxslider.css">
 
 <script src="${basePath}js/jquery/1.11.3/jquery.min.js"></script>
-<script src="${basePath}js/jssor.slider/jssor.slider-22.2.12.mini.js"></script>
 <script src="${basePath}js/jquery.bxslider/jquery.bxslider.min.js"></script>
 <script src="${basePath}resource/frontend/theme/default/js/core.js"></script>

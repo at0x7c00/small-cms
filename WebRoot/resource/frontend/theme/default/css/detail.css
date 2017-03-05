@@ -1,0 +1,32 @@
+body{
+	background: #f0e6da;
+}
+
+.dangan-detail-line{
+	height:20px;
+	background: url(./img/detail-top-line.png) repeat-x;
+	background-position:0px -25px;
+	margin:0px 0px 10px 0px;
+}
+
+img.img-full-page{
+	width:100%;
+	height:auto;
+}
+.qute{
+	margin-top:35px;
+}
+
+.detail-footer>.line{
+	height:25px;
+	background: url(./img/detail-footer-bg.png) repeat-x;
+}
+
+.qute>.image-devider{
+	text-align:center;
+}
+.qute>.image-devider>img{
+	height:60px;
+	width:auto;
+}
+
