@@ -17,4 +17,36 @@ public class FrontendController  extends BaseController {
 		
 	}
 	
+	@RequestMapping("zhengcedongtai")
+	public void zhengcedongtai(){
+		
+	}
+	
+	@RequestMapping("zhiliangredian")
+	public void zhiliangredian(){
+		
+	}
+	
+	@RequestMapping("huiyuanfengcai")
+	public void huiyuanfengcai(){
+		
+	}
+	
+	@RequestMapping("zhiliangdangan")
+	public void zhiliangdangan(){
+		
+	}
+
+	@RequestMapping("hangyezixun")
+	public void hangyezixun(){
+		
+	}
+	
+	@RequestMapping("about")
+	public void about(){
+		
+	}
+	
+	
+	
 }

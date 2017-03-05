@@ -69,28 +69,6 @@ public class PrivilegeValidateInterceptor extends HandlerInterceptorAdapter {
 	public static final Map<String,List<String>> extendsFromParents = new HashMap<String,List<String>>();
 	
 	static{
-		//提交访谈
-		List<String> myInterviewRecordList = new ArrayList<String>();
-		//myInterviewRecordList.add("interview/add.do");
-		myInterviewRecordList.add("interview/detail.do");
-		extendsFromParents.put("interview/myList.do",myInterviewRecordList);
-		
-		//我的录款记录
-		List<String> myRechargeRecordList = new ArrayList<String>();
-		myRechargeRecordList.add("rechargeRecord/add.do");
-		myRechargeRecordList.add("rechargeRecord/update.do");
-		myRechargeRecordList.add("rechargeRecord/delete.do");
-		myRechargeRecordList.add("rechargeRecord/detail.do");
-		extendsFromParents.put("rechargeRecord/myList.do",myRechargeRecordList);
-		
-		//我的物料订单
-		List<String> myMaterialOrderList = new ArrayList<String>();
-		myMaterialOrderList.add("materialOrder/add.do");
-		//myMaterialOrderList.add("materialOrder/update.do");
-		//myMaterialOrderList.add("materialOrder/delete.do");
-		myMaterialOrderList.add("materialOrder/detail.do");
-		extendsFromParents.put("materialOrder/myList.do",myMaterialOrderList);
-		
 		//我的合同申请
 		List<String> myContractApplyList = new ArrayList<String>();
 		myContractApplyList.add("contractApply/add.do");
@@ -119,6 +97,7 @@ public class PrivilegeValidateInterceptor extends HandlerInterceptorAdapter {
         ThreadLocalUtil.loginInfoThreadLocal.set(loginInfo);
     	String url = request.getRequestURI();
 		url = url.substring(url.indexOf("/") + (request.getContextPath().length() + 1));
+		request.setAttribute("_request_url", url);
         try {
         	if(accessUrlWithOutLogin(url) ){//访问开放地址，通过
         		prepareFormUrl(request);
