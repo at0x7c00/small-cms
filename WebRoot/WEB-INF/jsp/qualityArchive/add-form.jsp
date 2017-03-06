@@ -22,7 +22,22 @@
 										</label>
 					</label>
 				</section>
-				<section class="col col-6">
+				<section class="col col-4">
+					<label class="input">
+						<spring:message code="props.me.huqiao.smallcms.ppll.entity.QualityArchive.category"/>:
+							<font style='color:red' class="required-mark">*</font>
+							<label class="select">
+							<form:select id="category" path="category" cssClass="required comboxed">
+							<option value="">-${nfn:i18nMessage(reqCtx,'props.me.huqiao.smallcms.ppll.entity.QualityArchive.category')}-</option>
+								<form:options  items="${categoryList}" itemValue="manageKey"  itemLabel="name"/>
+							</form:select>
+							<i></i>
+							</label>
+				</section>
+				
+				
+				
+				<section class="col col-4">
 					<label class="input">
 						<spring:message code="props.me.huqiao.smallcms.ppll.entity.QualityArchive.orderNum"/>:
 							<font style='color:red' class="required-mark">*</font>
@@ -31,7 +46,7 @@
 									cssClass="textInput required digits" />
 				</label>
 				</section>
-				<section class="col col-6">
+				<section class="col col-4">
 					<label class="input">
 						<spring:message code="props.me.huqiao.smallcms.ppll.entity.QualityArchive.status"/>:
 							<font style='color:red' class="required-mark">*</font>

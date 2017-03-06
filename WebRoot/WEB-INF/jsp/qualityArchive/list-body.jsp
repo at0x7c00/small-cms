@@ -3,9 +3,6 @@
 		<td>
 		${tempBean.title}
 		</td>
-		<td>
-		${tempBean.content}
-		</td>
 			<td>${tempBean.detailCover.name}</td>
 			<td>${tempBean.creator.chineseName}</td>
 			<td><fmt:formatDate value="${tempBean.createTime}" pattern="${applicationScope.EN_YEAR_MONTH_DAY_HOUR_MIN_SEC}"/></td>

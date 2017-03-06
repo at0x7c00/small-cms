@@ -1,5 +1,5 @@
 <%@page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-	<section class="col col-3">
+	<section class="col col-12">
 		<label class="input"
 						   <c:if test="${checkResult['title'].changed}">title= "${checkResult['title'].info}";</c:if>
 						   >
@@ -9,23 +9,13 @@
 			</span>
 		</label>
 	</section>
-	<section class="col col-3">
+	<section class="col col-12">
 		<label class="input"
 						   <c:if test="${checkResult['content'].changed}">title= "${checkResult['content'].info}";</c:if>
 						   >
 			<span class="${checkResult['content'].changed ? 'change-markup':''}">
 						<spring:message code="props.me.huqiao.smallcms.ppll.entity.QualityArchive.content"/>:
-									<c:out value="${tempBean.content}"/>
-			</span>
-		</label>
-	</section>
-	<section class="col col-3">
-		<label class="input"
-						   <c:if test="${checkResult['detailCover'].changed}">title= "${checkResult['detailCover'].info}";</c:if>
-						   >
-			<span class="${checkResult['detailCover'].changed ? 'change-markup':''}">
-						<spring:message code="props.me.huqiao.smallcms.ppll.entity.QualityArchive.detailCover"/>:
-									${tempBean.detailCover.name}
+									<n:html value="${tempBean.content}"/>
 			</span>
 		</label>
 	</section>

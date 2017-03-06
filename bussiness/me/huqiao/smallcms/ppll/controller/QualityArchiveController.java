@@ -16,6 +16,9 @@ import me.huqiao.smallcms.common.entity.enumtype.UseStatus;
 import me.huqiao.smallcms.common.entity.propertyeditor.CommonFileEditor;
 import me.huqiao.smallcms.common.service.ICommonFileService;
 import me.huqiao.smallcms.ppll.entity.QualityArchive;
+import me.huqiao.smallcms.ppll.entity.QualityArchiveCategory;
+import me.huqiao.smallcms.ppll.entity.propertyeditor.QualityArchiveCategoryEditor;
+import me.huqiao.smallcms.ppll.service.IQualityArchiveCategoryService;
 import me.huqiao.smallcms.ppll.service.IQualityArchiveService;
 import me.huqiao.smallcms.sys.entity.User;
 import me.huqiao.smallcms.sys.entity.propertyeditor.UserEditor;
@@ -53,10 +56,12 @@ public class QualityArchiveController  extends BaseController {
 	public void initPropEditor(WebDataBinder binder){
          binder.registerCustomEditor(CommonFile.class,new CommonFileEditor(commonFileService));
          binder.registerCustomEditor(User.class,new UserEditor(userService));
+         binder.registerCustomEditor(QualityArchiveCategory.class,new QualityArchiveCategoryEditor(categoryService));
 	}
     //复杂关联关系的Service
 @Resource private ICommonFileService commonFileService;
 @Resource private IUserService userService;
+@Resource private IQualityArchiveCategoryService categoryService;
 		/**
 		  * 初始化ModelAttribute
 		  * @param manageKey md5管理ID （非空时自动加载指定对象）
@@ -97,6 +102,9 @@ public class QualityArchiveController  extends BaseController {
      * 
      */
 	public void listFormParam(HttpServletRequest request,QualityArchive qualityArchive,Page pageInfo){
+		List<QualityArchiveCategory> categoryList = categoryService.getByProperties(QualityArchiveCategory.class, new String[]{"status"}, new Object[]{UseStatus.InUse}, "orderNum", null);
+    	request.setAttribute("categoryList",categoryList);
+    	
 		//复杂关联关系数据准备
 		List<User> userList = userService.getByProperties(User.class,null,null,null,null);
 		request.setAttribute("userList",userList);
@@ -111,11 +119,9 @@ public class QualityArchiveController  extends BaseController {
     @RequestMapping(value="/add",method=RequestMethod.GET)
     public void addUI(HttpServletRequest request,@RequestParam(value = "callBack",required = false)String callBack) {
     	//复杂关联关系数据准备
-					List<CommonFile> commonFileList = commonFileService.getByProperties(CommonFile.class,null,null,null,null);
-	request.setAttribute("commonFileList",commonFileList);
-					List<User> userList = userService.getByProperties(User.class,null,null,null,null);
-	request.setAttribute("userList",userList);
-request.setAttribute("useStatusMap",UseStatus.useStatusMap);
+    	List<QualityArchiveCategory> categoryList = categoryService.getByProperties(QualityArchiveCategory.class, new String[]{"status"}, new Object[]{UseStatus.InUse}, "orderNum", null);
+    	request.setAttribute("categoryList",categoryList);
+    	request.setAttribute("useStatusMap",UseStatus.useStatusMap);
 		//clearTempDataList(request.getSession(),"qualityArchive");
 		request.setAttribute("callBack", callBack);
     }
@@ -157,8 +163,8 @@ request.setAttribute("useStatusMap",UseStatus.useStatusMap);
 			}
 		}
 		qualityArchive.setGloryDisplay(gloryDisplay);
-	//保持一对多关联关系
-	qualityArchive.setManageKey(Md5Util.getManageKey());
+		//保持一对多关联关系
+		qualityArchive.setManageKey(Md5Util.getManageKey());
     	qualityArchiveService.add(qualityArchive);
         jsonResult.setMessage(getI18NMessage(request, "base.common.controller.operate.add.success"));
         return jsonResult;
@@ -171,14 +177,14 @@ request.setAttribute("useStatusMap",UseStatus.useStatusMap);
      */
     @RequestMapping(value="/update",method=RequestMethod.GET)
 	public void updateUI(@ModelAttribute(value="qualityArchive") QualityArchive qualityArchive,HttpServletRequest request) {
-	request.setAttribute("tempBean", qualityArchive);
+    	
+    	List<QualityArchiveCategory> categoryList = categoryService.getByProperties(QualityArchiveCategory.class, new String[]{"status"}, new Object[]{UseStatus.InUse}, "orderNum", null);
+    	request.setAttribute("categoryList",categoryList);
+    	
+    	request.setAttribute("tempBean", qualityArchive);
     	//复杂关联关系数据准备
-					List<CommonFile> commonFileList = commonFileService.getByProperties(CommonFile.class,null,null,null,null);
-	request.setAttribute("commonFileList",commonFileList);
-					List<User> userList = userService.getByProperties(User.class,null,null,null,null);
-	request.setAttribute("userList",userList);
-request.setAttribute("useStatusMap",UseStatus.useStatusMap);
-	//clearTempDataList(request.getSession(),"qualityArchive");
+		request.setAttribute("useStatusMap",UseStatus.useStatusMap);
+		//clearTempDataList(request.getSession(),"qualityArchive");
     }
     /**
      *  修改质量档案 

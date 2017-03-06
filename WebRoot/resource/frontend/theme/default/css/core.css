@@ -12,10 +12,7 @@ body{
 div{
 	border:1px dashed #green;
 }
-.container{
-	width:1000px;
-	margin:auto;
-}
+
 header{
 	height:118px;
 }
@@ -89,7 +86,7 @@ header{
 	margin-top:32px;
 }
 .module{
-	width:490px;
+	width:610px;
 	border:1px solid #bdbfc0;
 	margin-bottom:15px;
 }
@@ -104,15 +101,15 @@ header{
 	float:right;
 }
 .module.full-page{
-	width:1000px;
+	width:1250px;
 }
 
 .module.left.lg{
-	width:700px;
+	width:807px;
 }
 
 .module.right.blue{
-	width:270px;
+	width:420px;
 }
 
 .module-header{
@@ -239,4 +236,19 @@ td>.detail-item{
 p.header{
 	color:#1e6697;
 	font-weight:bold;
+}
+
+
+@media  (min-width:1px) and (max-width:1400px) {
+	.container{
+		width:1250px;
+		margin:auto;
+	}
+}
+
+@media  (min-width:1400px) {
+	.container{
+		width:1250px;
+		margin:auto;
+	}
 }

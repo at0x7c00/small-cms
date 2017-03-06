@@ -29,23 +29,27 @@
 			</span>
 		</label>
 	</section>
-	<section class="col col-3">
+	<section class="col col-12">
 		<label class="input"
 						   <c:if test="${checkResult['title'].changed}">title= "${checkResult['title'].info}";</c:if>
 						   >
 			<span class="${checkResult['title'].changed ? 'change-markup':''}">
 						<spring:message code="props.me.huqiao.smallcms.cms.entity.Chapter.title"/>:
+									<strong>
 									<c:out value="${tempBean.title}"/>
+									</strong>
 			</span>
 		</label>
 	</section>
-	<section class="col col-3">
+	<section class="col col-12">
 		<label class="input"
 						   <c:if test="${checkResult['content'].changed}">title= "${checkResult['content'].info}";</c:if>
 						   >
 			<span class="${checkResult['content'].changed ? 'change-markup':''}">
 						<spring:message code="props.me.huqiao.smallcms.cms.entity.Chapter.content"/>:
-									<c:out value="${tempBean.content}"/>
+						<div style="max-width:100%;overflow: auto;">
+									<n:html value="${tempBean.content}"/>
+						</div>
 			</span>
 		</label>
 	</section>
@@ -56,16 +60,6 @@
 			<span class="${checkResult['page'].changed ? 'change-markup':''}">
 						<spring:message code="props.me.huqiao.smallcms.cms.entity.Chapter.page"/>:
 									${tempBean.page.name}
-			</span>
-		</label>
-	</section>
-	<section class="col col-3">
-		<label class="input"
-						   <c:if test="${checkResult['cover'].changed}">title= "${checkResult['cover'].info}";</c:if>
-						   >
-			<span class="${checkResult['cover'].changed ? 'change-markup':''}">
-						<spring:message code="props.me.huqiao.smallcms.cms.entity.Chapter.cover"/>:
-									${tempBean.cover.name}
 			</span>
 		</label>
 	</section>

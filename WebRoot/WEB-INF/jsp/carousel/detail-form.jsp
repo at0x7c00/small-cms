@@ -1,15 +1,5 @@
 <%@page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-	<section class="col col-3">
-		<label class="input"
-						   <c:if test="${checkResult['picture'].changed}">title= "${checkResult['picture'].info}";</c:if>
-						   >
-			<span class="${checkResult['picture'].changed ? 'change-markup':''}">
-						<spring:message code="props.me.huqiao.smallcms.cms.entity.Carousel.picture"/>:
-									${tempBean.picture.name}
-			</span>
-		</label>
-	</section>
-	<section class="col col-3">
+	<section class="col col-12">
 		<label class="input"
 						   <c:if test="${checkResult['url'].changed}">title= "${checkResult['url'].info}";</c:if>
 						   >

@@ -82,6 +82,8 @@ private Date readCountStart;
 private Date readCountEnd;
 /**状态*/
 private UseStatus status;
+
+private QualityArchiveCategory category;
 	/**MD5管理ID*/
 	protected String manageKey;
 	/**@return String MD5管理ID */
@@ -371,4 +373,16 @@ public UseStatus getStatus(){
 	public String toString() {
 		return "QualityArchive [manageKey=" + manageKey + "]";
 	}
+	
+	@ManyToOne(targetEntity=QualityArchiveCategory.class,fetch=FetchType.LAZY)
+	@JoinColumn(name="category_id",nullable=true)
+	@Fetch(FetchMode.SELECT)
+	@JsonIgnore
+	public QualityArchiveCategory getCategory() {
+		return category;
+	}
+	public void setCategory(QualityArchiveCategory category) {
+		this.category = category;
+	}
+	
 }

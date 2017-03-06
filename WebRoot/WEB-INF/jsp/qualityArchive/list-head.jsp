@@ -3,9 +3,6 @@
 			<th align="center" data-sortfield="title" class="${nfn:sortClass(pageBean,'title')}">
 			<spring:message code="props.me.huqiao.smallcms.ppll.entity.QualityArchive.title"/>
 		</th>
-			<th align="center" data-sortfield="content" class="${nfn:sortClass(pageBean,'content')}">
-			<spring:message code="props.me.huqiao.smallcms.ppll.entity.QualityArchive.content"/>
-		</th>
 			<th align="center" data-sortfield="detailCover" class="${nfn:sortClass(pageBean,'detailCover')}">
 			<spring:message code="props.me.huqiao.smallcms.ppll.entity.QualityArchive.detailCover"/>
 		</th>

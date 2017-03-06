@@ -149,6 +149,10 @@ criteria.add(Restrictions.le("readCount",qualityArchive.getReadCountEnd()));
 ){
 		criteria.add(Restrictions.eq("status",qualityArchive.getStatus()));
 }
+       
+       if(qualityArchive.getCategory()!=null ){
+    		   		criteria.add(Restrictions.eq("category",qualityArchive.getCategory()));
+       }
     }
 	@Override
 	public QualityArchive findByVersion(Integer version) {

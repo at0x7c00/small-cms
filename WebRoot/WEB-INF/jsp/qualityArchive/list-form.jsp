@@ -1,4 +1,17 @@
 <%@page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+					
+					<section class="col col-2">
+							<label class="input"> 
+											<label class="select">
+											<form:select id="category" path="category" cssClass="required comboxed">
+											<option value="">-${nfn:i18nMessage(reqCtx,'props.me.huqiao.smallcms.ppll.entity.QualityArchive.category')}-</option>
+												<form:options  items="${categoryList}" itemValue="manageKey"  itemLabel="name"/>
+											</form:select>
+											<i></i>
+											</label>
+					</label>
+					</section>
+					
 					<section class="col col-2">
 						<label class="input"> 
 										<form:input path="title"
