@@ -35,7 +35,7 @@
     
 <div class="carousel">
 	<ul class="bxslider" >
-        <li style="display:none;"><img data-u="image" src="../img/jssor.silder/img/news.png" title="Do you notice it is draggable by mouse/finger?"/></li>
+        <li style="display:none;"><a href="${basePath}frontend/zhengcedongtai.do" title="李克强到总部基地视察"><img data-u="image" src="../img/jssor.silder/img/news.png" title="李克强到总部基地视察"/></a></li>
         <li style="display:none;"><img data-u="image" src="../img/jssor.silder/img/news-2.png" title="Did you drag by either horizontal or vertical?"/></li>
         <li style="display:none;"><img data-u="image" src="../img/jssor.silder/img/news.png" title="Do you notice navigator responses when drag?"/></li>
         <li style="display:none;"><img data-u="image" src="../img/jssor.silder/img/news-4.png" title="Do you notice arrow responses when click?" /></li>

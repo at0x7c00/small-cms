@@ -18,7 +18,6 @@
 		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/zhiliangredian.png">
 		  				</div>
 		  				<div class="module-header">
-		  					<a class="more" href="#"></a>
 		  				</div>
 		  				<ul class="module-content">
 		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
@@ -60,7 +59,7 @@
 		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/zhengce-left.png">
 		  				</div>
 		  				<div class="module-header">
-		  					<a class="more" href="#"></a>
+		  					<a class="more" href="${basePath}frontend/zhengcedongtai.do"></a>
 		  				</div>
 		  				<ul class="module-content">
 		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
@@ -76,7 +75,7 @@
 		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/hangye-left.png">
 		  				</div>
 		  				<div class="module-header">
-		  					<a class="more" href="#"></a>
+		  					<a class="more" href="${basePath}frontend/hangyezixun.do"></a>
 		  				</div>
 		  				<ul class="module-content">
 		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>

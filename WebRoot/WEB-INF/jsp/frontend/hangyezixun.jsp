@@ -18,7 +18,6 @@
 		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/hangye.png">
 		  				</div>
 		  				<div class="module-header">
-		  					<a class="more" href="#"></a>
 		  				</div>
 		  				<ul class="module-content">
 		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>

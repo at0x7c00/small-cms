@@ -19,6 +19,7 @@ img.img-full-page{
 
 .detail-footer>.line{
 	height:25px;
+	margin-top:30px; 
 	background: url(./img/detail-footer-bg.png) repeat-x;
 }
 
