@@ -157,6 +157,7 @@ request.setAttribute("useStatusMap",UseStatus.useStatusMap);
     	JsonResult jsonResult = new JsonResult();
     	chapter.setCreator(getCurrentUser());
     	chapter.setCreateTime(new Date());
+    	chapter.setUpdateTime(chapter.getUpdateTime());
     	chapter.setPage((WebPage)request.getSession().getAttribute("cPage"));
     	chapter.setCover(parseFilee(request,"coverKeys"));
     	chapter.setManageKey(Md5Util.getManageKey());
@@ -203,6 +204,7 @@ request.setAttribute("useStatusMap",UseStatus.useStatusMap);
     	if(!validate(jsonResult,result)){
     		return jsonResult;
     	}
+    	chapter.setUpdateTime(new Date());
     	chapter.setCover(parseFilee(request,"coverKeys"));
         chapterService.update(chapter);
 	// jsonResult.setNavTabId(rel);

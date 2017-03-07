@@ -52,7 +52,8 @@ private String title;
 private String content;
 /**简介视频或图片*/
 private CommonFile detailCover;
-	/**简介视频或图片模糊查询条件*/
+private CommonFile cover;
+/**简介视频或图片模糊查询条件*/
 private String detailCoverQuery;
 /**产品展示*/
 private Set<CommonFile> productDisplay;
@@ -82,6 +83,8 @@ private Date readCountStart;
 private Date readCountEnd;
 /**状态*/
 private UseStatus status;
+
+private Date updateTime;
 
 private QualityArchiveCategory category;
 	/**MD5管理ID*/
@@ -383,6 +386,24 @@ public UseStatus getStatus(){
 	}
 	public void setCategory(QualityArchiveCategory category) {
 		this.category = category;
+	}
+	@Column(name="update_time",nullable=true)
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
+	
+	@ManyToOne(targetEntity=me.huqiao.smallcms.common.entity.CommonFile.class,fetch=FetchType.LAZY)
+	@JoinColumn(name="cover_id",nullable=true)
+	@Fetch(FetchMode.SELECT)
+	@JsonIgnore
+	public CommonFile getCover(){
+			return this.cover;	
+	}
+	public void setCover(CommonFile cover) {
+		this.cover = cover;
 	}
 	
 }

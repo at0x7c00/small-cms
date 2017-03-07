@@ -35,10 +35,13 @@
     
 <div class="carousel">
 	<ul class="bxslider" >
-        <li style="display:none;"><a href="${basePath}frontend/zhengcedongtai.do" title="李克强到总部基地视察"><img data-u="image" src="../img/jssor.silder/img/news.png" title="李克强到总部基地视察"/></a></li>
-        <li style="display:none;"><img data-u="image" src="../img/jssor.silder/img/news-2.png" title="Did you drag by either horizontal or vertical?"/></li>
-        <li style="display:none;"><img data-u="image" src="../img/jssor.silder/img/news.png" title="Do you notice navigator responses when drag?"/></li>
-        <li style="display:none;"><img data-u="image" src="../img/jssor.silder/img/news-4.png" title="Do you notice arrow responses when click?" /></li>
+		<c:forEach items="${carouselList }" var="c">
+        <li style="display:none;">
+        <a href="${c.url}" target="_blank" title="${c.title}">
+        <img data-u="image" src="${basePath}filee/viewPic.do?manageKey=${c.picture.manageKey}" title="${c.title}"/>
+        </a>
+        </li>
+        </c:forEach>
 	</ul>
 </div>
 <script>
@@ -48,7 +51,9 @@ $(function(){
 		  mode: 'fade',
 		  captions: true,
 		  adaptiveHeight:false,
-		  pagerType:'full'
+		  pagerType:'full',
+		  auto:true,
+		  pause:3000
 	});
 	
 	 $(".bxslider").show();

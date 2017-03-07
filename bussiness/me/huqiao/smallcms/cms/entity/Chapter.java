@@ -78,6 +78,9 @@ private Integer orderNumStart;
 private Integer orderNumEnd;
 /**状态*/
 private UseStatus status;
+
+private Date updateTime;
+
 	/**MD5管理ID*/
 	protected String manageKey;
 	/**@return String MD5管理ID */
@@ -364,4 +367,14 @@ public UseStatus getStatus(){
 	public String toString() {
 		return "Chapter [manageKey=" + manageKey + "]";
 	}
+	
+	@Column(name="update_time",nullable=true)
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
+	
+	
 }

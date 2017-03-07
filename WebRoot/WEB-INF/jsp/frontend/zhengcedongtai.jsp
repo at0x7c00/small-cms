@@ -20,38 +20,27 @@
 		  				<div class="module-header">
 		  				</div>
 		  				<ul class="module-content">
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
+		  					<c:forEach items="${page.list}" var="chapter" varStatus="s">
+			  					<li><a href="${basePath}frontend/chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}"><n:shorthand length="30" content="${chapter.title}"></n:shorthand> </a></li>
+			  					<c:if test="${s.count%5==0}">
+			  						<li class="devider"></li>
+			  					</c:if>
+		  					</c:forEach>
 		  				</ul>
 		  				
 		  				<div class="page-bar">
-		  					<a href="#">&lt;</a>
+		  					<c:if test="${page.pageNum>1}">
+		  						<a href="${basePath}frontend/zhengcedongtai.do?pageNum=${page.pageNum-1}" style="padding-left:15px;padding-right:15px;">&lt;</a>
+		  					</c:if>
+		  					<c:forEach items="${page.pageBarIndex}" var="x"> 
+			  					<a href="${basePath}frontend/zhengcedongtai.do?pageNum=${x}" class="${x eq page.pageNum ? 'active':'' }">${x}</a>
+		  					</c:forEach>
 		  					
-		  					<a href="#">1</a>
-		  					<a href="#">2</a>
-		  					<a href="#">3</a>
-		  					<a href="#">...</a>
-		  					<a href="#">8</a>
-		  					<a href="#">9</a>
-		  					
-		  					<a href="#">&gt;</a>
+		  					<c:if test="${page.pageNum<page.countPage}">
+			  					<a href="${basePath}frontend/zhengcedongtai.do?pageNum=${page.pageNum+1}" style="padding-left:15px;padding-right:15px;">&gt;</a>
+		  					</c:if>
 		  				</div>
+		  				
 		  			</div>
 		  			
 		  			<div class="module right blue">
@@ -62,10 +51,9 @@
 		  					<a class="more" href="${basePath}frontend/zhiliangredian.do"></a>
 		  				</div>
 		  				<ul class="module-content">
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
+		  					<c:forEach items="${zhiliangredianList}" var="chapter">
+			  					<li><a href="${basePath}frontend/chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}"><n:shorthand length="15" content="${chapter.title}"></n:shorthand> </a></li>
+		  					</c:forEach>
 		  				</ul>
 		  			</div>
 		  			
@@ -78,22 +66,14 @@
 		  					<a class="more" href="${basePath}frontend/hangyezixun.do"></a>
 		  				</div>
 		  				<ul class="module-content">
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
+		  					<c:forEach items="${hangyezixunList}" var="chapter"> 
+			  					<li>
+			  					<a href="${basePath}frontend/chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}"><n:shorthand length="15" content="${chapter.title}"></n:shorthand> </a>
+			  					</li>
+		  					</c:forEach>
 		  				</ul>
 		  			</div>
 	  			</div>
-	  			
-	  			
-		  		
-		  		
-		  		
-		  		
-		  		
-		  		
-		  		
 		  		
 		  		<%@include file="/WEB-INF/jsp/frontend/common/footer.jsp" %>
 		  		

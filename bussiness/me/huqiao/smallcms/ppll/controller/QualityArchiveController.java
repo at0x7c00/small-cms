@@ -150,7 +150,9 @@ public class QualityArchiveController  extends BaseController {
 			productDisplay.add(commonFileService.getEntityByProperty(CommonFile.class, "manageKey", key));
 			}
 		}
+		qualityArchive.setCover(parseFilee(request, "coverKeys"));
 		qualityArchive.setCreateTime(new Date());
+		qualityArchive.setUpdateTime(qualityArchive.getCreateTime());
 		qualityArchive.setCreator(getCurrentUser());
 		qualityArchive.setDetailCover(parseFilee(request, "videoOrPictureKeys"));
 		qualityArchive.setProductDisplay(productDisplay);
@@ -212,7 +214,6 @@ public class QualityArchiveController  extends BaseController {
 				productDisplay.add(commonFileService.getEntityByProperty(CommonFile.class, "manageKey", key));
 			}
 		}
-		
 		qualityArchive.getProductDisplay().clear();
 		qualityArchive.getProductDisplay().addAll(productDisplay);
 		//设置荣誉展示
@@ -225,11 +226,10 @@ public class QualityArchiveController  extends BaseController {
 		}
 		qualityArchive.getGloryDisplay().clear();
 		qualityArchive.getGloryDisplay().addAll(gloryDisplay);
-
-		qualityArchive.setCreateTime(new Date());
-		qualityArchive.setCreator(getCurrentUser());
+		qualityArchive.setUpdateTime(new Date());
 		qualityArchive.setDetailCover(parseFilee(request, "videoOrPictureKeys"));
 		
+		qualityArchive.setCover(parseFilee(request, "coverKeys"));
 		//保持一对多关联关系
         qualityArchiveService.update(qualityArchive);
 	// jsonResult.setNavTabId(rel);

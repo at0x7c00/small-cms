@@ -104,7 +104,7 @@ $input.keyup(function(e){
 });
 
 //just to do start up animation
-showImgAt(5);
+showImgAt(2);
 
 
 

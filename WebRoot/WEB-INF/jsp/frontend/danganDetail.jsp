@@ -254,7 +254,7 @@
 			oninit:function(){
 				isloaded=true
 				document.getElementById('displaycssbelt').style.visibility="visible";
-				document.getElementById('stocklevels').style.visibility="visible";
+				//document.getElementById('stocklevels').style.visibility="visible";
 			}
 		});
 		</script>

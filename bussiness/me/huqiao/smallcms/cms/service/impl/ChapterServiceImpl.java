@@ -5,7 +5,10 @@ import javax.annotation.Resource;
 
 import me.huqiao.smallcms.cms.dao.IChapterDao;
 import me.huqiao.smallcms.cms.entity.Chapter;
+import me.huqiao.smallcms.cms.entity.WebPage;
 import me.huqiao.smallcms.cms.service.IChapterService;
+import me.huqiao.smallcms.cms.service.IWebPageService;
+import me.huqiao.smallcms.common.entity.enumtype.UseStatus;
 import me.huqiao.smallcms.common.service.impl.BaseServiceImpl;
 import me.huqiao.smallcms.history.entity.HistoryRecord;
 import me.huqiao.smallcms.util.web.Page;
@@ -18,6 +21,10 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ChapterServiceImpl extends BaseServiceImpl<Chapter> implements IChapterService {
+	
+	@Resource
+	private IWebPageService pageService;
+	
     /**文章DAO对象*/
     @Resource
     private IChapterDao chapterDao;
@@ -53,4 +60,20 @@ public class ChapterServiceImpl extends BaseServiceImpl<Chapter> implements ICha
 	public List<Chapter> queryById(Integer[] ids) {
 		return chapterDao.findById(ids);
 	}
+	
+	public List<Chapter> getTop(Integer top,Integer type){
+		WebPage p = pageService.getById(WebPage.class, type);
+		return getByProperties(Chapter.class, new String[]{"status","page"}, new Object[]{UseStatus.InUse,p}, "orderNum asc,updateTime desc", top);
+	}
+	
+	public Page<Chapter> getAll(Integer type,Page<Chapter> pageInfo){
+		WebPage p = pageService.getById(WebPage.class, type);
+		Chapter chapter = new Chapter();
+		chapter.setPage(p);
+		chapter.setStatus(UseStatus.InUse);
+		pageInfo.setOrderField("updateTime");
+		pageInfo.setOrderDirection("desc");
+		return getListPage(chapter, pageInfo);
+	}
+	
 }

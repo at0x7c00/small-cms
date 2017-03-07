@@ -21,13 +21,9 @@
 		  					<a class="more" href="${basePath}frontend/zhengcedongtai.do"></a>
 		  				</div>
 		  				<ul class="module-content">
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
+		  					<c:forEach items="${zhengcedongtaiList}" var="chapter">
+			  					<li><a href="${basePath}frontend/chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}"><n:shorthand length="30" content="${chapter.title}"></n:shorthand> </a></li>
+		  					</c:forEach>
 		  				</ul>
 		  			</div>
 		  			
@@ -39,23 +35,23 @@
 		  					<a class="more" href="${basePath}frontend/zhiliangredian.do"></a>
 		  				</div>
 		  				<ul class="module-content">
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
+		  					<c:forEach items="${zhiliangredianList}" var="chapter">
+			  					<li><a href="${basePath}frontend/chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}"><n:shorthand length="30" content="${chapter.title}"></n:shorthand> </a></li>
+		  					</c:forEach>
 		  				</ul>
 		  			</div>
 	  			</div>
 	  			
 	  			<div class="ad-group">
 	  				<div class="ad left">
-	  					ad left
+	  					<a href="${ adList[0].url}" target="_blank" title="${adList[0].title }">
+		  					<img src="${basePath}filee/viewPic.do?manageKey=${adList[0].picture.manageKey}" />
+	  					</a>
 	  				</div>
 	  				<div class="ad right">
-	  					ad right
+	  					<a href="${ adList[1].url}" target="_blank" title="${adList[1].title }">
+	  						<img src="${basePath}filee/viewPic.do?manageKey=${adList[1].picture.manageKey}" />
+	  					</a>
 	  				</div>
 	  			</div>
 	  			
@@ -71,17 +67,15 @@
 		  					<table width="100%">
 		  						<tr>
 		  							<td width="50%" style="text-align:center;">
-		  								<img alt="" style="width:415px;height:auto;" src="${basePath}resource/frontend/theme/default/css/img/huiyuan-demo.png">
+		  								<a href="${basePath}frontend/chapterDetail.do?k=${huiyuanfengcaiList[0].manageKey}" target="_blank">
+			  								<img alt="" style="width:415px;height:auto;" src="${basePath}filee/viewPic.do?manageKey=${huiyuanfengcaiList[0].cover.manageKey}">
+		  								</a>
 		  							</td>
 		  							<td>
 		  								<ul class="module-content">
-						  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-						  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-						  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-						  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-						  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-						  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-						  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
+						  					<c:forEach items="${huiyuanfengcaiList}" var="chapter">
+							  					<li><a href="${basePath}frontend/chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}"><n:shorthand length="30" content="${chapter.title}"></n:shorthand> </a></li>
+						  					</c:forEach>
 						  				</ul>
 		  							</td>
 		  						</tr>
@@ -103,110 +97,25 @@
 		  				
 		  				<div id="mygallery" class="stepcarousel" style="margin-top:20px;">
 								<div class="belt" id="displaycssbelt">
-								<div class="panel">
-								<div class="subfeature"><a href="javascript:void(0);"><img src="${basePath}js/step-gallery/images/butterflies640-200x150.jpg" alt="butterflies-are-gross" class="post-image" width="200" height="150" /></a>
-								<div class="subfeature-txt"><h2><a href="javascript:void(0);">Butterflies are Gross</a></h2></div>
-								</div>
-								</div>		
 								
-								<div class="panel">
-								<div class="subfeature">
-								<a href="javascript:void(0);"><img src="${basePath}js/step-gallery/images/pighead640b-200x150.jpg" alt="pig-head-pozole" class="post-image" width="200" height="150" /></a>
-								<div class="subfeature-txt"><h2><a href="javascript:void(0);">Pig Head Pozole and Crispy Baked Ears</a></h2></div>
-								</div>
-								</div>		
+								<c:forEach items="${qualityArchiveList }" var="qa">
+									<div class="panel">
+										<div class="subfeature">
+											<a href="${basePath}frontend/danganDetail.do?manageKey=${qa.manageKey}" target="_blank" title="${qa.title}">
+												<img src="${basePath}filee/viewPic.do?manageKey=${qa.cover.manageKey}" alt="butterflies-are-gross" class="post-image" width="200" height="150" />
+											</a>
+											<div class="subfeature-txt">
+												<h2><a href="${basePath}frontend/danganDetail.do?manageKey=${qa.manageKey}" target="_blank" title="${qa.title}">
+												<n:shorthand length="14" content="${qa.title}"></n:shorthand>
+												</a></h2>
+											</div>
+										</div>
+									</div>		
+								</c:forEach>
 								
-								<div class="panel">
-								<div class="subfeature">
-								
-								<a href="javascript:void(0);"><img src="${basePath}js/step-gallery/images/canthanksgiving09-640-200x150.png" alt="canadian-thanksgiving-in-texas" class="post-image" width="200" height="150" /></a>
-								<div class="subfeature-txt">
-								<h2><a href="javascript:void(0);">Canadian Thanksgiving in Texas</a></h2>
-								</div>
-								</div>
-								</div>		
-								
-								<div class="panel">
-								<div class="subfeature">
-								<a href="javascript:void(0);"><img src="${basePath}js/step-gallery/images/weisswurst640-2-200x150.jpg" alt="weisswurst-pretzels-and-beer-for-breakfast" class="post-image" width="200" height="150" /></a>
-								<div class="subfeature-txt">
-								<h2><a href="javascript:void(0);">Weisswurst, Pretzels and Beer for Breakfast</a></h2>
-								</div>
-								</div>
-								</div>		
-								
-								<div class="panel">
-								
-								<div class="subfeature">
-								<a href="javascript:void(0);"><img src="${basePath}js/step-gallery/images/cowhead-200.jpg" alt="cow-head-barbacoa" class="post-image" width="200" height="150" /></a>
-								<div class="subfeature-txt"><h2><a href="javascript:void(0);">Cow Head Barbacoa</a></h2></div>
-								</div>
-								</div>		
-								
-								<div class="panel">
-								<div class="subfeature">
-								<a href="javascript:void(0);"><img src="${basePath}js/step-gallery/images/drpepperfeast-200x150.jpg" alt="cooking-with-dr-pepper" class="post-image" width="200" height="150" /></a>
-								<div class="subfeature-txt">
-								<h2><a href="javascript:void(0);">Cooking with Dr Pepper</a></h2>
-								</div>
-								</div>
-								</div>		
-								
-								<div class="panel">
-								<div class="subfeature">
-								
-								<a href="javascript:void(0);"><img src="${basePath}js/step-gallery/images/hatchchiles-thumb.jpg" alt="hatch-chile-feast" class="post-image" width="200" height="150" /></a>
-								<div class="subfeature-txt">
-								<h2><a href="javascript:void(0);">Hatch Chile Feast</a></h2>
-								</div>
-								</div>
-								</div>		
-								
-								<div class="panel">
-								<div class="subfeature">
-								<a href="javascript:void(0);"><img src="${basePath}js/step-gallery/images/greece-200.jpg" alt="greece-eating-our-way-through-the-mainland" class="post-image" width="200" height="150" /></a>
-								<div class="subfeature-txt">
-								<h2><a href="javascript:void(0);">Greece: Eating Our Way Through the Mainland</a></h2>
-								</div>
-								</div>
-								</div>		
-								
-								<div class="panel">
-								
-								<div class="subfeature">
-								<a href="javascript:void(0);"><img src="${basePath}js/step-gallery/images/germany2009-tmb-200x150.jpg" alt="germany-eating-our-way-through-bavaria" class="post-image" width="200" height="150" /></a>
-								<div class="subfeature-txt">
-								<h2><a href="javascript:void(0);">Germany: Eating Our Way Through Bavaria</a></h2></div>
-								</div>
-								</div>		
-								
-								<div class="panel">
-								<div class="subfeature">
-								<a href="javascript:void(0);"><img src="${basePath}js/step-gallery/images/sP1000042-200x150.jpg" alt="braised-cow-lips" class="post-image" width="200" height="150" /></a>
-								<div class="subfeature-txt"><h2><a href="javascript:void(0);">Braised Cow Lips</a></h2></div>
-								</div>
-								</div>		
-								
-								<div class="panel">
-								<div class="subfeature">
-								<a href="javascript:void(0);"><img src="${basePath}js/step-gallery/images/31birthday01-200x150.jpg" alt="sweetbreads-duck-breasts-ice-cream-cake-and-more" class="post-image" width="200" height="150" /></a>
-								
-								<div class="subfeature-txt">
-								<h2><a href="javascript:void(0);">Sweetbreads, Duck Breasts, Ice Cream Cake and More!</a></h2>
-								</div>
-								</div>
-								</div>		
-								
-								<div class="panel">
-								<div class="subfeature">
-								<a href="javascript:void(0);"><img src="${basePath}js/step-gallery/images/chickengizzards-640-200x150.jpg" alt="grilled-chicken-gizzards" class="post-image" width="200" height="150" /></a>
-								<div class="subfeature-txt">
-								<h2><a href="javascript:void(0);">Grilled Chicken Gizzards</a></h2>
-								</div>
-								</div>
-								</div>		
-								</div>
-								</div>
+										
+							</div>
+							</div>
 		  				
 		  				</div>
 		  				
@@ -222,13 +131,12 @@
 		  					<a class="more" href="${basePath}frontend/hangyezixun.do"></a>
 		  				</div>
 		  				<ul class="module-content bordered">
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a><span class="publish-date">2017/02/27</span></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a><span class="publish-date">2017/02/27</span></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a><span class="publish-date">2017/02/27</span></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a><span class="publish-date">2017/02/27</span></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a><span class="publish-date">2017/02/27</span></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a><span class="publish-date">2017/02/27</span></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a><span class="publish-date">2017/02/27</span></li>
+		  					<c:forEach items="${hangyezixunList}" var="chapter"> 
+			  					<li>
+			  					<a href="${basePath}frontend/chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}"><n:shorthand length="50" content="${chapter.title}"></n:shorthand> </a>
+			  					<span class="publish-date"><fmt:formatDate value="${chapter.createTime}" pattern="yyyy/MM/dd"/></span>
+			  					</li>
+		  					</c:forEach>
 		  				</ul>
 		  			</div>
 		  		</div>
@@ -241,30 +149,9 @@
 		  				<div class="module-header">
 		  				</div>
 		  				<div class="module-content">
-		  					<a href="#">人民网</a>
-		  					<a href="#">人民网</a>
-		  					<a href="#">中国日报网</a>
-		  					<a href="#">人民网</a>
-		  					<a href="#">人民网</a>
-		  					<a href="#">中国日报网</a>
-		  					<a href="#">人民网</a>
-		  					<a href="#">人民网</a>
-		  					<a href="#">国际在线</a>
-		  					<a href="#">中国日报网</a>
-		  					<a href="#">人民网</a>
-		  					<a href="#">国际在线</a>
-		  					<a href="#">人民网</a>
-		  					<a href="#">人民网</a>
-		  					<a href="#">人民网</a>
-		  					<a href="#">人民网</a>
-		  					<a href="#">国际在线</a>
-		  					<a href="#">国际在线</a>
-		  					<a href="#">国际在线</a>
-		  					<a href="#">国际在线</a>
-		  					<a href="#">中国日报网</a>
-		  					<a href="#">中国日报网</a>
-		  					<a href="#">中国日报网</a>
-		  					<a href="#">中国日报网</a>
+		  					<c:forEach items="${flinkList}" var="flink">
+			  					<a href="${flink.url}" target="_blank">${flink.name}</a>
+		  					</c:forEach>
 		  				</div>
 		  			</div>
 		  		</div>
@@ -289,7 +176,7 @@
 			oninit:function(){
 				isloaded=true
 				document.getElementById('displaycssbelt').style.visibility="visible";
-				document.getElementById('stocklevels').style.visibility="visible";
+				//document.getElementById('stocklevels').style.visibility="visible";
 			}
 		});
 		</script>
