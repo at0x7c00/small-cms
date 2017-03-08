@@ -15,7 +15,10 @@ import me.huqiao.smallcms.cms.service.IFriendLinkService;
 import me.huqiao.smallcms.common.controller.BaseController;
 import me.huqiao.smallcms.common.entity.enumtype.UseStatus;
 import me.huqiao.smallcms.ppll.entity.QualityArchive;
+import me.huqiao.smallcms.ppll.entity.QualityArchiveCategory;
+import me.huqiao.smallcms.ppll.service.IQualityArchiveCategoryService;
 import me.huqiao.smallcms.ppll.service.IQualityArchiveService;
+import me.huqiao.smallcms.util.StringUtil;
 import me.huqiao.smallcms.util.web.Page;
 
 import org.springframework.stereotype.Controller;
@@ -25,6 +28,7 @@ import org.springframework.stereotype.Controller;
  * @version Version 1.0
  */
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping(value = "frontend")
 public class FrontendController  extends BaseController {
@@ -44,6 +48,8 @@ public class FrontendController  extends BaseController {
 	private IFriendLinkService flinkService;
 	@Resource
 	private IQualityArchiveService qualityArchiveService;
+	@Resource
+	private IQualityArchiveCategoryService qualityArchiveCategoryService;
 	
 	
 	
@@ -108,6 +114,34 @@ public class FrontendController  extends BaseController {
 		Page<Chapter> page = chapterService.getAll(PAGE_ID_ZHENGCE,pageInfo);
 		request.setAttribute("page", page);
 	}
+	private void zhiliangPage(HttpServletRequest request,Page<Chapter> pageInfo) {
+		Page<Chapter> page = chapterService.getAll(PAGE_ID_ZHILIANGREDIAN,pageInfo);
+		request.setAttribute("page", page);
+	}
+	private void hangyePage(HttpServletRequest request,Page<Chapter> pageInfo) {
+		Page<Chapter> page = chapterService.getAll(PAGE_ID_HANGYEZIXUN,pageInfo);
+		request.setAttribute("page", page);
+	}
+	private void huiyuanPage(HttpServletRequest request,Page<Chapter> pageInfo) {
+		Page<Chapter> page = chapterService.getAll(PAGE_ID_HUIYUANFENGCAI,pageInfo);
+		request.setAttribute("page", page);
+	}
+	private void zhiliangdanganPage(HttpServletRequest request,Page<QualityArchive> pageInfo) {
+		String categoryKey = request.getParameter("categoryKey");
+		QualityArchiveCategory category = null;
+		if(StringUtil.isNotEmpty(categoryKey)){
+			category =  qualityArchiveCategoryService.getEntityByProperty(QualityArchiveCategory.class, "manageKey",categoryKey);
+		}
+		if(category==null || category.getStatus()==UseStatus.UnUse){
+			List<QualityArchiveCategory> list = qualityArchiveCategoryService.getByProperties(QualityArchiveCategory.class, new String[]{"status"}, new Object[]{UseStatus.InUse}, "orderNum", 1);
+			if(list.size()>0){
+				category = list.get(0);
+			}
+		}
+		request.setAttribute("category", category);
+		Page<QualityArchive> page = qualityArchiveService.getAll(category,pageInfo);
+		request.setAttribute("page", page);
+	}
 
 	private void prepareCarousel(HttpServletRequest request) {
 		List<Carousel> carouselList = carouselService.getByProperties(Carousel.class, new String[]{"status"}, new Object[]{UseStatus.InUse}, "orderNum", 10);
@@ -117,7 +151,6 @@ public class FrontendController  extends BaseController {
 	@RequestMapping("zhengcedongtai")
 	public void zhengcedongtai(HttpServletRequest request,Page<Chapter> pageInfo){
 		prepareCarousel(request);
-		zhengceTop(request);
 		zhiliangTop(request);
 		hangyeTop(request);
 		pageInfo.setNumPerPage(15);
@@ -125,32 +158,57 @@ public class FrontendController  extends BaseController {
 	}
 	
 	@RequestMapping("zhiliangredian")
-	public void zhiliangredian(HttpServletRequest request){
+	public void zhiliangredian(HttpServletRequest request,Page<Chapter> pageInfo){
 		prepareCarousel(request);
+		zhengceTop(request);
+		hangyeTop(request);
+		pageInfo.setNumPerPage(15);
+		zhiliangPage(request, pageInfo);
 	}
 	
 	@RequestMapping("huiyuanfengcai")
-	public void huiyuanfengcai(HttpServletRequest request){
+	public void huiyuanfengcai(HttpServletRequest request,Page<Chapter> pageInfo){
 		prepareCarousel(request);
+		pageInfo.setNumPerPage(5);
+		huiyuanPage(request, pageInfo);
 	}
 	
 	@RequestMapping("zhiliangdangan")
-	public void zhiliangdangan(HttpServletRequest request){
+	public void zhiliangdangan(HttpServletRequest request,Page<QualityArchive> pageInfo){
 		prepareCarousel(request);
+		zhiliangdanganPage(request,pageInfo);
+		List<QualityArchiveCategory> categoryList = qualityArchiveCategoryService.getByProperties(QualityArchiveCategory.class, new String[]{"status"}, new Object[]{UseStatus.InUse}, "orderNum", null);
+		request.setAttribute("categoryList",categoryList);
 	}
 
 	@RequestMapping("hangyezixun")
-	public void hangyezixun(HttpServletRequest request){
+	public void hangyezixun(HttpServletRequest request,Page<Chapter> pageInfo){
 		prepareCarousel(request);
+		pageInfo.setNumPerPage(15);
+		hangyePage(request, pageInfo);
 	}
 	@RequestMapping("danganDetail")
-	public void danganDetail(HttpServletRequest request){
-		 
+	public void danganDetail(HttpServletRequest request,@RequestParam("manageKey")String qaKey){
+		QualityArchive qa = qualityArchiveService.getEntityByProperty(QualityArchive.class, "manageKey", qaKey);
+		if(qa!=null && qa.getStatus()==UseStatus.InUse){
+			request.setAttribute("qa", qa);
+		}
 	}
 	
 	@RequestMapping("about")
 	public void about(HttpServletRequest request){
 		prepareCarousel(request);
+	}
+	
+	@RequestMapping("chapterDetail")
+	public void chapterDetail(HttpServletRequest request,@RequestParam(value = "manageKey",required = false)String key){
+		if(StringUtil.isEmpty(key)){
+			key = request.getParameter("k");
+		}
+		prepareCarousel(request);
+		request.setAttribute("p", chapterService.getEntityByProperty(Chapter.class, "manageKey", key));
+		
+		zhiliangTop(request);
 	}
 	
 	

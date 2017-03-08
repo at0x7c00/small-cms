@@ -7,6 +7,7 @@ import me.huqiao.smallcms.common.service.impl.BaseServiceImpl;
 import me.huqiao.smallcms.history.entity.HistoryRecord;
 import me.huqiao.smallcms.ppll.dao.IQualityArchiveDao;
 import me.huqiao.smallcms.ppll.entity.QualityArchive;
+import me.huqiao.smallcms.ppll.entity.QualityArchiveCategory;
 import me.huqiao.smallcms.ppll.service.IQualityArchiveService;
 import me.huqiao.smallcms.util.web.Page;
 
@@ -52,5 +53,12 @@ public class QualityArchiveServiceImpl extends BaseServiceImpl<QualityArchive> i
 	@Override
 	public List<QualityArchive> queryById(Integer[] ids) {
 		return qualityArchiveDao.findById(ids);
+	}
+	@Override
+	public Page<QualityArchive> getAll(QualityArchiveCategory category,Page<QualityArchive> pageInfo) {
+		QualityArchive qualityArchive = new QualityArchive();
+		qualityArchive.setCategory(category);
+		getListPage(qualityArchive, pageInfo);
+		return null;
 	}
 }

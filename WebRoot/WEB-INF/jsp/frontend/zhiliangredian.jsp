@@ -20,38 +20,14 @@
 		  				<div class="module-header">
 		  				</div>
 		  				<ul class="module-content">
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
+		  					<%@include file="/WEB-INF/jsp/frontend/common/pageContent.jsp" %>
 		  				</ul>
 		  				
-		  				<div class="page-bar">
-		  					<a href="#">&lt;</a>
-		  					
-		  					<a href="#">1</a>
-		  					<a href="#">2</a>
-		  					<a href="#">3</a>
-		  					<a href="#">...</a>
-		  					<a href="#">8</a>
-		  					<a href="#">9</a>
-		  					
-		  					<a href="#">&gt;</a>
-		  				</div>
+		  				 <jsp:include page="/WEB-INF/jsp/frontend/common/pageBar.jsp">
+		  				 	<jsp:param value="${page}" name="page"/>
+		  				 	<jsp:param value="frontend/zhiliangredian.do" name="url"/>
+		  				 </jsp:include>
+		  				
 		  			</div>
 		  			
 		  			<div class="module right blue">
@@ -62,10 +38,11 @@
 		  					<a class="more" href="${basePath}frontend/zhengcedongtai.do"></a>
 		  				</div>
 		  				<ul class="module-content">
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
+	  						<c:forEach items="${hangyezixunList}" var="chapter"> 
+			  					<li>
+		  						<a href="${basePath}frontend/chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}"><n:shorthand length="15" content="${chapter.title}"></n:shorthand> </a>
+		  						</li>
+		  					</c:forEach>
 		  				</ul>
 		  			</div>
 		  			
@@ -78,10 +55,11 @@
 		  					<a class="more" href="${basePath}frontend/hangyezixun.do"></a>
 		  				</div>
 		  				<ul class="module-content">
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
+		  					<c:forEach items="${hangyezixunList}" var="chapter"> 
+			  					<li>
+			  					<a href="${basePath}frontend/chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}"><n:shorthand length="15" content="${chapter.title}"></n:shorthand> </a>
+			  					</li>
+		  					</c:forEach>
 		  				</ul>
 		  			</div>
 	  			</div>

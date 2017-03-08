@@ -4,6 +4,7 @@ import java.util.List;
 import me.huqiao.smallcms.common.service.IBaseService;
 import me.huqiao.smallcms.history.entity.HistoryRecord;
 import me.huqiao.smallcms.ppll.entity.QualityArchive;
+import me.huqiao.smallcms.ppll.entity.QualityArchiveCategory;
 import me.huqiao.smallcms.util.web.Page;
 /**
  * 质量档案Service接口
@@ -46,4 +47,6 @@ public interface IQualityArchiveService extends IBaseService<QualityArchive> {
 	 * 
 	 */
 	List<QualityArchive> queryById(Integer[] ids);
+	public Page<QualityArchive> getAll(QualityArchiveCategory category,
+			Page<QualityArchive> pageInfo);
 }

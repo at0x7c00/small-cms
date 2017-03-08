@@ -1,6 +1,14 @@
 * {
 font-family: "Microsoft YaHei";
 }
+a{
+	text-decoration: none;
+	color:black;
+}
+a:hover{
+	text-decoration: underline;
+	color:blue;
+} 
 
 body{
 	margin:0px;
@@ -238,6 +246,9 @@ ul.module-content.bordered>li .publish-date{
 	background: #1e6697;
 	color:#fff;
 }
+.page-bar a.no-hover:hover{
+	background: transparent;
+}
 
 td>.detail-item{
 	background: url(./img/about-item-bg.png) no-repeat;
@@ -277,4 +288,113 @@ ul.module-content>li.devider{
 		width:1110px;
 		margin:auto;
 	}
+}
+
+div.img-div{
+	border: 1px solid #ddd;
+	padding: 5px;
+	display: inline-block;
+	width: 240px;
+	height: 140px;
+	text-align: center;
+	vertical-align: middle;
+	
+	-webkit-box-shadow: 0 0px 12px rgba(0,0,0,0.15);
+    box-shadow: 0 0px 12px rgba(0,0,0,0.15);
+}
+
+.page-content{
+	display:inline-block;
+	width:770px;
+	min-height:150px;
+	float:right;
+	padding:10px 10px 0px 20px;
+}
+
+.page-content h2{
+	margin-top:20px;
+	font-size:18px;
+	font-weight:bold;
+}
+.page-content .content-detail{
+	padding:10px 0px;
+	color:#555;
+	line-height:1.5em;
+}
+
+.module-group.blue{
+	border:5px solid #3867b6;
+	background:#fff;
+}
+
+.module-category{
+	margin-top:25px;
+	border-top:2px solid #3867b6;
+}
+
+.category-title{
+	margin-left:-10px;
+	margin-top:-3px;
+	background: url(./img/category.png) no-repeat;
+	width:180px;
+	height:32px;
+	display:inline-block;
+}
+.category-content{
+	display:inline-block;
+	width:850px;
+	height:32px;
+	float:right;
+}
+
+.category-content a{
+	font-size:18px;
+	line-height:32px;
+	color:#1a84f1;
+	font-weight:bold;
+	text-decoration: none;
+	padding:0px 10px;
+	margin:0px 10px;
+}
+.category-content a.active,.category-content a:hover{
+	color:#244b72;
+}
+.dangan-content{
+	padding:20px 90px;
+}
+.dangan-detail{
+	width:266px;
+	height:218px;
+	display:inline-block;
+	margin:10px;
+	padding:5px;
+}
+.dangan-detail:hover{
+	-webkit-box-shadow: 0 0px 12px rgba(0,0,0,0.25);
+    box-shadow: 0 0px 12px rgba(0,0,0,0.25);
+}
+.dangan-pic>a>img{
+	width:266px;
+	height:158px;
+}
+.dangan-abstract{
+	margin-top:5px;
+	color:#555;
+	line-height:1.5em;
+	font-size:14px;
+	height:50px;
+	overflow: hidden;
+}
+.dangan-abstract>a{
+	color:#555;
+	line-height:1.5em;
+	font-size:14px;
+}
+.dangan-detail:hover .dangan-abstract>a{
+	color:black;
+}
+
+.img-holder img{
+	width:200px;
+	height:150px;
 }

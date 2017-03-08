@@ -7,6 +7,11 @@
 		
 		<link rel="stylesheet" type="text/css" media="screen" href="${basePath}js/3d-gallery/css/style.css">
 		<link rel="stylesheet" type="text/css" media="screen" href="${basePath}resource/frontend/theme/default/css/detail.css">
+		
+		<link href="http://vjs.zencdn.net/5.8.8/video-js.css" rel="stylesheet">
+
+		 <!-- If you'd like to support IE8 -->
+		 <script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
   	</head>
   
   <body>
@@ -23,17 +28,32 @@
 	  				<table width="100%" border="0">
 	  					<tr>
 	  						<td width="45%" style="text-align:right;padding-right:20px;">
-	  						<img alt="" src="${basePath}resource/frontend/theme/default/css/img/video.png" width="300">
-	  						<%--
-	  						<embed src="http://player.video.qiyi.com/8291aa2c98a481281eb7f3542b0d0cbe/0/0/v_19rrmo5t5c.swf-albumId=202112801-tvId=298362300-isPurchase=0-cnId=3" allowFullScreen="true" quality="high" width="400" height="300" align="middle" allowScriptAccess="always" type="application/x-shockwave-flash"></embed>
-	  						 --%>
+	  						<c:if test="${not empty qa.detailCover }">
+		  						<c:choose>
+		  							<c:when test="${qa.detailCover.video }">
+				  							<div style="width:364px;height:240px;float:right;">
+						  						<video id="my-video" class="video-js" controls preload="auto" width="340" height="264"
+											  poster="${basePath}filee/viewPic.do?manageKey=${qa.detailCover.manageKey}" data-setup="{}">
+											    <source src="${basePath}filee/downloadFile.do?key=${qa.detailCover.manageKey}" type='video/mp4'>
+											    <p class="vjs-no-js">
+											      To view this video please enable JavaScript, and consider upgrading to a web browser that
+											      <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+											    </p>
+											  </video>
+				  							</div>
+		  							</c:when>
+		  							<c:otherwise>
+				  						<img alt="" src="${basePath}filee/viewPic.do?manageKey=${qa.detailCover.manageKey}" width="300" height="225">
+		  							</c:otherwise>
+		  						</c:choose>
+	  						</c:if>
 	  						</td>
 	  						<td style="vertical-align: top;">
 	  							<h1 style="font-size:16px;font-weight:bold;color:black;text-align: center;">
-	  							成都松齐明科技有限公司
+	  							<n:shorthand length="30" content="${qa.title}"></n:shorthand> 
 	  							</h1>
 	  							<p style="text-indent: 2em;line-height:1.5em;">
-	  							成都松齐明科技有限公司是无尘板书方案提供商，创立于2004年，一直专注于100%无尘板书产品系列产品研发、生产、销售。公司汇聚
+	  							${qa.content} 
 	  							</p>
 	  						</td>
 	  					</tr>
@@ -46,47 +66,15 @@
   				</div>
   				<div class="gallery">
   					<div class="g-container">
-					  <div class="img-holder">
-					    <img src="${basePath}js/step-gallery/images/butterflies640-200x150.jpg">
-					  	<div class="title">水溶性无尘粉笔</div>
-					    <div class="img-ref">
-					       <img src="${basePath}js/step-gallery/images/butterflies640-200x150.jpg">
-					    </div>
-					  </div>
-					
-					  <div class="img-holder">
-					    <img src="${basePath}js/step-gallery/images/pighead640b-200x150.jpg"> 
-					  	<div class="title">水溶性无尘粉笔</div>
-					      <div class="img-ref">
-					       <img src="${basePath}js/step-gallery/images/pighead640b-200x150.jpg"> 
-					    </div>
-					  </div> 
-					
-					  <div class="img-holder"><img src="${basePath}js/step-gallery/images/canthanksgiving09-640-200x150.png">
-					  	<div class="title">水溶性无尘粉笔</div>
-					      <div class="img-ref">
-					       <img src="${basePath}js/step-gallery/images/canthanksgiving09-640-200x150.png">
-					    </div>
-					  </div> 
-					  <div class="img-holder"><img src="${basePath}js/step-gallery/images/weisswurst640-2-200x150.jpg">
-					  	<div class="title">水溶性无尘粉笔</div>
-					      <div class="img-ref">
-					       <img src="${basePath}js/step-gallery/images/weisswurst640-2-200x150.jpg">
-					    </div>
-					  </div> 
-					  <div class="img-holder"><img src="${basePath}js/step-gallery/images/cowhead-200.jpg">
-					  	<div class="title">水溶性无尘粉笔</div>
-					      <div class="img-ref">
-					       <img src="${basePath}js/step-gallery/images/cowhead-200.jpg">
-					    </div>
-					  </div> 
-					
-					  <div class="img-holder"><img src="${basePath}js/step-gallery/images/drpepperfeast-200x150.jpg">
-					  	<div class="title">水溶性无尘粉笔</div>
-					      <div class="img-ref">
-					       <img src="${basePath}js/step-gallery/images/drpepperfeast-200x150.jpg/">
-					    </div>
-					  </div> 
+  						<c:forEach items="${qa.productDisplay}" var="p">
+							 <div class="img-holder">
+							    <img src="${basePath}filee/viewPic.do?manageKey=${p.manageKey}">
+							  	<div class="title">水溶性无尘粉笔</div>
+							    <div class="img-ref">
+							       <img src="${basePath}filee/viewPic.do?manageKey=${p.manageKey}">
+							    </div>
+							  </div>
+  						</c:forEach>
 					</div>
 					
 					<div class="scrolller-container">
@@ -117,108 +105,15 @@
   					
   					<div id="mygallery" class="stepcarousel">
 					<div class="belt" id="displaycssbelt">
-					<div class="panel">
-					<div class="subfeature"><a href="javascript:void(0);"><img src="${basePath}js/step-gallery/images/butterflies640-200x150.jpg" alt="butterflies-are-gross" class="post-image" width="200" height="150" /></a>
-					<div class="subfeature-txt"><h2><a href="javascript:void(0);">Butterflies are Gross</a></h2></div>
-					</div>
-					</div>		
-					
-					<div class="panel">
-					<div class="subfeature">
-					<a href="javascript:void(0);"><img src="${basePath}js/step-gallery/images/pighead640b-200x150.jpg" alt="pig-head-pozole" class="post-image" width="200" height="150" /></a>
-					<div class="subfeature-txt"><h2><a href="javascript:void(0);">Pig Head Pozole and Crispy Baked Ears</a></h2></div>
-					</div>
-					</div>		
-					
-					<div class="panel">
-					<div class="subfeature">
-					
-					<a href="javascript:void(0);"><img src="${basePath}js/step-gallery/images/canthanksgiving09-640-200x150.png" alt="canadian-thanksgiving-in-texas" class="post-image" width="200" height="150" /></a>
-					<div class="subfeature-txt">
-					<h2><a href="javascript:void(0);">Canadian Thanksgiving in Texas</a></h2>
-					</div>
-					</div>
-					</div>		
-					
-					<div class="panel">
-					<div class="subfeature">
-					<a href="javascript:void(0);"><img src="${basePath}js/step-gallery/images/weisswurst640-2-200x150.jpg" alt="weisswurst-pretzels-and-beer-for-breakfast" class="post-image" width="200" height="150" /></a>
-					<div class="subfeature-txt">
-					<h2><a href="javascript:void(0);">Weisswurst, Pretzels and Beer for Breakfast</a></h2>
-					</div>
-					</div>
-					</div>		
-					
-					<div class="panel">
-					
-					<div class="subfeature">
-					<a href="javascript:void(0);"><img src="${basePath}js/step-gallery/images/cowhead-200.jpg" alt="cow-head-barbacoa" class="post-image" width="200" height="150" /></a>
-					<div class="subfeature-txt"><h2><a href="javascript:void(0);">Cow Head Barbacoa</a></h2></div>
-					</div>
-					</div>		
-					
-					<div class="panel">
-					<div class="subfeature">
-					<a href="javascript:void(0);"><img src="${basePath}js/step-gallery/images/drpepperfeast-200x150.jpg" alt="cooking-with-dr-pepper" class="post-image" width="200" height="150" /></a>
-					<div class="subfeature-txt">
-					<h2><a href="javascript:void(0);">Cooking with Dr Pepper</a></h2>
-					</div>
-					</div>
-					</div>		
-					
-					<div class="panel">
-					<div class="subfeature">
-					
-					<a href="javascript:void(0);"><img src="${basePath}js/step-gallery/images/hatchchiles-thumb.jpg" alt="hatch-chile-feast" class="post-image" width="200" height="150" /></a>
-					<div class="subfeature-txt">
-					<h2><a href="javascript:void(0);">Hatch Chile Feast</a></h2>
-					</div>
-					</div>
-					</div>		
-					
-					<div class="panel">
-					<div class="subfeature">
-					<a href="javascript:void(0);"><img src="${basePath}js/step-gallery/images/greece-200.jpg" alt="greece-eating-our-way-through-the-mainland" class="post-image" width="200" height="150" /></a>
-					<div class="subfeature-txt">
-					<h2><a href="javascript:void(0);">Greece: Eating Our Way Through the Mainland</a></h2>
-					</div>
-					</div>
-					</div>		
-					
-					<div class="panel">
-					
-					<div class="subfeature">
-					<a href="javascript:void(0);"><img src="${basePath}js/step-gallery/images/germany2009-tmb-200x150.jpg" alt="germany-eating-our-way-through-bavaria" class="post-image" width="200" height="150" /></a>
-					<div class="subfeature-txt">
-					<h2><a href="javascript:void(0);">Germany: Eating Our Way Through Bavaria</a></h2></div>
-					</div>
-					</div>		
-					
-					<div class="panel">
-					<div class="subfeature">
-					<a href="javascript:void(0);"><img src="${basePath}js/step-gallery/images/sP1000042-200x150.jpg" alt="braised-cow-lips" class="post-image" width="200" height="150" /></a>
-					<div class="subfeature-txt"><h2><a href="javascript:void(0);">Braised Cow Lips</a></h2></div>
-					</div>
-					</div>		
-					
-					<div class="panel">
-					<div class="subfeature">
-					<a href="javascript:void(0);"><img src="${basePath}js/step-gallery/images/31birthday01-200x150.jpg" alt="sweetbreads-duck-breasts-ice-cream-cake-and-more" class="post-image" width="200" height="150" /></a>
-					
-					<div class="subfeature-txt">
-					<h2><a href="javascript:void(0);">Sweetbreads, Duck Breasts, Ice Cream Cake and More!</a></h2>
-					</div>
-					</div>
-					</div>		
-					
-					<div class="panel">
-					<div class="subfeature">
-					<a href="javascript:void(0);"><img src="${basePath}js/step-gallery/images/chickengizzards-640-200x150.jpg" alt="grilled-chicken-gizzards" class="post-image" width="200" height="150" /></a>
-					<div class="subfeature-txt">
-					<h2><a href="javascript:void(0);">Grilled Chicken Gizzards</a></h2>
-					</div>
-					</div>
-					</div>		
+						<c:forEach items="${qa.gloryDisplay}" var="p">
+							<div class="panel">
+								<div class="subfeature"><a href="javascript:void(0);"><img src="${basePath}filee/viewPic.do?manageKey=${p.manageKey}" alt="butterflies-are-gross" class="post-image" width="150" height="200" /></a>
+								<%--
+									<div class="subfeature-txt"><h2><a href="javascript:void(0);">Butterflies are Gross</a></h2></div>
+								 --%>
+								</div>
+							</div>	
+						</c:forEach>
 					</div>
 					</div>
   					
@@ -240,6 +135,8 @@
 	  <script src='${basePath}js/3d-gallery/js/TweenMax.min.js'></script>
 	  <script src='${basePath}js/3d-gallery/js/Draggable.min.js'></script>
   	  <script src="${basePath}js/3d-gallery/js/index.js"></script>
+  	  
+  	  <script src="http://vjs.zencdn.net/5.8.8/video.js"></script>
   	  
   	  <script type="text/javascript">
 		stepcarousel.setup({

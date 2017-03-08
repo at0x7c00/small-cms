@@ -35,7 +35,7 @@
 		   data-selectlist="videoOrPictureSelectList" 
 		   data-targetpanel="${targetPanel}"
 		   data-maxfilesize="100"
-		  data-acceptedfiles="${file_format_picture}"
+		  data-acceptedfiles=""
 		   >
 			<i class="fa fa-plus"></i> <spring:message code="base.function.add"/>
 		</a>

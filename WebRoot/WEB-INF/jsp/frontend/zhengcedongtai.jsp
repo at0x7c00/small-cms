@@ -16,30 +16,18 @@
 		  			<div class="module left lg">
 		  				<div class="module-title">
 		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/zhengce-2.png">
+		  					<a name="content"></a>
 		  				</div>
 		  				<div class="module-header">
 		  				</div>
 		  				<ul class="module-content">
-		  					<c:forEach items="${page.list}" var="chapter" varStatus="s">
-			  					<li><a href="${basePath}frontend/chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}"><n:shorthand length="30" content="${chapter.title}"></n:shorthand> </a></li>
-			  					<c:if test="${s.count%5==0}">
-			  						<li class="devider"></li>
-			  					</c:if>
-		  					</c:forEach>
+		  					<%@include file="/WEB-INF/jsp/frontend/common/pageContent.jsp" %>
 		  				</ul>
 		  				
-		  				<div class="page-bar">
-		  					<c:if test="${page.pageNum>1}">
-		  						<a href="${basePath}frontend/zhengcedongtai.do?pageNum=${page.pageNum-1}" style="padding-left:15px;padding-right:15px;">&lt;</a>
-		  					</c:if>
-		  					<c:forEach items="${page.pageBarIndex}" var="x"> 
-			  					<a href="${basePath}frontend/zhengcedongtai.do?pageNum=${x}" class="${x eq page.pageNum ? 'active':'' }">${x}</a>
-		  					</c:forEach>
-		  					
-		  					<c:if test="${page.pageNum<page.countPage}">
-			  					<a href="${basePath}frontend/zhengcedongtai.do?pageNum=${page.pageNum+1}" style="padding-left:15px;padding-right:15px;">&gt;</a>
-		  					</c:if>
-		  				</div>
+		  				 <jsp:include page="/WEB-INF/jsp/frontend/common/pageBar.jsp">
+		  				 	<jsp:param value="${page}" name="page"/>
+		  				 	<jsp:param value="frontend/zhengcedongtai.do" name="url"/>
+		  				 </jsp:include>
 		  				
 		  			</div>
 		  			

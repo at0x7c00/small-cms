@@ -209,4 +209,13 @@ public class CommonFile {
 		this.createDateEnd = createDateEnd;
 	}
 
+	@Transient
+	public boolean isVideo(){
+		String fileName = getExtensionName();
+		System.out.println(fileName);
+		fileName = fileName.toLowerCase();
+		return fileName.endsWith(".mp4")
+				|| fileName.endsWith(".rmvb")
+				||fileName.endsWith(".wmv");
+	}
 }

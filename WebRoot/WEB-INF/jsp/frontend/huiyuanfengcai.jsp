@@ -16,54 +16,53 @@
 		  			<div class="module full-page">
 		  				<div class="module-title">
 		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/huiyuan.png">
+		  					<a name="content"></a>
 		  				</div>
 		  				<div class="module-header">
 		  				</div>
-		  				<ul class="module-content">
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  					<li><a href="#">中国自主研发ARJ21飞机首次在青藏高原试飞成功</a></li>
-		  				</ul>
-		  				
-		  				<div class="page-bar">
-		  					<a href="#">&lt;</a>
-		  					
-		  					<a href="#">1</a>
-		  					<a href="#">2</a>
-		  					<a href="#">3</a>
-		  					<a href="#">...</a>
-		  					<a href="#">8</a>
-		  					<a href="#">9</a>
-		  					
-		  					<a href="#">&gt;</a>
+		  				<div class="module-content">
+		  					<c:if test="${empty page.list }">
+								暂无记录
+							</c:if>
+							<c:forEach items="${page.list}" var="chapter" varStatus="s">
+								
+								<div>
+								
+									<div class="img-div">
+										<c:if test="${not empty chapter.cover}">
+											<a href="${basePath}frontend/chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}">
+												<img alt="" src="${basePath}filee/viewPic.do?manageKey=${chapter.cover.manageKey}" style="width:240px;height:140px"/>
+											</a>
+										</c:if>
+									</div>
+									
+									<div class="page-content">
+										<h2>
+										<a href="${basePath}frontend/chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}">
+											<n:shorthand length="30" content="${chapter.title}"></n:shorthand>
+										</a>
+										</h2>
+										<div class="content-detail">
+											<n:shorthand length="150" content="${chapter.abstractContent}" />
+										</div>
+									</div>
+								
+									
+								</div>
+								
+								<c:if test="${not s.last}">
+									<div class="devider"></div>
+								</c:if>
+							</c:forEach>
 		  				</div>
+		  				
+		  				 <jsp:include page="/WEB-INF/jsp/frontend/common/pageBar.jsp">
+		  				 	<jsp:param value="${page}" name="page"/>
+		  				 	<jsp:param value="frontend/huiyuanfengcai.do" name="url"/>
+		  				 </jsp:include>
 		  			</div>
 		  			
 	  			</div>
-	  			
-	  			
-		  		
-		  		
-		  		
-		  		
-		  		
-		  		
-		  		
 		  		
 		  		<%@include file="/WEB-INF/jsp/frontend/common/footer.jsp" %>
 		  		
