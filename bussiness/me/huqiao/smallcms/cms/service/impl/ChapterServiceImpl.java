@@ -76,4 +76,8 @@ public class ChapterServiceImpl extends BaseServiceImpl<Chapter> implements ICha
 		return getListPage(chapter, pageInfo);
 	}
 	
+	public List<Chapter> getTop10OfAll(){
+		return getByProperties(Chapter.class, new String[]{"status"}, new Object[]{UseStatus.InUse}, "readCount desc,updateTime desc", 10);
+	}
+	
 }

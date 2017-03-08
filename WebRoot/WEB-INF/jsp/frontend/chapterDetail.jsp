@@ -13,14 +13,26 @@
 	  		
 	  		<div class="main-content">
 	  			<div class="module-group">
-		  			<div class="module left lg">
+		  			<div class="module left lg" style="background: #fff;">
 		  				<div class="module-title">
 		  					<a name="content"></a>
 		  				</div>
 		  				<div class="module-header">
 		  				</div>
-		  				<div class="module-content">
+		  				<div class="module-content" style="margin:10px 35px;">
 		  					
+		  					<div class="chapter-title">
+			  					<h1>
+			  					${p.title}
+			  					</h1>
+			  					<div class="chapter-info">
+			  					来源：质量维护工程 &nbsp;&nbsp;&nbsp;&nbsp;发布时间：<fmt:formatDate value="${p.createTime}" pattern="yyyy/MM/dd HH:mm"/>
+			  					</div>
+		  					</div>
+		  					
+		  					<div class="chapter-content">
+		  						${p.content}
+		  					</div>
 		  					
 		  					
 		  					
@@ -44,17 +56,17 @@
 		  			</div>
 		  			
 		  			
-		  			<div class="module right blue" style="margin-top:32px;">
+		  			<div class="module right blue white" style="margin-top:32px;">
 		  				<div class="module-title">
-		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/hangye-left.png">
+		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/rewen.png">
 		  				</div>
 		  				<div class="module-header">
-		  					<a class="more" href="${basePath}frontend/hangyezixun.do"></a>
+		  					<a class="more top10" href="${basePath}frontend/hangyezixun.do"></a>
 		  				</div>
-		  				<ul class="module-content">
-		  					<c:forEach items="${hangyezixunList}" var="chapter"> 
+		  				<ul class="module-content indexed">
+		  					<c:forEach items="${top10ChapterList}" var="chapter" varStatus="s"> 
 			  					<li>
-			  					<a href="${basePath}frontend/chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}"><n:shorthand length="15" content="${chapter.title}"></n:shorthand> </a>
+			  					<span class="index">${s.count}</span><a href="${basePath}frontend/chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}"><n:shorthand length="15" content="${chapter.title}"></n:shorthand> </a>
 			  					</li>
 		  					</c:forEach>
 		  				</ul>

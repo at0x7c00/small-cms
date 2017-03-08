@@ -209,6 +209,8 @@ public class FrontendController  extends BaseController {
 		request.setAttribute("p", chapterService.getEntityByProperty(Chapter.class, "manageKey", key));
 		
 		zhiliangTop(request);
+		
+		request.setAttribute("top10ChapterList",chapterService.getTop10OfAll());
 	}
 	
 	

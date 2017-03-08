@@ -53,4 +53,6 @@ public interface IChapterService extends IBaseService<Chapter> {
 	
 	public Page<Chapter> getAll(Integer type,Page<Chapter> pageInfo);
 	
+	public List<Chapter> getTop10OfAll();
+	
 }
