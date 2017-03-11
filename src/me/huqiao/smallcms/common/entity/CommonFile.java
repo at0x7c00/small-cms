@@ -5,6 +5,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,6 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
+
+import me.huqiao.smallcms.common.entity.enumtype.UseStatus;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.hibernate.validator.constraints.Length;
@@ -51,6 +55,9 @@ public class CommonFile {
 	@Length(min = 0, max = 100, message = "管理长度不能超过100")
 	/**管理*/
 	private String manageKey;
+	
+	
+	private UseStatus inuse;
 
 	/**
 	 * @param id
@@ -212,10 +219,22 @@ public class CommonFile {
 	@Transient
 	public boolean isVideo(){
 		String fileName = getExtensionName();
-		System.out.println(fileName);
 		fileName = fileName.toLowerCase();
 		return fileName.endsWith(".mp4")
 				|| fileName.endsWith(".rmvb")
 				||fileName.endsWith(".wmv");
 	}
+
+	@Column(name = "status", nullable = true, columnDefinition = "enum('InUse','UnUse')")
+	@Enumerated(EnumType.STRING)
+	public UseStatus getInuse() {
+		return inuse;
+	}
+
+	public void setInuse(UseStatus inuse) {
+		this.inuse = inuse;
+	}
+	
+	
 }
+

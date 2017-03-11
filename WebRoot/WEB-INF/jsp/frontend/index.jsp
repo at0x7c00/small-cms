@@ -3,9 +3,10 @@
 <!DOCTYPE html>
 <html lang="en-us">
 	<head>
+		<title> ${systemTitle}-首页 </title>
 		<%@include file="/WEB-INF/jsp/frontend/common/resource.jsp" %>
   	</head>
-  
+   
   <body>
   		<div class="container">
   			

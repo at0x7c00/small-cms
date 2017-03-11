@@ -243,4 +243,12 @@ public String getCertFileQuery(){
 	public String toString() {
 		return "MemberOrganization [manageKey=" + manageKey + "]";
 	}
+	
+	@Transient
+	public String getCertFileKey() {
+		if(getCertFile()!=null){
+			return getCertFile().getManageKey();
+		}
+		return null;
+	}
 }

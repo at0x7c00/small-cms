@@ -193,4 +193,12 @@ public String getJob(){
 	public String toString() {
 		return "Worker [manageKey=" + manageKey + "]";
 	}
+	
+	@Transient
+	public String getPotoFileKey() {
+		if(getPhotoFile()!=null){
+			return getPhotoFile().getManageKey();
+		}
+		return null;
+	}
 }

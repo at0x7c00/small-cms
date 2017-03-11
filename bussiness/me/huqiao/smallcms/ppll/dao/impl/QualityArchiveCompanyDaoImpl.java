@@ -115,10 +115,17 @@ public class QualityArchiveCompanyDaoImpl extends BaseDaoImpl<QualityArchiveComp
       * @param qualityArchiveCompany 查询对象
 	  */
     public void queryCause(Criteria criteria,QualityArchiveCompany qualityArchiveCompany){
-       if(qualityArchiveCompany.getName()!=null
- && ! qualityArchiveCompany.getName().trim().equals("")){
-		criteria.add(Restrictions.like("name",qualityArchiveCompany.getName(),MatchMode.ANYWHERE));
-}
+       if(qualityArchiveCompany.getName()!=null && ! qualityArchiveCompany.getName().trim().equals("")){
+    	   criteria.add(
+    			   Restrictions.or(
+    			   Restrictions.like("name",qualityArchiveCompany.getName(),MatchMode.ANYWHERE),
+    			   Restrictions.like("lawPerson",qualityArchiveCompany.getName(),MatchMode.ANYWHERE),
+    			   Restrictions.like("address",qualityArchiveCompany.getName(),MatchMode.ANYWHERE),
+    			   Restrictions.like("tradeScope",qualityArchiveCompany.getName(),MatchMode.ANYWHERE),
+    			   Restrictions.like("serviceCenter",qualityArchiveCompany.getName(),MatchMode.ANYWHERE)
+    			   )
+    			   );
+       }
        if(qualityArchiveCompany.getLawPerson()!=null
  && ! qualityArchiveCompany.getLawPerson().trim().equals("")){
 		criteria.add(Restrictions.like("lawPerson",qualityArchiveCompany.getLawPerson(),MatchMode.ANYWHERE));

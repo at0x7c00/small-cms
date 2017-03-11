@@ -207,5 +207,12 @@ public class JsonResult {
 		res.setMessage(error);
 		return res;
 	}
+	
+	public static JsonResult success(String error){
+		JsonResult res = new JsonResult();
+		res.setStatusCode(STATUS_CODE_OK);
+		res.setMessage(error);
+		return res;
+	}
 
 }

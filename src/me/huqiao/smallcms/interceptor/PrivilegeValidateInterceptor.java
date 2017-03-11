@@ -41,6 +41,7 @@ public class PrivilegeValidateInterceptor extends HandlerInterceptorAdapter {
     	"user/waitForUpload.do",
     	"changeLocale.do",
     	"filee/viewPic.do",
+    	"filee/downloadFile.do",
     	"frontend/"
 	};
 	private static final String[] urlsWithLogin = new String[] {// 只需要登录就能拥有的权限

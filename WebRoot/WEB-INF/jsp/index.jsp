@@ -33,8 +33,8 @@
 		<link rel="stylesheet" type="text/css" media="screen" href="${basePath}css/demo.css">
 
 		<!-- FAVICONS -->
-		<link rel="shortcut icon" href="${basePath}img/favicon/favicon.ico" type="image/x-icon">
-		<link rel="icon" href="${basePath}img/favicon/favicon.ico" type="image/x-icon">
+		<link rel="shortcut icon" href="${basePath}img/favicon/${ficon}.ico" type="image/x-icon">
+		<link rel="icon" href="${basePath}img/favicon/${ficon}.ico" type="image/x-icon">
 
 		<!-- GOOGLE FONT -->
 		<link rel="stylesheet" href="${basePath}css/googlefonts/css.css">
@@ -70,11 +70,15 @@
 		
 		<!-- HEADER -->
 		<header id="header">
-			<div id="logo-group">
+			<div id="logo-group" style="width:400px;">
 
 				<!-- PLACE YOUR LOGO HERE -->
+				<%--
 				<span id="logo"> <img src="${basePath}img/logo-pale.png" alt="SmartAdmin"> </span>
+				 --%>
 				<!-- END LOGO PLACEHOLDER -->
+				
+				<h1 style="color:#058dc7;">&nbsp;&nbsp;<i class="fa  fa-th-large" ></i>&nbsp;${systemTitle }-后台管理系统</h1>
 			</div>
 
 			<!-- 右上角工具栏 -->

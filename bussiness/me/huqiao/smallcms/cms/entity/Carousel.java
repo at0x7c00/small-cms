@@ -201,5 +201,13 @@ public UseStatus getStatus(){
 		this.title = title;
 	}
 	
+	@Transient
+	public String getPictureKey() {
+		if(getPicture()!=null){
+			return getPicture().getManageKey();
+		}
+		return null;
+	}
+	
 	
 }

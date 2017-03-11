@@ -1,5 +1,6 @@
 package me.huqiao.smallcms.ppll.controller;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -113,13 +114,8 @@ public class ApplyController  extends BaseController {
 	@RequestParam(value = "callBack",required = false)String callBack,
 	BindingResult result) {
     	JsonResult jsonResult = new JsonResult();
-    	//默认系统时间类型保存
-	/*
-		#ONE_TO_MANY_VALUE_SAVE_ADD
-	*/
-	    //保存多对多关联关系
-	//保持一对多关联关系
-	apply.setManageKey(Md5Util.getManageKey());
+    	apply.setCreateTime(new Date());
+    	apply.setManageKey(Md5Util.getManageKey());
     	applyService.add(apply);
         jsonResult.setMessage(getI18NMessage(request, "base.common.controller.operate.add.success"));
         return jsonResult;

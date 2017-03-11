@@ -3,10 +3,12 @@
 <!DOCTYPE html>
 <html lang="en-us">
 	<head>
+		<title>关于我们 - ${systemTitle}</title>
 		<%@include file="/WEB-INF/jsp/frontend/common/resource.jsp" %>
 		
 		<link rel="stylesheet" href="${basePath}js/simple-modal/css/jquery.dialog.css" type="text/css" media="screen" title="no title" charset="utf-8">
 		<script src="${basePath}js/simple-modal/js/jquery.dialog.js" type="text/javascript" charset="utf-8"></script>
+		<script src="${basePath}js/plugin/jquery-validate/jquery.validate.min.js"></script>
 		<style type="text/css">
 		p{
 			line-height: 1.6em;
@@ -107,7 +109,7 @@
 		  					</div>
 		  					
 		  					<div style="text-align:center;font-size:16px;margin:15px;">
-		  					<a href="#">
+		  					<a href="javascript:void(0);" id="chaxun">
 		  						<img alt="" src="${basePath}resource/frontend/theme/default/css/img/chaxunzhongxin-btn.png">
 		  					</a>
 		  					</div>
@@ -123,15 +125,6 @@
 		  			
 	  			</div>
 	  			
-	  			
-		  		
-		  		
-		  		
-		  		
-		  		
-		  		
-		  		
-		  		
 		  		<%@include file="/WEB-INF/jsp/frontend/common/footer.jsp" %>
 		  		
 	  		</div>
@@ -139,26 +132,150 @@
   		</div>
  		<%@include file="/WEB-INF/jsp/frontend/common/js.jsp" %>
  		
+ 		
+ 		
+ 		
  		<script type="text/javascript">
  		$(function(){
  			$("#ruhui").on("click",function(){
- 				var obj = '<img src="http://www.sucaijiayuan.com/uploads/file/content/2015/12/567ccdd14c121.jpg" width="400px"/>';
- 				$(obj).dialog({
- 					title : "新年快乐图片",
- 					width:600,
- 					height:400,
- 					modal:true,
- 					buttons: {
- 						"确定":function(){
- 							alert("ok")
- 						},
- 						"取消" : function(){
- 							alert("cancel")
- 						}
- 					},
+ 				loadWaitDialog();
+ 				$.get(basePath + 'frontend/apply.do',function(d){
+ 					closeWaitDialog();
+ 					$('<div class="dialog-content" id="apply" style="width:500px;height:400px;"></div>').html(d).dialog({
+ 	 					title : "申请信息",
+ 	 					width:600,
+ 	 					height:400,
+ 	 					modal:true,
+ 	 					buttons: {
+ 	 						"确定":function(){
+ 	 							if($("#apply-form").valid({errorPlacement:function(){}})){
+ 	 								var data = $("#apply-form").serializeArray();
+ 	 								$.post(basePath + "frontend/apply.do",data,function(res){
+ 	 									if(res.statusCode!='200'){
+ 	 										//alert(res.message);
+ 	 										$("<div>" + res.message + "</div>").dialog({
+ 	 											title:'提示',
+ 	 											buttons: {
+ 	 					 	 						"确定":function(){
+ 	 					 	 							return true;
+ 	 					 	 						}
+ 	 											}
+ 	 										});
+ 	 									}else{
+ 	 										$("<div>" + res.message + "</div>").dialog({
+ 	 											title:'提示',
+ 	 											buttons: {
+ 	 					 	 						"确定":function(){
+	 	 					 	 						$("#apply").dialog("close");
+	 	 	 	 		 	 							$(".xdsoft_close").trigger("click");
+ 	 					 	 							return true;
+ 	 					 	 						}
+ 	 											}
+ 	 										});
+ 	 									}
+ 	 								});
+ 	 							}
+ 	 							return false;
+ 	 						},
+ 	 						"取消" : function(){
+ 	 							$("#apply").dialog("close");
+ 	 							$(".xdsoft_close").trigger("click");
+ 	 							return false;
+ 	 						}
+ 	 					},
+ 	 				});
+ 					
+ 					$("#verifyCodeImage").click(function(){
+ 						loadVerifyCode();
+ 					});
+ 					loadVerifyCode();
+ 					
  				});
  			});
+ 			
+ 			
+ 			
+ 			$("#chaxun").click(function(){
+ 				loadWaitDialog();
+ 				$.get(basePath + 'frontend/query.do',function(d){
+ 					closeWaitDialog();
+ 					$('<div class="dialog-content" id="query" style="width:500px;height:300px;"></div>').html(d).dialog({
+ 	 					title : "查询中心",
+ 	 					width:600,
+ 	 					height:400,
+ 	 					modal:true,
+ 	 					buttons: {
+ 	 						"关闭" : function(){
+ 	 							$(".xdsoft_close").trigger("click");
+ 	 							return false;
+ 	 						}
+ 	 					},
+ 	 				});
+ 					
+ 					$("#query").find(".query-btn").each(function(){
+ 						var _this = $(this);
+ 						_this.click(function(){
+ 							var input = _this.parents("td").first().find("input").first();
+ 							var key = input.val();
+ 							if(!key || key.trim()==""){
+ 								$("<div>请输入要查询的关键字</div>").dialog({
+ 									title:'提示',
+									buttons: {
+			 	 						"确定":function(){
+			 	 							input.focus();
+			 	 							input.val("");
+			 	 							return true;
+			 	 						}
+									}
+ 								});
+ 								return;
+ 							}
+ 							var queryType = _this.data("query-type");
+ 							var title = '会员单位';
+ 							if(queryType=='qualityArchive'){
+ 								title = "质量档案";
+ 							}else if(queryType =='authOrg'){
+ 								title = "授权机构";
+ 							}else if(queryType =='worker'){
+ 								title = "工作人员";
+ 							}
+ 							$.post(basePath + "frontend/query.do",{key:key,queryType:queryType},function(res){
+ 								$('<div class="dialog-content" id="query" style="width:500px;height:300px;overflow:auto;">'  + res + '</div>').dialog({
+ 									title:title,
+									buttons: {
+			 	 						"关闭":function(){
+			 	 							return true;
+			 	 						}
+									}
+ 								});
+ 							});
+ 						});
+ 					});
+ 					
+ 					
+ 				});
+ 				
+ 			});
+ 			
+ 			
  		});
+ 		
+ 		function loadVerifyCode(){
+	  		$("#verifyCodeImage").attr("src","${basePath}verifyimage.create?t="+new Date().getTime());
+	  	}
+ 		
+ 		function loadWaitDialog(){
+ 			$("<div class='jquery-dialog-wait' id='wait-dialog'></div>").dialog({
+ 				modal:true,
+ 				closeBtn:false,
+ 				title:'加载中，请稍后'
+ 			});
+ 		}
+ 		function closeWaitDialog(){
+ 			window.setTimeout(function(){
+	 			$("#wait-dialog").parents(".xdsoft_dialog_shadow_effect").first().find(".xdsoft_close").first().trigger("click");
+ 			},200);
+ 		}
  		</script>
   </body>
 </html>

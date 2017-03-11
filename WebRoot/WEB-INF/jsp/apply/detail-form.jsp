@@ -1,5 +1,13 @@
 <%@page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 	<section class="col col-12">
+		<label class="input">
+			<span class="">
+						申请时间:
+						<fmt:formatDate value="${tempBean.createTime}" pattern="yyyy-MM-dd HH:mm:ss"/>
+			</span>
+		</label>
+	</section>
+	<section class="col col-12">
 		<label class="input"
 						   <c:if test="${checkResult['name'].changed}">title= "${checkResult['name'].info}";</c:if>
 						   >

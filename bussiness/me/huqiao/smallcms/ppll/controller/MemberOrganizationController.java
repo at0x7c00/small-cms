@@ -119,7 +119,7 @@ public class MemberOrganizationController  extends BaseController {
 	BindingResult result) {
     	JsonResult jsonResult = new JsonResult();
     	//默认系统时间类型保存
-    	memberOrganization.setCertFile(parseFilee(request, "certFileKeys"));
+    	memberOrganization.setCertFile(parseFilee(request, "certFileKeys",null));
 	memberOrganization.setManageKey(Md5Util.getManageKey());
     	memberOrganizationService.add(memberOrganization);
         jsonResult.setMessage(getI18NMessage(request, "base.common.controller.operate.add.success"));
@@ -153,7 +153,7 @@ public class MemberOrganizationController  extends BaseController {
     	if(!validate(jsonResult,result)){
     		return jsonResult;
     	}
-    	memberOrganization.setCertFile(parseFilee(request, "certFileKeys"));
+    	memberOrganization.setCertFile(parseFilee(request, "certFileKeys",memberOrganization.getCertFileKey()));
         memberOrganizationService.update(memberOrganization);
 	// jsonResult.setNavTabId(rel);
         jsonResult.setMessage(getI18NMessage(request, "base.common.controller.operate.update.success"));
@@ -184,6 +184,7 @@ public class MemberOrganizationController  extends BaseController {
         JsonResult jsonResult = new JsonResult();
         jsonResult.setCallbackType("");
         try {
+        	markFileAsUnuse(memberOrganization.getCertFile());
         	memberOrganizationService.delete(memberOrganization);
 		} catch (RuntimeException re) {
 			jsonResult.setMessage(getI18NMessage(request, "base.common.controller.operate.delete.inuse"));
@@ -210,6 +211,7 @@ public class MemberOrganizationController  extends BaseController {
     	for(String manageKey : manageKeys){
 			 try {
     			memberOrganization = memberOrganizationService.getEntityByProperty(MemberOrganization.class,"manageKey",manageKey);
+    			markFileAsUnuse(memberOrganization.getCertFile());
     			memberOrganizationService.delete(memberOrganization);
 			}catch (RuntimeException re) {
 				jsonResult.setMessage(getI18NMessage(request, "base.common.controller.operate.delete.inuse"));

@@ -1,4 +1,6 @@
 package me.huqiao.smallcms.ppll.entity;
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -54,6 +56,8 @@ private String remark;
 
 /**状态*/
 private UseStatus status;
+
+private Date createTime;
 
 
 /**
@@ -244,4 +248,14 @@ public String getRemark(){
 	public String toString() {
 		return "Apply [manageKey=" + manageKey + "]";
 	}
+	
+	@Column(name = "create_time")
+	public Date getCreateTime() {
+		return createTime;
+	}
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
+	}
+	
+	
 }

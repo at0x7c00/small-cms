@@ -1,11 +1,14 @@
 package me.huqiao.smallcms.common.dao.impl;
+import java.util.Date;
 import java.util.List;
 
 import me.huqiao.smallcms.common.dao.ICommonFileDao;
 import me.huqiao.smallcms.common.entity.CommonFile;
+import me.huqiao.smallcms.common.entity.enumtype.UseStatus;
 import me.huqiao.smallcms.util.web.Page;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
@@ -93,6 +96,21 @@ public class CommonFileDaoImpl extends BaseDaoImpl<CommonFile> implements ICommo
 				.setProjection(Projections.rowCount())
 				.add(Restrictions.like("manageKey", queryKey,MatchMode.ANYWHERE));
 		return (Long) criteria.uniqueResult();
+	}
+
+	@Override
+	public List<CommonFile> findNotInusedByCreateTime(Date before) {
+		String hql = "FROM CommonFile f WHERE f.inuse is NULL or f.inuse != :inuse";
+		if(before!=null){
+			hql += " AND f.createDate <= :createDate";
+		}
+		Query query = getSession().createQuery(hql);
+		
+		query.setParameter("inuse", UseStatus.InUse);
+		if(before!=null){
+			query.setParameter("createDate", before);
+		}
+		return query.list();
 	}
 
 }

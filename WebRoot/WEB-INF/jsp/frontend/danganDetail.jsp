@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
 	<head>
+		<title>${qa.title} - 质量档案 - ${systemTitle}</title>
 		<%@include file="/WEB-INF/jsp/frontend/common/resource.jsp" %>
 		
 		<link rel="stylesheet" type="text/css" media="screen" href="${basePath}js/3d-gallery/css/style.css">
@@ -12,6 +13,32 @@
 
 		 <!-- If you'd like to support IE8 -->
 		 <script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+		 <style type="text/css">
+		 .video-js .vjs-big-play-button {
+		    font-size: 3em;
+		    line-height: 1.5em;
+		    height: 1.5em;
+		    width: 3em;
+		    display: block;
+		    position: absolute;
+		    top:80%;
+		    bottom: 10px;
+		    left: 10px;
+		    padding: 0;
+		    cursor: pointer;
+		    opacity: 1;
+		    border: 0.06666em solid #fff;
+		    background-color: #2B333F;
+		    background-color: rgba(43, 51, 63, 0.7);
+		    -webkit-border-radius: 0.3em;
+		    -moz-border-radius: 0.3em;
+		    border-radius: 0.3em;
+		    -webkit-transition: all 0.4s;
+		    -moz-transition: all 0.4s;
+		    -o-transition: all 0.4s;
+		    transition: all 0.4s;
+		}
+		 </style>
   	</head>
   
   <body>
@@ -53,7 +80,7 @@
 	  							<n:shorthand length="30" content="${qa.title}"></n:shorthand> 
 	  							</h1>
 	  							<p style="text-indent: 2em;line-height:1.5em;">
-	  							${qa.content} 
+	  							<n:html value="${qa.content}"/> 
 	  							</p>
 	  						</td>
 	  					</tr>

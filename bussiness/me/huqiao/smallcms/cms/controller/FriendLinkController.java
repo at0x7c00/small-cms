@@ -121,7 +121,7 @@ request.setAttribute("useStatusMap",UseStatus.useStatusMap);
 	@RequestParam(value = "callBack",required = false)String callBack,
 	BindingResult result) {
     	JsonResult jsonResult = new JsonResult();
-    	friendLink.setPicture(parseFilee(request, "pictureKeys"));
+    	friendLink.setPicture(parseFilee(request, "pictureKeys",null));
     	friendLink.setManageKey(Md5Util.getManageKey());
     	friendLinkService.add(friendLink);
         jsonResult.setMessage(getI18NMessage(request, "base.common.controller.operate.add.success"));
@@ -156,7 +156,7 @@ request.setAttribute("useStatusMap",UseStatus.useStatusMap);
     	if(!validate(jsonResult,result)){
     		return jsonResult;
     	}
-    	friendLink.setPicture(parseFilee(request, "pictureKeys"));
+    	friendLink.setPicture(parseFilee(request, "pictureKeys",friendLink.getPictureKey()));
         friendLinkService.update(friendLink);
 	// jsonResult.setNavTabId(rel);
         jsonResult.setMessage(getI18NMessage(request, "base.common.controller.operate.update.success"));
@@ -187,6 +187,7 @@ request.setAttribute("useStatusMap",UseStatus.useStatusMap);
         JsonResult jsonResult = new JsonResult();
         jsonResult.setCallbackType("");
         try {
+        	markFileAsUnuse(friendLink.getPicture());
         	friendLinkService.delete(friendLink);
 		} catch (RuntimeException re) {
 			jsonResult.setMessage(getI18NMessage(request, "base.common.controller.operate.delete.inuse"));
@@ -213,6 +214,7 @@ request.setAttribute("useStatusMap",UseStatus.useStatusMap);
     	for(String manageKey : manageKeys){
 			 try {
     			friendLink = friendLinkService.getEntityByProperty(FriendLink.class,"manageKey",manageKey);
+    			markFileAsUnuse(friendLink.getPicture());
     			friendLinkService.delete(friendLink);
 			}catch (RuntimeException re) {
 				jsonResult.setMessage(getI18NMessage(request, "base.common.controller.operate.delete.inuse"));

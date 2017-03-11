@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
 	<head>
+		<title>行业资讯 - ${systemTitle}</title>
 		<%@include file="/WEB-INF/jsp/frontend/common/resource.jsp" %>
   	</head>
   

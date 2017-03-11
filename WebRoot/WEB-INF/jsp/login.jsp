@@ -33,8 +33,8 @@
 		<link rel="stylesheet" type="text/css" media="screen" href="css/demo.css">
 
 		<!-- FAVICONS -->
-		<link rel="shortcut icon" href="img/favicon/favicon.ico" type="image/x-icon">
-		<link rel="icon" href="img/favicon/favicon.ico" type="image/x-icon">
+		<link rel="shortcut icon" href="img/favicon/${ficon}.ico" type="image/x-icon">
+		<link rel="icon" href="img/favicon/${ficon}.ico" type="image/x-icon">
 
 		<!-- GOOGLE FONT -->
 		<link rel="stylesheet" href="googlefonts/css.css">
@@ -178,7 +178,7 @@
 						 --%>
 						 
 						 <ul class="list-inline text-center">
-						 	<li>@2015 Huqiao's Blog
+						 	<li>@2015 ${copyRight}
 						 	</li>
 						 </ul>
 						

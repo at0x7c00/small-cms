@@ -147,21 +147,27 @@ public class QualityArchiveController  extends BaseController {
 		if(productDisplayKeys!=null){
 			for(String key : productDisplayKeys){
 			if(key==null || key.trim().equals("")) continue;
-			productDisplay.add(commonFileService.getEntityByProperty(CommonFile.class, "manageKey", key));
+				CommonFile file = commonFileService.getEntityByProperty(CommonFile.class, "manageKey", key);
+				file.setInuse(UseStatus.InUse);
+				commonFileService.update(file);
+				productDisplay.add(file);
 			}
 		}
-		qualityArchive.setCover(parseFilee(request, "coverKeys"));
+		qualityArchive.setCover(parseFilee(request, "coverKeys",null));
 		qualityArchive.setCreateTime(new Date());
 		qualityArchive.setUpdateTime(qualityArchive.getCreateTime());
 		qualityArchive.setCreator(getCurrentUser());
-		qualityArchive.setDetailCover(parseFilee(request, "videoOrPictureKeys"));
+		qualityArchive.setDetailCover(parseFilee(request, "videoOrPictureKeys",null));
 		qualityArchive.setProductDisplay(productDisplay);
 		//设置荣誉展示
 		HashSet<CommonFile> gloryDisplay = new HashSet<CommonFile>();
 		if(gloryDisplayKeys!=null){
 			for(String key : gloryDisplayKeys){
 			if(key==null || key.trim().equals("")) continue;
-			gloryDisplay.add(commonFileService.getEntityByProperty(CommonFile.class, "manageKey", key));
+			CommonFile file = commonFileService.getEntityByProperty(CommonFile.class, "manageKey", key);
+			file.setInuse(UseStatus.InUse);
+			commonFileService.update(file);
+			gloryDisplay.add(file);
 			}
 		}
 		qualityArchive.setGloryDisplay(gloryDisplay);
@@ -207,6 +213,10 @@ public class QualityArchiveController  extends BaseController {
     		return jsonResult;
     	}
 		//设置产品展示
+    	for(CommonFile file : qualityArchive.getProductDisplay()){
+			file.setInuse(UseStatus.UnUse);
+			commonFileService.update(file);
+		}
 		HashSet<CommonFile> productDisplay = new HashSet<CommonFile>();
 		if(productDisplayKeys!=null){
 			for(String key : productDisplayKeys){
@@ -216,7 +226,16 @@ public class QualityArchiveController  extends BaseController {
 		}
 		qualityArchive.getProductDisplay().clear();
 		qualityArchive.getProductDisplay().addAll(productDisplay);
+		
+		markFileAsInuse(qualityArchive.getProductDisplay());
+		
 		//设置荣誉展示
+		if(qualityArchive.getGloryDisplay()!=null){
+			for(CommonFile file : qualityArchive.getGloryDisplay()){
+				file.setInuse(UseStatus.UnUse);
+				commonFileService.update(file);
+			}
+		}
 		HashSet<CommonFile> gloryDisplay = new HashSet<CommonFile>();
 		if(gloryDisplayKeys!=null){
 			for(String key : gloryDisplayKeys){
@@ -226,10 +245,12 @@ public class QualityArchiveController  extends BaseController {
 		}
 		qualityArchive.getGloryDisplay().clear();
 		qualityArchive.getGloryDisplay().addAll(gloryDisplay);
-		qualityArchive.setUpdateTime(new Date());
-		qualityArchive.setDetailCover(parseFilee(request, "videoOrPictureKeys"));
+		markFileAsInuse(qualityArchive.getProductDisplay());
 		
-		qualityArchive.setCover(parseFilee(request, "coverKeys"));
+		qualityArchive.setUpdateTime(new Date());
+		qualityArchive.setDetailCover(parseFilee(request, "videoOrPictureKeys",qualityArchive.getDetailCoverKey()));
+		
+		qualityArchive.setCover(parseFilee(request, "coverKeys",qualityArchive.getCoverKey()));
 		//保持一对多关联关系
         qualityArchiveService.update(qualityArchive);
 	// jsonResult.setNavTabId(rel);
@@ -261,6 +282,10 @@ public class QualityArchiveController  extends BaseController {
         JsonResult jsonResult = new JsonResult();
         jsonResult.setCallbackType("");
         try {
+        	markFileAsUnuse(qualityArchive.getProductDisplay());
+        	markFileAsUnuse(qualityArchive.getGloryDisplay());
+        	markFileAsUnuse(qualityArchive.getCover());
+        	markFileAsUnuse(qualityArchive.getDetailCover());
         	qualityArchiveService.delete(qualityArchive);
 		} catch (RuntimeException re) {
 			jsonResult.setMessage(getI18NMessage(request, "base.common.controller.operate.delete.inuse"));
@@ -287,6 +312,10 @@ public class QualityArchiveController  extends BaseController {
     	for(String manageKey : manageKeys){
 			 try {
     			qualityArchive = qualityArchiveService.getEntityByProperty(QualityArchive.class,"manageKey",manageKey);
+            	markFileAsUnuse(qualityArchive.getProductDisplay());
+            	markFileAsUnuse(qualityArchive.getGloryDisplay());
+            	markFileAsUnuse(qualityArchive.getCover());
+            	markFileAsUnuse(qualityArchive.getDetailCover());
     			qualityArchiveService.delete(qualityArchive);
 			}catch (RuntimeException re) {
 				jsonResult.setMessage(getI18NMessage(request, "base.common.controller.operate.delete.inuse"));

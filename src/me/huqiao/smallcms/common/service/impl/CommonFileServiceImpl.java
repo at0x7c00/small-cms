@@ -3,6 +3,8 @@ package me.huqiao.smallcms.common.service.impl;
 import java.io.File;
 import java.io.FileInputStream;
 import java.net.URLEncoder;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -12,11 +14,14 @@ import javax.servlet.http.HttpServletResponse;
 import me.huqiao.smallcms.common.dao.ICommonFileDao;
 import me.huqiao.smallcms.common.entity.CommonFile;
 import me.huqiao.smallcms.common.entity.CommonFolder;
+import me.huqiao.smallcms.common.entity.enumtype.UseStatus;
 import me.huqiao.smallcms.common.service.ICommonFileService;
+import me.huqiao.smallcms.util.DateUtil;
 import me.huqiao.smallcms.util.web.Page;
 
 import org.apache.log4j.Logger;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 /**
@@ -144,4 +149,37 @@ public class CommonFileServiceImpl extends BaseServiceImpl<CommonFile> implement
 		new File(file.getFullName()).delete();
 		fileeDao.delete(file);
 	}
+	
+	@Scheduled(cron = "${cron.filee.two.o-clock.at.middle.night}")
+	public void deleteFileNotInUsed() {
+		Date before = null;
+		Date now = new Date();
+		before = DateUtil.datePlus(now, Calendar.DAY_OF_MONTH, -1);
+		before = DateUtil.getBeginDateOfDate(before);
+		List<CommonFile> filesNotInused = findNotInusedByCreateTime(before);
+		log.info("Delete file not inuse before:" + DateUtil.formatDate(before,"yyyy-MM-dd HH:mm:ss"));
+		log.info((filesNotInused==null ? 0 : filesNotInused.size()) + " files has found.");
+		for(CommonFile file : filesNotInused){
+			try{
+				delete(file);
+			}catch(Exception e){
+				file.setInuse(UseStatus.InUse);
+				update(file);
+				continue;
+			}
+			File diskFile = new File(file.getFullName());
+			if(diskFile.exists()){
+				diskFile.delete();
+				log.info("Delete file not inuse:" + file.getFullName() );
+			}
+		}
+	}
+
+	@Override
+	public List<CommonFile> findNotInusedByCreateTime(Date before) {
+		return fileeDao.findNotInusedByCreateTime(before);
+	}
+	
+	
+	
 }

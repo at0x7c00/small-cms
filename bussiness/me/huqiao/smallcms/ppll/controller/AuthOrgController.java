@@ -118,7 +118,7 @@ public class AuthOrgController  extends BaseController {
 	@RequestParam(value = "callBack",required = false)String callBack,
 	BindingResult result) {
     	JsonResult jsonResult = new JsonResult();
-    	authOrg.setCertFile(parseFilee(request, "certFileKeys"));
+    	authOrg.setCertFile(parseFilee(request, "certFileKeys",null));
     	authOrg.setManageKey(Md5Util.getManageKey());
     	authOrgService.add(authOrg);
         jsonResult.setMessage(getI18NMessage(request, "base.common.controller.operate.add.success"));
@@ -152,7 +152,7 @@ public class AuthOrgController  extends BaseController {
     	if(!validate(jsonResult,result)){
     		return jsonResult;
     	}
-    	authOrg.setCertFile(parseFilee(request, "certFileKeys"));
+    	authOrg.setCertFile(parseFilee(request, "certFileKeys",authOrg.getCertFileKey()));
         authOrgService.update(authOrg);
 	// jsonResult.setNavTabId(rel);
         jsonResult.setMessage(getI18NMessage(request, "base.common.controller.operate.update.success"));
@@ -183,6 +183,7 @@ public class AuthOrgController  extends BaseController {
         JsonResult jsonResult = new JsonResult();
         jsonResult.setCallbackType("");
         try {
+        	markFileAsUnuse(authOrg.getCertFile());
         	authOrgService.delete(authOrg);
 		} catch (RuntimeException re) {
 			jsonResult.setMessage(getI18NMessage(request, "base.common.controller.operate.delete.inuse"));
@@ -209,6 +210,7 @@ public class AuthOrgController  extends BaseController {
     	for(String manageKey : manageKeys){
 			 try {
     			authOrg = authOrgService.getEntityByProperty(AuthOrg.class,"manageKey",manageKey);
+    			markFileAsUnuse(authOrg.getCertFile());
     			authOrgService.delete(authOrg);
 			}catch (RuntimeException re) {
 				jsonResult.setMessage(getI18NMessage(request, "base.common.controller.operate.delete.inuse"));

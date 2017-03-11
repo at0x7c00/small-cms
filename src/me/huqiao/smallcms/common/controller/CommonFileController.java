@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import me.huqiao.smallcms.common.entity.CommonFile;
 import me.huqiao.smallcms.common.entity.CommonFolder;
 import me.huqiao.smallcms.common.entity.Select2;
+import me.huqiao.smallcms.common.entity.enumtype.UseStatus;
 import me.huqiao.smallcms.common.entity.propertyeditor.CommonFolderEditor;
 import me.huqiao.smallcms.common.service.ICommonFileService;
 import me.huqiao.smallcms.common.service.ICommonFolderService;
@@ -147,6 +148,7 @@ public class CommonFileController extends BaseController {
 			e.printStackTrace();
 			return new UploadResult(false,e.getMessage());
 		}
+		filee.setInuse(UseStatus.UnUse);
 		filee.setStoreName("");
 		filee.setFolder(folder);
 		fileeService.add(filee);

@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
 	<head>
+		<title>${p.title}- ${systemTitle}</title>
 		<%@include file="/WEB-INF/jsp/frontend/common/resource.jsp" %>
   	</head>
   
@@ -31,7 +32,7 @@
 		  					</div>
 		  					
 		  					<div class="chapter-content">
-		  						${p.content}
+		  						<n:html value="${p.content}"/>
 		  					</div>
 		  					
 		  					

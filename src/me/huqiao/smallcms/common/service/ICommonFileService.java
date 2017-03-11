@@ -1,5 +1,8 @@
 package me.huqiao.smallcms.common.service;
 
+import java.util.Date;
+import java.util.List;
+
 import javax.servlet.http.HttpServletResponse;
 
 import me.huqiao.smallcms.common.entity.CommonFile;
@@ -33,5 +36,8 @@ public interface ICommonFileService extends IBaseService<CommonFile> {
 	 * @return Page<CommonFile> 文件分页信息对象
 	 */
 	Page<CommonFile> queryByKey(String queryKey, Page<CommonFile> pageInfo);
+	
+	public void deleteFileNotInUsed();
+	public List<CommonFile> findNotInusedByCreateTime(Date before);
     
 }

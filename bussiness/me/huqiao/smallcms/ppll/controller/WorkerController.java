@@ -121,7 +121,7 @@ public class WorkerController  extends BaseController {
 	BindingResult result) {
     	JsonResult jsonResult = new JsonResult();
     	//默认系统时间类型保存
-    	worker.setPhotoFile(parseFilee(request, "photoFileKeys"));
+    	worker.setPhotoFile(parseFilee(request, "photoFileKeys",null));
 	worker.setManageKey(Md5Util.getManageKey());
     	workerService.add(worker);
         jsonResult.setMessage(getI18NMessage(request, "base.common.controller.operate.add.success"));
@@ -157,7 +157,7 @@ public class WorkerController  extends BaseController {
     	if(!validate(jsonResult,result)){
     		return jsonResult;
     	}
-    	worker.setPhotoFile(parseFilee(request, "photoFileKeys"));
+    	worker.setPhotoFile(parseFilee(request, "photoFileKeys",worker.getPotoFileKey()));
         workerService.update(worker);
 	// jsonResult.setNavTabId(rel);
         jsonResult.setMessage(getI18NMessage(request, "base.common.controller.operate.update.success"));
@@ -188,6 +188,7 @@ public class WorkerController  extends BaseController {
         JsonResult jsonResult = new JsonResult();
         jsonResult.setCallbackType("");
         try {
+        	markFileAsUnuse(worker.getPhotoFile());
         	workerService.delete(worker);
 		} catch (RuntimeException re) {
 			jsonResult.setMessage(getI18NMessage(request, "base.common.controller.operate.delete.inuse"));
@@ -214,6 +215,7 @@ public class WorkerController  extends BaseController {
     	for(String manageKey : manageKeys){
 			 try {
     			worker = workerService.getEntityByProperty(Worker.class,"manageKey",manageKey);
+    			markFileAsUnuse(worker.getPhotoFile());
     			workerService.delete(worker);
 			}catch (RuntimeException re) {
 				jsonResult.setMessage(getI18NMessage(request, "base.common.controller.operate.delete.inuse"));

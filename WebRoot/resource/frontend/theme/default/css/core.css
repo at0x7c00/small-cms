@@ -416,8 +416,8 @@ div.img-div{
 }
 
 .img-holder img{
-	width:200px;
-	height:150px;
+	width: 170px;
+    height: 200px;
 }
 div.chapter-title>h1{
 	font-size:20px;
@@ -437,4 +437,47 @@ div.chapter-info{
 
 .module.white{
 	background: #fff;
+}
+
+
+.query-input>div{
+	display:inline-block;
+	float:left;
+	height:50px;
+}
+.input-left{
+	width:20px;
+	background:url(./img/query-input-bg-left.png)no-repeat;
+}
+.input-center{
+	background:url(./img/query-input-bg-center.png)repeat-x;
+	padding-top:12px;
+	width:215px;
+}
+.input-center>input{
+	border:0px;
+	width:100%;
+}
+.input-right{
+	width:15px;
+	background:url(./img/query-input-bg-right.png)no-repeat;
+}
+.query-btn{
+	background:url(./img/query-btn-bg.png)repeat-x;
+	font-size:26px;
+	line-height:40px;
+	color:#ddd;
+	padding:0px 10px;
+	cursor:pointer;
+}
+.query-btn:hover{
+	color:#fff;
+}
+.query-btn-right{
+	width:15px;
+	background:url(./img/query-btn-bg-right.png)no-repeat;
+}
+span.query-title{
+	font-size:16px;
+	font-weight:bold;
 }

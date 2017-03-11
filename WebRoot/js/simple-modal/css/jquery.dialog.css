@@ -6,7 +6,15 @@
 .xdsoft_dialog_overlay,.xdsoft_dialog_overlay *{
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
-	font-family: Arial,"microsoft yahei";
+	font-family: "microsoft yahei";
+}
+
+.xdsoft_dialog_overlay, .xdsoft_dialog_overlay .fa{
+	font-family:'FontAwesome';
+}
+
+.xdsoft_dialog_overlay, .xdsoft_dialog_overlay td{
+	font-size:14px;
 }
 .xdsoft_overlay_lock { 
 overflow: visible !important;
@@ -62,7 +70,7 @@ overflow: hidden !important;
 .xdsoft_dialog_overlay .xdsoft_dialog .xdsoft_dialog_content{
 	padding: 10px;
 	margin: 0em;
-	background: #fcfcfc;
+	background: #eaeff3;
 	border: 1px solid #22456d;
 	font-size: 12px;
 	border-bottom: 1px;
@@ -106,6 +114,7 @@ overflow: hidden !important;
 	opacity: 1.0;
 }
 .xdsoft_dialog_overlay .xdsoft_dialog .xdsoft_dialog_popup_title {
+	text-align:center;
 	font-size: 18px;
 	line-height: 21px;
 	font-weight: normal;
@@ -195,4 +204,28 @@ overflow: hidden !important;
 .xdsoft_dialog_overlay .xdsoft_dialog .xdsoft_dialog_content .xdsoft_waiter{
 height: 40px;
 background: url(../images/loader.gif) no-repeat center center;
+}
+.jquery-dialog-wait{
+height: 40px;
+background: url(../images/loader.gif) no-repeat center center;
+	
+}
+
+.dialog-required{
+	content:"*";
+	color:red;
+	margin-right:10px;
+}
+.dialog-content{
+	background: #eaeff3;
+	
+}
+.dialog-content form .invalid{
+	border:1px solid red;
+}
+.dialog-content form em{
+	display:none;
+}
+.dialog-content table tr{
+	margin:20px 0px;
 }

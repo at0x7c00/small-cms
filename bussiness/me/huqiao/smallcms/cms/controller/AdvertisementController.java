@@ -122,7 +122,7 @@ request.setAttribute("useStatusMap",UseStatus.useStatusMap);
 	BindingResult result) {
     	JsonResult jsonResult = new JsonResult();
     	//默认系统时间类型保存
-    	advertisement.setPicture(parseFilee(request, "pictureKeys"));
+    	advertisement.setPicture(parseFilee(request, "pictureKeys",null));
     	advertisement.setManageKey(Md5Util.getManageKey());
     	advertisementService.add(advertisement);
         jsonResult.setMessage(getI18NMessage(request, "base.common.controller.operate.add.success"));
@@ -157,7 +157,7 @@ request.setAttribute("useStatusMap",UseStatus.useStatusMap);
     	if(!validate(jsonResult,result)){
     		return jsonResult;
     	}
-    	advertisement.setPicture(parseFilee(request, "pictureKeys"));
+    	advertisement.setPicture(parseFilee(request, "pictureKeys",advertisement.getPictureKey()));
         advertisementService.update(advertisement);
         jsonResult.setMessage(getI18NMessage(request, "base.common.controller.operate.update.success"));
         return jsonResult;
@@ -187,6 +187,7 @@ request.setAttribute("useStatusMap",UseStatus.useStatusMap);
         JsonResult jsonResult = new JsonResult();
         jsonResult.setCallbackType("");
         try {
+        	markFileAsUnuse(advertisement.getPicture());
         	advertisementService.delete(advertisement);
 		} catch (RuntimeException re) {
 			jsonResult.setMessage(getI18NMessage(request, "base.common.controller.operate.delete.inuse"));
@@ -213,6 +214,7 @@ request.setAttribute("useStatusMap",UseStatus.useStatusMap);
     	for(String manageKey : manageKeys){
 			 try {
     			advertisement = advertisementService.getEntityByProperty(Advertisement.class,"manageKey",manageKey);
+    			markFileAsUnuse(advertisement.getPicture());
     			advertisementService.delete(advertisement);
 			}catch (RuntimeException re) {
 				jsonResult.setMessage(getI18NMessage(request, "base.common.controller.operate.delete.inuse"));

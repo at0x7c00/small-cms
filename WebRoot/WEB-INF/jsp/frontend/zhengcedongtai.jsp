@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
 	<head>
+		<title>政策动态 - ${systemTitle}</title>
 		<%@include file="/WEB-INF/jsp/frontend/common/resource.jsp" %>
   	</head>
   

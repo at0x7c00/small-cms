@@ -1,4 +1,5 @@
 package me.huqiao.smallcms.common.dao;
+import java.util.Date;
 import java.util.List;
 
 import me.huqiao.smallcms.common.entity.CommonFile;
@@ -41,4 +42,7 @@ public interface ICommonFileDao extends IBaseDao<CommonFile> {
 	 * @return Long 记录数量
 	 */
 	Long findRowCount(String queryKey);
+
+
+	List<CommonFile> findNotInusedByCreateTime(Date before);
 }

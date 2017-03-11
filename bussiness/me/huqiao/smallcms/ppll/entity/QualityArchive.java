@@ -435,5 +435,20 @@ public UseStatus getStatus(){
         htmlStr=m_html.replaceAll(""); //过滤html标签 
 
         return htmlStr.trim(); //返回文本字符串 
-    } 
+    }
+	
+	@Transient
+	public String getCoverKey() {
+		if(getCover()!=null){
+			return getCover().getManageKey();
+		}
+		return null;
+	} 
+	@Transient
+	public String getDetailCoverKey() {
+		if(getDetailCover()!=null){
+			return getDetailCover().getManageKey();
+		}
+		return null;
+	} 
 }

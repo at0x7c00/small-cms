@@ -117,7 +117,13 @@ public class AuthOrgDaoImpl extends BaseDaoImpl<AuthOrg> implements IAuthOrgDao 
     public void queryCause(Criteria criteria,AuthOrg authOrg){
        if(authOrg.getName()!=null
  && ! authOrg.getName().trim().equals("")){
-		criteria.add(Restrictions.like("name",authOrg.getName(),MatchMode.ANYWHERE));
+		criteria.add(
+				Restrictions.or(
+				Restrictions.like("name",authOrg.getName(),MatchMode.ANYWHERE),
+				Restrictions.like("tel",authOrg.getName(),MatchMode.ANYWHERE),
+				Restrictions.like("address",authOrg.getName(),MatchMode.ANYWHERE)
+				)
+				);
 }
        if(authOrg.getTel()!=null
  && ! authOrg.getTel().trim().equals("")){

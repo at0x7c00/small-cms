@@ -121,7 +121,7 @@ request.setAttribute("useStatusMap",UseStatus.useStatusMap);
 	@RequestParam(value = "callBack",required = false)String callBack,
 	BindingResult result) {
     	JsonResult jsonResult = new JsonResult();
-    	carousel.setPicture(parseFilee(request, "pictureKeys"));
+    	carousel.setPicture(parseFilee(request, "pictureKeys",null));
     	carousel.setManageKey(Md5Util.getManageKey());
     	carouselService.add(carousel);
         jsonResult.setMessage(getI18NMessage(request, "base.common.controller.operate.add.success"));
@@ -158,7 +158,7 @@ request.setAttribute("useStatusMap",UseStatus.useStatusMap);
     	if(!validate(jsonResult,result)){
     		return jsonResult;
     	}
-    	carousel.setPicture(parseFilee(request, "pictureKeys"));
+    	carousel.setPicture(parseFilee(request, "pictureKeys",carousel.getPictureKey()));
         carouselService.update(carousel);
         jsonResult.setMessage(getI18NMessage(request, "base.common.controller.operate.update.success"));
         return jsonResult;
@@ -188,6 +188,7 @@ request.setAttribute("useStatusMap",UseStatus.useStatusMap);
         JsonResult jsonResult = new JsonResult();
         jsonResult.setCallbackType("");
         try {
+        	markFileAsUnuse(carousel.getPicture());
         	carouselService.delete(carousel);
 		} catch (RuntimeException re) {
 			jsonResult.setMessage(getI18NMessage(request, "base.common.controller.operate.delete.inuse"));
@@ -214,6 +215,7 @@ request.setAttribute("useStatusMap",UseStatus.useStatusMap);
     	for(String manageKey : manageKeys){
 			 try {
     			carousel = carouselService.getEntityByProperty(Carousel.class,"manageKey",manageKey);
+    			markFileAsUnuse(carousel.getPicture());
     			carouselService.delete(carousel);
 			}catch (RuntimeException re) {
 				jsonResult.setMessage(getI18NMessage(request, "base.common.controller.operate.delete.inuse"));

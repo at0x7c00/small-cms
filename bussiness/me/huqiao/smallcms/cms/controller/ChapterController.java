@@ -159,7 +159,7 @@ request.setAttribute("useStatusMap",UseStatus.useStatusMap);
     	chapter.setCreateTime(new Date());
     	chapter.setUpdateTime(chapter.getUpdateTime());
     	chapter.setPage((WebPage)request.getSession().getAttribute("cPage"));
-    	chapter.setCover(parseFilee(request,"coverKeys"));
+    	chapter.setCover(parseFilee(request,"coverKeys",null));
     	chapter.setManageKey(Md5Util.getManageKey());
     	chapterService.add(chapter);
         jsonResult.setMessage(getI18NMessage(request, "base.common.controller.operate.add.success"));
@@ -205,7 +205,7 @@ request.setAttribute("useStatusMap",UseStatus.useStatusMap);
     		return jsonResult;
     	}
     	chapter.setUpdateTime(new Date());
-    	chapter.setCover(parseFilee(request,"coverKeys"));
+    	chapter.setCover(parseFilee(request,"coverKeys",chapter.getCoverKey()));
         chapterService.update(chapter);
 	// jsonResult.setNavTabId(rel);
         jsonResult.setMessage(getI18NMessage(request, "base.common.controller.operate.update.success"));
@@ -236,6 +236,7 @@ request.setAttribute("useStatusMap",UseStatus.useStatusMap);
         JsonResult jsonResult = new JsonResult();
         jsonResult.setCallbackType("");
         try {
+        	markFileAsUnuse(chapter.getCover());
         	chapterService.delete(chapter);
 		} catch (RuntimeException re) {
 			jsonResult.setMessage(getI18NMessage(request, "base.common.controller.operate.delete.inuse"));
@@ -262,6 +263,7 @@ request.setAttribute("useStatusMap",UseStatus.useStatusMap);
     	for(String manageKey : manageKeys){
 			 try {
     			chapter = chapterService.getEntityByProperty(Chapter.class,"manageKey",manageKey);
+    			markFileAsUnuse(chapter.getCover());
     			chapterService.delete(chapter);
 			}catch (RuntimeException re) {
 				jsonResult.setMessage(getI18NMessage(request, "base.common.controller.operate.delete.inuse"));

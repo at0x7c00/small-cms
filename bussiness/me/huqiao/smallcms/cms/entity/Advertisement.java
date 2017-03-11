@@ -205,4 +205,12 @@ public UseStatus getStatus(){
 	public String toString() {
 		return "Advertisement [manageKey=" + manageKey + "]";
 	}
+	
+	@Transient
+	public String getPictureKey() {
+		if(getPicture()!=null){
+			return getPicture().getManageKey();
+		}
+		return null;
+	}
 }

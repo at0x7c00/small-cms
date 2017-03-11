@@ -1,4 +1,5 @@
 package me.huqiao.smallcms.cms.controller;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -14,21 +15,37 @@ import me.huqiao.smallcms.cms.service.IChapterService;
 import me.huqiao.smallcms.cms.service.IFriendLinkService;
 import me.huqiao.smallcms.common.controller.BaseController;
 import me.huqiao.smallcms.common.entity.enumtype.UseStatus;
+import me.huqiao.smallcms.ppll.entity.Apply;
+import me.huqiao.smallcms.ppll.entity.AuthOrg;
+import me.huqiao.smallcms.ppll.entity.MemberOrganization;
 import me.huqiao.smallcms.ppll.entity.QualityArchive;
 import me.huqiao.smallcms.ppll.entity.QualityArchiveCategory;
+import me.huqiao.smallcms.ppll.entity.QualityArchiveCompany;
+import me.huqiao.smallcms.ppll.entity.Worker;
+import me.huqiao.smallcms.ppll.service.IApplyService;
+import me.huqiao.smallcms.ppll.service.IAuthOrgService;
+import me.huqiao.smallcms.ppll.service.IMemberOrganizationService;
 import me.huqiao.smallcms.ppll.service.IQualityArchiveCategoryService;
+import me.huqiao.smallcms.ppll.service.IQualityArchiveCompanyService;
 import me.huqiao.smallcms.ppll.service.IQualityArchiveService;
+import me.huqiao.smallcms.ppll.service.IWorkerService;
+import me.huqiao.smallcms.servlet.VerifyImageServlet;
+import me.huqiao.smallcms.util.Md5Util;
 import me.huqiao.smallcms.util.StringUtil;
+import me.huqiao.smallcms.util.web.JsonResult;
 import me.huqiao.smallcms.util.web.Page;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 /**
  * 轮播控制器
  * @author NOVOTS
  * @version Version 1.0
  */
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 @RequestMapping(value = "frontend")
 public class FrontendController  extends BaseController {
@@ -50,6 +67,17 @@ public class FrontendController  extends BaseController {
 	private IQualityArchiveService qualityArchiveService;
 	@Resource
 	private IQualityArchiveCategoryService qualityArchiveCategoryService;
+	@Resource
+	private IApplyService applyService;
+	@Resource
+	private IMemberOrganizationService memberOrgService;
+	@Resource
+	private IQualityArchiveCompanyService qaCompanyService;
+	@Resource
+	private IAuthOrgService authOrgService;
+	@Resource
+	private IWorkerService workerService;
+	
 	
 	
 	
@@ -206,11 +234,92 @@ public class FrontendController  extends BaseController {
 			key = request.getParameter("k");
 		}
 		prepareCarousel(request);
-		request.setAttribute("p", chapterService.getEntityByProperty(Chapter.class, "manageKey", key));
+		
+		Chapter chapter = chapterService.getEntityByProperty(Chapter.class, "manageKey", key);
+		if(chapter!=null){
+			chapter.setReadCount(chapter.getReadCount()==null ? 1 : (chapter.getReadCount()+1));
+			chapterService.update(chapter); 
+		}
+		request.setAttribute("p", chapter);
 		
 		zhiliangTop(request);
 		
 		request.setAttribute("top10ChapterList",chapterService.getTop10OfAll());
+	}
+	
+	
+	@RequestMapping(value = "apply",method = RequestMethod.GET)
+	public void applyUI(){
+		
+	}
+	
+	@RequestMapping(value = "apply",method = RequestMethod.POST)
+	@ResponseBody
+	public JsonResult apply(HttpServletRequest request,@ModelAttribute("apply") Apply apply,
+			@RequestParam(value = "verifyCode")String checkcode){
+		String checkCodeInSession = (String)request.getSession().getAttribute(VerifyImageServlet.SIMPLE_CAPCHA_SESSION_KEY);
+		checkCodeInSession = checkCodeInSession==null ? null : checkCodeInSession.toLowerCase();
+		if(!(checkcode!=null && checkcode.toLowerCase().equals(checkCodeInSession))){
+			return JsonResult.error("验证码错误!");
+		}
+		request.getSession().removeAttribute(VerifyImageServlet.SIMPLE_CAPCHA_SESSION_KEY);
+		apply.setManageKey(Md5Util.getManageKey());
+		apply.setCreateTime(new Date());
+		applyService.add(apply);
+		return JsonResult.success("申请成功!");
+	}
+	
+	@RequestMapping(value = "query",method = RequestMethod.GET)
+	public void queryUI(){
+	}
+	
+	@RequestMapping(value = "query",method = RequestMethod.POST,params = "queryType=memberOrg")
+	public String queryMemberOrg(HttpServletRequest request, @RequestParam("key")String key){
+		MemberOrganization memberOrganization = new MemberOrganization();
+		Page<MemberOrganization> pageInfo = new Page<MemberOrganization>();
+		memberOrganization.setName(key);
+		pageInfo = memberOrgService.getListPage(memberOrganization, pageInfo);
+		if(pageInfo.getList().size()>0){
+			request.setAttribute("tempBean", pageInfo.getList().get(0));
+		}
+		return "frontend/queryMemberOrg";
+	}
+	
+	@RequestMapping(value = "query",method = RequestMethod.POST,params = "queryType=qualityArchive")
+	public String queryQualityArchive(HttpServletRequest request,@RequestParam("key")String key){
+		QualityArchiveCompany qaCompany = new QualityArchiveCompany();
+		Page<QualityArchiveCompany> pageInfo = new Page<QualityArchiveCompany>();
+		qaCompany.setName(key);
+		pageInfo = qaCompanyService.getListPage(qaCompany, pageInfo);
+		if(pageInfo.getList().size()>0){
+			request.setAttribute("tempBean", pageInfo.getList().get(0));
+		}
+		return "frontend/queryQualityArchiveCompany";
+	}
+	
+	@RequestMapping(value = "query",method = RequestMethod.POST,params = "queryType=authOrg")
+	public String queryAuthOrg(HttpServletRequest request,@RequestParam("key")String key){
+		AuthOrg authOrg = new AuthOrg();
+		Page<AuthOrg> pageInfo = new Page<AuthOrg>();
+		authOrg.setName(key);
+		pageInfo = authOrgService.getListPage(authOrg, pageInfo);
+		if(pageInfo.getList().size()>0){
+			request.setAttribute("tempBean", pageInfo.getList().get(0));
+		}
+		return "frontend/queryAuthOrg";
+	}
+	
+	@RequestMapping(value = "query",method = RequestMethod.POST,params = "queryType=worker")
+	public String queryWorker(HttpServletRequest request,@RequestParam("key")String key){
+		Worker worker = new Worker();
+		Page<Worker> pageInfo = new Page<Worker>();
+		worker.setName(key);
+		pageInfo = workerService.getListPage(worker, pageInfo);
+		if(pageInfo.getList().size()>0){
+			request.setAttribute("tempBean", pageInfo.getList().get(0));
+		}
+		
+		return "frontend/queryWorker";
 	}
 	
 	

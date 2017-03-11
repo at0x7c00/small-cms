@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
@@ -21,6 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import me.huqiao.smallcms.common.entity.CommonFile;
+import me.huqiao.smallcms.common.entity.enumtype.UseStatus;
 import me.huqiao.smallcms.common.listener.ApplicationContextAccessUtilListener;
 import me.huqiao.smallcms.common.service.IBaseService;
 import me.huqiao.smallcms.common.service.ICommonFileService;
@@ -1077,17 +1079,53 @@ private Object getSerivceByName(String modelClassName){
 	@Resource
 	private ICommonFileService commonFileService;
 	
-	 protected CommonFile parseFilee(HttpServletRequest request,String keyName) {
+	 protected CommonFile parseFilee(HttpServletRequest request,String keyName,String oldKey) {
 	    	String[] coverKeys = request.getParameterValues(keyName);
 	    	String coverKey = null;
 	    	if(coverKeys!=null && coverKeys.length>0){
 	    		coverKey = coverKeys[0];
 	    	}
+	    	CommonFile file = null;
 	    	if(StringUtil.isNotEmpty(coverKey)){
-	    		CommonFile file = commonFileService.getEntityByProperty(CommonFile.class, "manageKey", coverKey);
-	    		return file;
+	    		file = commonFileService.getEntityByProperty(CommonFile.class, "manageKey", coverKey);
+	    		if(file!=null){
+	    			file.setInuse(UseStatus.InUse);
+	    			commonFileService.update(file);
+	    		}
 	    	}
-			return null;
+	    	if(StringUtil.isNotEmpty(oldKey) && !oldKey.equals(coverKey)){
+	    		CommonFile oldFile = commonFileService.getEntityByProperty(CommonFile.class, "manageKey", oldKey);
+	    		if(oldFile!=null){
+	    			oldFile.setInuse(UseStatus.UnUse);
+	    			commonFileService.update(oldFile);
+	    		}
+	    	}
+	    	return file;
+	}
+	 
+		protected void markFileAsInuse(Collection<CommonFile> filees){
+			if(filees!=null){
+				for(CommonFile filee : filees){
+					if(filee==null) continue;
+					filee.setInuse(UseStatus.InUse);
+					commonFileService.update(filee);
+				}
+			}
+		}
+		protected void markFileAsUnuse(Collection<CommonFile> filees){
+			if(filees!=null){
+				for(CommonFile filee : filees){
+					if(filee==null) continue;
+					filee.setInuse(UseStatus.UnUse);
+					commonFileService.update(filee);
+				}
+			}
+		}
+		protected void markFileAsUnuse(CommonFile filee){
+				if(filee!=null){
+					filee.setInuse(UseStatus.UnUse);
+					commonFileService.update(filee);
+				}
 		}
 	
 	
