@@ -104,7 +104,7 @@
 		  				<div class="module-content">
 		  					
 		  					<div style="text-align:center;font-size:16px;">
-		  					<p class="header">联系我们：400-522-8787
+		  					<p class="header">联系我们：400-822-8787
 		  					</p>
 		  					</div>
 		  					

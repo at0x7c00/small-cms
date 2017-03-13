@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:jsp="http://java.sun.com/xml/ns/javaee/jsp" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:jsp="http://java.sun.com/xml/ns/javaee/jsp" xmlns:web="http://java.sun.com/xml/ns/javaee" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
   <display-name>品牌力量后台管理系统</display-name>
   <context-param>
     <param-name>log4jConfigLocation</param-name>
@@ -29,13 +29,6 @@
   <listener>
     <listener-class>me.huqiao.smallcms.listener.InitApplicationAttributeListener</listener-class>
   </listener>
-  <!-- 
-  <servlet>
-    <servlet-name>ldapSynchroTask</servlet-name>
-    <servlet-class>me.huqiao.smallcms.ldap.LdapThreadServlet</servlet-class>
-    <load-on-startup>2</load-on-startup>
-  </servlet>
-   -->
   <servlet>
     <servlet-name>springMVC</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -49,16 +42,14 @@
     <servlet-name>springMVC</servlet-name>
     <url-pattern>*.do</url-pattern>
   </servlet-mapping>
-  
-  	<servlet>
-		<servlet-name>VerifyImage</servlet-name>
-	<servlet-class>me.huqiao.smallcms.servlet.VerifyImageServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>VerifyImage</servlet-name>
-		<url-pattern>/verifyimage.create</url-pattern>
-	</servlet-mapping>
-
+  <servlet>
+    <servlet-name>VerifyImage</servlet-name>
+    <servlet-class>me.huqiao.smallcms.servlet.VerifyImageServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>VerifyImage</servlet-name>
+    <url-pattern>/verifyimage.create</url-pattern>
+  </servlet-mapping>
   <servlet>
     <servlet-name>CXFServlet</servlet-name>
     <servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>

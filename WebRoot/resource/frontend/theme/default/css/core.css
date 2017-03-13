@@ -14,7 +14,7 @@ body{
 	margin:0px;
 	margin-bottom:5px;
 	padding:0px;
-	background:url(./img/bg.png) repeat-x;
+	background:url(./img/bg.png) no-repeat center top;
 	font-size:14px;
 }
 p{
@@ -22,32 +22,33 @@ p{
 }
 
 div{
-	border:1px dashed #green;
+	border:0px dashed #eee;
 }
 
 header{
-	height:100px;
+	height:150px;
 }
 .right-full{
 	float:right;
-	width:333px;
-	margin-top:17px;
+	width:353px;
+	margin-top:40px;
 }
 .left-full{
 	float:left;
-	width:556px;
-	margin-top:26px;
+	width:640px;
+	margin-top:50px;
 }
 .logo-img{
-	background:url(./img/logo-2.png) no-repeat;
-	height:41px;
-	width:556px;
+	background:url(./img/logo.png) no-repeat;
+	height:55px;
+	width:640px;
+	margin-left:15px;
 }
 
 .right-note{
-	background:url(./img/right-note-2.png) no-repeat;
-	height:57px;
-	width:263px;
+	background:url(./img/right-note.png) no-repeat;
+	height:84px;
+	width:353px;
 }
 
 .menu-bar{
@@ -297,18 +298,9 @@ ul.module-content>li.devider{
 }
 
 
-@media  (min-width:1px) and (max-width:1400px) {
-	.container{
-		width:1110px;
-		margin:auto;
-	}
-}
-
-@media  (min-width:1400px) {
-	.container{
-		width:1110px;
-		margin:auto;
-	}
+.container{
+	width:1250px;
+	margin:auto;
 }
 
 div.img-div{

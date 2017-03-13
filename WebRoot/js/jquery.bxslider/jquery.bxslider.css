@@ -34,6 +34,7 @@ ul.bxslider {
   box-shadow: 0 0 5px #ccc;
   border: 0px solid #fff;
   background: #fff;
+  z-index:2;
 }
 .bx-wrapper .bx-pager,
 .bx-wrapper .bx-controls-auto {

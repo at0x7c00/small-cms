@@ -1,6 +1,13 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<div class="carousel">
-	<ul class="bxslider" >
+<div class="carousel" style="position:relative;">
+    <div style="height:360px;width:100%;position:absolute;z-index:1;background: #fff;">
+    	<div style="padding-top:150px;text-align:center;">
+    	<img src="${basePath}js/simple-modal/images/loader.gif"/>
+    	<br/>
+    	加载中...
+    	</div>
+    </div>
+	<ul class="bxslider" style="z-index:2;">
 		<c:forEach items="${carouselList }" var="c">
         <li style="display:none;">
         <a href="${c.url}" target="_blank" title="${c.title}">

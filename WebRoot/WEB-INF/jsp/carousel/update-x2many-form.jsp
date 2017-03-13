@@ -25,4 +25,9 @@
 		 data-initvalues="${tempBean.picture.manageKey }"
 		 >
 	</div>
+	<strong>说明</strong>
+	<ul>
+	<li style="list-style-type: none;">推荐图片尺寸：高：415像素，宽1150像素</li>
+	<li style="list-style-type: none;">上传一张图片，多余图片将被忽略。</li>
+	</ul>
 </div>

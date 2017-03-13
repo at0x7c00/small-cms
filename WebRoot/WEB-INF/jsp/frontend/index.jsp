@@ -16,7 +16,7 @@
 	  			<div class="module-group">
 		  			<div class="module left">
 		  				<div class="module-title">
-		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/zhengce-2.png">
+		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/zhengce.png">
 		  				</div>
 		  				<div class="module-header">
 		  					<a class="more" href="${basePath}frontend/zhengcedongtai.do"></a>
@@ -30,7 +30,7 @@
 		  			
 		  			<div class="module right">
 		  				<div class="module-title">
-		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/zhiliangredian-2.png">
+		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/zhiliangredian.png">
 		  				</div>
 		  				<div class="module-header">
 		  					<a class="more" href="${basePath}frontend/zhiliangredian.do"></a>
@@ -59,7 +59,7 @@
 	  			<div class="module-group">
 		  			<div class="module full-page">
 		  				<div class="module-title">
-		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/huiyuan-2.png">
+		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/huiyuan.png">
 		  				</div>
 		  				<div class="module-header">
 		  					<a class="more" href="${basePath}frontend/huiyuanfengcai.do"></a>
@@ -88,7 +88,7 @@
 		  		<div class="module-group" style="min-height:273px;">
 		  			<div class="module full-page">
 		  				<div class="module-title">
-		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/zhiliangdangan-2.png">
+		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/zhiliangdangan.png">
 		  				</div>
 		  				<div class="module-header">
 		  					<a class="more" href="${basePath}frontend/zhiliangdangan.do"></a>
@@ -126,7 +126,7 @@
 		  		<div class="module-group">
 		  			<div class="module full-page">
 		  				<div class="module-title">
-		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/hangye-2.png">
+		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/hangye.png">
 		  				</div>
 		  				<div class="module-header">
 		  					<a class="more" href="${basePath}frontend/hangyezixun.do"></a>
@@ -145,7 +145,7 @@
 		  		<div class="module-group"  style="min-height:73px;">
 		  			<div class="module full-page">
 		  				<div class="module-title">
-		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/youqing-2.png">
+		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/youqing.png">
 		  				</div>
 		  				<div class="module-header">
 		  				</div>

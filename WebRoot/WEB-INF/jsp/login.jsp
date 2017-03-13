@@ -52,7 +52,12 @@
 			<!--<span id="logo"></span>-->
 
 			<div id="logo-group">
-				<span id="logo"> <img src="img/logo-pale.png" alt="logo"> </span>
+			
+				<span id="logo" style="width:300px;font-family:'Microsoft yahei'">
+				<%-- <img src="img/logo-pale.png" alt="logo"> --%>
+				<h1>${systemTitle } - 后台管理系统</h1>
+				 </span>
+				 
 
 				<!-- END AJAX-DROPDOWN -->
 			</div>
@@ -135,7 +140,7 @@
 									<section class="col col-6"  style="padding-left:0px;">
 											<label class="label"><spring:message code="base.common.login.checkcode"></spring:message></label>
 											<label class="input"> <i class="icon-append fa  fa-check-square-o"></i>
-												<input type="text" name="checkcode" value="1111"/>
+												<input type="text" name="checkcode" value=""/>
 												<b class="tooltip tooltip-top-right"><i class="fa  fa-check-square-o txt-color-teal"></i> 请输入验证码</b> </label>
 									</section>
 									
@@ -178,7 +183,7 @@
 						 --%>
 						 
 						 <ul class="list-inline text-center">
-						 	<li>@2015 ${copyRight}
+						 	<li>&copy;2017 ${copyRight}
 						 	</li>
 						 </ul>
 						

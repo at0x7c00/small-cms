@@ -17,6 +17,7 @@ import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 import me.huqiao.smallcms.common.entity.enumtype.UseStatus;
+import me.huqiao.smallcms.util.StringUtil;
 
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.hibernate.validator.constraints.Length;
@@ -235,6 +236,14 @@ public class CommonFile {
 		this.inuse = inuse;
 	}
 	
-	
+	@Transient
+	public String getFileNameOnly(){
+		String res = getName();
+		if(StringUtil.isEmpty(res) || res.indexOf(".")<0){
+			return res;
+		}else{
+			return res.substring(0,res.lastIndexOf("."));
+		}
+	}
 }
 

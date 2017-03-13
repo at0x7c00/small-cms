@@ -96,7 +96,7 @@
   						<c:forEach items="${qa.productDisplay}" var="p">
 							 <div class="img-holder">
 							    <img src="${basePath}filee/viewPic.do?manageKey=${p.manageKey}">
-							  	<div class="title">水溶性无尘粉笔</div>
+							  	<div class="title">${p.fileNameOnly}</div>
 							    <div class="img-ref">
 							       <img src="${basePath}filee/viewPic.do?manageKey=${p.manageKey}">
 							    </div>

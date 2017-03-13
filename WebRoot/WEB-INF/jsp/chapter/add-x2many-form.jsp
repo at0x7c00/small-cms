@@ -25,4 +25,10 @@
 						 data-initvalues=""
 						 >
 					</div>
+					<strong>说明</strong>
+					<ul>
+					<li style="list-style-type: none;">推荐图片尺寸：高：270像素，宽550像素</li>
+					<li style="list-style-type: none;">上传一张图片，多余图片将被忽略</li>
+					<li style="list-style-type: none;">目前仅“会员风采”栏目的图片做了页面显示 </li>
+					</ul>
 				</div>

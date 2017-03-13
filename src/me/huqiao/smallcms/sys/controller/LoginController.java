@@ -112,11 +112,11 @@ public class LoginController extends BaseController {
     		
     		String checkCodeInSession = (String)request.getSession().getAttribute(VerifyImageServlet.SIMPLE_CAPCHA_SESSION_KEY);
     		checkCodeInSession = checkCodeInSession==null ? null : checkCodeInSession.toLowerCase();
-/*
+
      	if(!(checkcode!=null && checkcode.toLowerCase().equals(checkCodeInSession))){
     			mav.addObject("passwordError", "验证码输入错误!");
     			return mav;
-    		} */
+    		} 
     		
     		//Config config = Config.getInstance(true);
     		if(notEmpty(loginName) && notEmpty(password)){//如果用户名和密码都存在,普通登录
