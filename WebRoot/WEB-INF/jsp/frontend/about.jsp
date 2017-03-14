@@ -23,14 +23,14 @@
 	  		
 	  		<div class="main-content">
 	  			<div class="module-group">
-		  			<div class="module left lg">
+		  			<div class="module left lg" style="width:952px;">
 		  				<div class="module-title">
-		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/about-2.png">
+		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/about.png">
 		  				</div>
 		  				<div class="module-header">
 		  				</div>
 		  				<div class="module-content">
-		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/about-banner.png" style="width:650px;height:auto;">
+		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/about-banner.png" >
 		  					<p class="header">中国质量万里行促进会简介</p>
 		  					
 		  					<p>
@@ -41,7 +41,7 @@
 		  					
 		  					<div class="devider"></div>
 		  					
-		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/about-banner-2.png" style="width:650px;height:auto;">
+		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/about-banner-2.png">
 		  					<p class="header">质量维护工程</p>
 		  					<p>
 		  					质量维护工程是由中国质量万里行促进会发起，围绕“企业重视质量，人人关注质量”这一主题，借助中国最权威的质量监督平台，寻找一批优秀企业，立足于质量领域，及时、准确地向消费者提供满意放心的产品信息，同时进一步提高合格企业的知名度、信誉度，树立良好的企业形象，促进优秀企业的品牌化进程。
@@ -94,7 +94,7 @@
 		  				
 		  			</div>
 		  			
-		  			<div class="module right blue">
+		  			<div class="module right blue" style="width:254px;">
 		  				<div class="module-title">
 		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/contact-us.png">
 		  				</div>
@@ -104,7 +104,7 @@
 		  				<div class="module-content">
 		  					
 		  					<div style="text-align:center;font-size:16px;">
-		  					<p class="header">联系我们：400-822-8787
+		  					<p class="headerx">联系我们：400-822-5757
 		  					</p>
 		  					</div>
 		  					

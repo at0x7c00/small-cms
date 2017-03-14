@@ -23,7 +23,9 @@
 		  				</div>
 		  				<ul class="module-content">
 		  					<c:forEach items="${zhengcedongtaiList}" var="chapter">
-			  					<li><a href="${basePath}frontend/chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}"><n:shorthand length="30" content="${chapter.title}"></n:shorthand> </a></li>
+			  					<li>
+			  					<font class="title-prefix">■</font>
+			  					<a href="${basePath}frontend/chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}"><n:shorthand length="30" content="${chapter.title}"></n:shorthand> </a></li>
 		  					</c:forEach>
 		  				</ul>
 		  			</div>
@@ -37,7 +39,9 @@
 		  				</div>
 		  				<ul class="module-content">
 		  					<c:forEach items="${zhiliangredianList}" var="chapter">
-			  					<li><a href="${basePath}frontend/chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}"><n:shorthand length="30" content="${chapter.title}"></n:shorthand> </a></li>
+			  					<li>
+			  					<font class="title-prefix">■</font>
+			  					<a href="${basePath}frontend/chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}"><n:shorthand length="30" content="${chapter.title}"></n:shorthand> </a></li>
 		  					</c:forEach>
 		  				</ul>
 		  			</div>
@@ -65,17 +69,19 @@
 		  					<a class="more" href="${basePath}frontend/huiyuanfengcai.do"></a>
 		  				</div>
 		  				<div>	
-		  					<table width="100%">
+		  					<table width="100%" border="0">
 		  						<tr>
-		  							<td width="50%" style="text-align:center;">
+		  							<td width="590px" style="text-align:center;">
 		  								<a href="${basePath}frontend/chapterDetail.do?k=${huiyuanfengcaiList[0].manageKey}" target="_blank">
-			  								<img alt="" style="width:415px;height:auto;" src="${basePath}filee/viewPic.do?manageKey=${huiyuanfengcaiList[0].cover.manageKey}">
+				  								<img alt="" style="width:550px;height:270px;" src="${basePath}filee/viewPic.do?manageKey=${huiyuanfengcaiList[0].cover.manageKey}">
 		  								</a>
 		  							</td>
 		  							<td>
-		  								<ul class="module-content">
+		  								<ul class="module-content" style="padding-left:5px;">
 						  					<c:forEach items="${huiyuanfengcaiList}" var="chapter">
-							  					<li><a href="${basePath}frontend/chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}"><n:shorthand length="30" content="${chapter.title}"></n:shorthand> </a></li>
+							  					<li>
+							  					<font class="title-prefix">■</font>
+							  					<a href="${basePath}frontend/chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}"><n:shorthand length="30" content="${chapter.title}"></n:shorthand> </a></li>
 						  					</c:forEach>
 						  				</ul>
 		  							</td>
@@ -85,7 +91,7 @@
 		  			</div>
 		  		</div>
 		  		
-		  		<div class="module-group" style="min-height:273px;">
+		  		<div class="module-group" style="min-height:243px;">
 		  			<div class="module full-page">
 		  				<div class="module-title">
 		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/zhiliangdangan.png">
@@ -96,19 +102,19 @@
 		  				
 		  				<div class="module-content">
 		  				
-		  				<div id="mygallery" class="stepcarousel" style="margin-top:20px;">
+		  				<div id="mygallery" class="stepcarousel" style="margin-top:15px;">
 								<div class="belt" id="displaycssbelt">
 								
 								<c:forEach items="${qualityArchiveList }" var="qa">
 									<div class="panel">
 										<div class="subfeature">
-											<a href="${basePath}frontend/danganDetail.do?manageKey=${qa.manageKey}" target="_blank" title="${qa.title}">
-												<img src="${basePath}filee/viewPic.do?manageKey=${qa.cover.manageKey}" alt="butterflies-are-gross" class="post-image" width="200" height="150" />
+											<a href="${basePath}frontend/danganDetail.do?manageKey=${qa.manageKey}" target="_blank" title="${qa.title}" style="display:inline-block;height:160px;width:235px;text-align:center;padding:0px;margin:0px;">
+												<img src="${basePath}filee/viewPic.do?manageKey=${qa.cover.manageKey}" alt="butterflies-are-gross" class="post-image" style="border:1px solid #eee;width:235px;height:160px;" style="padding:0px;margin:0px;"/>
 											</a>
-											<div class="subfeature-txt">
-												<h2><a href="${basePath}frontend/danganDetail.do?manageKey=${qa.manageKey}" target="_blank" title="${qa.title}">
+											<div class="subfeature-txt" style="text-align: center;">
+												<a href="${basePath}frontend/danganDetail.do?manageKey=${qa.manageKey}" target="_blank" title="${qa.title}">
 												<n:shorthand length="14" content="${qa.title}"></n:shorthand>
-												</a></h2>
+												</a>
 											</div>
 										</div>
 									</div>		
@@ -134,6 +140,7 @@
 		  				<ul class="module-content bordered">
 		  					<c:forEach items="${hangyezixunList}" var="chapter"> 
 			  					<li>
+			  					<font class="title-prefix">■</font>
 			  					<a href="${basePath}frontend/chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}"><n:shorthand length="50" content="${chapter.title}"></n:shorthand> </a>
 			  					<span class="publish-date"><fmt:formatDate value="${chapter.createTime}" pattern="yyyy/MM/dd"/></span>
 			  					</li>
@@ -170,8 +177,8 @@
 			beltclass: 'belt', //class of inner "belt" DIV containing all the panel DIVs
 			panelclass: 'panel', //class of panel DIVs each holding content
 			panelbehavior: {speed:500, wraparound:false, persist:true},
-			autostep: {enable:true, moveby:4, pause:10000},
-			defaultbuttons: {enable: true, moveby: 4, leftnav: ['${basePath}js/step-gallery/images/butt-left.gif', 0, 64], rightnav: ['${basePath}js/step-gallery/images/butt-right.gif', -11, 64]},
+			autostep: {enable:true, moveby:5, pause:10000},
+			defaultbuttons: {enable: true, moveby: 4, leftnav: ['${basePath}js/step-gallery/images/butt-left.png', 0, 64], rightnav: ['${basePath}js/step-gallery/images/butt-right.png', -11, 64]},
 			statusvars: ['statusA', 'statusB', 'statusC'], //register 3 variables that contain current panel (start), current panel (last), and total panels
 			contenttype: ['inline'], //content setting ['inline'] or ['external', 'path_to_external_file']
 			oninit:function(){

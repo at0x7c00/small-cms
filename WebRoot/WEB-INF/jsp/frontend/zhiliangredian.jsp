@@ -40,9 +40,7 @@
 		  				</div>
 		  				<ul class="module-content">
 	  						<c:forEach items="${hangyezixunList}" var="chapter"> 
-			  					<li>
-		  						<a href="${basePath}frontend/chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}"><n:shorthand length="15" content="${chapter.title}"></n:shorthand> </a>
-		  						</li>
+	  							<%@include file="/WEB-INF/jsp/frontend/common/left-panel-list.jsp" %>
 		  					</c:forEach>
 		  				</ul>
 		  			</div>
@@ -57,9 +55,7 @@
 		  				</div>
 		  				<ul class="module-content">
 		  					<c:forEach items="${hangyezixunList}" var="chapter"> 
-			  					<li>
-			  					<a href="${basePath}frontend/chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}"><n:shorthand length="15" content="${chapter.title}"></n:shorthand> </a>
-			  					</li>
+		  						<%@include file="/WEB-INF/jsp/frontend/common/left-panel-list.jsp" %>
 		  					</c:forEach>
 		  				</ul>
 		  			</div>

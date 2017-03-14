@@ -8,13 +8,25 @@ body{
 	background-position:0px -25px;
 	margin:0px 0px 10px 0px;
 }
-
+.dangan-detail-banner{
+	background: url(./img/detail-top-bg.jpg) no-repeat center;
+	height:350px;
+}
+.dangan-detail-content{
+	width:1110px;
+	text-align:center;
+}
+.container{
+	width:1120px;
+}
 img.img-full-page{
-	width:100%;
-	height:auto;
+	/*width:100%;
+	height:auto;*/
+	
 }
 .qute{
 	margin-top:35px;
+	width:1120px;
 }
 
 .detail-footer>.line{
@@ -27,7 +39,7 @@ img.img-full-page{
 	text-align:center;
 }
 .qute>.image-devider>img{
-	height:60px;
-	width:auto;
+	/*height:60px;
+	width:auto;*/
 }
 

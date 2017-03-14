@@ -16,7 +16,7 @@
 	  			<div class="module-group">
 		  			<div class="module left lg">
 		  				<div class="module-title">
-		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/zhengce-2.png">
+		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/zhengce.png">
 		  					<a name="content"></a>
 		  				</div>
 		  				<div class="module-header">
@@ -41,7 +41,7 @@
 		  				</div>
 		  				<ul class="module-content">
 		  					<c:forEach items="${zhiliangredianList}" var="chapter">
-			  					<li><a href="${basePath}frontend/chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}"><n:shorthand length="15" content="${chapter.title}"></n:shorthand> </a></li>
+		  						<%@include file="/WEB-INF/jsp/frontend/common/left-panel-list.jsp" %>
 		  					</c:forEach>
 		  				</ul>
 		  			</div>
@@ -56,9 +56,7 @@
 		  				</div>
 		  				<ul class="module-content">
 		  					<c:forEach items="${hangyezixunList}" var="chapter"> 
-			  					<li>
-			  					<a href="${basePath}frontend/chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}"><n:shorthand length="15" content="${chapter.title}"></n:shorthand> </a>
-			  					</li>
+		  						<%@include file="/WEB-INF/jsp/frontend/common/left-panel-list.jsp" %>
 		  					</c:forEach>
 		  				</ul>
 		  			</div>

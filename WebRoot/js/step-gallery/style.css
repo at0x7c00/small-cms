@@ -11,7 +11,7 @@ A:hover {
 	COLOR: #000
 }
 .stepcarousel {
-	MARGIN: 0px auto; OVERFLOW: scroll; WIDTH: 981px; POSITION: relative; HEIGHT: 200px
+	MARGIN: 0px auto; OVERFLOW: scroll; WIDTH: 1150px; POSITION: relative; HEIGHT: 170px;
 }
 .stepcarousel .belt {
 	LEFT: 0px; POSITION: absolute; TOP: 0px
@@ -23,13 +23,13 @@ A:hover {
 	VISIBILITY: hidden
 }
 .stepcarousel .panel {
-	FLOAT: left; MARGIN: 0px 41px 0px 25px; OVERFLOW: hidden; WIDTH: 202px
+	FLOAT: left; MARGIN: 0px 30px; OVERFLOW: hidden; WIDTH: 235px;
 }
 .stock {
 	CLEAR: both; FONT-SIZE: 10px; PADDING-BOTTOM: 5px; MARGIN: 0px auto; WIDTH: 929px; COLOR: #000; BORDER-BOTTOM: #000 1px dashed; FONT-FAMILY: arial, verdana, sans-serif; HEIGHT: 10px; TEXT-ALIGN: right
 }
 .subfeature {
-	DISPLAY: block; MARGIN: 0px; OVERFLOW: hidden; WIDTH: 202px
+	DISPLAY: block; MARGIN: 0px; OVERFLOW: hidden;
 }
 .subfeature-txt {
 	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; FLOAT: left; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 202px! important; LINE-HEIGHT: 17px; PADDING-TOP: 3px; POSITION: relative

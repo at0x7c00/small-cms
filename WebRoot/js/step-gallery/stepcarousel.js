@@ -113,8 +113,8 @@ var stepcarousel={
 			var $navbuttons=this.addnavbuttons(config, config.currentpanel)
 			$(window).bind("load resize", function(){ //refresh position of nav buttons when page loads/resizes, in case offsets weren't available document.oncontentload
 				config.offsets={left:stepcarousel.getoffset(config.$gallery.get(0), "offsetLeft"), top:stepcarousel.getoffset(config.$gallery.get(0), "offsetTop")}
-				config.$leftnavbutton.css({left:config.offsets.left+config.defaultbuttons.leftnav[1]+'px', top:config.offsets.top+config.defaultbuttons.leftnav[2]+'px'})
-				config.$rightnavbutton.css({left:config.offsets.left+config.$gallery.get(0).offsetWidth+config.defaultbuttons.rightnav[1]+'px', top:config.offsets.top+config.defaultbuttons.rightnav[2]+'px'})
+				config.$leftnavbutton.css({left:config.offsets.left+config.defaultbuttons.leftnav[1] - 40 +'px', top:config.offsets.top+config.defaultbuttons.leftnav[2]+'px'})
+				config.$rightnavbutton.css({left:config.offsets.left+config.$gallery.get(0).offsetWidth+config.defaultbuttons.rightnav[1] + 20 +'px', top:config.offsets.top+config.defaultbuttons.rightnav[2]+'px'})
 			})
 		}
 		if (config.autostep && config.autostep.enable){ //enable auto stepping of Carousel?		

@@ -38,28 +38,34 @@
 		    -o-transition: all 0.4s;
 		    transition: all 0.4s;
 		}
+		p{
+		font-size:14px;
+		text-align:left;
+		line-height:20px;
+		text-indent: 2em;
+		}
 		 </style>
   	</head>
   
   <body>
+  		<div class="dangan-detail-line"></div>
+  		<div class="dangan-detail-banner">
+  		</div>
   		<div class="container">
 	  
-  			<div class="dangan-detail-line"></div>
-  			<img alt="" src="${basePath}resource/frontend/theme/default/css/img/detail-top-bg.jpg" class="img-full-page">
-  			
   			<div class="qute">
   				<div style="text-align:center;" class="image-devider">
 		  			<img alt="" src="${basePath}resource/frontend/theme/default/css/img/qiyejianjie.png" class="img-full-page">
   				</div>
-	  			<div>
-	  				<table width="100%" border="0">
+	  			<div class="dangan-detail-content">
+	  				<table width="100%" border="0" style="margin-top:20px;">
 	  					<tr>
 	  						<td width="45%" style="text-align:right;padding-right:20px;">
 	  						<c:if test="${not empty qa.detailCover }">
 		  						<c:choose>
 		  							<c:when test="${qa.detailCover.video }">
-				  							<div style="width:364px;height:240px;float:right;">
-						  						<video id="my-video" class="video-js" controls preload="auto" width="340" height="264"
+				  							<div style="width:434px;height:330px;float:right;">
+						  						<video id="my-video" class="video-js" controls preload="auto" width="430" height="330"
 											  poster="${basePath}filee/viewPic.do?manageKey=${qa.detailCover.manageKey}" data-setup="{}">
 											    <source src="${basePath}filee/downloadFile.do?key=${qa.detailCover.manageKey}" type='video/mp4'>
 											    <p class="vjs-no-js">
@@ -75,13 +81,15 @@
 		  						</c:choose>
 	  						</c:if>
 	  						</td>
-	  						<td style="vertical-align: top;">
-	  							<h1 style="font-size:16px;font-weight:bold;color:black;text-align: center;">
+	  						<td style="vertical-align: top;padding-top:20px;">
+	  							<h1 style="font-size:24px;font-weight:bold;color:black;text-align: center;margin:0px 0px 20px 0px;">
 	  							<n:shorthand length="30" content="${qa.title}"></n:shorthand> 
 	  							</h1>
-	  							<p style="text-indent: 2em;line-height:1.5em;">
+	  							<div style="padding-left:20px;">
+	  							<p style="font-size:14px;text-indent: 2em;line-height:1.5em;">
 	  							<n:html value="${qa.content}"/> 
 	  							</p>
+	  							</div>
 	  						</td>
 	  					</tr>
 	  				</table>
@@ -91,7 +99,7 @@
   				<div class="image-devider">
 	  			<img alt="" src="${basePath}resource/frontend/theme/default/css/img/product.png" class="img-full-page">
   				</div>
-  				<div class="gallery">
+  				<%-- <div class="gallery">
   					<div class="g-container">
   						<c:forEach items="${qa.productDisplay}" var="p">
 							 <div class="img-holder">
@@ -116,14 +124,14 @@
 					  	<i class="fa fa-chevron-right"></i>
 					  </div>
 					
+				</div> --%>
+				<div class="main_flash">
+				<script type="text/javascript" language="javascript">printFlash('${basePath}js/flash-3d-gallery/mainVisual.swf','1110','480','mainVisual','xml=${basePath}frontend/pictureXML/${qa.manageKey}.do&currItem=1&charset=utf-8');</script>
 				</div>
-					
-					  
-					
   			</div>
   			<div class="qute" >
   					<div class="image-devider">
-	  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/rongyu.png" style="height:130px;width:auto;"/>
+	  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/rongyu.png" style=""/>
   					</div>
   					
   					
@@ -153,7 +161,7 @@
   		
   		<div class="detail-footer">
   			<div class="line"></div>
-  			<div style="text-align:center;color:#663333;font-weight:bold;font-size:16px;padding:20px 0px 30px 0px;">
+  			<div style="text-align:center;color:#663333;font-weight:bold;font-size:20px;padding:20px 0px 30px 0px;">
   				<span>品质·信誉·未来</span>
   			</div>
   		</div>

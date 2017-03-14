@@ -1,6 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <div class="carousel" style="position:relative;">
-    <div style="height:360px;width:100%;position:absolute;z-index:1;background: #fff;">
+    <div style="height:450px;width:100%;position:absolute;z-index:1;background: #fff;">
     	<div style="padding-top:150px;text-align:center;">
     	<img src="${basePath}js/simple-modal/images/loader.gif"/>
     	<br/>

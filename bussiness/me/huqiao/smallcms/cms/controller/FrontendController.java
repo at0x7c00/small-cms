@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.ws.rs.PathParam;
 
 import me.huqiao.smallcms.cms.entity.Advertisement;
 import me.huqiao.smallcms.cms.entity.Carousel;
@@ -14,6 +16,7 @@ import me.huqiao.smallcms.cms.service.ICarouselService;
 import me.huqiao.smallcms.cms.service.IChapterService;
 import me.huqiao.smallcms.cms.service.IFriendLinkService;
 import me.huqiao.smallcms.common.controller.BaseController;
+import me.huqiao.smallcms.common.entity.CommonFile;
 import me.huqiao.smallcms.common.entity.enumtype.UseStatus;
 import me.huqiao.smallcms.ppll.entity.Apply;
 import me.huqiao.smallcms.ppll.entity.AuthOrg;
@@ -35,8 +38,12 @@ import me.huqiao.smallcms.util.StringUtil;
 import me.huqiao.smallcms.util.web.JsonResult;
 import me.huqiao.smallcms.util.web.Page;
 
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 /**
  * 轮播控制器
  * @author NOVOTS
@@ -322,6 +329,52 @@ public class FrontendController  extends BaseController {
 		return "frontend/queryWorker";
 	}
 	
-	
+	@RequestMapping(value = "pictureXML/{key}",produces = "application/xml")
+	public ResponseEntity<String> pictureXML(HttpServletRequest request, HttpServletResponse response, @PathVariable(value = "key")String key){
+		
+		QualityArchive qa = qualityArchiveService.getEntityByProperty(QualityArchive.class, "manageKey", key);
+		
+		HttpHeaders responseHeaders = new HttpHeaders();
+	    responseHeaders.add("Content-Type", "application/xml; charset=utf-8");
+	    
+	    StringBuffer content = new StringBuffer();
+	    
+	    content.append("<?xml version='1.0' encoding='utf-8'?>");
+	    content.append("<contentsRotator>");
+	    
+	    String path = request.getContextPath();
+		String basePath = request.getScheme() + "://"
+				+ request.getServerName() + ":" + request.getServerPort()
+				+ path + "/";
+	    
+		if(qa.getProductDisplay()!=null){
+		    int i = 0;
+		    for(CommonFile file : qa.getProductDisplay()){
+		    	int index = (++i);
+		    	String c = "";
+		    	if(index<=5){
+		    		c = "E";
+		    	}else if(index<=8){
+		    		c = "S";
+		    	}else{
+		    		c = "B";
+		    	}
+		    	content.append(" <item order='"+index+"' category='"+ c +"' type='image' title='请勿用于商业用途' image='"+ basePath +"filee/viewPic.do?manageKey="+file.getManageKey()+"' source='http://www.baidu.com' target='_self' />");
+		    }
+		}
+	    
+		int total = qa.getProductDisplay()==null ? 0 : qa.getProductDisplay().size();
+	    
+		for(;total<7;total++){
+	    	content.append("<item order='"+  (total + 1) + "' category='S' type='video' title='666666666' image='http://localhost:1987/cms/js/flash-3d-gallery/zsimg/01.gif' source='http://www.baidu.com' />");
+		}
+	    
+	    content.append("</contentsRotator>");
+	    
+	    
+	    ResponseEntity<String> res =  new ResponseEntity<String>(content.toString(), responseHeaders, HttpStatus.OK);
+	    
+	    return res;
+	}
 	
 }
