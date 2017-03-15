@@ -22,8 +22,9 @@ var basePath = '${basePath}';
 <script src="${basePath}js/jquery.bxslider/jquery.bxslider.js"></script>
 <script src="${basePath}js/step-gallery/stepcarousel.js"></script>
 <script src="${basePath}resource/frontend/theme/default/js/core.js"></script>
-
+<%--
 <script src="${basePath}js/flash-3d-gallery/js/html.js"></script>
+ --%>
 
 
 

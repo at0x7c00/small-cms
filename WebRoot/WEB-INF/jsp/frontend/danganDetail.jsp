@@ -5,14 +5,17 @@
 	<head>
 		<title>${qa.title} - 质量档案 - ${systemTitle}</title>
 		<%@include file="/WEB-INF/jsp/frontend/common/resource.jsp" %>
-		
 		<link rel="stylesheet" type="text/css" media="screen" href="${basePath}js/3d-gallery/css/style.css">
 		<link rel="stylesheet" type="text/css" media="screen" href="${basePath}resource/frontend/theme/default/css/detail.css">
+		<link rel="stylesheet" type="text/css" media="screen" href="${basePath}js/zoom-pic/css/style.css">
 		
 		<link href="http://vjs.zencdn.net/5.8.8/video-js.css" rel="stylesheet">
 
 		 <!-- If you'd like to support IE8 -->
 		 <script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+		 
+		 <script src="${basePath}js/zoom-pic/js/ZoomPic.js" type="text/javascript"></script>
+		 
 		 <style type="text/css">
 		 .video-js .vjs-big-play-button {
 		    font-size: 3em;
@@ -43,6 +46,20 @@
 		text-align:left;
 		line-height:20px;
 		text-indent: 2em;
+		}
+		.subfeature{
+			width:205px;
+			height:275px;
+		}
+		.stepcarousel{
+			height:290px;
+		}
+		.scrollbut{
+			display: none;
+		}
+		.stepcarousel .panel{
+			margin:20px;
+			width:205px;
 		}
 		 </style>
   	</head>
@@ -99,7 +116,8 @@
   				<div class="image-devider">
 	  			<img alt="" src="${basePath}resource/frontend/theme/default/css/img/product.png" class="img-full-page">
   				</div>
-  				<%-- <div class="gallery">
+  				<%--
+  				 <div class="gallery">
   					<div class="g-container">
   						<c:forEach items="${qa.productDisplay}" var="p">
 							 <div class="img-holder">
@@ -124,10 +142,38 @@
 					  	<i class="fa fa-chevron-right"></i>
 					  </div>
 					
-				</div> --%>
+				</div> 
+  				--%>
+				<%--
 				<div class="main_flash">
 				<script type="text/javascript" language="javascript">printFlash('${basePath}js/flash-3d-gallery/mainVisual.swf','1110','480','mainVisual','xml=${basePath}frontend/pictureXML/${qa.manageKey}.do&currItem=1&charset=utf-8');</script>
 				</div>
+				 --%>
+				 <%--
+				 <div id="LoopDiv">
+					<input id="S_Num" type="hidden" value="8" />
+					<div id="starsIF" class="imageflow"> 
+						<c:forEach items="${qa.productDisplay}" var="file" varStatus="s">
+						<img src="${basePath}filee/viewPic.do?manageKey=${file.manageKey }" longdesc="#" width="280" height="300" alt="Picture" /> 
+						</c:forEach>
+					</div>
+				</div>
+				<div class="clear"></div>
+				  --%>
+				  <div id="Index_Box">
+				  <pre class="prev">&nbsp;</pre>
+				  <pre class="next">&nbsp;</pre>
+				  <ul>
+					<c:forEach items="${qa.productDisplay}" var="file" varStatus="s">
+				    <li><a href="javascript:void(0);"><img src="${basePath}filee/viewPic.do?manageKey=${file.manageKey }"></a>
+				    <p>
+				    	<span>${file.fileNameOnly }</span>
+				    </p>
+				    </li>
+				    </c:forEach>
+				  </ul>
+				</div>
+				 
   			</div>
   			<div class="qute" >
   					<div class="image-devider">
@@ -142,7 +188,10 @@
 					<div class="belt" id="displaycssbelt">
 						<c:forEach items="${qa.gloryDisplay}" var="p">
 							<div class="panel">
-								<div class="subfeature"><a href="javascript:void(0);"><img src="${basePath}filee/viewPic.do?manageKey=${p.manageKey}" alt="butterflies-are-gross" class="post-image" width="150" height="200" /></a>
+								<div class="subfeature"><a href="javascript:void(0);">
+								<img src="${basePath}filee/viewPic.do?manageKey=${p.manageKey}" 
+								alt="butterflies-are-gross" class="post-image" width="205" height="275" />
+								</a>
 								<%--
 									<div class="subfeature-txt"><h2><a href="javascript:void(0);">Butterflies are Gross</a></h2></div>
 								 --%>
@@ -166,7 +215,6 @@
   			</div>
   		</div>
   </body>
-  
 	  <script src='${basePath}js/3d-gallery/js/TweenMax.min.js'></script>
 	  <script src='${basePath}js/3d-gallery/js/Draggable.min.js'></script>
   	  <script src="${basePath}js/3d-gallery/js/index.js"></script>

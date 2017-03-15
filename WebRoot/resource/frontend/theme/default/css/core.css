@@ -89,6 +89,9 @@ header{
 	height:450px;
 	margin-top:15px;
 }
+.carousel img{
+	background:url(./img/loading.gif) no-repeat center 50%
+}
 
 .main-content{
 	margin-top:32px;
@@ -326,16 +329,16 @@ ul.module-content>li.devider{
 }
 
 div.img-div{
-	border: 1px solid #ddd;
-	padding: 5px;
 	display: inline-block;
 	width: 240px;
 	height: 140px;
 	text-align: center;
 	vertical-align: middle;
-	
+	/*
 	-webkit-box-shadow: 0 0px 12px rgba(0,0,0,0.15);
     box-shadow: 0 0px 12px rgba(0,0,0,0.15);
+    */
+    margin-left:88px;
 }
 
 .page-content{
@@ -343,7 +346,8 @@ div.img-div{
 	width:770px;
 	min-height:150px;
 	float:right;
-	padding:10px 10px 0px 20px;
+	padding:10px 10px 0px 0px;
+	padding-right:65px;
 }
 
 .page-content h2{
@@ -395,11 +399,11 @@ div.img-div{
 	color:#244b72;
 }
 .dangan-content{
-	padding:20px 90px;
+	padding:20px 60px;
 }
 .dangan-detail{
-	width:266px;
-	height:218px;
+	width:330px;
+	height:265px;
 	display:inline-block;
 	margin:10px;
 	padding:5px;
@@ -408,9 +412,13 @@ div.img-div{
 	-webkit-box-shadow: 0 0px 12px rgba(0,0,0,0.25);
     box-shadow: 0 0px 12px rgba(0,0,0,0.25);
 }
+.dangan-pic{
+	width:330px;
+	height:195px;
+}
 .dangan-pic>a>img{
-	width:266px;
-	height:158px;
+	width:330px;
+	height:195px;
 }
 .dangan-abstract{
 	margin-top:5px;
@@ -494,4 +502,11 @@ div.chapter-info{
 span.query-title{
 	font-size:16px;
 	font-weight:bold;
+}
+
+
+.huiyuan-devider{
+	height:5px;
+	background:url(./img/huiyuanfengcai-line-devider.png)repeat-x;
+	margin:10px 0px 30px 0px;
 }

@@ -51,7 +51,7 @@
 		  				</div>
 		  				<ul class="module-content">
 		  					<c:forEach items="${zhiliangredianList}" var="chapter">
-			  					<li><a href="${basePath}frontend/chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}"><n:shorthand length="15" content="${chapter.title}"></n:shorthand> </a></li>
+		  						<%@include file="/WEB-INF/jsp/frontend/common/left-panel-list.jsp" %> 
 		  					</c:forEach>
 		  				</ul>
 		  			</div>
@@ -67,7 +67,7 @@
 		  				<ul class="module-content indexed">
 		  					<c:forEach items="${top10ChapterList}" var="chapter" varStatus="s"> 
 			  					<li>
-			  					<span class="index">${s.count}</span><a href="${basePath}frontend/chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}"><n:shorthand length="15" content="${chapter.title}"></n:shorthand> </a>
+			  					<span class="index">${s.count}</span><a href="${basePath}frontend/chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}"><n:shorthand length="20" content="${chapter.title}"></n:shorthand> </a>
 			  					</li>
 		  					</c:forEach>
 		  				</ul>

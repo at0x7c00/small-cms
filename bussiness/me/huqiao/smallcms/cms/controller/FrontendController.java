@@ -204,7 +204,7 @@ public class FrontendController  extends BaseController {
 	@RequestMapping("huiyuanfengcai")
 	public void huiyuanfengcai(HttpServletRequest request,Page<Chapter> pageInfo){
 		prepareCarousel(request);
-		pageInfo.setNumPerPage(5);
+		pageInfo.setNumPerPage(4);
 		huiyuanPage(request, pageInfo);
 	}
 	

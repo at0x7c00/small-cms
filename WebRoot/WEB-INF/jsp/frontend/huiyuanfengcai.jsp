@@ -44,16 +44,14 @@
 										</a>
 										</h2>
 										<div class="content-detail">
-											<n:shorthand length="150" content="${chapter.abstractContent}" />
+											<n:shorthand length="110" content="${chapter.abstractContent}" />
 										</div>
 									</div>
 								
 									
 								</div>
 								
-								<c:if test="${not s.last}">
-									<div class="devider"></div>
-								</c:if>
+								<div class="huiyuan-devider"></div>
 							</c:forEach>
 		  				</div>
 		  				
