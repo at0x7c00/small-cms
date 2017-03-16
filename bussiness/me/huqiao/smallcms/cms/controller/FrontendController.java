@@ -126,22 +126,22 @@ public class FrontendController  extends BaseController {
 	}
 
 	private void hangyeTop(HttpServletRequest request) {
-		List<Chapter> hangyezixunList = chapterService.getTop(6, PAGE_ID_HANGYEZIXUN);
+		List<Chapter> hangyezixunList = chapterService.getTop(8, PAGE_ID_HANGYEZIXUN);
 		request.setAttribute("hangyezixunList", hangyezixunList);
 	}
 
 	private void huiyuanTop(HttpServletRequest request) {
-		List<Chapter> huiyuanfengcaiList = chapterService.getTop(7, PAGE_ID_HUIYUANFENGCAI);
+		List<Chapter> huiyuanfengcaiList = chapterService.getTop(8, PAGE_ID_HUIYUANFENGCAI);
 		request.setAttribute("huiyuanfengcaiList", huiyuanfengcaiList);
 	}
 
 	private void zhiliangTop(HttpServletRequest request) {
-		List<Chapter> zhiliangredianList = chapterService.getTop(7, PAGE_ID_ZHILIANGREDIAN);
+		List<Chapter> zhiliangredianList = chapterService.getTop(8, PAGE_ID_ZHILIANGREDIAN);
 		request.setAttribute("zhiliangredianList", zhiliangredianList);
 	}
 
 	private void zhengceTop(HttpServletRequest request) {
-		List<Chapter> zhengcedongtaiList = chapterService.getTop(7, PAGE_ID_ZHENGCE);
+		List<Chapter> zhengcedongtaiList = chapterService.getTop(8, PAGE_ID_ZHENGCE);
 		request.setAttribute("zhengcedongtaiList", zhengcedongtaiList);
 	}
 	
@@ -254,6 +254,11 @@ public class FrontendController  extends BaseController {
 		request.setAttribute("top10ChapterList",chapterService.getTop10OfAll());
 	}
 	
+	
+	@RequestMapping(value = "apply",method = RequestMethod.GET,params = "notice")
+	public String applyNotice(){
+		return "frontend/applyNotice";
+	}
 	
 	@RequestMapping(value = "apply",method = RequestMethod.GET)
 	public void applyUI(){

@@ -98,8 +98,8 @@ header{
 }
 
 .module-group{
-	min-height:360px;
-	margin-top:32px;
+	min-height:300px;
+	margin-top:35px;
 }
 .module{
 	width:610px;
@@ -180,6 +180,9 @@ ul.module-content>li{
 ul.module-content>li>a{
 	font-size:16px;
 }
+.module.blue ul.module-content>li>a{
+	font-size:15px;
+}
 ul.module-content.indexed>li{
 	list-style-type: none;
 	margin:15px 0px 15px 0px;
@@ -189,10 +192,10 @@ ul.module-content.indexed span.index{
 	color:#fff;
 	display:inline-block;
 	margin:0px 10px;
-	padding:1px 4px;
-	font-size:10px;
-	width:12px;
-	background: #1c79b7;
+	font-size:12px;
+	width:15px;
+	text-align:center;
+	background: #478cc0;
 }
 .title-prefix{
 	display:inline-block;
@@ -203,6 +206,10 @@ ul.module-content.indexed span.index{
 	font-size:10px;
 	vertical-align: middle;
 	text-align: left;
+}
+.title-prefix.blue{
+	color:#305c92;
+	font-size:14px;
 }
 
 ul.module-content>li>a{
@@ -303,8 +310,9 @@ td>.detail-item{
 	width:233px;
 	line-height:42px;
 	color:#fff;
-	padding:0px 5px;
-	font-size:1.5em;
+	padding:0px 15px;
+	font-size:18px;
+	letter-spacing:2px;
 }
 p.header{
 	color:#1e6697;
@@ -314,12 +322,19 @@ p.header{
 
 div.devider{
 	margin:20px 0px;
-	border-bottom:1px dotted #555;
+	border-bottom:1px dotted #979797;
+}
+div.devider.dashed{
+	margin:20px 0px;
+	border-bottom:1px dotted #979797;
 }
 ul.module-content>li.devider{
-	border-bottom:1px dotted #555;
+	border-bottom:2px dotted #979797;
 	list-style-type: none;
 	margin-left:-15px;
+}
+ul.module-content>li.devider.dashed{
+	margin-left:0px;
 }
 
 
@@ -399,7 +414,7 @@ div.img-div{
 	color:#244b72;
 }
 .dangan-content{
-	padding:20px 60px;
+	padding:20px 75px;
 }
 .dangan-detail{
 	width:330px;
@@ -509,4 +524,20 @@ span.query-title{
 	height:5px;
 	background:url(./img/huiyuanfengcai-line-devider.png)repeat-x;
 	margin:10px 0px 30px 0px;
+}
+
+.gallery-box{
+	height:465px;
+}
+
+.iselect{
+	width:150px;
+	background-color:#fff;
+	-webkit-appearance: none; 
+	-moz-appearance: none; 
+	appearance:none;
+	background: url(./img/select-bg.png) no-repeat right;
+	border:1px solid black;
+	padding:2px;
+	margin:0px 5px;
 }

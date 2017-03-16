@@ -57,7 +57,7 @@
 		  			</div>
 		  			
 		  			
-		  			<div class="module right blue white" style="margin-top:32px;">
+		  			<div class="module right blue white" style="margin-top:25px;">
 		  				<div class="module-title">
 		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/rewen.png">
 		  				</div>

@@ -46,7 +46,7 @@
 		  			</div>
 		  			
 		  			
-		  			<div class="module right blue" style="margin-top:32px;">
+		  			<div class="module right blue" style="margin-top:25px;">
 		  				<div class="module-title">
 		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/hangye-left.png">
 		  				</div>

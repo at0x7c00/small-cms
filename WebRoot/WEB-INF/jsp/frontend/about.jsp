@@ -49,7 +49,7 @@
 		  					
 		  					<div class="devider"></div>
 		  					
-		  					<p class="header">活动宗旨</p>
+		  					<p class="header" style="margin-bottom:0px;">活动宗旨</p>
 		  					
 		  					<div>
 		  						<table>
@@ -60,7 +60,7 @@
 		  								</div>
 		  								</td>
 		  								<td>
-		  								<p>依托中国质量万里行促进会搭建一个全国优质企业品牌形象展示平台，建立优质企业质量生态圈。  质量是企业生命之源，为提升企业质量意
+		  								<p style="padding-top:3px;">依托中国质量万里行促进会搭建一个全国优质企业品牌形象展示平台，建立优质企业质量生态圈。  
 		  								</p>
 		  								</td>
 		  							</tr>
@@ -71,7 +71,7 @@
 		  								</div> 
 		  								</td>
 		  								<td>
-		  								<p>质量是企业生命之源，为提升企业质量意识，我们秉承以“质量赢市场，诚信铸品牌”的活动理念，推动企业发展，营造“企业重视质量、人人关注质量”的良好氛围。
+		  								<p style="padding-top:3px;">质量是企业生命之源，为提升企业质量意识，我们秉承以“质量赢市场，诚信铸品牌”的活动理念，推动企业发展，营造“企业重视质量、人人关注质量”的良好氛围。
 		  								</p>
 		  								</td>
 		  							</tr>
@@ -82,7 +82,7 @@
 		  								</div>
 		  								</td>
 		  								<td>
-		  								<p>
+		  								<p style="padding-top:3px;">
 		  								好产品、好企业应该得到消费者认可，“质量维护工程”活动以发现好产品、好企业为己任，为优质企业证言；从而实现产品差异化，提升品牌公信力，帮助企业打造有竞争优势的品牌形象。
 		  								</p>
 		  								</td>
@@ -104,16 +104,16 @@
 		  				<div class="module-content">
 		  					
 		  					<div style="text-align:center;font-size:16px;">
-		  					<p class="headerx">联系我们：400-822-5757
+		  					<p class="headerx" style="font-weight:bold;">联系我们：400-822-5757
 		  					</p>
 		  					</div>
 		  					
-		  					<div style="text-align:center;font-size:16px;margin:15px;">
+		  					<div style="text-align:center;font-size:16px;padding:25px 0px">
 		  					<a href="javascript:void(0);" id="chaxun">
 		  						<img alt="" src="${basePath}resource/frontend/theme/default/css/img/chaxunzhongxin-btn.png">
 		  					</a>
 		  					</div>
-		  					<div style="text-align:center;font-size:16px;margin:15px;">
+		  					<div style="text-align:center;font-size:16px;padding:25px 0px">
 		  					<a href="javascript:void(0);" id="ruhui">
 		  						<img alt="" src="${basePath}resource/frontend/theme/default/css/img/ruhuishenqing-btn.png"/>
 		  					</a>
@@ -139,49 +139,18 @@
  		$(function(){
  			$("#ruhui").on("click",function(){
  				loadWaitDialog();
- 				$.get(basePath + 'frontend/apply.do',function(d){
+ 				$.get(basePath + 'frontend/apply.do?notice=yes',function(d){
  					closeWaitDialog();
- 					$('<div class="dialog-content" id="apply" style="width:500px;height:400px;"></div>').html(d).dialog({
- 	 					title : "申请信息",
+ 					$('<div class="dialog-content" id="applyNotice" style="width:735px;height:505px;overflow:auto;"></div>').html(d).dialog({
+ 	 					title : "申请条件",
  	 					width:600,
  	 					height:400,
  	 					modal:true,
  	 					buttons: {
- 	 						"确定":function(){
- 	 							if($("#apply-form").valid({errorPlacement:function(){}})){
- 	 								var data = $("#apply-form").serializeArray();
- 	 								$.post(basePath + "frontend/apply.do",data,function(res){
- 	 									if(res.statusCode!='200'){
- 	 										//alert(res.message);
- 	 										$("<div>" + res.message + "</div>").dialog({
- 	 											title:'提示',
- 	 											buttons: {
- 	 					 	 						"确定":function(){
- 	 					 	 							return true;
- 	 					 	 						}
- 	 											}
- 	 										});
- 	 									}else{
- 	 										$("<div>" + res.message + "</div>").dialog({
- 	 											title:'提示',
- 	 											buttons: {
- 	 					 	 						"确定":function(){
-	 	 					 	 						$("#apply").dialog("close");
-	 	 	 	 		 	 							$(".xdsoft_close").trigger("click");
- 	 					 	 							return true;
- 	 					 	 						}
- 	 											}
- 	 										});
- 	 									}
- 	 								});
- 	 							}
- 	 							return false;
+ 	 						"同意":function(){
+ 	 							loadApplyUI();
+ 	 							return true;
  	 						},
- 	 						"取消" : function(){
- 	 							$("#apply").dialog("close");
- 	 							$(".xdsoft_close").trigger("click");
- 	 							return false;
- 	 						}
  	 					},
  	 				});
  					
@@ -199,18 +168,28 @@
  				loadWaitDialog();
  				$.get(basePath + 'frontend/query.do',function(d){
  					closeWaitDialog();
- 					$('<div class="dialog-content" id="query" style="width:500px;height:300px;"></div>').html(d).dialog({
+ 					var dialog = $('<div class="dialog-content" id="query" style="width:500px;height:300px;"></div>').html(d).dialog({
  	 					title : "查询中心",
  	 					width:600,
  	 					height:400,
  	 					modal:true,
  	 					buttons: {
- 	 						"关闭" : function(){
+ 	 						/* "关闭" : function(){
  	 							$(".xdsoft_close").trigger("click");
  	 							return false;
- 	 						}
+ 	 						} */
  	 					},
  	 				});
+ 					
+ 					$(".input-center").unbind("keydown").on("keydown",function(e){
+ 						if(e.keyCode==13){
+	 						e.preventDefault();
+	 						
+	 						$(this).parent().parent().find(".query-btn").first().trigger("click");
+	 						
+	 						return false;
+ 						}
+ 					});
  					
  					$("#query").find(".query-btn").each(function(){
  						var _this = $(this);
@@ -218,7 +197,7 @@
  							var input = _this.parents("td").first().find("input").first();
  							var key = input.val();
  							if(!key || key.trim()==""){
- 								$("<div>请输入要查询的关键字</div>").dialog({
+ 								$("<div><strong>请输入要查询的关键字</strong></div>").dialog({
  									title:'提示',
 									buttons: {
 			 	 						"确定":function(){
@@ -243,9 +222,9 @@
  								$('<div class="dialog-content" id="query" style="width:500px;height:300px;overflow:auto;">'  + res + '</div>').dialog({
  									title:title,
 									buttons: {
-			 	 						"关闭":function(){
+			 	 					/* 	"关闭":function(){
 			 	 							return true;
-			 	 						}
+			 	 						} */
 									}
  								});
  							});
@@ -276,6 +255,101 @@
 	 			$("#wait-dialog").parents(".xdsoft_dialog_shadow_effect").first().find(".xdsoft_close").first().trigger("click");
  			},200);
  		}
+ 		
+ 		
+ 		function loadApplyUI(){
+ 			$.get(basePath + 'frontend/apply.do',function(d){
+					closeWaitDialog();
+					$('<div class="dialog-content" id="apply" style="width:735px;height:400px;"></div>').html(d).dialog({
+	 					title : "申请信息",
+	 					width:600,
+	 					height:400,
+	 					modal:true,
+	 					buttons: {
+	 						"确定":function(){
+	 							if($("#apply-form").valid({errorPlacement:function(){}})){
+	 								var data = $("#apply-form").serializeArray();
+	 								$.post(basePath + "frontend/apply.do",data,function(res){
+	 									if(res.statusCode!='200'){
+	 										//alert(res.message);
+	 										$("<div style='text-align:center;font-size:18px;'>" + res.message + "</div>").dialog({
+	 											title:'提示',
+	 											buttons: {
+	 					 	 						"确定":function(){
+	 					 	 							return true;
+	 					 	 						}
+	 											}
+	 										});
+	 									}else{
+	 										$("<div style='text-align:center;font-size:18px;margin-top:10px;'>" + res.message + "</div>").dialog({
+	 											title:'提示',
+	 											buttons: {
+	 					 	 						"确定":function(){
+ 	 					 	 						$("#apply").dialog("close");
+ 	 	 	 		 	 							$(".xdsoft_close").trigger("click");
+	 					 	 							return true;
+	 					 	 						}
+	 											}
+	 										});
+	 									}
+	 								});
+	 							}
+	 							return false;
+	 						},
+	 						/* "取消" : function(){
+	 							$("#apply").dialog("close");
+	 							$(".xdsoft_close").trigger("click");
+	 							return false;
+	 						} */
+	 					},
+	 				});
+					
+					for(var i = 0;i<cities.length;i++){
+						$("#p").append($("<option value='"+ cities[i].name +"'>" + cities[i].name +  "</option>"));
+					}
+					$("#p").change(function(){
+						var _p = $(this).val();
+						$("#s").html("<option value=''>市辖区</option>");
+						$("#c").html("<option value=''>城区</option>");
+						for(var i = 0;i<cities.length;i++){
+							if(cities[i].name == _p){
+								for(var j  = 0;j<cities[i].city.length;j++){
+									$("#s").append($("<option value='"+ cities[i].city[j].name +"'>" + cities[i].city[j].name +  "</option>"));
+								}
+								break;
+							}
+						}
+					});
+					
+					$("#s").change(function(){
+						var _s = $(this).val();
+						$("#c").html("<option value=''>城区</option>");
+						for(var i = 0;i<cities.length;i++){
+							for(var j  = 0;j<cities[i].city.length;j++){
+								if(cities[i].city[j].name == _s){
+									for(var x  = 0;x<cities[i].city[j].area.length;x++){
+										$("#c").append($("<option value='"+ cities[i].city[j].area[x] +"'>" + cities[i].city[j].area[x] +  "</option>"));
+									}
+									break;
+								}
+							}
+						}
+					});
+					
+					$("#c").change(function(){
+						
+						$("#address").val($("#p").val() + "," + $("#s").val() + "," + $("#c").val());
+						
+					});
+					
+					$("#verifyCodeImage").click(function(){
+						loadVerifyCode();
+					});
+					loadVerifyCode();
+					
+				});
+ 		}
  		</script>
+ 		<script type="text/javascript" src="${basePath}js/city.js"></script>
   </body>
 </html>

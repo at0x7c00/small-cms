@@ -5,7 +5,9 @@
 	<head>
 		<title>${qa.title} - 质量档案 - ${systemTitle}</title>
 		<%@include file="/WEB-INF/jsp/frontend/common/resource.jsp" %>
+		<%--
 		<link rel="stylesheet" type="text/css" media="screen" href="${basePath}js/3d-gallery/css/style.css">
+		 --%>
 		<link rel="stylesheet" type="text/css" media="screen" href="${basePath}resource/frontend/theme/default/css/detail.css">
 		<link rel="stylesheet" type="text/css" media="screen" href="${basePath}js/zoom-pic/css/style.css">
 		
@@ -65,7 +67,9 @@
   	</head>
   
   <body>
+  		<%--
   		<div class="dangan-detail-line"></div>
+  		 --%>
   		<div class="dangan-detail-banner">
   		</div>
   		<div class="container">
@@ -116,6 +120,8 @@
   				<div class="image-devider">
 	  			<img alt="" src="${basePath}resource/frontend/theme/default/css/img/product.png" class="img-full-page">
   				</div>
+  				
+  				 <div class="gallery-box">
   				<%--
   				 <div class="gallery">
   					<div class="g-container">
@@ -160,31 +166,64 @@
 				</div>
 				<div class="clear"></div>
 				  --%>
-				  <div id="Index_Box">
-				  <pre class="prev">&nbsp;</pre>
-				  <pre class="next">&nbsp;</pre>
-				  <ul>
-					<c:forEach items="${qa.productDisplay}" var="file" varStatus="s">
-				    <li><a href="javascript:void(0);"><img src="${basePath}filee/viewPic.do?manageKey=${file.manageKey }"></a>
-				    <p>
-				    	<span>${file.fileNameOnly }</span>
-				    </p>
-				    </li>
-				    </c:forEach>
-				  </ul>
-				</div>
+				 
+						<div id="Index_Box">
+						  <pre class="prev">&nbsp;</pre>
+						  <pre class="next">&nbsp;</pre>
+						  <ul>
+							<c:forEach items="${qa.productDisplay}" var="file" varStatus="s">
+						    <li><a href="javascript:void(0);"><img src="${basePath}filee/viewPic.do?manageKey=${file.manageKey }"></a>
+						    <p>
+						    	<span>${file.fileNameOnly }</span>
+						    </p>
+						    </li>
+						    </c:forEach>
+						  </ul>
+						</div>
+				  </div>
 				 
   			</div>
-  			<div class="qute" >
+  			<div class="qute" style="">
   					<div class="image-devider">
 	  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/rongyu.png" style=""/>
   					</div>
   					
   					
-  					<div style="margin-top:20px;">
+  					<div style="margin-top:20px;text-aling:center;padding-left:15px;">
   					
   					
-  					<div id="mygallery" class="stepcarousel">
+  					<div id="colee_left" style="width:1085px;overflow:hidden;">
+		<table>
+                    <tbody><tr>
+                        <td id="colee_left1">
+                            <table cellpadding="5px;">
+                                <tbody><tr>
+                                   <c:forEach items="${qa.gloryDisplay}" var="p">
+                                    <td>
+                                    <img src="${basePath}filee/viewPic.do?manageKey=${p.manageKey}" 
+								alt="butterflies-are-gross" class="post-image" width="205" height="275" />
+                                    </td>
+                                    </c:forEach>
+                                </tr>
+                            </tbody></table>
+                        </td>
+                        <td id="colee_left2">
+                            <table cellpadding="5px;">
+                                <tbody><tr>
+                                <c:forEach items="${qa.gloryDisplay}" var="p">
+                                    <td>
+                                    <img src="${basePath}filee/viewPic.do?manageKey=${p.manageKey}" 
+								alt="butterflies-are-gross" class="post-image" width="205" height="275" />
+                                    </td>
+                                    </c:forEach>
+                                </tr>
+                            </tbody></table>
+                        </td>
+                    </tr>
+                </tbody></table>
+               </div>
+  					
+  					<%-- <div id="mygallery" class="stepcarousel">
 					<div class="belt" id="displaycssbelt">
 						<c:forEach items="${qa.gloryDisplay}" var="p">
 							<div class="panel">
@@ -192,14 +231,14 @@
 								<img src="${basePath}filee/viewPic.do?manageKey=${p.manageKey}" 
 								alt="butterflies-are-gross" class="post-image" width="205" height="275" />
 								</a>
-								<%--
+								
 									<div class="subfeature-txt"><h2><a href="javascript:void(0);">Butterflies are Gross</a></h2></div>
-								 --%>
+								
 								</div>
 							</div>	
 						</c:forEach>
 					</div>
-					</div>
+					</div> --%>
   					
   					
   					</div>
@@ -215,12 +254,14 @@
   			</div>
   		</div>
   </body>
+  <%--
 	  <script src='${basePath}js/3d-gallery/js/TweenMax.min.js'></script>
 	  <script src='${basePath}js/3d-gallery/js/Draggable.min.js'></script>
   	  <script src="${basePath}js/3d-gallery/js/index.js"></script>
+   --%>
   	  
   	  <script src="http://vjs.zencdn.net/5.8.8/video.js"></script>
-  	  
+  	  <%--
   	  <script type="text/javascript">
 		stepcarousel.setup({
 			galleryid: 'mygallery', //id of carousel DIV
@@ -237,5 +278,27 @@
 				//document.getElementById('stocklevels').style.visibility="visible";
 			}
 		});
+		</script>
+  	   --%>
+  	   <script>
+		    var speed = 30//速度数值越大速度越慢
+		    var colee_left2 = document.getElementById("colee_left2");
+		    var colee_left1 = document.getElementById("colee_left1");
+		    var colee_left = document.getElementById("colee_left");
+		    colee_left2.innerHTML = colee_left1.innerHTML;
+		    function Marquee3() {
+		        if (colee_left2.offsetWidth - colee_left.scrollLeft <= 0)//offsetWidth 是对象的可见宽度
+		            colee_left.scrollLeft -= colee_left1.offsetWidth//scrollWidth 是对象的实际内容的宽，不包边线宽度
+		        else {
+		            colee_left.scrollLeft++
+		        }
+		    }
+		    var MyMar3 = setInterval(Marquee3, speed)
+		    colee_left.onmouseover = function () {
+		        clearInterval(MyMar3)
+		    }
+		    colee_left.onmouseout = function () {
+		        MyMar3 = setInterval(Marquee3, speed)
+		    }
 		</script>
 </html>

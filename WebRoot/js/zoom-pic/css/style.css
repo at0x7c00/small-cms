@@ -30,10 +30,10 @@ img{border:0;}
 	Z-INDEX: 100; OVERFLOW: hidden; CURSOR: pointer
 }
 #Index_Box .prev {
-	POSITION: absolute; WIDTH: 80px; BACKGROUND: url(./images/next.png) 0px 0px; HEIGHT: 120px; TOP: 80px; LEFT: -55px
+	POSITION: absolute; WIDTH: 80px; BACKGROUND: url(./images/next.png) 0px 0px; HEIGHT: 120px; TOP: 120px; LEFT: -55px
 }
 #Index_Box .next {
-	POSITION: absolute; WIDTH: 80px; BACKGROUND: url(./images/next.png) -80px 0px; HEIGHT: 120px; TOP: 80px; RIGHT: -50px
+	POSITION: absolute; WIDTH: 80px; BACKGROUND: url(./images/next.png) -80px 0px; HEIGHT: 120px; TOP: 120px; RIGHT: -50px
 }
 
 #Index_Box li p {

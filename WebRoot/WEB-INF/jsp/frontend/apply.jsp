@@ -15,7 +15,16 @@
  				<tr>
  					<td width="100px" style="text-align: right"><span class="dialog-required">*</span>公司地址</td>
  					<td>
- 						<input name="address" class="required"/>
+ 						<input name="address" class="required" id="address" type="hidden"/>
+						<select id="p" class="required iselect" name="p">
+						<option value="">省辖区</option>
+						</select>
+						<select id="s" class="required iselect" name="s">
+						<option value="">市辖区</option>
+						</select>			
+						<select id="c" class="required iselect" name="c">
+						<option value="">城区</option>
+						</select>
  					</td>
  				</tr>
  				<tr>

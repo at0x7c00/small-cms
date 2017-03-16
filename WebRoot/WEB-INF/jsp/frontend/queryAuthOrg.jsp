@@ -27,8 +27,8 @@
  				<tr>
  					<td width="150px" style="text-align: right;vertical-align: top;">合作期限：</td>
  					<td>
- 						<fmt:formatDate value="${tempBean.coroprateFrom }" pattern="yyyy-MM-dd"/>至
- 						<fmt:formatDate value="${tempBean.coroprateTo }" pattern="yyyy-MM-dd"/>
+ 						<fmt:formatDate value="${tempBean.coroprateFrom }" pattern="yyyy年MM月dd日"/>至
+ 						<fmt:formatDate value="${tempBean.coroprateTo }" pattern="yyyy年MM月dd日"/>
  					</td>
  				</tr>
  				<tr>

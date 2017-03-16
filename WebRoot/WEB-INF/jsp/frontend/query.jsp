@@ -11,7 +11,7 @@
  						<div class="query-input">
  						<div class="input-left"></div>
 	 					<div class="input-center">
-	 						<input name="name" class="required"/>
+	 						<input name="name" class="required" placeholder="会员名称"/>
 	 					</div>
  						<div class="input-right"></div>
  						<div class="query-btn"  data-query-type="memberOrg"><i class="fa fa-search"></i></div>
@@ -30,7 +30,7 @@
  						<div class="query-input">
  						<div class="input-left"></div>
 	 					<div class="input-center">
-	 						<input name="name" class="required"/>
+	 						<input name="name" class="required"  placeholder="公司名称"/>
 	 					</div>
  						<div class="input-right"></div>
  						<div class="query-btn"  data-query-type="qualityArchive"><i class="fa fa-search"></i></div>
@@ -49,7 +49,7 @@
  						<div class="query-input">
  						<div class="input-left"></div>
 	 					<div class="input-center">
-	 						<input name="name" class="required"/>
+	 						<input name="name" class="required"  placeholder="企业名称"/>
 	 					</div>
  						<div class="input-right"></div>
  						<div class="query-btn"  data-query-type="authOrg"><i class="fa fa-search"></i></div>
@@ -68,7 +68,7 @@
  						<div class="query-input">
  						<div class="input-left"></div>
 	 					<div class="input-center">
-	 						<input name="name" class="required"/>
+	 						<input name="name" class="required"  placeholder="员工名称"/>
 	 					</div>
  						<div class="input-right"></div>
  						<div class="query-btn" data-query-type="worker"><i class="fa fa-search"></i></div>

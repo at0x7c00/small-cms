@@ -5,6 +5,9 @@
 	<head>
 		<title> ${systemTitle}-首页 </title>
 		<%@include file="/WEB-INF/jsp/frontend/common/resource.jsp" %>
+		
+		<link rel="stylesheet" type="text/css" media="screen" href="${basePath}js/image-flow/style.css">
+		<script src="${basePath}js/image-flow/image-flow.js"></script>
   	</head>
    
   <body>
@@ -100,29 +103,28 @@
 		  					<a class="more" href="${basePath}frontend/zhiliangdangan.do"></a>
 		  				</div>
 		  				
-		  				<div class="module-content">
+		  				<div class="module-content" style="padding-bottom:10px;position:relative;" >
 		  				
-		  				<div id="mygallery" class="stepcarousel" style="margin-top:15px;">
-								<div class="belt" id="displaycssbelt">
-								
-								<c:forEach items="${qualityArchiveList }" var="qa">
-									<div class="panel">
-										<div class="subfeature">
-											<a href="${basePath}frontend/danganDetail.do?manageKey=${qa.manageKey}" target="_blank" title="${qa.title}" style="display:inline-block;height:160px;width:235px;text-align:center;padding:0px;margin:0px;">
-												<img src="${basePath}filee/viewPic.do?manageKey=${qa.cover.manageKey}" alt="butterflies-are-gross" class="post-image" style="border:1px solid #eee;width:235px;height:160px;" style="padding:0px;margin:0px;"/>
-											</a>
-											<div class="subfeature-txt" style="text-align: center;">
-												<a href="${basePath}frontend/danganDetail.do?manageKey=${qa.manageKey}" target="_blank" title="${qa.title}">
-												<n:shorthand length="14" content="${qa.title}"></n:shorthand>
-												</a>
-											</div>
-										</div>
-									</div>		
-								</c:forEach>
-								
-										
-							</div>
-							</div>
+		  				
+		  				<span id="btn-left" class="btn btn-left"></span>
+		  				<span id="btn-right" class="btn btn-right"></span>
+					  <div id="image-flow">
+					    <ul id="image-flow-ul">
+					      <c:forEach items="${qualityArchiveList }" var="qa">
+					      	<li>
+					      	<a href="${basePath}frontend/danganDetail.do?manageKey=${qa.manageKey}" target="_blank" title="${qa.title}">
+					      	<img src="${basePath}filee/viewPic.do?manageKey=${qa.cover.manageKey}">
+					      	</a>
+					      	<a href="${basePath}frontend/danganDetail.do?manageKey=${qa.manageKey}" target="_blank" title="${qa.title}">
+							<span>
+							<n:shorthand length="14" content="${qa.title}"></n:shorthand>
+							</span>					
+							</a>
+					      	</li>
+					      </c:forEach>
+					    </ul>
+					  </div>
+		  				
 		  				
 		  				</div>
 		  				
@@ -164,29 +166,12 @@
 		  			</div>
 		  		</div>
 		  		
-		  		
 		  		<%@include file="/WEB-INF/jsp/frontend/common/footer.jsp" %>
 		  		
 	  		</div>
 	  		
   		</div>
  		<%@include file="/WEB-INF/jsp/frontend/common/js.jsp" %>
- 		<script type="text/javascript">
-		stepcarousel.setup({
-			galleryid: 'mygallery', //id of carousel DIV
-			beltclass: 'belt', //class of inner "belt" DIV containing all the panel DIVs
-			panelclass: 'panel', //class of panel DIVs each holding content
-			panelbehavior: {speed:500, wraparound:false, persist:true},
-			autostep: {enable:true, moveby:5, pause:10000},
-			defaultbuttons: {enable: true, moveby: 4, leftnav: ['${basePath}js/step-gallery/images/butt-left.png', 0, 64], rightnav: ['${basePath}js/step-gallery/images/butt-right.png', -11, 64]},
-			statusvars: ['statusA', 'statusB', 'statusC'], //register 3 variables that contain current panel (start), current panel (last), and total panels
-			contenttype: ['inline'], //content setting ['inline'] or ['external', 'path_to_external_file']
-			oninit:function(){
-				isloaded=true
-				document.getElementById('displaycssbelt').style.visibility="visible";
-				//document.getElementById('stocklevels').style.visibility="visible";
-			}
-		});
-		</script>
+ 		
   </body>
 </html>

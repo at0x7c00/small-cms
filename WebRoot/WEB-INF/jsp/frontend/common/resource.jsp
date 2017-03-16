@@ -16,12 +16,11 @@ var basePath = '${basePath}';
 <link rel="stylesheet" type="text/css" media="screen" href="${basePath}css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" media="screen" href="${basePath}resource/frontend/theme/default/css/core.css">
 <link rel="stylesheet" type="text/css" media="screen" href="${basePath}js/jquery.bxslider/jquery.bxslider.css">
-<link rel="stylesheet" type="text/css" media="screen" href="${basePath}js/step-gallery/style.css">
 
 <script src="${basePath}js/jquery/1.11.3/jquery.min.js"></script>
 <script src="${basePath}js/jquery.bxslider/jquery.bxslider.js"></script>
-<script src="${basePath}js/step-gallery/stepcarousel.js"></script>
 <script src="${basePath}resource/frontend/theme/default/js/core.js"></script>
+
 <%--
 <script src="${basePath}js/flash-3d-gallery/js/html.js"></script>
  --%>

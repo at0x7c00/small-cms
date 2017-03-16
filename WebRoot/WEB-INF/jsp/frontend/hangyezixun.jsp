@@ -22,7 +22,17 @@
 		  				<div class="module-header">
 		  				</div>
 		  				<ul class="module-content">
-		  					<%@include file="/WEB-INF/jsp/frontend/common/pageContent.jsp" %>
+		  					<c:if test="${empty page.list }">
+								暂无记录
+							</c:if>
+							<c:forEach items="${page.list}" var="chapter" varStatus="s">
+								<li>
+								<font class="title-prefix blue">◆</font>
+								<a href="${basePath}frontend/chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}"><n:shorthand length="30" content="${chapter.title}"></n:shorthand> </a>
+								<span class="publish-date" style="float:right;"><fmt:formatDate value="${chapter.createTime}" pattern="yyyy/MM/dd"/></span>
+								</li>
+								<li class="devider dashed"></li>
+							</c:forEach>
 		  				</ul>
 		  				
 		  				 <jsp:include page="/WEB-INF/jsp/frontend/common/pageBar.jsp">
