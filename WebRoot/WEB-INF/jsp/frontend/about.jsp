@@ -13,6 +13,15 @@
 		p{
 			line-height: 1.6em;
 		}
+		
+		.xtable td{
+			vertical-align: top;
+			padding-top:16px;
+		}
+		.xtable td p{
+			margin-top:0px;
+			padding-top:0px;
+		}
 		</style>
   	</head>
   
@@ -52,7 +61,7 @@
 		  					<p class="header" style="margin-bottom:0px;">活动宗旨</p>
 		  					
 		  					<div>
-		  						<table>
+		  						<table border="0" class="xtable">
 		  							<tr>
 		  								<td >
 		  								<div class="detail-item">
@@ -266,7 +275,7 @@
 	 					height:400,
 	 					modal:true,
 	 					buttons: {
-	 						"确定":function(){
+	 						"提交":function(){
 	 							if($("#apply-form").valid({errorPlacement:function(){}})){
 	 								var data = $("#apply-form").serializeArray();
 	 								$.post(basePath + "frontend/apply.do",data,function(res){

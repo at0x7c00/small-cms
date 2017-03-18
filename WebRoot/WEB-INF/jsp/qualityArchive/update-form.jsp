@@ -14,11 +14,11 @@
 						<spring:message code="props.me.huqiao.smallcms.ppll.entity.QualityArchive.content"/>:
 							<font style='color:red' class="required-mark">*</font>
 										<label class="textarea">
-										<form:textarea path="content"
-											id="qualityArchive.content" cols="60"
+										<textarea name="newContent"
+											id="qualityArchiveContent" cols="60"
 											rows="5"
-											cssClass="required ckeditor-able"
-											 />
+											class="required ckeditor-able"
+											 >${qualityArchive.content}</textarea>
 										</label>
 					</label>
 				</section>

@@ -14,11 +14,11 @@
 						<spring:message code="props.me.huqiao.smallcms.cms.entity.Chapter.content"/>:
 							<font style='color:red' class="required-mark">*</font>
 										<label class="textarea">
-										<form:textarea path="content"
-											id="chapter.content" cols="60"
+										<textarea name="newContent"
+											id="chapterContent" cols="60"
 											rows="5"
-											cssClass="required ckeditor-able"
-										/>
+											class="required ckeditor-able"
+										>${chapter.content}</textarea>
 										</label>
 					</label>
 				</section>

@@ -16,7 +16,7 @@
 			<%@include file="/WEB-INF/jsp/frontend/common/header.jsp" %>
 	  		
 	  		<div class="main-content">
-	  			<div class="module-group">
+	  			<div class="module-group"  style="min-height:370px;">
 		  			<div class="module left">
 		  				<div class="module-title">
 		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/zhengce.png">

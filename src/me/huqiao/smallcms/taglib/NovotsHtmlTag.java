@@ -26,6 +26,7 @@ public class NovotsHtmlTag  extends TagSupport{
 	private static final long serialVersionUID = 1L;
 	
 	private String value;
+	private Integer length;
 	
 	@Override
 	public int doEndTag() throws JspException {
@@ -34,6 +35,9 @@ public class NovotsHtmlTag  extends TagSupport{
 		}
 		for(Map.Entry<String, String> entry : specialCharactersRepresentation.entrySet()){
 			value = value.replaceAll(entry.getKey(), entry.getValue());
+		}
+		if(length!=null && length >0){
+			value = value.substring(0,length);
 		}
 		try {
 			pageContext.getOut().write(value);
@@ -50,4 +54,13 @@ public class NovotsHtmlTag  extends TagSupport{
 	public void setValue(String value) {
 		this.value = value;
 	}
+
+	public Integer getLength() {
+		return length;
+	}
+
+	public void setLength(Integer length) {
+		this.length = length;
+	}
+	
 }

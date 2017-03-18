@@ -171,6 +171,10 @@ public class QualityArchiveController  extends BaseController {
 			}
 		}
 		qualityArchive.setGloryDisplay(gloryDisplay);
+		
+		List<CommonFile> atts = commonFileService.findAttachementFromContent(qualityArchive.getContent());
+        markFileAsInuse(atts);
+        
 		//保持一对多关联关系
 		qualityArchive.setManageKey(Md5Util.getManageKey());
     	qualityArchiveService.add(qualityArchive);
@@ -205,6 +209,7 @@ public class QualityArchiveController  extends BaseController {
     @ResponseBody
     public JsonResult update(HttpServletRequest request,
 	@ModelAttribute(value="qualityArchive") QualityArchive qualityArchive,
+	@RequestParam(value="newContent")String newContent,
 		@RequestParam(value="productDisplayKeys",required=false)String[] productDisplayKeys,
 		@RequestParam(value="gloryDisplayKeys",required=false)String[] gloryDisplayKeys,
 	BindingResult result) {
@@ -251,6 +256,20 @@ public class QualityArchiveController  extends BaseController {
 		qualityArchive.setDetailCover(parseFilee(request, "videoOrPictureKeys",qualityArchive.getDetailCoverKey()));
 		
 		qualityArchive.setCover(parseFilee(request, "coverKeys",qualityArchive.getCoverKey()));
+		
+		
+		
+		List<CommonFile> oldAtts = commonFileService.findAttachementFromContent(qualityArchive.getContent());
+        List<CommonFile> newAtts = commonFileService.findAttachementFromContent(newContent);
+
+        List<CommonFile> deleteAtts = commonFileService.findDeleteAtts(oldAtts,newAtts);
+        for(CommonFile deleteAtt : deleteAtts){
+        	deleteAtt.setInuse(UseStatus.UnUse);
+        	commonFileService.update(deleteAtt);
+        }
+        markFileAsInuse(newAtts);
+        qualityArchive.setContent(newContent);
+    	
 		//保持一对多关联关系
         qualityArchiveService.update(qualityArchive);
 	// jsonResult.setNavTabId(rel);

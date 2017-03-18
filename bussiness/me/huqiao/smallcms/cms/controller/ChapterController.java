@@ -161,6 +161,10 @@ request.setAttribute("useStatusMap",UseStatus.useStatusMap);
     	chapter.setPage((WebPage)request.getSession().getAttribute("cPage"));
     	chapter.setCover(parseFilee(request,"coverKeys",null));
     	chapter.setManageKey(Md5Util.getManageKey());
+    	
+    	List<CommonFile> atts = commonFileService.findAttachementFromContent(chapter.getContent());
+        markFileAsInuse(atts);
+    	
     	chapterService.add(chapter);
         jsonResult.setMessage(getI18NMessage(request, "base.common.controller.operate.add.success"));
         return jsonResult;
@@ -199,6 +203,7 @@ request.setAttribute("useStatusMap",UseStatus.useStatusMap);
     @ResponseBody
     public JsonResult update(HttpServletRequest request,
 	@ModelAttribute(value="chapter") Chapter chapter,
+	@RequestParam("newContent") String newContent,
 	BindingResult result) {
     	JsonResult jsonResult = new JsonResult();
     	if(!validate(jsonResult,result)){
@@ -206,8 +211,19 @@ request.setAttribute("useStatusMap",UseStatus.useStatusMap);
     	}
     	chapter.setUpdateTime(new Date());
     	chapter.setCover(parseFilee(request,"coverKeys",chapter.getCoverKey()));
+    	
+    	
+    	List<CommonFile> oldAtts = commonFileService.findAttachementFromContent(chapter.getContent());
+        List<CommonFile> newAtts = commonFileService.findAttachementFromContent(newContent);
+
+        List<CommonFile> deleteAtts = commonFileService.findDeleteAtts(oldAtts,newAtts);
+        for(CommonFile deleteAtt : deleteAtts){
+        	deleteAtt.setInuse(UseStatus.UnUse);
+        	commonFileService.update(deleteAtt);
+        }
+        markFileAsInuse(newAtts);
+    	chapter.setContent(newContent);
         chapterService.update(chapter);
-	// jsonResult.setNavTabId(rel);
         jsonResult.setMessage(getI18NMessage(request, "base.common.controller.operate.update.success"));
         return jsonResult;
     }

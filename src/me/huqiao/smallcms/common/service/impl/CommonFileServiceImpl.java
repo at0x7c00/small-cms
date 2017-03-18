@@ -3,6 +3,7 @@ package me.huqiao.smallcms.common.service.impl;
 import java.io.File;
 import java.io.FileInputStream;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -21,6 +22,10 @@ import me.huqiao.smallcms.util.web.Page;
 
 import org.apache.log4j.Logger;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
@@ -157,10 +162,14 @@ public class CommonFileServiceImpl extends BaseServiceImpl<CommonFile> implement
 		before = DateUtil.datePlus(now, Calendar.DAY_OF_MONTH, -1);
 		before = DateUtil.getBeginDateOfDate(before);
 		List<CommonFile> filesNotInused = findNotInusedByCreateTime(before);
+		log.info("now="  + DateUtil.formatDate(now,"yyyy-MM-dd HH:mm:ss")) ;
 		log.info("Delete file not inuse before:" + DateUtil.formatDate(before,"yyyy-MM-dd HH:mm:ss"));
 		log.info((filesNotInused==null ? 0 : filesNotInused.size()) + " files has found.");
+		String x = "";
 		for(CommonFile file : filesNotInused){
 			try{
+				x+=file.getId() + ",";
+				System.out.println(file.getInuse());
 				delete(file);
 			}catch(Exception e){
 				file.setInuse(UseStatus.InUse);
@@ -173,6 +182,7 @@ public class CommonFileServiceImpl extends BaseServiceImpl<CommonFile> implement
 				log.info("Delete file not inuse:" + file.getFullName() );
 			}
 		}
+		System.out.println(x);
 	}
 
 	@Override
@@ -180,6 +190,55 @@ public class CommonFileServiceImpl extends BaseServiceImpl<CommonFile> implement
 		return fileeDao.findNotInusedByCreateTime(before);
 	}
 	
+	
+	
+	public List<CommonFile> findAttachementFromContent(String content){
+		List<CommonFile> atts = new ArrayList<CommonFile>();
+		if (content!=null && !("").equals(content)) {
+			List<String> attFileIds = parseImageFilee(content);
+			for(String attFileId : attFileIds){
+				CommonFile filee = getEntityByProperty(CommonFile.class, "manageKey", attFileId);
+				if(filee!=null){
+					atts.add(filee);
+				}
+			}
+		}
+		return atts;
+	}
+	
+	private List<String> parseImageFilee(String content){
+		List<String> res = new ArrayList<String>();
+		Document doc = Jsoup.parse(content);
+		Elements eles = doc.select("img");
+		for(Element ele : eles){
+			String src = ele.attr("src");
+			if(src.contains("/filee/viewPic.do") || src.contains("/filee/downloadFile.do")){
+				if(!src.contains("=")){
+					continue;
+				}
+				src = src.split("=")[1];
+				res.add(src);
+			}
+		}
+		return res;
+	}
+	
+	public List<CommonFile> findDeleteAtts(List<CommonFile> oldAtts, List<CommonFile> newAtts) {
+		List<CommonFile> res = new ArrayList<CommonFile>();
+		for(CommonFile oldAtt : oldAtts){
+			boolean find = false;
+			for(CommonFile newAtt : newAtts){
+				if(oldAtt.getManageKey().equals(newAtt.getManageKey())){
+					find = true;
+					break;
+				}
+			}
+			if(!find){
+				res.add(oldAtt);
+			}
+		}
+		return res;
+	}
 	
 	
 }

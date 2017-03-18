@@ -116,7 +116,7 @@ public class FrontendController  extends BaseController {
 	}
 
 	private void friendLinkTop(HttpServletRequest request) {
-		List<FriendLink> flinkList = flinkService.getByProperties(FriendLink.class, new String[]{"status"}, new Object[]{UseStatus.InUse}, "orderNum", 10);
+		List<FriendLink> flinkList = flinkService.getByProperties(FriendLink.class, new String[]{"status"}, new Object[]{UseStatus.InUse}, "orderNum", null);
 		request.setAttribute("flinkList", flinkList);
 	}
 

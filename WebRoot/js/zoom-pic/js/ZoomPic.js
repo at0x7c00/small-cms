@@ -18,11 +18,19 @@ ZoomPic.prototype =
 		this._doPrev = function () {return _this.doPrev.apply(_this)};
 		this._doNext = function () {return _this.doNext.apply(_this)};
 		this.options = [
-            { width: 476, height: 320, top: 40, left: 0, zIndex: 1 },
+           /* { width: 476, height: 320, top: 40, left: 0, zIndex: 1 },
             { width: 426, height: 380, top: 20, left: 50, zIndex: 2 },
             { width: 654, height: 420, top: 0, left: 150, zIndex: 3 },
             { width: 426, height: 380, top: 20, left: 480, zIndex: 2 },
-            { width: 476, height: 320, top: 40, left: 476, zIndex: 1 }
+            { width: 476, height: 320, top: 40, left: 476, zIndex: 1 }*/
+           
+            { width: 305, height: 198, top: 60, left: 66, zIndex: 1 },
+            { width: 272, height: 235, top: 40, left: 145, zIndex: 2 },
+            
+            { width: 420, height: 260, top: 20, left: 280, zIndex: 3 },
+            
+            { width: 272, height: 235, top: 40, left: 560, zIndex: 2 },
+            { width: 305, height: 198, top: 60, left: 600, zIndex: 1 }
 		];
 		for (var i = 0; i < this.aLi.length; i++) this.aSort[i] = this.aLi[i];
 		this.aSort.unshift(this.aSort.pop());

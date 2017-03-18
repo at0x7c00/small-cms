@@ -368,8 +368,9 @@ public class CommonFileController extends BaseController {
             .addAttribute("type",type);
 		}
 	   	
-	   	CommonFolder folder = commonFolderService.getById(CommonFolder.class, CommonFolder.ID_ARTICLE);
+	   	CommonFolder folder = commonFolderService.getById(CommonFolder.class, 1);
 		CommonFile filee = new CommonFile();
+		filee.setInuse(UseStatus.UnUse);
 		filee.setCreateDate(new Date());
 		filee.setManageKey(Md5Util.getManageKey());
 		filee.setExtensionName(FileUtil.getExtensionName(multipartFile.getOriginalFilename()));

@@ -39,5 +39,9 @@ public interface ICommonFileService extends IBaseService<CommonFile> {
 	
 	public void deleteFileNotInUsed();
 	public List<CommonFile> findNotInusedByCreateTime(Date before);
+	
+	public List<CommonFile> findAttachementFromContent(String content);
+	
+	public List<CommonFile> findDeleteAtts(List<CommonFile> oldAtts, List<CommonFile> newAtts);
     
 }

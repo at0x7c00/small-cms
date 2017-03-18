@@ -44,7 +44,7 @@
 										</a>
 										</h2>
 										<div class="content-detail">
-											<n:shorthand length="110" content="${chapter.abstractContent}" />
+											<n:html value="${chapter.abstractContent}" length="110"></n:html>
 										</div>
 									</div>
 								
