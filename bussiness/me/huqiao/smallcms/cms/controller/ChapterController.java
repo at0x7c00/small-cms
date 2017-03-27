@@ -280,6 +280,7 @@ request.setAttribute("useStatusMap",UseStatus.useStatusMap);
 			 try {
     			chapter = chapterService.getEntityByProperty(Chapter.class,"manageKey",manageKey);
     			markFileAsUnuse(chapter.getCover());
+    			markFileAsInuse(commonFileService.findAttachementFromContent(chapter.getContent()));
     			chapterService.delete(chapter);
 			}catch (RuntimeException re) {
 				jsonResult.setMessage(getI18NMessage(request, "base.common.controller.operate.delete.inuse"));

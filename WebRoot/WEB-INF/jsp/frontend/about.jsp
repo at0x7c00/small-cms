@@ -32,7 +32,7 @@
 	  		
 	  		<div class="main-content">
 	  			<div class="module-group">
-		  			<div class="module left lg" style="width:952px;">
+		  			<div class="module left lg" style="width:1250px;">
 		  				<div class="module-title">
 		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/about.png">
 		  				</div>
@@ -43,9 +43,9 @@
 		  					<p class="header">中国质量万里行促进会简介</p>
 		  					
 		  					<p>
-		  					中国质量万里行促进会（英文简称CAQP）成立于1994年，前身是中国质量万里行组委会。
-		  					<br/>是由政府部门、中央新闻机构、经济学家、名优企业及科技界等方面人士和单位自愿结成的全国性组织，具有独立法人资格，负责组织、指导、协调全国质量万里行工作，由国家质量监督检验检疫总局直接管理。
-		  					<br/>国家质量监督检验检疫总局原副局长蒲长城为会长，人民日报社总编辑李宝善、全国政协经济委员会副主任委员、北京大学光华管理学院院长厉以宁、著名经济学家、国务院发展研究中心研究员吴敬琏、中国国际广播电台副台长王明华、新华社副总编辑夏林、中央电视台总编辑、副台长罗明、国家质量监督检验检疫总局总工程师刘兆彬等为副会长，高伯海同志担任秘书长。
+							中国质量万里行促进会（英文简称CAQP）成立于1994年，前身是中国质量万里行组委会。
+		  					<br/>是由政府部门、中央新闻机构、经济学家、名优企业及科技界等方面人士和单位结成的全国性组织，具有独立法人资格，负责组织、指导、协调全国质量万里行工作，由国家质量监督检验检疫总局直接管理。
+		  					<br/>国家质量监督检验检疫总局总工程师刘兆彬为会长，中国质量万里行促进会副会长兼秘书长高伯海，全国政协经济委员会副主任委员、北京大学光华管理学院院长厉以宁，著名经济学家、国务院发展研究中心研究员吴敬琏，国家质检总局法规司司长许新建，国家质检总局监督司巡视员郑卫华，北京大学法学院教授邹景春，中共中央党校报刊社社长兼总编辑肖勤福。
 		  					</p>
 		  					
 		  					<div class="devider"></div>
@@ -103,7 +103,7 @@
 		  				
 		  			</div>
 		  			
-		  			<div class="module right blue" style="width:254px;">
+		  			<%-- <div class="module right blue" style="width:254px;">
 		  				<div class="module-title">
 		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/contact-us.png">
 		  				</div>
@@ -130,7 +130,7 @@
 		  					
 		  				</div>
 		  				
-		  			</div>
+		  			</div> --%>
 		  			
 	  			</div>
 	  			
@@ -228,7 +228,7 @@
  								title = "工作人员";
  							}
  							$.post(basePath + "frontend/query.do",{key:key,queryType:queryType},function(res){
- 								$('<div class="dialog-content" id="query" style="width:500px;height:300px;overflow:auto;">'  + res + '</div>').dialog({
+ 								$('<div class="dialog-content" id="query" style="width:500px;height:380px;overflow:auto;">'  + res + '</div>').dialog({
  									title:title,
 									buttons: {
 			 	 					/* 	"关闭":function(){

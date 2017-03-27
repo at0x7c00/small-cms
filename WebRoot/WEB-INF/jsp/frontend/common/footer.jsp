@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%--
 <div class="footer">
 	<div class="footer-line"></div>
 	<div class="footer-content">
@@ -23,9 +24,10 @@
 				</table>
 		
 		<div style="margin:20px;text-align:center;">
-			北京中视鼎丽传媒有限公司版权所
+			${copyRight } 版权所有
 					 转载请注明来源
 			京ICP备12345678号
 		</div>
 	</div>
 </div>
+ --%>

@@ -125,12 +125,12 @@ public class WorkerDaoImpl extends BaseDaoImpl<Worker> implements IWorkerDao {
        if(worker.getName()!=null
  && ! worker.getName().trim().equals("")){
 		criteria.add(
-				Restrictions.or(
-				Restrictions.like("name",worker.getName(),MatchMode.ANYWHERE),
-				Restrictions.like("workNum",worker.getName(),MatchMode.ANYWHERE),
-				Restrictions.like("area",worker.getName(),MatchMode.ANYWHERE),
-				Restrictions.like("job",worker.getName(),MatchMode.ANYWHERE)
-				)
+				//Restrictions.or(
+				Restrictions.like("name",worker.getName(),MatchMode.EXACT)//,
+				//Restrictions.like("workNum",worker.getName(),MatchMode.ANYWHERE),
+				//Restrictions.like("area",worker.getName(),MatchMode.ANYWHERE),
+				//Restrictions.like("job",worker.getName(),MatchMode.ANYWHERE)
+				//)
 				);
 }
        if(worker.getArea()!=null

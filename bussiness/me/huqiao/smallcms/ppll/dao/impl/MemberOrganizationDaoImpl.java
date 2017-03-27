@@ -117,7 +117,7 @@ public class MemberOrganizationDaoImpl extends BaseDaoImpl<MemberOrganization> i
     public void queryCause(Criteria criteria,MemberOrganization memberOrganization){
        if(memberOrganization.getName()!=null
  && ! memberOrganization.getName().trim().equals("")){
-		criteria.add(Restrictions.like("name",memberOrganization.getName(),MatchMode.ANYWHERE));
+		criteria.add(Restrictions.like("name",memberOrganization.getName(),MatchMode.EXACT));
 }
 if(memberOrganization.getCorporateFromStart()!=null){
 criteria.add(Restrictions.ge("corporateFrom",memberOrganization.getCorporateFromStart()));

@@ -50,6 +50,7 @@
 		  			</div>
 	  			</div>
 	  			
+	  			<%--
 	  			<div class="ad-group">
 	  				<div class="ad left">
 	  					<a href="${ adList[0].url}" target="_blank" title="${adList[0].title }">
@@ -62,6 +63,7 @@
 	  					</a>
 	  				</div>
 	  			</div>
+	  			 --%>
 	  			
 	  			<div class="module-group">
 		  			<div class="module full-page">

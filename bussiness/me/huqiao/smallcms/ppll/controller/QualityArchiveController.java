@@ -218,10 +218,12 @@ public class QualityArchiveController  extends BaseController {
     		return jsonResult;
     	}
 		//设置产品展示
-    	for(CommonFile file : qualityArchive.getProductDisplay()){
-			file.setInuse(UseStatus.UnUse);
-			commonFileService.update(file);
-		}
+    	if(qualityArchive.getProductDisplay()!=null){
+	    	for(CommonFile file : qualityArchive.getProductDisplay()){
+				file.setInuse(UseStatus.UnUse);
+				commonFileService.update(file);
+			}
+    	}
 		HashSet<CommonFile> productDisplay = new HashSet<CommonFile>();
 		if(productDisplayKeys!=null){
 			for(String key : productDisplayKeys){
@@ -250,7 +252,7 @@ public class QualityArchiveController  extends BaseController {
 		}
 		qualityArchive.getGloryDisplay().clear();
 		qualityArchive.getGloryDisplay().addAll(gloryDisplay);
-		markFileAsInuse(qualityArchive.getProductDisplay());
+		markFileAsInuse(qualityArchive.getGloryDisplay());
 		
 		qualityArchive.setUpdateTime(new Date());
 		qualityArchive.setDetailCover(parseFilee(request, "videoOrPictureKeys",qualityArchive.getDetailCoverKey()));
@@ -335,6 +337,7 @@ public class QualityArchiveController  extends BaseController {
             	markFileAsUnuse(qualityArchive.getGloryDisplay());
             	markFileAsUnuse(qualityArchive.getCover());
             	markFileAsUnuse(qualityArchive.getDetailCover());
+            	markFileAsInuse(commonFileService.findAttachementFromContent(qualityArchive.getContent()));
     			qualityArchiveService.delete(qualityArchive);
 			}catch (RuntimeException re) {
 				jsonResult.setMessage(getI18NMessage(request, "base.common.controller.operate.delete.inuse"));

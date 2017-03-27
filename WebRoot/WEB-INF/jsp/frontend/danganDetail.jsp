@@ -81,7 +81,7 @@
 	  			<div class="dangan-detail-content">
 	  				<table width="100%" border="0" style="margin-top:20px;">
 	  					<tr>
-	  						<td width="45%" style="text-align:right;padding-right:20px;">
+	  						<td width="430px" style="text-align:left;padding-right:20px;">
 	  						<c:if test="${not empty qa.detailCover }">
 		  						<c:choose>
 		  							<c:when test="${qa.detailCover.video }">
@@ -97,7 +97,7 @@
 				  							</div>
 		  							</c:when>
 		  							<c:otherwise>
-				  						<img alt="" src="${basePath}filee/viewPic.do?manageKey=${qa.detailCover.manageKey}" width="300" height="225">
+				  						<img alt="" src="${basePath}filee/viewPic.do?manageKey=${qa.detailCover.manageKey}" width="430" height="330">
 		  							</c:otherwise>
 		  						</c:choose>
 	  						</c:if>

@@ -118,11 +118,11 @@ public class AuthOrgDaoImpl extends BaseDaoImpl<AuthOrg> implements IAuthOrgDao 
        if(authOrg.getName()!=null
  && ! authOrg.getName().trim().equals("")){
 		criteria.add(
-				Restrictions.or(
-				Restrictions.like("name",authOrg.getName(),MatchMode.ANYWHERE),
-				Restrictions.like("tel",authOrg.getName(),MatchMode.ANYWHERE),
-				Restrictions.like("address",authOrg.getName(),MatchMode.ANYWHERE)
-				)
+				//Restrictions.or(
+				Restrictions.like("name",authOrg.getName(),MatchMode.EXACT)//,
+				//Restrictions.like("tel",authOrg.getName(),MatchMode.ANYWHERE),
+				//Restrictions.like("address",authOrg.getName(),MatchMode.ANYWHERE)
+				//)
 				);
 }
        if(authOrg.getTel()!=null

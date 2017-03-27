@@ -43,7 +43,7 @@
  					</td>
  				</tr>
  				<tr>
- 					<td width="175px" style="text-align: right">企业资质初步审核状态：</td>
+ 					<td width="175px" style="text-align: right">审核状态：</td>
  					<td>
  						${tempBean.auditStatus }
  					</td>

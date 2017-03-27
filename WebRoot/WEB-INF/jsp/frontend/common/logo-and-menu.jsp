@@ -1,12 +1,13 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<header>
+
+<div class="header">
 	<div class="left-full">
 		<div class="logo-img"></div>
 	</div>
 	<div class="right-full">
 		<div class="right-note"></div>
 	</div>
-</header>
+</div>
 <div class="menu-bar" data-request="${_request_url}">
 	<ul>
 		<li>
