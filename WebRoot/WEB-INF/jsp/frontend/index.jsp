@@ -3,6 +3,8 @@
 <!DOCTYPE html>
 <html lang="en-us">
 	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title> ${systemTitle}-首页 </title>
 		<%@include file="/WEB-INF/jsp/frontend/common/resource.jsp" %>
 		

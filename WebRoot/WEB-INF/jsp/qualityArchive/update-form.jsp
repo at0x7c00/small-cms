@@ -37,6 +37,26 @@
 							</label>
 				</section>
 				
+				<section class="col col-12">
+					<label class="input">
+						联系电话:
+							<font style='color:red' class="required-mark">*</font>
+								<form:input path="phoneNumber"
+									id="qualityArchive.phoneNum" type="text"
+									cssClass="textInput required" />
+				</label>
+				</section>
+				
+				<section class="col col-12">
+					<label class="input">
+						地址:
+							<font style='color:red' class="required-mark">*</font>
+								<form:input path="address"
+									id="qualityArchive.address" type="text"
+									cssClass="textInput required" />
+				</label>
+				</section>
+				
 				<section class="col col-4">
 					<label class="input">
 						<spring:message code="props.me.huqiao.smallcms.ppll.entity.QualityArchive.orderNum"/>:

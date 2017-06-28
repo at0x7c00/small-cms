@@ -22,7 +22,7 @@ $(function(){
 	        oUl.style.left = oUl.offsetLeft + speed + 'px';
 	      }
 	 
-	      oBtn1.addEventListener('click',function(){
+	      oBtn1.onclick=function(){
 	    	
 	    	  speed = -20;
 	    	  
@@ -30,24 +30,23 @@ $(function(){
 	    		  speed = -2;
 	    	  },500);
 	    
-	  },false);
-	  oBtn2.addEventListener('click',function(){
+	  };
+	  oBtn2.onclick = function(){
 		  
 	        speed = 20;
 	        window.setTimeout(function(){
 	    		  speed = 2;
 	    	  },500);
 	        
-	      },false);
+	      }
 	 
 	      var timer = setInterval(move,30);//全局变量 ，保存返回的定时器
 	 
-	      oDiv.addEventListener('mouseout', function () {
+	      oDiv.onmouseout = function () {
 	    timer = setInterval(move,30);
-	  },false);
-	  oDiv.addEventListener('mousemove', function () {
+	  };
+	  oDiv.onmousemove = function () {
 	    clearInterval(timer);//鼠标移入清除定时器
-	    console.log("clear...")
-	  },false);
+	  };
 	
 });

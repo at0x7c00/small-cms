@@ -2,6 +2,32 @@ function ZoomPic ()
 {
 	this.initialize.apply(this, arguments)	
 }
+var _width = 1200.0;
+var _height = 410.0;
+var size_mapping = {
+        a:{ width: 272, height: 259, top: 60, left: 146, zIndex: 1 },
+        b:{ width: 305, height: 290, top: 40, left: 295, zIndex: 2 },
+        c:{ width: 362, height: 345, top: 20, left: 480, zIndex: 3 },
+        d:{ width: 305, height: 290, top: 40, left: 760, zIndex: 2 },
+        e:{ width: 272, height: 259, top: 60, left: 910, zIndex: 1 }
+}
+function getAllSizeSetting(w,h){
+	var a = _a('a',w,h,1);
+	var b = _a('b',w,h,2);
+	var c = _a('c',w,h,3);
+	var d = _a('d',w,h,2);
+	var e = _a('e',w,h,1);
+	return [a,b,c,d,e];
+}
+function _a(name,w,h,zIndex){
+	return {
+		width:parseInt(((size_mapping[name].width*1.0) / _width) * w),
+		height:parseInt(((size_mapping[name].height*1.0) / _height) * h),
+		top:parseInt(((size_mapping[name].top*1.0) / _height) * h),
+		left:parseInt(((size_mapping[name].left*1.0) / _width) * w) - 60,
+		zIndex:zIndex
+		};
+}
 ZoomPic.prototype = 
 {
 	initialize : function (id)
@@ -17,12 +43,12 @@ ZoomPic.prototype =
 		this.iCenter = 2;
 		this._doPrev = function () {return _this.doPrev.apply(_this)};
 		this._doNext = function () {return _this.doNext.apply(_this)};
-		this.options = [
-           /* { width: 476, height: 320, top: 40, left: 0, zIndex: 1 },
-            { width: 426, height: 380, top: 20, left: 50, zIndex: 2 },
-            { width: 654, height: 420, top: 0, left: 150, zIndex: 3 },
-            { width: 426, height: 380, top: 20, left: 480, zIndex: 2 },
-            { width: 476, height: 320, top: 40, left: 476, zIndex: 1 }*/
+		var w = $(window).width();
+		if(w>_width){
+			w = _width;
+		}
+		this.options = getAllSizeSetting(w,parseInt(_height/_width * w));
+			/*[
            
             { width: 305, height: 198, top: 60, left: 66, zIndex: 1 },
             { width: 272, height: 235, top: 40, left: 145, zIndex: 2 },
@@ -31,7 +57,7 @@ ZoomPic.prototype =
             
             { width: 272, height: 235, top: 40, left: 560, zIndex: 2 },
             { width: 305, height: 198, top: 60, left: 600, zIndex: 1 }
-		];
+		];*/
 		for (var i = 0; i < this.aLi.length; i++) this.aSort[i] = this.aLi[i];
 		this.aSort.unshift(this.aSort.pop());
 		this.setUp();
@@ -174,7 +200,9 @@ ZoomPic.prototype =
 	doMove : function (oElement, oAttr, fnCallBack)
 	{
 		var _this = this;
-		clearInterval(oElement.timer);
+		if(oElement.timer){
+			clearInterval(oElement.timer);
+		}
 		oElement.timer = setInterval(function ()
 		{
 			var bStop = true;
@@ -201,6 +229,26 @@ ZoomPic.prototype =
 };
 window.onload = function ()
 {
+	var w = $(window).width() - 100;
+	if(w>_width){
+		w = _width;
+	}
+	var h = parseInt(_height/_width * w);
+	
+	$("#Index_Box UL").css("width",w);
+	$("#Index_Box UL").css("height",h);
+	
+	$("#Index_Box").css("width",w);
+	$("#Index_Box").css("height",h);
+	
+	var t = parseInt(180.0/_height * h)-50;
+	if(t<0){
+		t = 20;
+	}
+	$("#Index_Box .next").css("top",t)
+	$("#Index_Box .prev").css("top",t)
+	//$("#Index_Box .prev").css("left",-5)
+	
 	new ZoomPic("Index_Box");
 };
 

@@ -154,6 +154,7 @@ public class QualityArchiveController  extends BaseController {
 			}
 		}
 		qualityArchive.setCover(parseFilee(request, "coverKeys",null));
+		qualityArchive.setCode(parseFilee(request, "codeKeys",null));
 		qualityArchive.setCreateTime(new Date());
 		qualityArchive.setUpdateTime(qualityArchive.getCreateTime());
 		qualityArchive.setCreator(getCurrentUser());
@@ -258,6 +259,7 @@ public class QualityArchiveController  extends BaseController {
 		qualityArchive.setDetailCover(parseFilee(request, "videoOrPictureKeys",qualityArchive.getDetailCoverKey()));
 		
 		qualityArchive.setCover(parseFilee(request, "coverKeys",qualityArchive.getCoverKey()));
+		qualityArchive.setCode(parseFilee(request, "codeKeys",qualityArchive.getCodeKey()));
 		
 		
 		

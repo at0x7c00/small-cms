@@ -1,5 +1,5 @@
 body{
-	background: #f0e6da;
+	background: #fffbe6;
 }
 
 .dangan-detail-line{
@@ -9,15 +9,17 @@ body{
 	margin:0px 0px 10px 0px;
 }
 .dangan-detail-banner{
-	background: url(./img/detail-top-bg.jpg) no-repeat center;
+	background: url(./img/new/big-bg.png) no-repeat center;
 	height:350px;
+	background-color: #9dcbed;
 }
 .dangan-detail-content{
-	width:1110px;
+	width:1280px;
 	text-align:center;
 }
-.container{
-	width:1120px;
+.container-x{
+	width:1280px;
+	margin:auto auto;
 }
 img.img-full-page{
 	/*width:100%;
@@ -26,13 +28,13 @@ img.img-full-page{
 }
 .qute{
 	margin-top:35px;
-	width:1120px;
+	width:1280px;
 }
 
 .detail-footer>.line{
-	height:50px;
+	height:5px;
 	margin-top:65px; 
-	background: url(./img/detail-footer-bg.png) repeat-x;
+	background: url(./img/new/devider.png) repeat-x;
 }
 
 .qute>.image-devider{
@@ -42,4 +44,104 @@ img.img-full-page{
 	/*height:60px;
 	width:auto;*/
 }
+
+.image-devider.a{
+	background: url(./img/new/qyjj.png) no-repeat;
+	background-position:50%;
+	height:95px;
+}
+.image-devider.b{
+	background: url(./img/new/cpzs.png) no-repeat;
+	background-position:50%;
+	height:95px;
+}
+.image-devider.c{
+	background: url(./img/new/ryzz.png) no-repeat;
+	background-position:50%;
+	height:180px;
+}
+.title-img{
+	width:430px;
+	height:330px;
+}
+
+.dangan-detail-content div{
+}
+.dangan-cover{
+	float:left;
+	width:510px;
+	margin-top:60px;
+}
+.dangan-content{
+	float:right;
+	width:760px;
+	margin-top:20px;
+	padding:0px;
+}
+.dangan-detail-content{
+	clear: both;
+}
+.dangan-devider{
+	height:5px;
+	background: url(./img/new/devider.png) repeat-x;
+}
+.abc{
+	clear: both;
+}
+.smark{
+	background-image: -moz-linear-gradient(top,#9ac1d4,#fffbe6);
+    background-image: -webkit-gradient(linear,0 0,0 100%,from(#9ac1d4),to(#fffbe6));
+    background-image: -webkit-linear-gradient(top,#9ac1d4,#fffbe6);
+    background-image: -o-linear-gradient(top,#9ac1d4,#fffbe6);
+    background-image: linear-gradient(to bottom,#9ac1d4,#fffbe6);
+    height:37px;
+}
+.dangan-content p{
+	letter-spacing: .15em;
+	font-size:18px;
+	line-height:1.5em;
+}
+.dangan-content h1{
+	letter-spacing: .15em;
+}
+/*
+@media screen and (max-width:800px) {
+	.dangan-detail-banner{
+		background-size:150% auto;
+		min-height:100px;
+		height:auto;
+	}
+	.image-devider.a,.image-devider.b{
+		background-size:150% auto;
+		min-height:100px;
+		height:auto;
+		background-position-x:50%; 
+	} 
+	.image-devider.c{
+		background-size:150% auto;
+		min-height:150px;
+		height:auto;
+		background-position-x:50%; 
+	} 
+	.title-img{
+		width:50%;
+		height:auto;
+	}
+	
+	.dangan-cover{
+		float:none;
+		width:100%;
+		margin:10px auto;
+	}
+	.dangan-content{
+		float:none;
+		width:100%;
+		margin-top:20px;
+		padding:0px 20px;
+		margin:10px auto;
+	}
+}
+*/
+
+
 

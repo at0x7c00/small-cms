@@ -3,6 +3,8 @@
 <!DOCTYPE html>
 <html lang="en-us">
 	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title>${qa.title} - 质量档案 - ${systemTitle}</title>
 		<%@include file="/WEB-INF/jsp/frontend/common/resource.jsp" %>
 		<%--
@@ -66,22 +68,23 @@
 		 </style>
   	</head>
   
-  <body>
+  <body style="width:1280px;margin:0px auto;">
   		<%--
   		<div class="dangan-detail-line"></div>
   		 --%>
   		<div class="dangan-detail-banner">
   		</div>
-  		<div class="container">
+  		<div class="dangan-devider"></div>
+  		<div class="smark"></div>
+  		<div class="container-x">
 	  
-  			<div class="qute">
-  				<div style="text-align:center;" class="image-devider">
-		  			<img alt="" src="${basePath}resource/frontend/theme/default/css/img/qiyejianjie.png" class="img-full-page">
+  			<div class="qute" style="margin-top:5px;">
+  				<div style="text-align:center;" class="image-devider a">
   				</div>
 	  			<div class="dangan-detail-content">
-	  				<table width="100%" border="0" style="margin-top:20px;">
-	  					<tr>
-	  						<td width="430px" style="text-align:left;padding-right:20px;">
+	  			
+	  					<div class="dangan-cover">
+	  			
 	  						<c:if test="${not empty qa.detailCover }">
 		  						<c:choose>
 		  							<c:when test="${qa.detailCover.video }">
@@ -97,28 +100,28 @@
 				  							</div>
 		  							</c:when>
 		  							<c:otherwise>
-				  						<img alt="" src="${basePath}filee/viewPic.do?manageKey=${qa.detailCover.manageKey}" width="430" height="330">
+				  						<img alt="" src="${basePath}filee/viewPic.do?manageKey=${qa.detailCover.manageKey}" class="title-img">
 		  							</c:otherwise>
 		  						</c:choose>
 	  						</c:if>
-	  						</td>
-	  						<td style="vertical-align: top;padding-top:20px;">
-	  							<h1 style="font-size:24px;font-weight:bold;color:black;text-align: center;margin:0px 0px 20px 0px;">
+	  						</div>
+	  						
+	  						<div class="dangan-content">
+	  							<h1 style="font-size:24px;font-weight:bold;color:black;text-align: center;margin:40px 0px 20px 0px;">
 	  							<n:shorthand length="30" content="${qa.title}"></n:shorthand> 
 	  							</h1>
-	  							<div style="padding-left:20px;">
-	  							<p style="font-size:14px;text-indent: 2em;line-height:1.5em;">
+	  							<div style="font-size:18px;text-indent: 2em;line-height:1.5em;">
 	  							<n:html value="${qa.content}"/> 
-	  							</p>
 	  							</div>
-	  						</td>
-	  					</tr>
-	  				</table>
+	  						</div>
+	  			</div>
+	  			<div class="abc">
+	  				
 	  			</div>
   			</div>
   			<div class="qute">
-  				<div class="image-devider">
-	  			<img alt="" src="${basePath}resource/frontend/theme/default/css/img/product.png" class="img-full-page">
+  				<div class="dangan-devider" style="margin-bottom:34px;"></div>
+  				<div class="image-devider b">
   				</div>
   				
   				 <div class="gallery-box">
@@ -167,7 +170,7 @@
 				<div class="clear"></div>
 				  --%>
 				 
-						<div id="Index_Box">
+						<div id="Index_Box"">
 						  <pre class="prev">&nbsp;</pre>
 						  <pre class="next">&nbsp;</pre>
 						  <ul>
@@ -184,19 +187,18 @@
 				 
   			</div>
   			<div class="qute" style="">
-  					<div class="image-devider">
-	  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/rongyu.png" style=""/>
+  					<div class="dangan-devider"></div>
+  					<div class="image-devider c">
   					</div>
   					
+  					<div style="margin-top:20px;text-aling:center;background: #e7e4d5;">
   					
-  					<div style="margin-top:20px;text-aling:center;padding-left:15px;">
   					
-  					
-  					<div id="colee_left" style="width:1085px;overflow:hidden;">
+  					 <div id="colee_left" style="margin:0px auto;width:685px;overflow:hidden;">
 		<table>
                     <tbody><tr>
                         <td id="colee_left1">
-                            <table cellpadding="5px;">
+                            <table cellpadding="15px;">
                                 <tbody><tr>
                                    <c:forEach items="${qa.gloryDisplay}" var="p">
                                     <td>
@@ -221,7 +223,7 @@
                         </td>
                     </tr>
                 </tbody></table>
-               </div>
+               </div> 
   					
   					<%-- <div id="mygallery" class="stepcarousel">
 					<div class="belt" id="displaycssbelt">
@@ -246,12 +248,24 @@
   					
   			</div>
   		</div>
-  		
-  		<div class="detail-footer">
-  			<div class="line"></div>
-  			<div style="text-align:center;color:#663333;font-weight:bold;font-size:20px;padding:20px 0px 30px 0px;">
+  		<div></div>
+  		<div class="detail-footer" style="width:100%;margin:auto auto;">
+  			<div class="line" style="margin:0px auto;margin-top:50px;"></div>
+  			<div style="text-align:center;margin-top:50px;font-size:24px;">
+  			<%--${basePath}resource/frontend/theme/default/css/img/new/code.png --%>
+  				<img alt="" src="${basePath }filee/viewPic.do?manageKey=${qa.codeKey}"/>
+  				<div style="padding:15px 0px 10px 0px;">
+  				联系方式：${qa.phoneNumber}
+  				</div>
+  				<div  style="padding:5px 0px 50px 0px;">
+  				地址：${qa.address}
+  				</div>
+  			</div>
+  			<%--
+  			<div style="margin:0px auto;text-align:center;color:#663333;font-weight:bold;font-size:20px;padding:20px 0px 30px 0px;">
   				<span>品质·信誉·未来</span>
   			</div>
+  			 --%>
   		</div>
   </body>
   <%--
@@ -286,6 +300,11 @@
 		    var colee_left1 = document.getElementById("colee_left1");
 		    var colee_left = document.getElementById("colee_left");
 		    colee_left2.innerHTML = colee_left1.innerHTML;
+		    var cWidth = $(window).width() - 20;
+		    if(cWidth>1280){
+		    	cWidth = 1280;
+		    }
+		    $("#colee_left").css("width",cWidth);
 		    function Marquee3() {
 		        if (colee_left2.offsetWidth - colee_left.scrollLeft <= 0)//offsetWidth 是对象的可见宽度
 		            colee_left.scrollLeft -= colee_left1.offsetWidth//scrollWidth 是对象的实际内容的宽，不包边线宽度

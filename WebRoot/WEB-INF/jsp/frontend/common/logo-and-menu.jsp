@@ -20,7 +20,7 @@
 			<a href="${basePath}frontend/zhiliangredian.do">质量热点</a>
 		</li>
 		<li>
-			<a href="${basePath}frontend/huiyuanfengcai.do">会员风采</a>
+			<a href="${basePath}frontend/huiyuanfengcai.do">企业风采</a>
 		</li>
 		<li>
 			<a href="${basePath}frontend/zhiliangdangan.do">质量档案</a>

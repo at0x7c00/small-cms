@@ -1,5 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%--
+<%-- 
 <div class="footer">
 	<div class="footer-line"></div>
 	<div class="footer-content">
@@ -22,12 +22,15 @@
 						</td>
 					</tr>
 				</table>
-		
+--%>
+		<%--
 		<div style="margin:20px;text-align:center;">
 			${copyRight } 版权所有
 					 转载请注明来源
-			京ICP备12345678号
+			京ICP备京ICP备17017591号-1号
 		</div>
+		 --%>
+		 <%--
 	</div>
 </div>
- --%>
+		  --%>

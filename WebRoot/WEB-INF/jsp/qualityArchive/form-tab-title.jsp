@@ -17,3 +17,7 @@
 			<a href="#gloryDisplay" data-toggle="tab" <c:if test="${checkResult['gloryDisplay'].changed}">style="color:red;" </c:if>><spring:message code="props.me.huqiao.smallcms.ppll.entity.QualityArchive.gloryDisplay"/></a>
 		</li>
 	</c:if>
+	
+	<li>
+			<a href="#code" data-toggle="tab">二维码</a>
+		</li>

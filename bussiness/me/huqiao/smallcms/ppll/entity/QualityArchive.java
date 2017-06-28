@@ -89,6 +89,10 @@ private UseStatus status;
 
 private Date updateTime;
 
+private String phoneNumber;
+private String address;
+private CommonFile code;
+
 private QualityArchiveCategory category;
 	/**MD5管理ID*/
 	protected String manageKey;
@@ -450,5 +454,41 @@ public UseStatus getStatus(){
 			return getDetailCover().getManageKey();
 		}
 		return null;
+	}
+	
+	@Column(name = "phone_number",nullable = true)
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+	
+	@Column(name = "addresss",nullable = true)
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	
+	@ManyToOne(targetEntity=me.huqiao.smallcms.common.entity.CommonFile.class,fetch=FetchType.LAZY)
+	@JoinColumn(name="code_id",nullable=true)
+	@Fetch(FetchMode.SELECT)
+	@JsonIgnore
+	public CommonFile getCode() {
+		return code;
+	}
+	public void setCode(CommonFile code) {
+		this.code = code;
 	} 
+	
+	@Transient
+	public String getCodeKey() {
+		if(getCode()!=null){
+			return getCode().getManageKey();
+		}
+		return null;
+	} 
+	
 }
