@@ -36,7 +36,7 @@
 		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/zhengce-left.png">
 		  				</div>
 		  				<div class="module-header">
-		  					<a class="more" href="${basePath}frontend/zhengcedongtai.do"></a>
+		  					<a class="more" href="${basePath}zhengcedongtai.do"></a>
 		  				</div>
 		  				<ul class="module-content">
 	  						<c:forEach items="${hangyezixunList}" var="chapter"> 
@@ -51,7 +51,7 @@
 		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/hangye-left.png">
 		  				</div>
 		  				<div class="module-header">
-		  					<a class="more" href="${basePath}frontend/hangyezixun.do"></a>
+		  					<a class="more" href="${basePath}hangyezixun.do"></a>
 		  				</div>
 		  				<ul class="module-content">
 		  					<c:forEach items="${hangyezixunList}" var="chapter"> 

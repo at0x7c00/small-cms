@@ -31,7 +31,7 @@
 								
 									<div class="img-div">
 										<c:if test="${not empty chapter.cover}">
-											<a href="${basePath}frontend/chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}">
+											<a href="${basePath}chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}">
 												<img alt="" src="${basePath}filee/viewPic.do?manageKey=${chapter.cover.manageKey}" style="width:240px;height:140px"/>
 											</a>
 										</c:if>
@@ -39,7 +39,7 @@
 									
 									<div class="page-content">
 										<h2>
-										<a href="${basePath}frontend/chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}">
+										<a href="${basePath}chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}">
 											<n:shorthand length="30" content="${chapter.title}"></n:shorthand>
 										</a>
 										</h2>

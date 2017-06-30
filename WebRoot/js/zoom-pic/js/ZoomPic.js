@@ -20,11 +20,25 @@ function getAllSizeSetting(w,h){
 	return [a,b,c,d,e];
 }
 function _a(name,w,h,zIndex){
+	var width = parseInt(((size_mapping[name].width*1.0) / _width) * w);
+	var left;
+	if(name=='a'){
+		left = 0 + 25;
+	}else if(name == 'b'){
+		left = w / 6;
+	}else if(name == 'c'){
+		left = (w - width)/2; 
+	}else if(name == 'd'){
+		left = w - width - (w / 6);
+	}else{
+		left = w - width - 45;
+	}
+	console.log(name +":" + left)
 	return {
-		width:parseInt(((size_mapping[name].width*1.0) / _width) * w),
+		width:width,
 		height:parseInt(((size_mapping[name].height*1.0) / _height) * h),
 		top:parseInt(((size_mapping[name].top*1.0) / _height) * h),
-		left:parseInt(((size_mapping[name].left*1.0) / _width) * w) - 60,
+		left:left,
 		zIndex:zIndex
 		};
 }
@@ -43,10 +57,10 @@ ZoomPic.prototype =
 		this.iCenter = 2;
 		this._doPrev = function () {return _this.doPrev.apply(_this)};
 		this._doNext = function () {return _this.doNext.apply(_this)};
-		var w = $(window).width();
-		if(w>_width){
+		var w = $(window).width() - 100;
+		//if(w>_width){
 			w = _width;
-		}
+		//}
 		this.options = getAllSizeSetting(w,parseInt(_height/_width * w));
 			/*[
            
@@ -230,9 +244,9 @@ ZoomPic.prototype =
 window.onload = function ()
 {
 	var w = $(window).width() - 100;
-	if(w>_width){
+	//if(w>_width){
 		w = _width;
-	}
+	//}
 	var h = parseInt(_height/_width * w);
 	
 	$("#Index_Box UL").css("width",w);

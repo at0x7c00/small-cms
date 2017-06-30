@@ -20,6 +20,12 @@
 		 
 		 <script src="${basePath}js/zoom-pic/js/ZoomPic.js" type="text/javascript"></script>
 		 
+		 
+		<link rel="stylesheet" href="${basePath}photoswipe/photoswipe.css"> 
+		<link rel="stylesheet" href="${basePath}photoswipe/default-skin/default-skin.css"> 
+		<script src="${basePath}photoswipe/photoswipe.min.js"></script> 
+		<script src="${basePath}photoswipe/photoswipe-ui-default.min.js"></script> 
+		
 		 <style type="text/css">
 		 .video-js .vjs-big-play-button {
 		    font-size: 3em;
@@ -66,6 +72,8 @@
 			width:205px;
 		}
 		 </style>
+		 
+		 
   	</head>
   
   <body style="width:1280px;margin:0px auto;">
@@ -110,7 +118,7 @@
 	  							<h1 style="font-size:24px;font-weight:bold;color:black;text-align: center;margin:40px 0px 20px 0px;">
 	  							<n:shorthand length="30" content="${qa.title}"></n:shorthand> 
 	  							</h1>
-	  							<div style="font-size:18px;text-indent: 2em;line-height:1.5em;">
+	  							<div style="font-size:18px;text-indent: 2em;line-height:1.5em;height: 400px;overflow: auto;">
 	  							<n:html value="${qa.content}"/> 
 	  							</div>
 	  						</div>
@@ -155,7 +163,7 @@
   				--%>
 				<%--
 				<div class="main_flash">
-				<script type="text/javascript" language="javascript">printFlash('${basePath}js/flash-3d-gallery/mainVisual.swf','1110','480','mainVisual','xml=${basePath}frontend/pictureXML/${qa.manageKey}.do&currItem=1&charset=utf-8');</script>
+				<script type="text/javascript" language="javascript">printFlash('${basePath}js/flash-3d-gallery/mainVisual.swf','1110','480','mainVisual','xml=${basePath}pictureXML/${qa.manageKey}.do&currItem=1&charset=utf-8');</script>
 				</div>
 				 --%>
 				 <%--
@@ -173,11 +181,14 @@
 						<div id="Index_Box"">
 						  <pre class="prev">&nbsp;</pre>
 						  <pre class="next">&nbsp;</pre>
-						  <ul>
+						  <ul style="padding-left:0px;">
 							<c:forEach items="${qa.productDisplay}" var="file" varStatus="s">
 						    <li><a href="javascript:void(0);"><img src="${basePath}filee/viewPic.do?manageKey=${file.manageKey }"></a>
 						    <p>
-						    	<span>${file.fileNameOnly }</span>
+						    	<span class="t">${file.fileNameOnly }</span>
+						    	<span class="c">
+						    	${qa.productDescArray[s.index]}
+						    	</span>
 						    </p>
 						    </li>
 						    </c:forEach>
@@ -191,10 +202,10 @@
   					<div class="image-devider c">
   					</div>
   					
-  					<div style="margin-top:20px;text-aling:center;background: #e7e4d5;">
+  					<div style="margin:20px;margin-top:20px;text-aling:center;background: #e7e4d5;">
   					
   					
-  					 <div id="colee_left" style="margin:0px auto;width:685px;overflow:hidden;">
+  					 <div id="colee_left" style="margin:0px 20px;overflow:hidden;">
 		<table>
                     <tbody><tr>
                         <td id="colee_left1">
@@ -267,6 +278,73 @@
   			</div>
   			 --%>
   		</div>
+  		
+  		<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="关闭"></button>
+<%--
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+ --%>
+
+                <button class="pswp__button pswp__button--fs" title="全屏"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="缩放"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="上一张">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="下一张">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
   </body>
   <%--
 	  <script src='${basePath}js/3d-gallery/js/TweenMax.min.js'></script>
@@ -304,7 +382,7 @@
 		    if(cWidth>1280){
 		    	cWidth = 1280;
 		    }
-		    $("#colee_left").css("width",cWidth);
+		    //$("#colee_left").css("width",cWidth);
 		    function Marquee3() {
 		        if (colee_left2.offsetWidth - colee_left.scrollLeft <= 0)//offsetWidth 是对象的可见宽度
 		            colee_left.scrollLeft -= colee_left1.offsetWidth//scrollWidth 是对象的实际内容的宽，不包边线宽度
@@ -319,5 +397,63 @@
 		    colee_left.onmouseout = function () {
 		        MyMar3 = setInterval(Marquee3, speed)
 		    }
+		    
+		   $(function(){
+			   
+			   $(".post-image").click(function(){
+					
+					var pswpElement = document.querySelectorAll('.pswp')[0];
+
+					var thisSrc = $(this).attr("src");
+					var index = 0;
+					
+					var images = [];
+					$(".post-image").each(function(i){
+						var _this = $(this);
+						images.push(_this);
+						var src = _this.attr("src");
+						if(src==thisSrc){
+							index = i;
+						}
+					});
+					
+					addImageToItemArray(images,null,function(items){
+						
+						var options = {
+						    index: index ,
+						    bgOpacity:0.7
+						};
+
+						var gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
+						gallery.init();
+						
+					});
+					
+				});
+			   
+		   });
+		   
+		   function addImageToItemArray(images,items,callback){
+				if(!items){
+					items = [];
+				}
+				if(images.length==0){
+					callback(items);
+					return;
+				}
+				var image = $(images[0]);
+				var src = image.attr("src");
+				$("<img>").attr("src",src).load(function(){
+					//console.log("image loaded:width=" + this.width+",height=" + this.height)
+					items.push({
+				        src: src,
+				        w: this.width,
+				        h: this.height
+				    });
+					images.shift();
+					addImageToItemArray(images,items,callback);
+				});
+				
+			}
 		</script>
 </html>

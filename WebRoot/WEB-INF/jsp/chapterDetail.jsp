@@ -47,7 +47,7 @@
 		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/zhiliangredian-left.png">
 		  				</div>
 		  				<div class="module-header">
-		  					<a class="more" href="${basePath}frontend/zhiliangredian.do"></a>
+		  					<a class="more" href="${basePath}zhiliangredian.do"></a>
 		  				</div>
 		  				<ul class="module-content">
 		  					<c:forEach items="${zhiliangredianList}" var="chapter">
@@ -62,12 +62,12 @@
 		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/rewen.png">
 		  				</div>
 		  				<div class="module-header">
-		  					<a class="more top10" href="${basePath}frontend/hangyezixun.do"></a>
+		  					<a class="more top10" href="${basePath}hangyezixun.do"></a>
 		  				</div>
 		  				<ul class="module-content indexed">
 		  					<c:forEach items="${top10ChapterList}" var="chapter" varStatus="s"> 
 			  					<li>
-			  					<span class="index">${s.count}</span><a href="${basePath}frontend/chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}"><n:shorthand length="20" content="${chapter.title}"></n:shorthand> </a>
+			  					<span class="index">${s.count}</span><a href="${basePath}chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}"><n:shorthand length="20" content="${chapter.title}"></n:shorthand> </a>
 			  					</li>
 		  					</c:forEach>
 		  				</ul>

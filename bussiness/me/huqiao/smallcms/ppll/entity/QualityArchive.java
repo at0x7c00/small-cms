@@ -93,6 +93,8 @@ private String phoneNumber;
 private String address;
 private CommonFile code;
 
+private String productDesc;
+
 private QualityArchiveCategory category;
 	/**MD5管理ID*/
 	protected String manageKey;
@@ -489,6 +491,23 @@ public UseStatus getStatus(){
 			return getCode().getManageKey();
 		}
 		return null;
+	}
+	
+	@Column(name = "product_desc",nullable= true)
+	public String getProductDesc() {
+		return productDesc;
+	}
+	public void setProductDesc(String productDesc) {
+		this.productDesc = productDesc;
 	} 
+	
+	@Transient
+	public String[] getProductDescArray(){
+		if(this.getProductDesc()==null){
+			return new String[]{};
+		}
+		return getProductDesc().split("\r\n");
+	}
+	
 	
 }

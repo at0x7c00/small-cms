@@ -34,10 +34,10 @@ img{border:0;}
 	Z-INDEX: 100; OVERFLOW: hidden; CURSOR: pointer
 }
 #Index_Box .prev {
-	POSITION: absolute; WIDTH: 80px; BACKGROUND: url(./images/next.png) 0px 0px; HEIGHT: 120px; TOP: 120px; LEFT: -55px
+	POSITION: absolute; WIDTH: 80px; BACKGROUND: url(./images/next.png) 0px 0px; HEIGHT: 120px; TOP: 120px; LEFT: -35px
 }
 #Index_Box .next {
-	POSITION: absolute; WIDTH: 80px; BACKGROUND: url(./images/next.png) -80px 0px; HEIGHT: 120px; TOP: 120px; RIGHT: -50px
+	POSITION: absolute; WIDTH: 80px; BACKGROUND: url(./images/next.png) -80px 0px; HEIGHT: 120px; TOP: 120px; RIGHT: -35px
 }
 
 #Index_Box li p {
@@ -55,7 +55,7 @@ img{border:0;}
 
 #Index_Box li p span {
     display: block;
-    width: 70%;
+    width:95%;
     height: 40px;
     overflow: hidden;
 }

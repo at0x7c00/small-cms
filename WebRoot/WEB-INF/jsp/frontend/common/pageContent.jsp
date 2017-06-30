@@ -5,7 +5,7 @@
 <c:forEach items="${page.list}" var="chapter" varStatus="s">
 	<li>
 	<font class="title-prefix">■</font>
-	<a href="${basePath}frontend/chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}"><n:shorthand length="30" content="${chapter.title}"></n:shorthand> </a></li>
+	<a href="${basePath}chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}"><n:shorthand length="30" content="${chapter.title}"></n:shorthand> </a></li>
 	<c:if test="${s.count%5==0}">
 		<li class="devider"></li>
 	</c:if>

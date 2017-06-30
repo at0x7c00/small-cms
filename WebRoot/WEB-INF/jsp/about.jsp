@@ -103,7 +103,7 @@
 		  				
 		  			</div>
 		  			
-		  			 <%--
+		  			 <%----%>
 		  			 <div class="module right blue" style="width:254px;">
 		  				<div class="module-title">
 		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/contact-us.png">
@@ -132,7 +132,7 @@
 		  				</div>
 		  				
 		  			</div> 
-		  			  --%>
+		  			  
 		  			
 	  			</div>
 	  			
@@ -150,7 +150,7 @@
  		$(function(){
  			$("#ruhui").on("click",function(){
  				loadWaitDialog();
- 				$.get(basePath + 'frontend/apply.do?notice=yes',function(d){
+ 				$.get(basePath + 'apply.do?notice=yes',function(d){
  					closeWaitDialog();
  					$('<div class="dialog-content" id="applyNotice" style="width:735px;height:505px;overflow:auto;"></div>').html(d).dialog({
  	 					title : "申请条件",
@@ -177,7 +177,7 @@
  			
  			$("#chaxun").click(function(){
  				loadWaitDialog();
- 				$.get(basePath + 'frontend/query.do',function(d){
+ 				$.get(basePath + 'query.do',function(d){
  					closeWaitDialog();
  					var dialog = $('<div class="dialog-content" id="query" style="width:500px;height:300px;"></div>').html(d).dialog({
  	 					title : "查询中心",
@@ -229,7 +229,7 @@
  							}else if(queryType =='worker'){
  								title = "工作人员";
  							}
- 							$.post(basePath + "frontend/query.do",{key:key,queryType:queryType},function(res){
+ 							$.post(basePath + "query.do",{key:key,queryType:queryType},function(res){
  								$('<div class="dialog-content" id="query" style="width:500px;height:380px;overflow:auto;">'  + res + '</div>').dialog({
  									title:title,
 									buttons: {
@@ -269,7 +269,7 @@
  		
  		
  		function loadApplyUI(){
- 			$.get(basePath + 'frontend/apply.do',function(d){
+ 			$.get(basePath + 'apply.do',function(d){
 					closeWaitDialog();
 					$('<div class="dialog-content" id="apply" style="width:735px;height:400px;"></div>').html(d).dialog({
 	 					title : "申请信息",
@@ -280,7 +280,7 @@
 	 						"提交":function(){
 	 							if($("#apply-form").valid({errorPlacement:function(){}})){
 	 								var data = $("#apply-form").serializeArray();
-	 								$.post(basePath + "frontend/apply.do",data,function(res){
+	 								$.post(basePath + "apply.do",data,function(res){
 	 									if(res.statusCode!='200'){
 	 										//alert(res.message);
 	 										$("<div style='text-align:center;font-size:18px;'>" + res.message + "</div>").dialog({

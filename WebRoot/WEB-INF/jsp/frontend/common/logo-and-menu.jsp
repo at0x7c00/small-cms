@@ -11,25 +11,25 @@
 <div class="menu-bar" data-request="${_request_url}">
 	<ul>
 		<li>
-			<a href="${basePath}frontend/index.do" >首&nbsp;&nbsp;页</a>
+			<a href="${basePath}index.do" >首&nbsp;&nbsp;页</a>
 		</li>
 		<li>
-			<a href="${basePath}frontend/zhengcedongtai.do">政策动态</a>
+			<a href="${basePath}zhengcedongtai.do">新闻动态</a>
 		</li>
 		<li>
-			<a href="${basePath}frontend/zhiliangredian.do">质量热点</a>
+			<a href="${basePath}zhiliangredian.do">质量热点</a>
 		</li>
 		<li>
-			<a href="${basePath}frontend/huiyuanfengcai.do">企业风采</a>
+			<a href="${basePath}huiyuanfengcai.do">企业风采</a>
 		</li>
 		<li>
-			<a href="${basePath}frontend/zhiliangdangan.do">质量档案</a>
+			<a href="${basePath}zhiliangdangan.do">质量档案</a>
 		</li>
 		<li>
-			<a href="${basePath}frontend/hangyezixun.do">行业资讯</a>
+			<a href="${basePath}hangyezixun.do">行业资讯</a>
 		</li>
 		<li>
-			<a href="${basePath}frontend/about.do">关于我们</a>
+			<a href="${basePath}about.do">关于我们</a>
 		</li>
 	</ul>
 </div>

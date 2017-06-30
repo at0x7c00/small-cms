@@ -54,8 +54,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
-@RequestMapping(value = "frontend")
-public class FrontendController  extends BaseController {
+public class FrontendController {
 	
 	private Integer PAGE_ID_ZHENGCE = 1;
 	private Integer PAGE_ID_ZHILIANGREDIAN = 2;
@@ -257,7 +256,7 @@ public class FrontendController  extends BaseController {
 	
 	@RequestMapping(value = "apply",method = RequestMethod.GET,params = "notice")
 	public String applyNotice(){
-		return "frontend/applyNotice";
+		return "applyNotice";
 	}
 	
 	@RequestMapping(value = "apply",method = RequestMethod.GET)
@@ -282,7 +281,8 @@ public class FrontendController  extends BaseController {
 	}
 	
 	@RequestMapping(value = "query",method = RequestMethod.GET)
-	public void queryUI(){
+	public String queryUI(){
+		return "frontend/query";
 	}
 	
 	@RequestMapping(value = "query",method = RequestMethod.POST,params = "queryType=memberOrg")

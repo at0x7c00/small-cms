@@ -28,7 +28,7 @@
 							<c:forEach items="${page.list}" var="chapter" varStatus="s">
 								<li>
 								<font class="title-prefix blue">◆</font>
-								<a href="${basePath}frontend/chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}"><n:shorthand length="30" content="${chapter.title}"></n:shorthand> </a>
+								<a href="${basePath}chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}"><n:shorthand length="30" content="${chapter.title}"></n:shorthand> </a>
 								<span class="publish-date" style="float:right;"><fmt:formatDate value="${chapter.createTime}" pattern="yyyy/MM/dd"/></span>
 								</li>
 								<li class="devider dashed"></li>

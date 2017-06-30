@@ -81,11 +81,11 @@ public class LoginController extends BaseController {
      * @param session HttpSession对象
      * @return String jsp显示路径
      */
-    @RequestMapping("/index")
+    @RequestMapping(value = "/adminIndex")
     public String adminIndex(HttpServletRequest request,HttpServletResponse response,HttpSession session){
     	if(!response.isCommitted()){
 			if (isLogined()) {
-				return "index";
+				return "adminIndex";
 			}
 			return "redirect:/loginUI.do";
     	}
@@ -129,7 +129,7 @@ public class LoginController extends BaseController {
 						log.info("用户:"+loginName+" 是普通用户，通过本地密码验证登录成功。");
 						user.recordLoginTime(new Date());
 						userService.update(user);
-						mav.setViewName("redirect:index.do");//本地登录成功
+						mav.setViewName("redirect:adminIndex.do");//本地登录成功
 						request.getSession().setAttribute(Constants.FORM_URL_INSESSION, request.getParameter("from"));
 					}else{
 						mav.addObject("passwordError", "用户名或密码错误！");

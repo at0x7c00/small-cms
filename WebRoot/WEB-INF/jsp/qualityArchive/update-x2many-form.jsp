@@ -102,6 +102,13 @@
 						 data-initvalues="${nfn:serialKyes(tempBean.productDisplay,'manageKey')}"
 						 >
 					</div>
+					
+										<br/>
+					<br/>
+					<hr/>
+					<br/>
+				产品介绍:
+					<textarea rows="5" cols="100" style="width:100%;" placeholder="以回车换行区分不同产品的介绍，顺序以产品图片顺序一致。" name="productDesc">${tempBean.productDesc}</textarea>
 					<%--
 					<div style="padding:5px">
 						<input id="productDisplaySelect2" class="object-select" style="width:50%;" 
