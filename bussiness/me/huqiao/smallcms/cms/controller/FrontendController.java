@@ -221,9 +221,12 @@ public class FrontendController {
 		pageInfo.setNumPerPage(15);
 		hangyePage(request, pageInfo);
 	}
-	@RequestMapping("danganDetail")
-	public void danganDetail(HttpServletRequest request,@RequestParam("manageKey")String qaKey){
-		QualityArchive qa = qualityArchiveService.getEntityByProperty(QualityArchive.class, "manageKey", qaKey);
+	@RequestMapping("dangan")
+	public void danganDetail(HttpServletRequest request,@RequestParam("id")Integer id){
+		QualityArchive qa = qualityArchiveService.getById(QualityArchive.class, id);
+		if(qa.getStatus()!=UseStatus.InUse){
+			qa = null;
+		}
 		if(qa!=null && qa.getStatus()==UseStatus.InUse){
 			request.setAttribute("qa", qa);
 		}

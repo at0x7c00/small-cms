@@ -32,7 +32,7 @@
 	  		
 	  		<div class="main-content">
 	  			<div class="module-group">
-		  			<div class="module left lg" style="width:1120px"><%--width:950px; --%>
+		  			<div class="module left lg" style="width:1250px"><%--width:950px; --%>
 		  				<div class="module-title">
 		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/about.png">
 		  				</div>
@@ -103,7 +103,7 @@
 		  				
 		  			</div>
 		  			
-		  			 <%----%>
+		  			 <%--
 		  			 <div class="module right blue" style="width:254px;">
 		  				<div class="module-title">
 		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/contact-us.png">
@@ -132,7 +132,7 @@
 		  				</div>
 		  				
 		  			</div> 
-		  			  
+		  			  --%>
 		  			
 	  			</div>
 	  			

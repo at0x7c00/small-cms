@@ -116,10 +116,10 @@
 					    <ul id="image-flow-ul">
 					      <c:forEach items="${qualityArchiveList }" var="qa">
 					      	<li>
-					      	<a href="${basePath}danganDetail.do?manageKey=${qa.manageKey}" target="_blank" title="${qa.title}">
+					      	<a href="${basePath}dangan.do?id=${qa.id}" target="_blank" title="${qa.title}">
 					      	<img src="${basePath}filee/viewPic.do?manageKey=${qa.cover.manageKey}">
 					      	</a>
-					      	<a href="${basePath}danganDetail.do?manageKey=${qa.manageKey}" target="_blank" title="${qa.title}">
+					      	<a href="${basePath}dangan.do?id=${qa.id}" target="_blank" title="${qa.title}">
 							<span>
 							<n:shorthand length="14" content="${qa.title}"></n:shorthand>
 							</span>					
