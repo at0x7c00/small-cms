@@ -1,11 +1,11 @@
 package me.huqiao.smallcms.cms.controller;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.ws.rs.PathParam;
 
 import me.huqiao.smallcms.cms.entity.Advertisement;
 import me.huqiao.smallcms.cms.entity.Carousel;
@@ -15,11 +15,11 @@ import me.huqiao.smallcms.cms.service.IAdvertisementService;
 import me.huqiao.smallcms.cms.service.ICarouselService;
 import me.huqiao.smallcms.cms.service.IChapterService;
 import me.huqiao.smallcms.cms.service.IFriendLinkService;
-import me.huqiao.smallcms.common.controller.BaseController;
 import me.huqiao.smallcms.common.entity.CommonFile;
 import me.huqiao.smallcms.common.entity.enumtype.UseStatus;
 import me.huqiao.smallcms.ppll.entity.Apply;
 import me.huqiao.smallcms.ppll.entity.AuthOrg;
+import me.huqiao.smallcms.ppll.entity.Brand;
 import me.huqiao.smallcms.ppll.entity.MemberOrganization;
 import me.huqiao.smallcms.ppll.entity.QualityArchive;
 import me.huqiao.smallcms.ppll.entity.QualityArchiveCategory;
@@ -27,6 +27,7 @@ import me.huqiao.smallcms.ppll.entity.QualityArchiveCompany;
 import me.huqiao.smallcms.ppll.entity.Worker;
 import me.huqiao.smallcms.ppll.service.IApplyService;
 import me.huqiao.smallcms.ppll.service.IAuthOrgService;
+import me.huqiao.smallcms.ppll.service.IBrandService;
 import me.huqiao.smallcms.ppll.service.IMemberOrganizationService;
 import me.huqiao.smallcms.ppll.service.IQualityArchiveCategoryService;
 import me.huqiao.smallcms.ppll.service.IQualityArchiveCompanyService;
@@ -83,6 +84,8 @@ public class FrontendController {
 	private IAuthOrgService authOrgService;
 	@Resource
 	private IWorkerService workerService;
+	@Resource
+	private IBrandService brandService;
 	
 	
 	
@@ -107,6 +110,34 @@ public class FrontendController {
 		
 		qaTop(request);
 		
+		brand(request);
+		
+	}
+
+	private void brand(HttpServletRequest request) {
+		List<Brand> qualityArchiveList = brandService.getByProperties(Brand.class, new String[]{"status"}, new Object[]{UseStatus.InUse}, "orderNum", 10000);
+		List<List<Brand[]>> brandList = new ArrayList<List<Brand[]>>();
+		
+		List<Brand[]> bList = new ArrayList<Brand[]>();
+		Brand[] bPair = new Brand[2];
+		
+		int count = 0;
+		int pairIndex = 0;
+		for(Brand brand : qualityArchiveList){
+			count++;
+			bPair[pairIndex++] = brand;
+			if(pairIndex>1 || pairIndex>=qualityArchiveList.size()-1){
+				bList.add(bPair);
+				bPair = new Brand[2];
+				pairIndex = 0;
+			}
+			if(count==16 || count==qualityArchiveList.size()){
+				brandList.add(bList);
+				bList = new ArrayList<Brand[]>();
+				count=0;
+			}
+		}
+		request.setAttribute("brandList", brandList);
 	}
 
 	private void qaTop(HttpServletRequest request) {
@@ -221,12 +252,18 @@ public class FrontendController {
 		pageInfo.setNumPerPage(15);
 		hangyePage(request, pageInfo);
 	}
+	@RequestMapping("danganDetail")
+	public String danganDetail(HttpServletRequest request,@RequestParam("manageKey")String qaKey){
+		QualityArchive qa = qualityArchiveService.getEntityByProperty(QualityArchive.class, "manageKey", qaKey);
+		if(qa!=null && qa.getStatus()==UseStatus.InUse){
+			request.setAttribute("qa", qa);
+		}
+		return "dangan";
+	}
+	
 	@RequestMapping("dangan")
 	public void danganDetail(HttpServletRequest request,@RequestParam("id")Integer id){
 		QualityArchive qa = qualityArchiveService.getById(QualityArchive.class, id);
-		if(qa.getStatus()!=UseStatus.InUse){
-			qa = null;
-		}
 		if(qa!=null && qa.getStatus()==UseStatus.InUse){
 			request.setAttribute("qa", qa);
 		}
@@ -384,5 +421,18 @@ public class FrontendController {
 	    
 	    return res;
 	}
+	
+	
+	
+	@RequestMapping(value = "search",method = RequestMethod.GET,params = "target=qa")
+	@ResponseBody
+	public List<QualityArchive> searchQualityArchive(HttpServletRequest request,@RequestParam("term")String key){
+		Page<QualityArchive> pageInfo = new Page<QualityArchive>();
+		pageInfo.setNumPerPage(20);
+		QualityArchive qualityArchive = new QualityArchive();
+		qualityArchive.setTitle(key);
+		return qualityArchiveService.getListPage(qualityArchive, pageInfo).getList();
+	}
+	
 	
 }

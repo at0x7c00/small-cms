@@ -1,8 +1,5 @@
-package me.huqiao.smallcms.cms.controller;
-import java.text.SimpleDateFormat;
+package me.huqiao.smallcms.ppll.controller;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -10,14 +7,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
-import me.huqiao.smallcms.cms.entity.Advertisement;
-import me.huqiao.smallcms.cms.service.IAdvertisementService;
 import me.huqiao.smallcms.common.controller.BaseController;
 import me.huqiao.smallcms.common.entity.CommonFile;
 import me.huqiao.smallcms.common.entity.Select2;
 import me.huqiao.smallcms.common.entity.enumtype.UseStatus;
 import me.huqiao.smallcms.common.entity.propertyeditor.CommonFileEditor;
 import me.huqiao.smallcms.common.service.ICommonFileService;
+import me.huqiao.smallcms.ppll.entity.Brand;
+import me.huqiao.smallcms.ppll.service.IBrandService;
 import me.huqiao.smallcms.util.Md5Util;
 import me.huqiao.smallcms.util.web.JsonResult;
 import me.huqiao.smallcms.util.web.Page;
@@ -33,16 +30,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 /**
- * 广告控制器
+ * 品牌展示控制器
  * @author NOVOTS
  * @version Version 1.0
  */
 @Controller
-@RequestMapping("advertisement")
-public class AdvertisementController  extends BaseController {
-   /**广告服务*/
+@RequestMapping("brand")
+public class BrandController  extends BaseController {
+   /**品牌展示服务*/
     @Resource
-    private IAdvertisementService advertisementService;
+    private IBrandService brandService;
  /**
   * 注册属性编辑器
   * @param binder 数据绑定器
@@ -57,49 +54,49 @@ public class AdvertisementController  extends BaseController {
 		  * 初始化ModelAttribute
 		  * @param manageKey md5管理ID （非空时自动加载指定对象）
 		  * @param model 页面model对象
-		  * @return Advertisement 广告对象
+		  * @return Brand 品牌展示对象
 		  */
-		@ModelAttribute(value="advertisement")
-		public Advertisement initModelAttribute(@RequestParam(value = "manageKey", required = false) String manageKey, Model model) {
-		Advertisement advertisement = null;
+		@ModelAttribute(value="brand")
+		public Brand initModelAttribute(@RequestParam(value = "manageKey", required = false) String manageKey, Model model) {
+		Brand brand = null;
 		if (manageKey == null ||manageKey.equals("")) {
-			advertisement = new Advertisement();
+			brand = new Brand();
 		} else {
-			advertisement =  advertisementService.getEntityByProperty(Advertisement.class,"manageKey", manageKey);
-			if (advertisement==null) {
-				advertisement=new Advertisement();
+			brand =  brandService.getEntityByProperty(Brand.class,"manageKey", manageKey);
+			if (brand==null) {
+				brand=new Brand();
 			}
 		}
-		return advertisement;
+		return brand;
 	}
     /**
-     * 广告分页查询
+     * 品牌展示分页查询
      * @param request HttpServletRequest对象
-     * @param advertisement 广告查询对象
+     * @param brand 品牌展示查询对象
      * @param pageInfo 分页查询对象
      * 
      */
     @RequestMapping(value="/list")
-    public void list(HttpServletRequest request,Advertisement advertisement,Page pageInfo) {
-        Page<Advertisement> advertisementPage = advertisementService.getListPage(advertisement,pageInfo);
-        request.setAttribute("pageBean", advertisementPage);
-		listFormParam(request,advertisement,pageInfo);
+    public void list(HttpServletRequest request,Brand brand,Page pageInfo) {
+        Page<Brand> brandPage = brandService.getListPage(brand,pageInfo);
+        request.setAttribute("pageBean", brandPage);
+		listFormParam(request,brand,pageInfo);
     }
  	/**
-     * 为广告分页查询表单准备数据
+     * 为品牌展示分页查询表单准备数据
      * @param request HttpServletRequest对象
-     * @param advertisement 广告查询对象
+     * @param brand 品牌展示查询对象
      * @param pageInfo 分页查询对象
      * 
      */
-	public void listFormParam(HttpServletRequest request,Advertisement advertisement,Page pageInfo){
+	public void listFormParam(HttpServletRequest request,Brand brand,Page pageInfo){
 		//复杂关联关系数据准备
 					List<CommonFile> commonFileList = commonFileService.getByProperties(CommonFile.class,null,null,null,null);
 	request.setAttribute("commonFileList",commonFileList);
 request.setAttribute("useStatusMap",UseStatus.useStatusMap);
 	}
     /**
-     * 添加广告页面
+     * 添加品牌展示页面
      * @param request HttpServletRequest对象
      * @param callBack  回调函数名称
      *
@@ -107,46 +104,55 @@ request.setAttribute("useStatusMap",UseStatus.useStatusMap);
     @RequestMapping(value="/add",method=RequestMethod.GET)
     public void addUI(HttpServletRequest request,@RequestParam(value = "callBack",required = false)String callBack) {
     	//复杂关联关系数据准备
-    	request.setAttribute("useStatusMap",UseStatus.useStatusMap);
-		//clearTempDataList(request.getSession(),"advertisement");
+					List<CommonFile> commonFileList = commonFileService.getByProperties(CommonFile.class,null,null,null,null);
+	request.setAttribute("commonFileList",commonFileList);
+request.setAttribute("useStatusMap",UseStatus.useStatusMap);
+		//clearTempDataList(request.getSession(),"brand");
 		request.setAttribute("callBack", callBack);
     }
     /**
-     * 添加广告
+     * 添加品牌展示
      * @param request HttpServletRequest对象
-     * @param advertisement 要添加的对象
+     * @param brand 要添加的对象
      * @return JsonResult 操作结果
      */
     @RequestMapping(value="/add",method=RequestMethod.POST)
     @ResponseBody
     public JsonResult add(HttpServletRequest request,
-	@Valid @ModelAttribute("advertisement") Advertisement advertisement,
+	@Valid @ModelAttribute("brand") Brand brand,
 	@RequestParam(value = "callBack",required = false)String callBack,
 	BindingResult result) {
     	JsonResult jsonResult = new JsonResult();
     	//默认系统时间类型保存
-    	advertisement.setPicture(parseFilee(request, "pictureKeys",null));
-    	advertisement.setManageKey(Md5Util.getManageKey());
-    	advertisementService.add(advertisement);
+	/*
+		#ONE_TO_MANY_VALUE_SAVE_ADD
+	*/
+	    //保存多对多关联关系
+		brand.setLogo(parseFilee(request,"logoKeys",null));
+	//保持一对多关联关系
+	brand.setManageKey(Md5Util.getManageKey());
+    	brandService.add(brand);
         jsonResult.setMessage(getI18NMessage(request, "base.common.controller.operate.add.success"));
         return jsonResult;
     }
     /**
-     * 修改广告页面
-     * @param advertisement 需要修改的对象实体
+     * 修改品牌展示页面
+     * @param brand 需要修改的对象实体
      * @param request HttpServletRequest请求对象
      * 
      */
     @RequestMapping(value="/update",method=RequestMethod.GET)
-	public void updateUI(@ModelAttribute(value="advertisement") Advertisement advertisement,HttpServletRequest request) {
-	request.setAttribute("tempBean", advertisement);
+	public void updateUI(@ModelAttribute(value="brand") Brand brand,HttpServletRequest request) {
+	request.setAttribute("tempBean", brand);
     	//复杂关联关系数据准备
-		request.setAttribute("useStatusMap",UseStatus.useStatusMap);
-		//clearTempDataList(request.getSession(),"advertisement");
+					List<CommonFile> commonFileList = commonFileService.getByProperties(CommonFile.class,null,null,null,null);
+	request.setAttribute("commonFileList",commonFileList);
+request.setAttribute("useStatusMap",UseStatus.useStatusMap);
+	//clearTempDataList(request.getSession(),"brand");
     }
     /**
-     *  修改广告 
-     * @param advertisement 待修改的实体对象
+     *  修改品牌展示 
+     * @param brand 待修改的实体对象
      * @param request HttpServletRequest对象
      * @return JsonResult 操作结果
      *
@@ -154,44 +160,50 @@ request.setAttribute("useStatusMap",UseStatus.useStatusMap);
     @RequestMapping(value="/update",method=RequestMethod.POST)
     @ResponseBody
     public JsonResult update(HttpServletRequest request,
-	@ModelAttribute(value="advertisement") Advertisement advertisement,
+	@ModelAttribute(value="brand") Brand brand,
 	BindingResult result) {
     	JsonResult jsonResult = new JsonResult();
     	if(!validate(jsonResult,result)){
     		return jsonResult;
     	}
-    	advertisement.setPicture(parseFilee(request, "pictureKeys",advertisement.getPictureKey()));
-        advertisementService.update(advertisement);
+	    //保存多对多关联关系
+		String oldKey = null;
+		if(brand.getLogo()!=null){
+			oldKey = brand.getLogo().getManageKey();
+		}
+		brand.setLogo(parseFilee(request,"logoKeys",oldKey));
+		//保持一对多关联关系
+        brandService.update(brand);
+	// jsonResult.setNavTabId(rel);
         jsonResult.setMessage(getI18NMessage(request, "base.common.controller.operate.update.success"));
         return jsonResult;
     }
 	/**
-	 *  查看广告页面
-     * @param advertisement 需要查看的实体对象
+	 *  查看品牌展示页面
+     * @param brand 需要查看的实体对象
      * @param request HttpServletRequest对象
      * 
      */
     @RequestMapping(value="/detail",method=RequestMethod.GET)
-	public void detail(@ModelAttribute(value="advertisement") Advertisement advertisement,HttpServletRequest request) {
-	request.setAttribute("tempBean", advertisement);
+	public void detail(@ModelAttribute(value="brand") Brand brand,HttpServletRequest request) {
+	request.setAttribute("tempBean", brand);
     	//复杂关联关系数据准备
-        listFormParam(request,advertisement,null);
+        listFormParam(request,brand,null);
     }
 	/**
-     * 删除单个广告对象
+     * 删除单个品牌展示对象
      * @param request HttpServletRequest对象
-     * @param advertisement 待删除对象
+     * @param brand 待删除对象
      * @return JsonResult 操作结果
      * 
      */
     @RequestMapping(value="/delete",method=RequestMethod.GET)
     @ResponseBody
-    public JsonResult delete(HttpServletRequest request,@ModelAttribute Advertisement advertisement) {
+    public JsonResult delete(HttpServletRequest request,@ModelAttribute Brand brand) {
         JsonResult jsonResult = new JsonResult();
         jsonResult.setCallbackType("");
         try {
-        	markFileAsUnuse(advertisement.getPicture());
-        	advertisementService.delete(advertisement);
+        	brandService.delete(brand);
 		} catch (RuntimeException re) {
 			jsonResult.setMessage(getI18NMessage(request, "base.common.controller.operate.delete.inuse"));
 			return jsonResult;
@@ -212,13 +224,13 @@ request.setAttribute("useStatusMap",UseStatus.useStatusMap);
     @RequestMapping(value="/delete",method=RequestMethod.POST)
     @ResponseBody
 	public JsonResult batchDelete(HttpServletRequest request,@RequestParam("manageKeys") String[] manageKeys) {
-    	Advertisement advertisement = null;
+    	Brand brand = null;
 		JsonResult jsonResult = new JsonResult();
     	for(String manageKey : manageKeys){
 			 try {
-    			advertisement = advertisementService.getEntityByProperty(Advertisement.class,"manageKey",manageKey);
-    			markFileAsUnuse(advertisement.getPicture());
-    			advertisementService.delete(advertisement);
+    			brand = brandService.getEntityByProperty(Brand.class,"manageKey",manageKey);
+		markFileAsUnuse(brand.getLogo());
+    			brandService.delete(brand);
 			}catch (RuntimeException re) {
 				jsonResult.setMessage(getI18NMessage(request, "base.common.controller.operate.delete.inuse"));
 				return jsonResult;
@@ -240,33 +252,33 @@ request.setAttribute("useStatusMap",UseStatus.useStatusMap);
 	public String selectListWithHtml(HttpServletRequest request,
 			@RequestParam(value = "manageKey",required = false)String[] manageKeys
 			){
-		List<Advertisement> advertisements = new ArrayList<Advertisement>();
+		List<Brand> brands = new ArrayList<Brand>();
 		if(manageKeys!=null){
 			for(String manageKey : manageKeys){
-				Advertisement temp_advertisement = advertisementService.getEntityByProperty(Advertisement.class, "manageKey", manageKey);
-				if(temp_advertisement!=null && !advertisements.contains(temp_advertisement)){
-					advertisements.add(temp_advertisement);
+				Brand temp_brand = brandService.getEntityByProperty(Brand.class, "manageKey", manageKey);
+				if(temp_brand!=null && !brands.contains(temp_brand)){
+					brands.add(temp_brand);
 				}
 			}
 		}
 		request.setAttribute("showCheckBox",request.getParameter("showCheckBox"));
 		request.setAttribute("keyName",request.getParameter("keyName"));
-		request.setAttribute("advertisements",advertisements);
-		return "advertisement/select-list-html";
+		request.setAttribute("brands",brands);
+		return "brand/select-list-html";
 	}
 	/**
 	 *  历史记录列表
      * @param request HttpServletRequest对象
-	 * @param advertisement 查询对象
+	 * @param brand 查询对象
      * @param pageInfo 分页查询对象
      * @return String 显示页面路径
      * 
 	@RequestMapping(value = "history",params="list")
-	public String historyList(HttpServletRequest request,Advertisement advertisement,Page pageInfo){
-		Page<HistoryRecord<Advertisement>> advertisementPage = advertisementService.getHistoryListPage(advertisement, pageInfo);
-		request.setAttribute("pageBean", advertisementPage);
-		request.setAttribute("manageKey", advertisement.getManageKey());
-	    return "advertisement/history-list";
+	public String historyList(HttpServletRequest request,Brand brand,Page pageInfo){
+		Page<HistoryRecord<Brand>> brandPage = brandService.getHistoryListPage(brand, pageInfo);
+		request.setAttribute("pageBean", brandPage);
+		request.setAttribute("manageKey", brand.getManageKey());
+	    return "brand/history-list";
 	} */
 	/**
 	 * 查看历史记录
@@ -276,44 +288,44 @@ request.setAttribute("useStatusMap",UseStatus.useStatusMap);
      *
 	@RequestMapping(value = "history",params="view")
 	public String historyView(HttpServletRequest request,@RequestParam(value = "version")Integer version){
-		Advertisement advertisement = advertisementService.findByVersion(version);
-		Advertisement preAdvertisement = (Advertisement)advertisementService.findByPreVersion(Advertisement.class,advertisement.getManageKey(),version);
-		if(preAdvertisement!=null && preAdvertisement.getManageKey().equals(advertisement.getManageKey())){
-			Map<String,CheckResult> checkResult = BeanPropUtil.propValueCheck(preAdvertisement, advertisement);
+		Brand brand = brandService.findByVersion(version);
+		Brand preBrand = (Brand)brandService.findByPreVersion(Brand.class,brand.getManageKey(),version);
+		if(preBrand!=null && preBrand.getManageKey().equals(brand.getManageKey())){
+			Map<String,CheckResult> checkResult = BeanPropUtil.propValueCheck(preBrand, brand);
 			request.setAttribute("checkResult", checkResult);
 		}
-		request.setAttribute("tempBean", advertisement);
+		request.setAttribute("tempBean", brand);
 		request.setAttribute("showOk", "no");
 		request.setAttribute("historyView", true);
-		return "advertisement/detail";
+		return "brand/detail";
 	}*/
 	/**
-	 * 根据关键字获取广告select2对象
+	 * 根据关键字获取品牌展示select2对象
 	 * @param queryKey 查询关键字
 	 * @param pageInfo 查询分页信息
 	 * @param response HttpServletResponse对象
-	 * @return Select2<Advertisement> 广告Select2对象
+	 * @return Select2<Brand> 品牌展示Select2对象
 	 */
 	@RequestMapping(value="/select2Query")
 	@ResponseBody 
-	public Select2<Advertisement> select2Query(String queryKey,Page<Advertisement> pageInfo, HttpServletResponse response) {
-		Page<Advertisement> page = advertisementService.queryByKey(queryKey, pageInfo);
-		Select2<Advertisement> select2 = new Select2<Advertisement>();
+	public Select2<Brand> select2Query(String queryKey,Page<Brand> pageInfo, HttpServletResponse response) {
+		Page<Brand> page = brandService.queryByKey(queryKey, pageInfo);
+		Select2<Brand> select2 = new Select2<Brand>();
 		select2.setTotal_count(page.getTotalCount());
 		select2.setItems(page.getList());
 		return select2;
 	}
 	/**
-	 * 查找多个广告
+	 * 查找多个品牌展示
 	 * @param ids id数组
 	 * @param response HttpServletResponse 对象
-	 * @return List<Advertisement> 广告列表
+	 * @return List<Brand> 品牌展示列表
 	 */
 	@RequestMapping(value="/queryById")
 	@ResponseBody
-public List<Advertisement> queryById(Integer[] ids,HttpServletResponse response) {
-		List<Advertisement> advertisementList = advertisementService.queryById(ids);
-		return advertisementList;
+public List<Brand> queryById(Integer[] ids,HttpServletResponse response) {
+		List<Brand> brandList = brandService.queryById(ids);
+		return brandList;
 	}
 	/**
 	 * tab页添加表单
@@ -324,17 +336,17 @@ public List<Advertisement> queryById(Integer[] ids,HttpServletResponse response)
 	 */
 	@RequestMapping(value = "/tabAddForm")
 public String tabAddForm(
-			@ModelAttribute(value="advertisement") Advertisement advertisement,
+			@ModelAttribute(value="brand") Brand brand,
 			@RequestParam(value= "trTarget") String trTarget,
 			@RequestParam(value= "trIndex") Integer trIndex,
 			@RequestParam(value = "propName") String propName,
 			HttpServletRequest request) {
 		addUI(request, null);
-		request.setAttribute("tempBean",advertisement);
+		request.setAttribute("tempBean",brand);
 		request.setAttribute("trTarget", trTarget);
 		request.setAttribute("trIndex", trIndex);
 		request.setAttribute("propName", propName);
-		return "advertisement/tab-add-form";
+		return "brand/tab-add-form";
 	}
 /**
 	 * tab页查看详情页面
@@ -345,24 +357,16 @@ public String tabAddForm(
 	 */
 	@RequestMapping(value = "/tabDetailForm")
 	public String tabDetailForm(
-			@ModelAttribute(value="advertisement") Advertisement advertisement,
+			@ModelAttribute(value="brand") Brand brand,
 			@RequestParam(value= "trTarget") String trTarget,
 			@RequestParam(value= "trIndex") Integer trIndex,
 			@RequestParam(value = "propName") String propName,
 			HttpServletRequest request) {
 		addUI(request, null);
-		request.setAttribute("tempBean",advertisement);
+		request.setAttribute("tempBean",brand);
 		request.setAttribute("trTarget", trTarget);
 		request.setAttribute("trIndex", trIndex);
 		request.setAttribute("propName", propName);
-		return "advertisement/tab-detail-form";
-	}
-	public static void main(String[] args) throws Exception{
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Date join = sdf.parse("2016-04-23");
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(join);
-		cal.set(Calendar.YEAR,new Date().getYear() + 1900);
-		System.out.println(sdf.format(cal.getTime()));
+		return "brand/tab-detail-form";
 	}
 }

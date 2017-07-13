@@ -1,3 +1,4 @@
+
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/jsp/common/taglib.jsp" %>
 <!DOCTYPE html>
@@ -155,6 +156,34 @@
 		  			</div>
 		  		</div>
 		  		
+		  		
+		  		<div class="module-group"  style="min-height:73px;">
+		  			<div class="module full-page">
+		  				<div class="module-title">
+		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/pinpai.png">
+		  				</div>
+		  				<div class="module-header">
+		  				</div>
+		  				<div class="module-content" style="height:280px;width:1240px;overflow: hidden;">
+		  					<c:forEach items="${brandList}" var="bList" varStatus="bs">
+		  						<div class="brand-table">
+			  						<c:forEach items="${bList}" var="bPair">
+			  							<div>
+					  						<c:forEach items="${bPair}" var="b" varStatus="s">
+					  						<c:if test="${not empty b }">
+						  						<img src="${basePath}filee/viewPic.do?manageKey=${b.logo.manageKey}" 
+						  						title="${b.name }" data-href="${b.url}"
+						  						class="img${s.count}"/>
+						  					</c:if>
+						  					</c:forEach>
+					  					</div>
+				  					</c:forEach>
+		  						</div>
+		  					</c:forEach>
+		  				</div>
+		  			</div>
+		  		</div>
+		  		
 		  		<div class="module-group"  style="min-height:73px;">
 		  			<div class="module full-page">
 		  				<div class="module-title">
@@ -176,6 +205,51 @@
 	  		
   		</div>
  		<%@include file="/WEB-INF/jsp/frontend/common/js.jsp" %>
- 		
+ 		<script type="text/javascript">
+ 		var bindex = 0;
+ 		$(function(){
+ 			displayBrand();
+ 			window.setInterval(function(){
+ 				displayBrand();
+ 			},15000);
+ 			
+ 			$(".img1,.img2").click(function(){
+ 				window.open($(this).data("href"));
+ 			});
+ 		});
+ 		function displayBrand(){
+ 				var divs = $(".brand-table");
+ 				if(divs.length<=1){
+ 					return;
+ 				}
+ 				divs.removeClass("current_mark");
+ 				divs.find("img").removeClass("img1").removeClass("img2");
+ 				divs.animate({marginLeft:"-1500px"},500);
+ 				
+ 				window.setTimeout(function(){
+ 					divs.fadeOut(100);
+ 	 				divs.animate({marginLeft:"2000px"},0);
+ 					var count = 0;
+ 					while(bindex<divs.length){
+ 						count++;
+ 						$(divs.eq(bindex)).addClass("current_mark");
+ 						bindex++; 
+ 						if(count>2){
+ 							break;
+ 						}
+ 					}
+ 					window.setTimeout(function(){
+	 					$("div.current_mark").fadeIn(200).animate({marginLeft:"0px"},500);
+	 					if(bindex>=divs.length){
+	 						bindex = 0;
+	 					}
+	 					window.setTimeout(function(){
+		 					divs.find("div>a:first-child>img").addClass("img1");
+		 					divs.find("div>a:last-child>img").addClass("img2");
+	 					},500);
+ 					},100);
+ 				},200);
+ 		}
+ 		</script>
   </body>
 </html>

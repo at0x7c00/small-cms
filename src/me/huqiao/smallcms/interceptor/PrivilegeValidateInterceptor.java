@@ -54,7 +54,9 @@ public class PrivilegeValidateInterceptor extends HandlerInterceptorAdapter {
     	"query",
     	"apply",
     	"dangan.do",
-    	"adminIndex.do"
+    	"danganDetail.do",
+    	"adminIndex.do",
+    	"search.do"
 	};
 	private static final String[] urlsWithLogin = new String[] {// 只需要登录就能拥有的权限
 		"home.do",

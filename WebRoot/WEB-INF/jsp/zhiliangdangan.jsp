@@ -5,18 +5,34 @@
 	<head>
 		<title>质量档案 - ${systemTitle}</title>
 		<%@include file="/WEB-INF/jsp/frontend/common/resource.jsp" %>
+		<script src="${basePath}js/jqueryui/1.10.3/jquery-ui.min.js"></script>
+		<link rel="stylesheet" type="text/css" media="screen" href="${basePath}js/jqueryui/1.10.3/css/jquery-ui-1.10.4.custom.min.css">
+		<style type="text/css">
+		.qa-search-div>span[role=status]{
+			position: absolute;
+			left:270px;
+			padding:5px;
+			background: #fff;
+			top:2px;
+			height:20px;
+			line-height:20px;
+		}
+		</style>
   	</head>
   
   <body>
   		<div class="container">
   			
   			<%@include file="/WEB-INF/jsp/frontend/common/logo-and-menu.jsp" %>
-	  		
-	  		<div style="margin:15px 0px;">
+	  		<div style="margin:15px 0px;margin-bottom:0px;">
  				<img alt="" src="${basePath}resource/frontend/theme/default/css/img/zhiliang-banner.png">
  			</div>
-	  		
-	  		<div class="main-content">
+ 			
+ 			<div style="position:relative;" class="qa-search-div">
+ 			<input name="key" placeholder="输入关键字进行搜索" style="height:20px;width:250px;font-size:14px;line-height:20px;padding:5px;" id="keySearch"/>
+ 			</div>
+ 			
+	  		<div class="main-content" style="margin-top: -30px;">
 	  		
 	  			<div class="module-group blue">
 	  			
@@ -72,5 +88,25 @@
 	  		
   		</div>
  		<%@include file="/WEB-INF/jsp/frontend/common/js.jsp" %>
+ 		<script type="text/javascript">
+ 		$(function(){
+ 				var x = $( "#keySearch" ).autocomplete({
+			      source: "${basePath}search.do?target=qa",
+			      minLength: 2,
+			      select: function( event, ui ) {
+			        log( "Selected: " + ui.item.title + " aka " + ui.item.id );
+			      }
+			    });
+ 				x.data('ui-autocomplete')._renderItem=function( ul, item ) {
+ 					
+ 					var a = $("<a href=\"${basePath}dangan.do?id=" + item.id +"\" target=\"_blank\">"+  item.title +"</a>")
+ 					
+			    	  return $( "<li>" )
+			    	    .attr( "data-value", item.id )
+			    	    .append(a )
+			    	    .appendTo( ul );
+			    }
+ 		});
+ 		</script>
   </body>
 </html>
