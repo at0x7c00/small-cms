@@ -14,7 +14,7 @@
 	  		
 	  		<div class="main-content">
 	  			<div class="module-group">
-		  			<div class="module left lg">
+		  			<div class="module left lg" style="min-height:420px;">
 		  				<div class="module-title">
 		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/zhiliangredian.png">
 		  				</div>
@@ -26,7 +26,7 @@
 		  				
 		  				 <jsp:include page="/WEB-INF/jsp/frontend/common/pageBar.jsp">
 		  				 	<jsp:param value="${page}" name="page"/>
-		  				 	<jsp:param value="frontend/zhiliangredian.do" name="url"/>
+		  				 	<jsp:param value="zhiliangredian.do" name="url"/>
 		  				 </jsp:include>
 		  				
 		  			</div>

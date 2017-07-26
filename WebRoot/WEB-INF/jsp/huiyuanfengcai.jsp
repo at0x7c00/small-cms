@@ -57,7 +57,7 @@
 		  				
 		  				 <jsp:include page="/WEB-INF/jsp/frontend/common/pageBar.jsp">
 		  				 	<jsp:param value="${page}" name="page"/>
-		  				 	<jsp:param value="frontend/huiyuanfengcai.do" name="url"/>
+		  				 	<jsp:param value="huiyuanfengcai.do" name="url"/>
 		  				 </jsp:include>
 		  			</div>
 		  			

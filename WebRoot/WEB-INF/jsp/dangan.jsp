@@ -118,7 +118,7 @@
 	  							<h1 style="font-size:24px;font-weight:bold;color:black;text-align: center;margin:40px 0px 20px 0px;">
 	  							<n:shorthand length="30" content="${qa.title}"></n:shorthand> 
 	  							</h1>
-	  							<div style="font-size:18px;text-indent: 2em;line-height:1.5em;height: 400px;overflow: auto;">
+	  							<div style="font-size:18px;text-indent: 2em;line-height:1.5em;height: 280px;overflow: auto;">
 	  							<n:html value="${qa.content}"/> 
 	  							</div>
 	  						</div>

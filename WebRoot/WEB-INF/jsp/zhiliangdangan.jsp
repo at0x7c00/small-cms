@@ -64,9 +64,7 @@
 			  						</c:if>
 			  					</div>
 			  					<div class="dangan-abstract" length="37">
-			  						<a href="${basePath}dangan.do?id=${qa.id}" target="_blank">
-			  						<n:shorthand length="37" content="${qa.abstractContent}"></n:shorthand>&nbsp;
-			  						</a>
+			  						<a href="${basePath}dangan.do?id=${qa.id}" target="_blank"><n:shorthand length="37" content="${qa.abstractContent}"></n:shorthand>&nbsp;</a>
 			  					</div>
 			  				</div>
 			  			</div>
