@@ -11,10 +11,9 @@
 				<section class="col col-3">
 					<label class="input">
 						<spring:message code="props.me.huqiao.smallcms.ppll.entity.Brand.url"/>:
-							<font style='color:red' class="required-mark">*</font>
 										<form:input path="url"
 											id="brand.url"
-											cssClass="textInput required"
+											cssClass="textInput"
 											maxlength="255" />
 				</label>
 				</section>

@@ -19,6 +19,9 @@ var basePath = '${basePath}';
 <link rel="stylesheet" type="text/css" media="screen" href="${basePath}resource/frontend/theme/default/css/core.css">
 <link rel="stylesheet" type="text/css" media="screen" href="${basePath}js/jquery.bxslider/jquery.bxslider.css">
 
+<link rel="stylesheet" type="text/css" media="screen" href="${basePath}resource/frontend/theme/default/css/new/core.css?_t=${_random}">
+
+
 <script src="${basePath}js/jquery/1.11.3/jquery.min.js"></script>
 <script src="${basePath}js/jquery.bxslider/jquery.bxslider.js"></script>
 <script src="${basePath}resource/frontend/theme/default/js/core.js"></script>

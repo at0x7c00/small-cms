@@ -7,7 +7,7 @@
 -->
 </style>
 <div class="carousel" style="position:relative;">
-    <div style="height:450px;width:100%;position:absolute;z-index:1;background: #fff;">
+    <div style="height:440px;margin-top:65px;width:100%;position:absolute;z-index:1;">
     	<div style="padding-top:190px;text-align:center;">
     	<img src="${basePath}resource/frontend/theme/default/css/img/loading.gif"/>
     	</div>

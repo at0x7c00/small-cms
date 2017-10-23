@@ -2,6 +2,7 @@ package me.huqiao.smallcms.interceptor;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -104,6 +105,7 @@ public class PrivilegeValidateInterceptor extends HandlerInterceptorAdapter {
         LoginInfo loginInfo = (LoginInfo)request.getSession().getAttribute(Constants.LOGIN_INFO_IN_SESSION);
         
         request.setAttribute("file_format_picture", ".jpg,.jpeg,.png,.bmp,.gif");
+        request.setAttribute("_random", new Date().getTime());
         
         /*if(1==1){
         	 return super.preHandle(request, response, handler);

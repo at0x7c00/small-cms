@@ -1,0 +1,21 @@
+@font-face {
+  font-family: "SourceHanSansCN-Regular";
+  src: url("./fonts/regular/sourcehansanscnregular.woff2") format("woff2"),
+       url("./fonts/regular/sourcehansanscnregular.woff") format("woff"),
+       url("./fonts/regular/sourcehansanscnregular.ttf") format("truetype"),
+       url("./fonts/regular/sourcehansanscnregular.eot") format("embedded-opentype"),
+       url("./fonts/regular/sourcehansanscnregular.svg") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "SourceHanSansCN-Light";
+  src: url("./fonts/light/sourcehansanscnlight.woff2") format("woff2"),
+       url("./fonts/light/sourcehansanscnlight.woff") format("woff"),
+       url("./fonts/light/sourcehansanscnlight.ttf") format("truetype"),
+       url("./fonts/light/sourcehansanscnlight.eot") format("embedded-opentype"),
+       url("./fonts/light/sourcehansanscnlight.svg")　format("svg");
+  font-weight: normal;
+  font-style: normal;
+}

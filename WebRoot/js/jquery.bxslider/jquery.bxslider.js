@@ -79,7 +79,7 @@
     minSlides: 1,
     maxSlides: 1,
     moveSlides: 0,
-    slideWidth: 0,
+    slideWidth: 780,
     shrinkItems: false,
 
     // CALLBACKS

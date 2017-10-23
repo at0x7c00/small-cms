@@ -39,6 +39,7 @@ import me.huqiao.smallcms.util.StringUtil;
 import me.huqiao.smallcms.util.web.JsonResult;
 import me.huqiao.smallcms.util.web.Page;
 
+import org.apache.log4j.Logger;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -56,6 +57,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class FrontendController {
+	
+	static Logger log = Logger.getLogger(FrontendController.class);
 	
 	private Integer PAGE_ID_ZHENGCE = 1;
 	private Integer PAGE_ID_ZHILIANGREDIAN = 2;
@@ -118,6 +121,7 @@ public class FrontendController {
 		List<Brand> qualityArchiveList = brandService.getByProperties(Brand.class, new String[]{"status"}, new Object[]{UseStatus.InUse}, "orderNum", 10000);
 		List<List<Brand[]>> brandList = new ArrayList<List<Brand[]>>();
 		
+		log.info(qualityArchiveList.size());
 		List<Brand[]> bList = new ArrayList<Brand[]>();
 		Brand[] bPair = new Brand[2];
 		
@@ -131,12 +135,19 @@ public class FrontendController {
 				bPair = new Brand[2];
 				pairIndex = 0;
 			}
-			if(count==16 || count==qualityArchiveList.size()){
+			if(count==48 || count==qualityArchiveList.size()){
 				brandList.add(bList);
 				bList = new ArrayList<Brand[]>();
 				count=0;
 			}
 		}
+		if(bPair[0]!=null && bPair[1]!=null){
+			bList.add(bPair);
+		}
+		if(bList.size()>0){
+			brandList.add(bList);
+		}
+		log.info(brandList.size());
 		request.setAttribute("brandList", brandList);
 	}
 

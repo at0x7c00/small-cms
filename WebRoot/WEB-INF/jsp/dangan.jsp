@@ -279,6 +279,8 @@
   			 --%>
   		</div>
   		
+  		<%@include file="/WEB-INF/jsp/frontend/common/footer.jsp" %>
+  		
   		<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
 
     <!-- Background of PhotoSwipe. 

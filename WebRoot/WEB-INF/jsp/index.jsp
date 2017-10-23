@@ -1,4 +1,3 @@
-
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/jsp/common/taglib.jsp" %>
 <!DOCTYPE html>
@@ -22,7 +21,7 @@
 	  			<div class="module-group"  style="min-height:370px;">
 		  			<div class="module left">
 		  				<div class="module-title">
-		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/zhengce.png">
+		  					新闻动态
 		  				</div>
 		  				<div class="module-header">
 		  					<a class="more" href="${basePath}zhengcedongtai.do"></a>
@@ -38,7 +37,7 @@
 		  			
 		  			<div class="module right">
 		  				<div class="module-title">
-		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/zhiliangredian.png">
+		  					质量热点
 		  				</div>
 		  				<div class="module-header">
 		  					<a class="more" href="${basePath}zhiliangredian.do"></a>
@@ -53,25 +52,10 @@
 		  			</div>
 	  			</div>
 	  			
-	  			<%--
-	  			<div class="ad-group">
-	  				<div class="ad left">
-	  					<a href="${ adList[0].url}" target="_blank" title="${adList[0].title }">
-		  					<img src="${basePath}filee/viewPic.do?manageKey=${adList[0].picture.manageKey}" />
-	  					</a>
-	  				</div>
-	  				<div class="ad right">
-	  					<a href="${ adList[1].url}" target="_blank" title="${adList[1].title }">
-	  						<img src="${basePath}filee/viewPic.do?manageKey=${adList[1].picture.manageKey}" />
-	  					</a>
-	  				</div>
-	  			</div>
-	  			 --%>
-	  			
 	  			<div class="module-group">
 		  			<div class="module full-page">
 		  				<div class="module-title">
-		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/huiyuan.png">
+		  					会员风采
 		  				</div>
 		  				<div class="module-header">
 		  					<a class="more" href="${basePath}huiyuanfengcai.do"></a>
@@ -102,7 +86,7 @@
 		  		<div class="module-group" style="min-height:243px;">
 		  			<div class="module full-page">
 		  				<div class="module-title">
-		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/zhiliangdangan.png">
+		  					质量热点
 		  				</div>
 		  				<div class="module-header">
 		  					<a class="more" href="${basePath}zhiliangdangan.do"></a>
@@ -139,7 +123,7 @@
 		  		<div class="module-group">
 		  			<div class="module full-page">
 		  				<div class="module-title">
-		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/hangye.png">
+		  					行业资讯
 		  				</div>
 		  				<div class="module-header">
 		  					<a class="more" href="${basePath}hangyezixun.do"></a>
@@ -160,7 +144,7 @@
 		  		<div class="module-group"  style="min-height:73px;">
 		  			<div class="module full-page">
 		  				<div class="module-title">
-		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/pinpai.png">
+		  					品牌展示
 		  				</div>
 		  				<div class="module-header">
 		  				</div>
@@ -187,13 +171,13 @@
 		  		<div class="module-group"  style="min-height:73px;">
 		  			<div class="module full-page">
 		  				<div class="module-title">
-		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/youqing.png">
+		  				友情链接
 		  				</div>
 		  				<div class="module-header">
 		  				</div>
 		  				<div class="module-content">
 		  					<c:forEach items="${flinkList}" var="flink">
-			  					<a href="${flink.url}" target="_blank">${flink.name}</a>
+			  					<a href="${flink.url}" target="_blank" style="font-family:'SourceHanSansCN-Light';font-size:20px;color:#444;">${flink.name}</a>
 		  					</c:forEach>
 		  				</div>
 		  			</div>
@@ -214,7 +198,9 @@
  			},15000);
  			
  			$(".img1,.img2").click(function(){
- 				window.open($(this).data("href"));
+ 				if($(this).data("href")){
+	 				window.open($(this).data("href"));
+ 				}
  			});
  		});
  		function displayBrand(){
@@ -244,8 +230,8 @@
 	 						bindex = 0;
 	 					}
 	 					window.setTimeout(function(){
-		 					divs.find("div>a:first-child>img").addClass("img1");
-		 					divs.find("div>a:last-child>img").addClass("img2");
+		 					divs.find("div>img:first-child").addClass("img1");
+		 					divs.find("div>img:last-child").addClass("img2");
 	 					},500);
  					},100);
  				},200);
