@@ -51,6 +51,8 @@ public class PrivilegeValidateInterceptor extends HandlerInterceptorAdapter {
     	"zhiliangdangan.do",
     	"chapterDetail.do",
     	"hangyezixun.do",
+    	"zhiliangbaoguang.do",
+    	"huodonghuigu.do",
     	"about.do",
     	"query",
     	"apply",

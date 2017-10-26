@@ -336,7 +336,7 @@ public class CommonFileController extends BaseController {
 			bis.close();
 		} catch (IOException e) {
 			logger.error(e.getMessage());
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		return null;
 	}

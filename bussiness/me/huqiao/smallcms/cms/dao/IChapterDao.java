@@ -2,6 +2,7 @@ package me.huqiao.smallcms.cms.dao;
 import java.util.List;
 
 import me.huqiao.smallcms.cms.entity.Chapter;
+import me.huqiao.smallcms.cms.entity.SearchResult;
 import me.huqiao.smallcms.common.dao.IBaseDao;
 import me.huqiao.smallcms.history.entity.HistoryRecord;
 import me.huqiao.smallcms.util.web.Page;
@@ -70,4 +71,6 @@ public interface IChapterDao extends IBaseDao<Chapter> {
 	 * @return List<Chapter>  文章列表
      */
 	List<Chapter> findById(Integer[] ids);
+	
+	public Page<SearchResult> search(String key,Page pageInfo);
 }

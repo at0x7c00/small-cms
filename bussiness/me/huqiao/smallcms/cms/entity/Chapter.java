@@ -24,6 +24,8 @@ import me.huqiao.smallcms.util.StringUtil;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 /**
@@ -83,6 +85,8 @@ private Integer orderNumEnd;
 private UseStatus status;
 
 private Date updateTime;
+
+private String key;
 
 	/**MD5管理ID*/
 	protected String manageKey;
@@ -229,6 +233,14 @@ public void setContent(String content){
 public String getContent(){
 		return this.content;	
 }
+
+@Transient
+public String getContentText(){
+	String c = getContent();
+	Document doc = Jsoup.parse(c);
+	return doc.text();
+}
+
 /**
  * @param page 要设置的所属栏目
  */
@@ -413,6 +425,15 @@ public UseStatus getStatus(){
 			return getCover().getManageKey();
 		}
 		return null;
+	}
+	
+	@Transient
+	public String getKey() {
+		return key;
+	}
+	public void setKey(String key) {
+		this.key = key;
 	} 
+	
 	
 }

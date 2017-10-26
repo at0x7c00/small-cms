@@ -4,12 +4,15 @@ import java.util.List;
 
 import me.huqiao.smallcms.cms.dao.IChapterDao;
 import me.huqiao.smallcms.cms.entity.Chapter;
+import me.huqiao.smallcms.cms.entity.SearchResult;
 import me.huqiao.smallcms.common.dao.impl.BaseDaoImpl;
 import me.huqiao.smallcms.history.entity.HistoryRecord;
 import me.huqiao.smallcms.history.entity.TestRevisionEntity;
+import me.huqiao.smallcms.util.StringUtil;
 import me.huqiao.smallcms.util.web.Page;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
@@ -118,38 +121,44 @@ public class ChapterDaoImpl extends BaseDaoImpl<Chapter> implements IChapterDao 
 				if(chapter.getCreator()!=null && chapter.getCreator().getId() != null ){
 					criteria.add(Restrictions.eq("creator",chapter.getCreator()));
 				}
-       if(chapter.getReadCount()!=null
-){
-		criteria.add(Restrictions.eq("readCount",chapter.getReadCount()));
-}
-if(chapter.getCreateTimeStart()!=null){
-criteria.add(Restrictions.ge("createTime",chapter.getCreateTimeStart()));
-}
-if(chapter.getCreateTimeEnd()!=null){
-criteria.add(Restrictions.le("createTime",chapter.getCreateTimeEnd()));
-}
-       if(chapter.getTitle()!=null
- && ! chapter.getTitle().trim().equals("")){
-		criteria.add(Restrictions.like("title",chapter.getTitle(),MatchMode.ANYWHERE));
-}
-       if(chapter.getContent()!=null
- && ! chapter.getContent().trim().equals("")){
-		criteria.add(Restrictions.like("content",chapter.getContent(),MatchMode.ANYWHERE));
-}
-				if(chapter.getPage()!=null && chapter.getPage().getId() != null ){
-					criteria.add(Restrictions.eq("page",chapter.getPage()));
+				       if(chapter.getReadCount()!=null
+				){
+						criteria.add(Restrictions.eq("readCount",chapter.getReadCount()));
 				}
-				if(chapter.getCover()!=null && chapter.getCover().getId() != null ){
-					criteria.add(Restrictions.eq("cover",chapter.getCover()));
+				if(chapter.getCreateTimeStart()!=null){
+				criteria.add(Restrictions.ge("createTime",chapter.getCreateTimeStart()));
 				}
-       if(chapter.getOrderNum()!=null
-){
-		criteria.add(Restrictions.eq("orderNum",chapter.getOrderNum()));
-}
-       if(chapter.getStatus()!=null
-){
-		criteria.add(Restrictions.eq("status",chapter.getStatus()));
-}
+				if(chapter.getCreateTimeEnd()!=null){
+				criteria.add(Restrictions.le("createTime",chapter.getCreateTimeEnd()));
+				}
+				       if(chapter.getTitle()!=null
+				 && ! chapter.getTitle().trim().equals("")){
+						criteria.add(Restrictions.like("title",chapter.getTitle(),MatchMode.ANYWHERE));
+				}
+				       if(chapter.getContent()!=null
+				 && ! chapter.getContent().trim().equals("")){
+						criteria.add(Restrictions.like("content",chapter.getContent(),MatchMode.ANYWHERE));
+				}
+								if(chapter.getPage()!=null && chapter.getPage().getId() != null ){
+									criteria.add(Restrictions.eq("page",chapter.getPage()));
+								}
+								if(chapter.getCover()!=null && chapter.getCover().getId() != null ){
+									criteria.add(Restrictions.eq("cover",chapter.getCover()));
+								}
+				       if(chapter.getOrderNum()!=null
+				){
+						criteria.add(Restrictions.eq("orderNum",chapter.getOrderNum()));
+				}
+				       if(chapter.getStatus()!=null
+				){
+						criteria.add(Restrictions.eq("status",chapter.getStatus()));
+				}
+				if(StringUtil.isNotEmpty(chapter.getKey())){
+					criteria.add(Restrictions.or(
+							Restrictions.like("title", chapter.getKey(),MatchMode.ANYWHERE),
+							Restrictions.like("name", chapter.getKey(),MatchMode.ANYWHERE)
+							));
+				}
     }
 	@Override
 	public Chapter findByVersion(Integer version) {
@@ -182,4 +191,44 @@ criteria.add(Restrictions.le("createTime",chapter.getCreateTimeEnd()));
 		.add(Restrictions.in("id", ids));
 		return criteria.list();
 	}
+	
+	public Page<SearchResult> search(String key,Page pageInfo){
+		pageInfo.setTotalCount(searchCount(key).intValue());
+		pageInfo.setList(searchList(key,pageInfo));
+		return pageInfo;
+	}
+	
+	private Long searchCount(String key){
+		String hql = "select count(c.id) from Chapter c  where c.title like :key or c.content like :key";
+		
+		System.out.println(key);
+		Query query = getSession().createQuery(hql);
+		query.setParameter("key", "%" + key +"%");
+		
+		long count = (Long)query.uniqueResult();
+		
+		hql = "select count(qa.id) from QualityArchive qa where qa.title like :key or qa.content like :key";
+		query = getSession().createQuery(hql);
+		query.setParameter("key", "%" + key +"%");
+		count += (Long)query.uniqueResult();
+		
+		return count;
+	}
+	
+	private List<SearchResult> searchList(String key,Page pageInfo){
+		
+		String hql = "select new me.huqiao.smallcms.cms.entity.SearchResult('chapter',c.id,c.manageKey,c.title,c.content,c.page,c.cover) from Chapter c  where c.title like :key or c.content like :key";
+		hql += " union all ";
+		hql += "select new me.huqiao.smallcms.cms.entity.SearchResult('qa',qa.id,qa.manageKey,qa.title,qa.content,qa.cover) from QualityArchive qa where qa.title like :key or qa.content like :key";
+		Query query = getSession().createQuery(hql);
+		System.out.println(pageInfo.getStartIndex());
+		System.out.println(pageInfo.getNumPerPage());
+		query.setFirstResult(pageInfo.getStartIndex());
+		query.setMaxResults(pageInfo.getNumPerPage());
+		query.setParameter("key", "%" + key +"%");
+		List<SearchResult>  list = query.list();
+		System.out.println(list.size());
+		return list;
+	}
+	
 }

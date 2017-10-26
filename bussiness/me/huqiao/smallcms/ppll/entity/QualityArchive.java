@@ -28,6 +28,8 @@ import me.huqiao.smallcms.util.StringUtil;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 /**
@@ -96,6 +98,9 @@ private CommonFile code;
 private String productDesc;
 
 private QualityArchiveCategory category;
+
+private String key;
+
 	/**MD5管理ID*/
 	protected String manageKey;
 	/**@return String MD5管理ID */
@@ -134,6 +139,14 @@ public void setContent(String content){
 public String getContent(){
 		return this.content;	
 }
+
+@Transient
+public String getContentText(){
+	String c = getContent();
+	Document doc = Jsoup.parse(c);
+	return doc.text();
+}
+
 /**
  * @param detailCover 要设置的简介视频或图片
  */
@@ -508,6 +521,16 @@ public UseStatus getStatus(){
 		}
 		return getProductDesc().split("\r\n");
 	}
+	
+	@Transient
+	public String getKey() {
+		return key;
+	}
+	public void setKey(String key) {
+		this.key = key;
+	}
+	
+	
 	
 	
 }

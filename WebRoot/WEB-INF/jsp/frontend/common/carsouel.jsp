@@ -25,7 +25,7 @@
 <script>
 $(function(){
 	
-	$('.bxslider').bxSlider({
+	$('.carousel .bxslider').bxSlider({
 		  mode: 'fade',
 		  captions: true,
 		  adaptiveHeight:false,
@@ -34,7 +34,7 @@ $(function(){
 		  pause:3000
 	});
 	
-	 $(".bxslider").show();
+	 $(".carousel .bxslider").show();
 });
 
 var _x = 0;

@@ -11,6 +11,7 @@ import me.huqiao.smallcms.cms.entity.Advertisement;
 import me.huqiao.smallcms.cms.entity.Carousel;
 import me.huqiao.smallcms.cms.entity.Chapter;
 import me.huqiao.smallcms.cms.entity.FriendLink;
+import me.huqiao.smallcms.cms.entity.SearchResult;
 import me.huqiao.smallcms.cms.service.IAdvertisementService;
 import me.huqiao.smallcms.cms.service.ICarouselService;
 import me.huqiao.smallcms.cms.service.IChapterService;
@@ -65,6 +66,11 @@ public class FrontendController {
 	private Integer PAGE_ID_HUIYUANFENGCAI = 3;
 	private Integer PAGE_ID_HANGYEZIXUN = 4;
 	
+	private Integer PAGE_ID_ZHILIANGBAOGUANG = 5;
+	private Integer PAGE_ID_HUODONGHUIGU = 6;
+	
+	private Integer PAGE_ID_SHISHIREDIAN= 7;
+	
 	@Resource
 	private IChapterService chapterService;
 	@Resource
@@ -99,7 +105,9 @@ public class FrontendController {
 		prepareCarousel(request);
 		
 		zhengceTop(request);
+		currentEventsTop(request);
 		zhiliangTop(request);
+		qualityExposureTop(request);
 		
 		
 		huiyuanTop(request);
@@ -118,8 +126,8 @@ public class FrontendController {
 	}
 
 	private void brand(HttpServletRequest request) {
-		List<Brand> qualityArchiveList = brandService.getByProperties(Brand.class, new String[]{"status"}, new Object[]{UseStatus.InUse}, "orderNum", 10000);
-		List<List<Brand[]>> brandList = new ArrayList<List<Brand[]>>();
+		List<Brand> brandList = brandService.getByProperties(Brand.class, new String[]{"status"}, new Object[]{UseStatus.InUse}, "orderNum", 10000);
+		/*List<List<Brand[]>> brandList = new ArrayList<List<Brand[]>>();
 		
 		log.info(qualityArchiveList.size());
 		List<Brand[]> bList = new ArrayList<Brand[]>();
@@ -147,7 +155,7 @@ public class FrontendController {
 		if(bList.size()>0){
 			brandList.add(bList);
 		}
-		log.info(brandList.size());
+		log.info(brandList.size());*/
 		request.setAttribute("brandList", brandList);
 	}
 
@@ -168,26 +176,74 @@ public class FrontendController {
 
 	private void hangyeTop(HttpServletRequest request) {
 		List<Chapter> hangyezixunList = chapterService.getTop(8, PAGE_ID_HANGYEZIXUN);
-		request.setAttribute("hangyezixunList", hangyezixunList);
+		if(hangyezixunList.size()>0){
+			request.setAttribute("hangyezixunTop", hangyezixunList.get(0));
+		}
+		List<Chapter> hangyezixunList1 = new ArrayList<Chapter>();
+		List<Chapter> hangyezixunList2 = new ArrayList<Chapter>();
+		List<Chapter> hangyezixunList3 = new ArrayList<Chapter>();
+		for(int i = 0;i<hangyezixunList.size();i++){
+			if(i<3){
+				hangyezixunList1.add(hangyezixunList.get(i));
+			}else if(i<6){
+				hangyezixunList2.add(hangyezixunList.get(i));
+			}else{
+				hangyezixunList3.add(hangyezixunList.get(i));
+			}
+		}
+		request.setAttribute("hangyezixunList1", hangyezixunList1);
+		request.setAttribute("hangyezixunList2", hangyezixunList2);
+		request.setAttribute("hangyezixunList", hangyezixunList3);
 	}
 
 	private void huiyuanTop(HttpServletRequest request) {
 		List<Chapter> huiyuanfengcaiList = chapterService.getTop(8, PAGE_ID_HUIYUANFENGCAI);
 		request.setAttribute("huiyuanfengcaiList", huiyuanfengcaiList);
+		if(huiyuanfengcaiList.size()>0){
+			request.setAttribute("qiyefengcaiTop", huiyuanfengcaiList.get(0));
+		}
+		
+		List<Chapter> huiyuanfengcaiList1 = new ArrayList<Chapter>();
+		List<Chapter> huiyuanfengcaiList2 = new ArrayList<Chapter>();
+		for(int i = 1;i<huiyuanfengcaiList.size();i++){
+			if(i<3){
+				huiyuanfengcaiList1.add(huiyuanfengcaiList.get(i));
+			}else if(i<5){
+				huiyuanfengcaiList2.add(huiyuanfengcaiList.get(i));
+			}
+		}
+		request.setAttribute("huiyuanfengcaiList1", huiyuanfengcaiList1);
+		request.setAttribute("huiyuanfengcaiList2", huiyuanfengcaiList2);
 	}
 
 	private void zhiliangTop(HttpServletRequest request) {
 		List<Chapter> zhiliangredianList = chapterService.getTop(8, PAGE_ID_ZHILIANGREDIAN);
 		request.setAttribute("zhiliangredianList", zhiliangredianList);
 	}
+	private void qualityExposureTop(HttpServletRequest request) {
+		List<Chapter> list = chapterService.getTop(8, PAGE_ID_ZHILIANGBAOGUANG);
+		request.setAttribute("qualityExposureList", list);
+	}
 
 	private void zhengceTop(HttpServletRequest request) {
-		List<Chapter> zhengcedongtaiList = chapterService.getTop(8, PAGE_ID_ZHENGCE);
+		List<Chapter> zhengcedongtaiList = chapterService.getTop(5, PAGE_ID_ZHENGCE);
 		request.setAttribute("zhengcedongtaiList", zhengcedongtaiList);
+	}
+	private void currentEventsTop(HttpServletRequest request) {
+		List<Chapter> list = chapterService.getTop(8, PAGE_ID_SHISHIREDIAN);
+		request.setAttribute("shishiredianList", list);
 	}
 	
 	private void zhengcePage(HttpServletRequest request,Page<Chapter> pageInfo) {
 		Page<Chapter> page = chapterService.getAll(PAGE_ID_ZHENGCE,pageInfo);
+		request.setAttribute("page", page);
+	}
+	private void zhiliangbaoguangPage(HttpServletRequest request,Page<Chapter> pageInfo) {
+		Page<Chapter> page = chapterService.getAll(PAGE_ID_ZHILIANGBAOGUANG,pageInfo);
+		request.setAttribute("page", page);
+	}
+	private void huodonghuiguPage(HttpServletRequest request,Page<Chapter> pageInfo) {
+		Page<Chapter> page = chapterService.getAll(PAGE_ID_HUODONGHUIGU,pageInfo);
 		request.setAttribute("page", page);
 	}
 	private void zhiliangPage(HttpServletRequest request,Page<Chapter> pageInfo) {
@@ -231,6 +287,22 @@ public class FrontendController {
 		hangyeTop(request);
 		pageInfo.setNumPerPage(15);
 		zhengcePage(request, pageInfo);
+	}
+	@RequestMapping("zhiliangbaoguang")
+	public void zhiliangbaoguang(HttpServletRequest request,Page<Chapter> pageInfo){
+		prepareCarousel(request);
+		zhiliangTop(request);
+		hangyeTop(request);
+		pageInfo.setNumPerPage(15);
+		zhiliangbaoguangPage(request, pageInfo);
+	}
+	@RequestMapping("huodonghuigu")
+	public void huodonghuigu(HttpServletRequest request,Page<Chapter> pageInfo){
+		prepareCarousel(request);
+		zhiliangTop(request);
+		hangyeTop(request);
+		pageInfo.setNumPerPage(15);
+		huodonghuiguPage(request, pageInfo);
 	}
 	
 	@RequestMapping("zhiliangredian")
@@ -285,6 +357,17 @@ public class FrontendController {
 		prepareCarousel(request);
 	}
 	
+	@RequestMapping("search")
+	public void search(HttpServletRequest request,@RequestParam(value = "key")String key,Page<Chapter> pageInfo){
+		if(StringUtil.isEmpty(key)){
+			return;
+		}
+		request.setAttribute("key", key);
+		Page<SearchResult> searchResultPage = chapterService.search(key, pageInfo);
+		request.setAttribute("page", searchResultPage);
+	}
+	
+
 	@RequestMapping("chapterDetail")
 	public void chapterDetail(HttpServletRequest request,@RequestParam(value = "manageKey",required = false)String key){
 		if(StringUtil.isEmpty(key)){

@@ -1,2 +1,9 @@
+/application.properties
+/applicationContext.xml
+/jdbc.properties
+/log4j.properties
 /me
+/messages_en.properties
 /org
+/schedule-task.properties
+/spring-servlet.xml

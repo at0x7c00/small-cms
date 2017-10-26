@@ -8,15 +8,15 @@
   	</head>
   
   <body>
+			<%@include file="/WEB-INF/jsp/frontend/common/header.jsp" %>
   		<div class="container">
   			
-			<%@include file="/WEB-INF/jsp/frontend/common/header.jsp" %>
 	  		
 	  		<div class="main-content">
 	  			<div class="module-group">
-		  			<div class="module full-page">
+		  			<div class="module left lg" style="min-height:420px;width:750px;">
 		  				<div class="module-title">
-		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/hangye.png">
+		  				行业资讯
 		  					<a name="content"></a>
 		  				</div>
 		  				<div class="module-header">
@@ -27,11 +27,8 @@
 							</c:if>
 							<c:forEach items="${page.list}" var="chapter" varStatus="s">
 								<li>
-								<font class="title-prefix blue">◆</font>
 								<a href="${basePath}chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}"><n:shorthand length="30" content="${chapter.title}"></n:shorthand> </a>
-								<span class="publish-date" style="float:right;"><fmt:formatDate value="${chapter.createTime}" pattern="yyyy/MM/dd"/></span>
 								</li>
-								<li class="devider dashed"></li>
 							</c:forEach>
 		  				</ul>
 		  				
@@ -39,17 +36,21 @@
 		  				 	<jsp:param value="${page}" name="page"/>
 		  				 	<jsp:param value="hangyezixun.do" name="url"/>
 		  				 </jsp:include>
-		  				 
-		  				 
+		  			</div>
+		  			
+		  			
+		  			
+		  			<div class="module right blue" style="width:450px;">
+		  				<%@include file="/WEB-INF/jsp/frontend/common/calendar.jsp"%>
 		  			</div>
 		  			
 	  			</div>
 		  		
-		  		<%@include file="/WEB-INF/jsp/frontend/common/footer.jsp" %>
 		  		
 	  		</div>
 	  		
   		</div>
+		  		<%@include file="/WEB-INF/jsp/frontend/common/footer.jsp" %>
  		<%@include file="/WEB-INF/jsp/frontend/common/js.jsp" %>
   </body>
 </html>

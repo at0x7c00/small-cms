@@ -3,20 +3,20 @@
 <!DOCTYPE html>
 <html lang="en-us">
 	<head>
-		<title>质量热点 - ${systemTitle}</title>
+		<title>质量新闻 - ${systemTitle}</title>
 		<%@include file="/WEB-INF/jsp/frontend/common/resource.jsp" %>
   	</head>
   
   <body>
+			<%@include file="/WEB-INF/jsp/frontend/common/header.jsp" %>
   		<div class="container">
   			
-			<%@include file="/WEB-INF/jsp/frontend/common/header.jsp" %>
 	  		
 	  		<div class="main-content">
 	  			<div class="module-group">
-		  			<div class="module left lg" style="min-height:420px;">
+		  			<div class="module left lg" style="min-height:420px;width:750px;">
 		  				<div class="module-title">
-		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/zhiliangredian.png">
+		  					质量新闻
 		  				</div>
 		  				<div class="module-header">
 		  				</div>
@@ -31,50 +31,17 @@
 		  				
 		  			</div>
 		  			
-		  			<div class="module right blue">
-		  				<div class="module-title">
-		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/zhengce-left.png">
-		  				</div>
-		  				<div class="module-header">
-		  					<a class="more" href="${basePath}zhengcedongtai.do"></a>
-		  				</div>
-		  				<ul class="module-content">
-	  						<c:forEach items="${hangyezixunList}" var="chapter"> 
-	  							<%@include file="/WEB-INF/jsp/frontend/common/left-panel-list.jsp" %>
-		  					</c:forEach>
-		  				</ul>
+		  			<div class="module right blue" style="width:450px;">
+		  				<%@include file="/WEB-INF/jsp/frontend/common/calendar.jsp"%>
 		  			</div>
 		  			
 		  			
-		  			<div class="module right blue" style="margin-top:25px;">
-		  				<div class="module-title">
-		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/hangye-left.png">
-		  				</div>
-		  				<div class="module-header">
-		  					<a class="more" href="${basePath}hangyezixun.do"></a>
-		  				</div>
-		  				<ul class="module-content">
-		  					<c:forEach items="${hangyezixunList}" var="chapter"> 
-		  						<%@include file="/WEB-INF/jsp/frontend/common/left-panel-list.jsp" %>
-		  					</c:forEach>
-		  				</ul>
-		  			</div>
 	  			</div>
 	  			
-	  			
-		  		
-		  		
-		  		
-		  		
-		  		
-		  		
-		  		
-		  		
-		  		<%@include file="/WEB-INF/jsp/frontend/common/footer.jsp" %>
-		  		
 	  		</div>
 	  		
   		</div>
+		  		<%@include file="/WEB-INF/jsp/frontend/common/footer.jsp" %>
  		<%@include file="/WEB-INF/jsp/frontend/common/js.jsp" %>
   </body>
 </html>

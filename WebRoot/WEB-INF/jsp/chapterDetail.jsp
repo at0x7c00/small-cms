@@ -5,13 +5,16 @@
 	<head>
 		<title>${p.title}- ${systemTitle}</title>
 		<%@include file="/WEB-INF/jsp/frontend/common/resource.jsp" %>
+		<style type="text/css">
+		body{
+			background: none;
+		}
+		</style>
   	</head>
   
   <body>
-  		<div class="container">
-  			
-			<%@include file="/WEB-INF/jsp/frontend/common/logo-and-menu.jsp" %> 
-	  		
+		<%@include file="/WEB-INF/jsp/frontend/common/logo-and-menu.jsp" %> 
+  		<div class="container" style="margin-top:150px;">
 	  		<div class="main-content">
 	  			<div class="module-group">
 		  			<div class="module left lg" style="background: #fff;">
@@ -42,9 +45,12 @@
 		  				
 		  			</div>
 		  			
-		  			<div class="module right blue" style="background: #fff;">
+		  			<div class="module right blue" style="background: #fff;margin-top:60px;">
 		  				<div class="module-title">
+		  				<%--
 		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/zhiliangredian-left.png">
+		  				 --%>
+		  					质量热点
 		  				</div>
 		  				<div class="module-header">
 		  					<a class="more" href="${basePath}zhiliangredian.do"></a>
@@ -59,7 +65,10 @@
 		  			
 		  			<div class="module right blue white" style="margin-top:25px;">
 		  				<div class="module-title">
+		  				<%--
 		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/rewen.png">
+		  				 --%>
+		  					热文排行
 		  				</div>
 		  				<div class="module-header">
 		  					<a class="more top10" href="${basePath}hangyezixun.do"></a>
@@ -74,11 +83,11 @@
 		  			</div>
 	  			</div>
 		  		
-		  		<%@include file="/WEB-INF/jsp/frontend/common/footer.jsp" %>
 		  		
 	  		</div>
 	  		
   		</div>
+  		<%@include file="/WEB-INF/jsp/frontend/common/footer.jsp" %>
  		<%@include file="/WEB-INF/jsp/frontend/common/js.jsp" %>
   </body>
 </html>

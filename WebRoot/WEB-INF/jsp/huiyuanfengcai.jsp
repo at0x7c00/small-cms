@@ -3,20 +3,20 @@
 <!DOCTYPE html>
 <html lang="en-us">
 	<head>
-		<title>会员风采 - ${systemTitle}</title>
+		<title>企业风采 - ${systemTitle}</title>
 		<%@include file="/WEB-INF/jsp/frontend/common/resource.jsp" %>
   	</head>
   
   <body>
+		<%@include file="/WEB-INF/jsp/frontend/common/header.jsp" %>
   		<div class="container">
   			
-			<%@include file="/WEB-INF/jsp/frontend/common/header.jsp" %>
 	  		
 	  		<div class="main-content">
 	  			<div class="module-group">
 		  			<div class="module full-page">
 		  				<div class="module-title">
-		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/huiyuan.png">
+		  				企业风采
 		  					<a name="content"></a>
 		  				</div>
 		  				<div class="module-header">
@@ -32,7 +32,7 @@
 									<div class="img-div">
 										<c:if test="${not empty chapter.cover}">
 											<a href="${basePath}chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}">
-												<img alt="" src="${basePath}filee/viewPic.do?manageKey=${chapter.cover.manageKey}" style="width:240px;height:140px"/>
+												<img alt="" src="${basePath}filee/viewPic.do?manageKey=${chapter.cover.manageKey}" style="width:285px;height:170px"/>
 											</a>
 										</c:if>
 									</div>
@@ -50,7 +50,6 @@
 								
 									
 								</div>
-								
 								<div class="huiyuan-devider"></div>
 							</c:forEach>
 		  				</div>
@@ -63,11 +62,11 @@
 		  			
 	  			</div>
 		  		
-		  		<%@include file="/WEB-INF/jsp/frontend/common/footer.jsp" %>
 		  		
 	  		</div>
 	  		
   		</div>
+ 		<%@include file="/WEB-INF/jsp/frontend/common/footer.jsp" %>
  		<%@include file="/WEB-INF/jsp/frontend/common/js.jsp" %>
   </body>
 </html>

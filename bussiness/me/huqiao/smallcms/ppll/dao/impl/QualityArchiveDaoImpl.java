@@ -7,6 +7,7 @@ import me.huqiao.smallcms.history.entity.HistoryRecord;
 import me.huqiao.smallcms.history.entity.TestRevisionEntity;
 import me.huqiao.smallcms.ppll.dao.IQualityArchiveDao;
 import me.huqiao.smallcms.ppll.entity.QualityArchive;
+import me.huqiao.smallcms.util.StringUtil;
 import me.huqiao.smallcms.util.web.Page;
 
 import org.hibernate.Criteria;
@@ -153,6 +154,13 @@ criteria.add(Restrictions.le("readCount",qualityArchive.getReadCountEnd()));
        if(qualityArchive.getCategory()!=null ){
     		   		criteria.add(Restrictions.eq("category",qualityArchive.getCategory()));
        }
+       
+       if(StringUtil.isNotEmpty(qualityArchive.getKey())){
+			criteria.add(Restrictions.or(
+					Restrictions.like("title", qualityArchive.getKey(),MatchMode.ANYWHERE),
+					Restrictions.like("name", qualityArchive.getKey(),MatchMode.ANYWHERE)
+					));
+		}
     }
 	@Override
 	public QualityArchive findByVersion(Integer version) {

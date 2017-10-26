@@ -1,0 +1,10 @@
+.dangan-detail-banner{
+	background: url(./img/dangan-detail-banner.png)no-repeat;
+	background-position: center;
+	height:800px;
+}
+
+.dangan-devider{
+	background: #3f3f3f;
+	height:2px;
+}

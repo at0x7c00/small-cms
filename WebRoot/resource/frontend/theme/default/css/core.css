@@ -556,19 +556,11 @@ span.query-title{
 	cursor:pointer;
 }
 .brand-table img.img1{
-    animation: dong 10s infinite;
-    -ms-animation: dong 10s infinite;
-    -webkit-animation: dong 10s infinite;
-    -moz-animation: dong 10s infinite;
 }
 
 .brand-table img.img2 {
-    animation: dong1 10s infinite;
-    -ms-animation: dong1 10s infinite;
-    -webkit-animation: dong1 10s infinite;
-    -moz-animation: dong1 10s infinite;
 }
-.brand-table>div{
+.brand-table div.img-wrap{
 	float:left;
 	display:block;
 	position: relative;
@@ -576,7 +568,7 @@ span.query-title{
 	height:60px;
 	margin:10px 8px;
 }
-.brand-table>div img{
+.brand-table div.img-wrap img{
 	display:block;
 	width:135px;
 	height:60px;
@@ -584,7 +576,7 @@ span.query-title{
 	left:0px;
 	top:0px;
 }
-.brand-table div img{
+.brand-table div.img-wrap img{
 	width:135px;
 	height:60px;
 }

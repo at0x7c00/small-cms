@@ -7,86 +7,86 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title> ${systemTitle}-首页 </title>
 		<%@include file="/WEB-INF/jsp/frontend/common/resource.jsp" %>
-		
-		<link rel="stylesheet" type="text/css" media="screen" href="${basePath}js/image-flow/style.css">
-		<script src="${basePath}js/image-flow/image-flow.js"></script>
   	</head>
-   
+   <style type="text/css">
+	ul.module-content>li{
+		padding-bottom: 0px;
+		border-bottom:0px;
+	}
+	</style>
   <body>
+			<%@include file="/WEB-INF/jsp/frontend/common/header.jsp" %>
   		<div class="container">
   			
-			<%@include file="/WEB-INF/jsp/frontend/common/header.jsp" %>
 	  		
 	  		<div class="main-content">
-	  			<div class="module-group"  style="min-height:370px;">
-		  			<div class="module left">
+	  			<div class="module-group"  style="min-height:430px;">
+		  			<div class="module left" style="width:485px;">
 		  				<div class="module-title">
 		  					新闻动态
 		  				</div>
 		  				<div class="module-header">
 		  					<a class="more" href="${basePath}zhengcedongtai.do"></a>
 		  				</div>
-		  				<ul class="module-content">
-		  					<c:forEach items="${zhengcedongtaiList}" var="chapter">
-			  					<li>
-			  					<font class="title-prefix">■</font>
-			  					<a href="${basePath}chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}"><n:shorthand length="30" content="${chapter.title}"></n:shorthand> </a></li>
-		  					</c:forEach>
-		  				</ul>
+		  				<div class="module-content">
+		  					<div class="lunbo" style="width:455px;height:360px;" id="lunbo1">
+								<ul class="lb-imgs">
+									<c:forEach items="${zhengcedongtaiList}" var="chapter">
+							        <li>
+							        <a href="${basePath}chapterDetail.do?k=${chapter.manageKey}" target="_blank">
+							        	<img data-u="image" src="${basePath}filee/viewPic.do?manageKey=${chapter.cover.manageKey}" title="${chapter.title}" data-url="${basePath}chapterDetail.do?k=${chapter.manageKey}"/>
+							        </a>
+							        </li>
+							        </c:forEach>
+								</ul>
+								<ul class="lb-remarks">
+										<c:forEach items="${zhengcedongtaiList}" var="chapter">
+											<li data-url="${basePath}chapterDetail.do?k=${chapter.manageKey}">
+												<a href="${basePath}chapterDetail.do?k=${chapter.manageKey}" target="_blank">
+													${chapter.title}
+												</a>
+											</li>
+										</c:forEach>
+								</ul>
+								<div class="controller prev"><i class="fa fa-angle-left"></i></div>
+								<div class="controller next"><i class="fa fa-angle-right"></i></div>
+								
+								<div class="pointer">
+								<c:forEach items="${zhengcedongtaiList}" var="chapter">
+								<div ><i class="fa fa-circle"></i></div>
+								</c:forEach>
+								</div>
+								
+							</div>
+		  				</div>
 		  			</div>
 		  			
-		  			<div class="module right">
+		  			<div class="module right" style="width:735px;min-height:430px;">
 		  				<div class="module-title">
-		  					质量热点
+		  					时事热点
 		  				</div>
 		  				<div class="module-header">
 		  					<a class="more" href="${basePath}zhiliangredian.do"></a>
 		  				</div>
 		  				<ul class="module-content">
-		  					<c:forEach items="${zhiliangredianList}" var="chapter">
+		  					<c:forEach items="${shishiredianList}" var="chapter">
 			  					<li>
 			  					<font class="title-prefix">■</font>
-			  					<a href="${basePath}chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}"><n:shorthand length="30" content="${chapter.title}"></n:shorthand> </a></li>
+			  					<a href="${basePath}chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}"><n:shorthand length="25" content="${chapter.title}"></n:shorthand> </a>
+			  					<span style="float:right;">
+			  						<fmt:formatDate value="${chapter.createTime}" pattern="yyyy年MM月dd"/>
+			  					</span>
+			  					</li>
 		  					</c:forEach>
 		  				</ul>
 		  			</div>
 	  			</div>
 	  			
-	  			<div class="module-group">
+	  			
+	  			<div class="module-group" style="min-height:243px;margin-top:25px;">
 		  			<div class="module full-page">
 		  				<div class="module-title">
-		  					会员风采
-		  				</div>
-		  				<div class="module-header">
-		  					<a class="more" href="${basePath}huiyuanfengcai.do"></a>
-		  				</div>
-		  				<div>	
-		  					<table width="100%" border="0">
-		  						<tr>
-		  							<td width="590px" style="text-align:center;">
-		  								<a href="${basePath}chapterDetail.do?k=${huiyuanfengcaiList[0].manageKey}" target="_blank">
-				  								<img alt="" style="width:550px;height:270px;" src="${basePath}filee/viewPic.do?manageKey=${huiyuanfengcaiList[0].cover.manageKey}">
-		  								</a>
-		  							</td>
-		  							<td>
-		  								<ul class="module-content" style="padding-left:5px;">
-						  					<c:forEach items="${huiyuanfengcaiList}" var="chapter">
-							  					<li>
-							  					<font class="title-prefix">■</font>
-							  					<a href="${basePath}chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}"><n:shorthand length="30" content="${chapter.title}"></n:shorthand> </a></li>
-						  					</c:forEach>
-						  				</ul>
-		  							</td>
-		  						</tr>
-		  					</table>
-		  				</div>
-		  			</div>
-		  		</div>
-		  		
-		  		<div class="module-group" style="min-height:243px;">
-		  			<div class="module full-page">
-		  				<div class="module-title">
-		  					质量热点
+		  					质量档案
 		  				</div>
 		  				<div class="module-header">
 		  					<a class="more" href="${basePath}zhiliangdangan.do"></a>
@@ -97,49 +97,206 @@
 		  				
 		  				<span id="btn-left" class="btn btn-left"></span>
 		  				<span id="btn-right" class="btn btn-right"></span>
-					  <div id="image-flow">
-					    <ul id="image-flow-ul">
-					      <c:forEach items="${qualityArchiveList }" var="qa">
-					      	<li>
-					      	<a href="${basePath}dangan.do?id=${qa.id}" target="_blank" title="${qa.title}">
-					      	<img src="${basePath}filee/viewPic.do?manageKey=${qa.cover.manageKey}">
-					      	</a>
-					      	<a href="${basePath}dangan.do?id=${qa.id}" target="_blank" title="${qa.title}">
-							<span>
-							<n:shorthand length="14" content="${qa.title}"></n:shorthand>
-							</span>					
-							</a>
-					      	</li>
-					      </c:forEach>
-					    </ul>
-					  </div>
-		  				
-		  				
+		  					<div class="index-dangan-banner">
+		  						<a href="${basePath}zhiliangdangan.do" target="_blank" title="质量档案入口">
+			  						<div class="dangan-banner-mask">
+			  						</div>
+		  						</a>
+		  					</div>
+						  <div id="image-flow">
+						    <ul id="image-flow-ul">
+						      <c:forEach items="${qualityArchiveList }" var="qa">
+						      	<li>
+						      	<a href="${basePath}dangan.do?id=${qa.id}" target="_blank" title="${qa.title}">
+						      	<img src="${basePath}filee/viewPic.do?manageKey=${qa.cover.manageKey}">
+						      	</a>
+						      	<a href="${basePath}dangan.do?id=${qa.id}" target="_blank" title="${qa.title}" class="remark">
+								<span>
+								<n:shorthand length="6" content="${qa.title}"></n:shorthand>
+								</span>					
+								<p>
+								<n:html value="${qa.contentText}" length="23"/> 
+								</p>
+								</a>
+						      	</li>
+						      </c:forEach>
+						    </ul>
+						  </div>
 		  				</div>
 		  				
 		  			</div>
 		  		</div>
-		  		
-		  		<div class="module-group">
+	  			
+	  			
+	  			<div class="module-group"  style="min-height:430px;">
+	  			
+		  			<div class="module left" style="min-height:430px;">
+			  				<div class="module-title">
+			  					质量新闻
+			  				</div>
+			  				<div class="module-header">
+			  					<a class="more" href="${basePath}zhiliangredian.do"></a>
+			  				</div>
+			  				<ul class="module-content">
+			  					<c:forEach items="${zhiliangredianList}" var="chapter">
+				  					<li>
+				  					<font class="title-prefix">■</font>
+				  					<a href="${basePath}chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}"><n:shorthand length="20" content="${chapter.title}"></n:shorthand> </a>
+				  					<span style="float:right;">
+				  						<fmt:formatDate value="${chapter.createTime}" pattern="yyyy年MM月dd"/>
+				  					</span>
+				  					</li>
+			  					</c:forEach>
+			  				</ul>
+			  			</div>
+		  			
+		  			<div class="module right" style="min-height:430px;">
+		  				<div class="module-title">
+		  					质量曝光
+		  				</div>
+		  				<div class="module-header">
+		  					<a class="more" href="${basePath}zhiliangredian.do"></a>
+		  				</div>
+		  				<ul class="module-content">
+		  					<c:forEach items="${qualityExposureList}" var="chapter">
+			  					<li>
+			  					<font class="title-prefix">■</font>
+			  					<a href="${basePath}chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}"><n:shorthand length="20" content="${chapter.title}"></n:shorthand> </a>
+			  					<span style="float:right;">
+			  						<fmt:formatDate value="${chapter.createTime}" pattern="yyyy年MM月dd"/>
+			  					</span>
+			  					</li>
+		  					</c:forEach>
+		  				</ul>
+		  			</div>
+	  			</div>
+	  			
+	  			
+	  			<div style="clear:both;"></div>
+	  			
+	  			<div class="module-group">
 		  			<div class="module full-page">
 		  				<div class="module-title">
 		  					行业资讯
 		  				</div>
 		  				<div class="module-header">
-		  					<a class="more" href="${basePath}hangyezixun.do"></a>
+		  					<a class="more" href="${basePath}huiyuanfengcai.do"></a>
 		  				</div>
-		  				<ul class="module-content bordered">
-		  					<c:forEach items="${hangyezixunList}" var="chapter"> 
-			  					<li>
-			  					<font class="title-prefix">■</font>
-			  					<a href="${basePath}chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}"><n:shorthand length="50" content="${chapter.title}"></n:shorthand> </a>
-			  					<span class="publish-date"><fmt:formatDate value="${chapter.createTime}" pattern="yyyy/MM/dd"/></span>
-			  					</li>
-		  					</c:forEach>
-		  				</ul>
+		  				<div style="margin-top:25px;">	
+		  					<table width="100%" border="0" class="x-table" cellspacing="0"  cellpadding="0">
+		  						<tr>
+		  							<td width="415px" style="text-align:center;">
+		  								<div class="table-column">
+			  								<a href="${basePath}chapterDetail.do?k=${hangyezixunTop.manageKey}" target="_blank">
+					  								<img alt="" style="width:415px;height:325px;" src="${basePath}filee/viewPic.do?manageKey=${hangyezixunTop.cover.manageKey}">
+			  								</a>
+		  								</div>
+		  							</td>
+		  							<td width="175px">
+		  								<div class="table-column" style="width:175px;background:#b8b8b8;">
+		  									<h1><n:shorthand length="8" content=" ${hangyezixunTop.title}"></n:shorthand></h1>
+			  								<p>
+			  									<n:html value="${hangyezixunTop.contentText }" length="120"/>
+			  								</p>
+		  								</div>
+		  							</td>
+		  							<td width="175px" style="text-align:center;">
+		  								<div class="table-column pics" style="padding-left:10px;">
+		  								<c:forEach items="${hangyezixunList1 }" var="c" varStatus="s">
+		  									<img alt="" style="width:145px;height:100px;" src="${basePath}filee/viewPic.do?manageKey=${c.cover.manageKey}">
+		  								</c:forEach>
+		  								</div>
+		  							</td>
+		  							<td width="165px" style="text-align:center;">
+		  								<div class="table-column pics">
+		  								<c:forEach items="${hangyezixunList2 }" var="c" varStatus="s">
+		  									<img alt="" style="width:145px;height:100px;" src="${basePath}filee/viewPic.do?manageKey=${c.cover.manageKey}">
+		  								</c:forEach>
+		  								</div>
+		  							</td>
+		  							<td>
+		  								<div class="table-column">
+		  								<ul class="module-content" style="padding-left:5px;">
+						  					<c:forEach items="${hangyezixunList}" var="chapter">
+							  					<li>
+							  					<!-- <font class="title-prefix">■</font> -->
+							  					<a href="${basePath}chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}"><n:shorthand length="13" content="${chapter.title}"></n:shorthand> </a></li>
+						  					</c:forEach>
+						  				</ul>
+						  				</div>
+		  							</td>
+		  						</tr>
+		  					</table>
+		  				</div>
 		  			</div>
 		  		</div>
-		  		
+	  			
+	  			
+	  			<div class="module-group">
+		  			<div class="module full-page">
+		  				<div class="module-title">
+		  					企业风采
+		  				</div>
+		  				<div class="module-header">
+		  					<a class="more" href="${basePath}huiyuanfengcai.do"></a>
+		  				</div>
+		  				<div style="margin-top:25px;">	
+		  					<table width="100%" border="0" class="x-table" cellspacing="0"  cellpadding="0">
+		  						<tr>
+		  							<td width="415px" style="text-align:center;">
+		  								<div class="table-column">
+			  								<a href="${basePath}chapterDetail.do?k=${qiyefengcaiTop.manageKey}" target="_blank">
+					  								<img alt="" style="width:415px;height:325px;" src="${basePath}filee/viewPic.do?manageKey=${qiyefengcaiTop.cover.manageKey}">
+			  								</a>
+		  								</div>
+		  							</td>
+		  							<td width="175px">
+		  								<div class="table-column" style="width:175px;background:#b8b8b8;">
+		  									<h1>${qiyefengcaiTop.title}</h1>
+			  								<p>
+			  									<n:html value="${qiyefengcaiTop.contentText }" length="120"/>
+			  								</p>
+		  								</div>
+		  							</td>
+		  							<td width="300px" style="text-align:center;padding-left:25px;">
+		  								<div class="table-column">
+		  									<c:forEach items="${huiyuanfengcaiList1}" var="chapter">
+				  								<div class="table-module">
+				  									<h2>${chapter.title}</h2>
+				  									<div class="table-module-content">
+				  										<div>
+				  										<img alt="" style="width:145px;height:100px;" src="${basePath}filee/viewPic.do?manageKey=${chapter.cover.manageKey}">
+				  										</div>
+				  										<div>
+				  										<n:html value="${chapter.contentText }" length="45"/>
+				  										</div>
+				  									</div>
+				  								</div>
+		  									</c:forEach>
+		  								</div>
+		  							</td>
+		  							<td width="" style="text-align:center;padding-left:25px;">
+		  								<div class="table-column">
+			  								<c:forEach items="${huiyuanfengcaiList2}" var="chapter">
+				  								<div class="table-module">
+				  									<h2>${chapter.title}</h2>
+				  									<div class="table-module-content">
+				  										<div>
+				  										<img alt="" style="width:145px;height:100px;" src="${basePath}filee/viewPic.do?manageKey=${chapter.cover.manageKey}">
+				  										</div>
+				  										<div>
+				  										<n:html value="${chapter.contentText }" length="45"/>
+				  										</div>
+				  									</div>
+				  								</div>
+		  									</c:forEach>
+		  								</div>
+		  							</td>
+		  						</tr>
+		  					</table>
+		  				</div>
+		  			</div>
+		  		</div>
 		  		
 		  		<div class="module-group"  style="min-height:73px;">
 		  			<div class="module full-page">
@@ -148,22 +305,22 @@
 		  				</div>
 		  				<div class="module-header">
 		  				</div>
-		  				<div class="module-content" style="height:280px;width:1240px;overflow: hidden;">
-		  					<c:forEach items="${brandList}" var="bList" varStatus="bs">
+		  				<div class="module-content" style="height:200px;width:1240px;overflow: hidden;">
+		  					<div class="brand-table-wrap" style="position: relative;">
 		  						<div class="brand-table">
-			  						<c:forEach items="${bList}" var="bPair">
-			  							<div>
-					  						<c:forEach items="${bPair}" var="b" varStatus="s">
-					  						<c:if test="${not empty b }">
-						  						<img src="${basePath}filee/viewPic.do?manageKey=${b.logo.manageKey}" 
-						  						title="${b.name }" data-href="${b.url}"
-						  						class="img${s.count}"/>
-						  					</c:if>
-						  					</c:forEach>
-					  					</div>
+		  							<div class="img-container" style="width:${bWidth}px">
+				  					<c:forEach items="${brandList}" var="b" varStatus="s">
+				  						<div class="img-wrap">
+				  						<img src="${basePath}filee/viewPic.do?manageKey=${b.logo.manageKey}" 
+				  						title="${b.name }" data-href="${b.url}" />
+				  						</div>
 				  					</c:forEach>
+		  							</div>
+		  							
 		  						</div>
-		  					</c:forEach>
+	  							<div class="ctr prev"></div>
+	  							<div class="ctr next"></div>
+		  					</div>
 		  				</div>
 		  			</div>
 		  		</div>
@@ -183,58 +340,84 @@
 		  			</div>
 		  		</div>
 		  		
-		  		<%@include file="/WEB-INF/jsp/frontend/common/footer.jsp" %>
 		  		
 	  		</div>
 	  		
   		</div>
+		  		<%@include file="/WEB-INF/jsp/frontend/common/footer.jsp" %>
  		<%@include file="/WEB-INF/jsp/frontend/common/js.jsp" %>
  		<script type="text/javascript">
- 		var bindex = 0;
+ 		var imgContainerWidth = 0;
+ 		var brandInter = null;
+ 		var brandDirection = "left";
  		$(function(){
- 			displayBrand();
- 			window.setInterval(function(){
- 				displayBrand();
- 			},15000);
+ 			var imgSize = $(".img-container img").size();
+ 			var imgTotalWidth = (imgSize/3) * 170;
+ 			imgContainerWidth = $(".brand-table").width();
+ 			while(imgContainerWidth<imgTotalWidth){
+ 				imgContainerWidth += imgContainerWidth;
+ 			}
+ 			$(".img-container").css("width",imgContainerWidth+"px");
  			
- 			$(".img1,.img2").click(function(){
- 				if($(this).data("href")){
-	 				window.open($(this).data("href"));
- 				}
+ 			
+ 			$(".brand-table-wrap .ctr.prev").click(function(){
+ 				brandDirection = "left";
+ 				stopBrandInter();
+ 				doBrandSwitch();
+ 				startBrandInter();
  			});
- 		});
- 		function displayBrand(){
- 				var divs = $(".brand-table");
- 				if(divs.length<=1){
- 					return;
- 				}
- 				divs.removeClass("current_mark");
- 				divs.find("img").removeClass("img1").removeClass("img2");
- 				divs.animate({marginLeft:"-1500px"},500);
- 				
- 				window.setTimeout(function(){
- 					divs.fadeOut(100);
- 	 				divs.animate({marginLeft:"2000px"},0);
- 					var count = 0;
- 					while(bindex<divs.length){
- 						count++;
- 						$(divs.eq(bindex)).addClass("current_mark");
- 						bindex++; 
- 						if(count>2){
- 							break;
- 						}
+ 			
+ 			$(".brand-table-wrap .ctr.next").click(function(){
+ 				brandDirection = "right";
+ 				stopBrandInter();
+ 				doBrandSwitch();
+ 				startBrandInter();
+ 			});
+ 			
+ 			startBrandInter();
+ 			
+ 			$(".img-container img").each(function(){
+ 				$(this).click(function(){
+ 					var url = $(this).data("href");
+ 					if(url){
+	 					window.open(url);
  					}
- 					window.setTimeout(function(){
-	 					$("div.current_mark").fadeIn(200).animate({marginLeft:"0px"},500);
-	 					if(bindex>=divs.length){
-	 						bindex = 0;
-	 					}
-	 					window.setTimeout(function(){
-		 					divs.find("div>img:first-child").addClass("img1");
-		 					divs.find("div>img:last-child").addClass("img2");
-	 					},500);
- 					},100);
- 				},200);
+ 				});
+ 			});
+ 			
+ 		});
+ 		
+ 		function stopBrandInter(){
+ 			if(brandInter){
+				window.clearInterval(brandInter);
+			}
+ 		}
+ 		
+ 		function startBrandInter(){
+ 			brandInter = window.setInterval(function(){
+ 				doBrandSwitch();
+ 			}, 4000);
+ 		}
+ 		
+ 		function doBrandSwitch(){
+ 			var left = $(".img-container").css("left");
+			var step = $(".brand-table").width();
+			if(left.indexOf("px")>0){
+				left = parseInt(left.substring(0,left.length - 2));
+			}
+			if(brandDirection == 'left'){
+				left -= step;
+				if(left + imgContainerWidth<=0){//已经到最右边了
+					left = 0;
+				}
+			}else{
+				left += step;
+				if(left > 0){//已经到最左边了
+					left = $(".brand-table").width()-imgContainerWidth;
+				}
+			}
+			
+			$(".img-container").animate({left:left + "px"});
  		}
  		</script>
   </body>

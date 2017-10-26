@@ -2,5 +2,7 @@ eclipse.preferences.version=1
 encoding//WebRoot/WEB-INF/jsp/frontend/common/left-panel-list.jsp=UTF-8
 encoding//WebRoot/WEB-INF/jsp/home.jsp=UTF-8
 encoding//WebRoot/resource/frontend/theme/default/css/new/core.css=UTF-8
+encoding//WebRoot/resource/frontend/theme/default/css/new/detail.css=UTF-8
 encoding//WebRoot/resource/frontend/theme/default/css/new/fonts.css=UTF-8
+encoding//WebRoot/resource/frontend/theme/default/js/app.js=UTF-8
 encoding/<project>=UTF-8

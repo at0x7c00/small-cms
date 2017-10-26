@@ -5,6 +5,7 @@ import javax.annotation.Resource;
 
 import me.huqiao.smallcms.cms.dao.IChapterDao;
 import me.huqiao.smallcms.cms.entity.Chapter;
+import me.huqiao.smallcms.cms.entity.SearchResult;
 import me.huqiao.smallcms.cms.entity.WebPage;
 import me.huqiao.smallcms.cms.service.IChapterService;
 import me.huqiao.smallcms.cms.service.IWebPageService;
@@ -78,6 +79,10 @@ public class ChapterServiceImpl extends BaseServiceImpl<Chapter> implements ICha
 	
 	public List<Chapter> getTop10OfAll(){
 		return getByProperties(Chapter.class, new String[]{"status"}, new Object[]{UseStatus.InUse}, "readCount desc,updateTime desc", 10);
+	}
+	
+	public Page<SearchResult> search(String key,Page pageInfo){
+		return chapterDao.search(key, pageInfo);
 	}
 	
 }

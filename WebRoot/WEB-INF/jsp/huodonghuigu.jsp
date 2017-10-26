@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
 	<head>
-		<title>新闻动态 - ${systemTitle}</title>
+		<title>活动回顾 - ${systemTitle}</title>
 		<%@include file="/WEB-INF/jsp/frontend/common/resource.jsp" %>
   	</head>
   
@@ -14,7 +14,7 @@
 	  			<div class="module-group">
 		  			<div class="module left lg" style="min-height:420px;width:750px;">
 		  				<div class="module-title">
-		  				新闻动态<a name="content"></a>
+		  				活动回顾<a name="content"></a>
 		  				</div>
 		  				<div class="module-header">
 		  				</div>

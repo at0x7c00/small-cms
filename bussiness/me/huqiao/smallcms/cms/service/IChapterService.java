@@ -2,6 +2,7 @@ package me.huqiao.smallcms.cms.service;
 import java.util.List;
 
 import me.huqiao.smallcms.cms.entity.Chapter;
+import me.huqiao.smallcms.cms.entity.SearchResult;
 import me.huqiao.smallcms.common.service.IBaseService;
 import me.huqiao.smallcms.history.entity.HistoryRecord;
 import me.huqiao.smallcms.util.web.Page;
@@ -52,5 +53,7 @@ public interface IChapterService extends IBaseService<Chapter> {
 	public Page<Chapter> getAll(Integer type,Page<Chapter> pageInfo);
 	
 	public List<Chapter> getTop10OfAll();
+	
+	public Page<SearchResult> search(String key,Page pageInfo);
 	
 }
