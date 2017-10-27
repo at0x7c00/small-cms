@@ -6,6 +6,7 @@ import me.huqiao.smallcms.cms.dao.IChapterDao;
 import me.huqiao.smallcms.cms.entity.Chapter;
 import me.huqiao.smallcms.cms.entity.SearchResult;
 import me.huqiao.smallcms.common.dao.impl.BaseDaoImpl;
+import me.huqiao.smallcms.common.entity.enumtype.UseStatus;
 import me.huqiao.smallcms.history.entity.HistoryRecord;
 import me.huqiao.smallcms.history.entity.TestRevisionEntity;
 import me.huqiao.smallcms.util.StringUtil;
@@ -199,17 +200,17 @@ public class ChapterDaoImpl extends BaseDaoImpl<Chapter> implements IChapterDao 
 	}
 	
 	private Long searchCount(String key){
-		String hql = "select count(c.id) from Chapter c  where c.title like :key or c.content like :key";
+		String hql = "select count(c.id) from Chapter c  where c.status=:status and (c.title like :key or c.content like :key)";
 		
-		System.out.println(key);
 		Query query = getSession().createQuery(hql);
 		query.setParameter("key", "%" + key +"%");
-		
+		query.setParameter("status",UseStatus.InUse);
 		long count = (Long)query.uniqueResult();
 		
-		hql = "select count(qa.id) from QualityArchive qa where qa.title like :key or qa.content like :key";
+		hql = "select count(qa.id) from QualityArchive qa where qa.status=:status and (qa.title like :key or qa.content like :key)";
 		query = getSession().createQuery(hql);
 		query.setParameter("key", "%" + key +"%");
+		query.setParameter("status",UseStatus.InUse);
 		count += (Long)query.uniqueResult();
 		
 		return count;
@@ -217,17 +218,15 @@ public class ChapterDaoImpl extends BaseDaoImpl<Chapter> implements IChapterDao 
 	
 	private List<SearchResult> searchList(String key,Page pageInfo){
 		
-		String hql = "select new me.huqiao.smallcms.cms.entity.SearchResult('chapter',c.id,c.manageKey,c.title,c.content,c.page,c.cover) from Chapter c  where c.title like :key or c.content like :key";
+		String hql = "select new me.huqiao.smallcms.cms.entity.SearchResult('chapter',c.id,c.manageKey,c.title,c.content,c.page,cover,c.updateTime) from Chapter c  left join c.cover cover where  c.status=:status and (c.title like :key or c.content like :key) order by c.updateTime desc";
 		hql += " union all ";
-		hql += "select new me.huqiao.smallcms.cms.entity.SearchResult('qa',qa.id,qa.manageKey,qa.title,qa.content,qa.cover) from QualityArchive qa where qa.title like :key or qa.content like :key";
+		hql += "select new me.huqiao.smallcms.cms.entity.SearchResult('qa',qa.id,qa.manageKey,qa.title,qa.content,cover,qa.updateTime) from QualityArchive qa left join qa.cover cover where qa.status=:status and (qa.title like :key or qa.content like :key) order by c.updateTime desc";
 		Query query = getSession().createQuery(hql);
-		System.out.println(pageInfo.getStartIndex());
-		System.out.println(pageInfo.getNumPerPage());
 		query.setFirstResult(pageInfo.getStartIndex());
 		query.setMaxResults(pageInfo.getNumPerPage());
 		query.setParameter("key", "%" + key +"%");
+		query.setParameter("status",UseStatus.InUse);
 		List<SearchResult>  list = query.list();
-		System.out.println(list.size());
 		return list;
 	}
 	

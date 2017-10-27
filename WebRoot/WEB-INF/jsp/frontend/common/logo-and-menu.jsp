@@ -7,7 +7,7 @@
 	</div>
 	<div class="right-full">
 		<div class="right-note">
-			<input type="text" class="search-box" placeholder="请输入关键字"/>
+			<input type="text" class="search-box" placeholder="请输入关键字" value="${key}"/>
 			<button class="search-btn"></button>
 		</div>
 	</div>

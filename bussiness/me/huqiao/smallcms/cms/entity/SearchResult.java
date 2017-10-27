@@ -1,11 +1,11 @@
 package me.huqiao.smallcms.cms.entity;
 
-import javax.persistence.Transient;
+import java.util.Date;
+
+import me.huqiao.smallcms.common.entity.CommonFile;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-
-import me.huqiao.smallcms.common.entity.CommonFile;
 
 public class SearchResult {
 
@@ -16,13 +16,13 @@ public class SearchResult {
 	private WebPage webPage;
 	private CommonFile cover;
 	private String content;
-	
+	private Date updateTime;
 	public SearchResult(
 			String source, 
 			Integer id, String key,
 			String title,
 			String content,
-			WebPage webPage, CommonFile cover) {
+			WebPage webPage, CommonFile cover,Date updateTime) {
 		super();
 		this.source = source;
 		this.key = key;
@@ -31,13 +31,14 @@ public class SearchResult {
 		this.webPage = webPage;
 		this.cover = cover;
 		this.content = content;
+		this.updateTime = updateTime;
 	}
 	public SearchResult(
 			String source, 
 			Integer id, String key,
 			String title,
 			String content,
-		    CommonFile cover) {
+		    CommonFile cover,Date updateTime) {
 		super();
 		this.source = source;
 		this.key = key;
@@ -45,6 +46,7 @@ public class SearchResult {
 		this.title = title;
 		this.cover = cover;
 		this.content = content;
+		this.updateTime = updateTime;
 	}
 	public String getSource() {
 		return source;
@@ -123,6 +125,10 @@ public class SearchResult {
 			return false;
 		return true;
 	}
-	
-	
+	public Date getUpdateTime() {
+		return updateTime;
+	}
+	public void setUpdateTime(Date updateTime) {
+		this.updateTime = updateTime;
+	}
 }

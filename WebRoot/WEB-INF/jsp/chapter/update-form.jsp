@@ -53,3 +53,15 @@
 								</label>
 				</label>
 				</section>
+				
+				<section class="col col-3">
+					<label class="input">
+						置顶:
+								<label class="select">
+								<select  name="updateToTop" class=" comboxed">
+									<option value="No">否</option>
+									<option value="Yes">是</option>
+								</select><i></i>
+								</label>
+				</label>
+				</section>

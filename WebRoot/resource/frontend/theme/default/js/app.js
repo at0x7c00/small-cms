@@ -49,7 +49,8 @@ function doSearch(){
 	if(!key){
 		return;
 	}
-	window.open(basePath + "search.do?key=" + encodeURIComponent(key));
+	var isSelf = $(".menu-bar").data("request") == 'search.do';
+	window.open(basePath + "search.do?key=" + encodeURIComponent(key),isSelf?"_self":"_blank");
 }
 
 function stopCal(){

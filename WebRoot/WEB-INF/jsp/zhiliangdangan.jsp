@@ -33,8 +33,9 @@
 	  			<div class="module-group blue">
 	  			
 	  			
+	  				<a name="project"></a>
 	  				<div>
-	  					<h1 class="page-title">项目简介<a name="project"></a></h1>
+	  					<h1 class="page-title">项目简介</h1>
 	  					<p style="text-indent: 2em;">
 	  					质量档案是在国家质检总局的指导下，由中国质量万里行促进会开展的项目，用于收录优秀质量企业信息，旨在推进国家质量体系建设，健全质量信息收集与发布制度。质量发展是兴国之道、强国之策，它既是企业和产业核心竞争力的体现，也是国家综合实力的体现。建立全国企业的优秀质量档案是国家质量体系建设的重要基础工作，也是社会质量信息互动平台建设的重要组成部分。
 						</p>
@@ -46,18 +47,18 @@
 	  					<div>
 	  						<div class="lunbo" style="width:455px;height:360px;display:inline-block;" id="lunbo1">
 								<ul class="lb-imgs">
-									<c:forEach items="${page.list}" var="chapter">
+									<c:forEach items="${zhiliangqiangqiList}" var="chapter">
 							        <li>
-							        <a href="${basePath}chapterDetail.do?k=${chapter.manageKey}" target="_blank">
+							        <a href="${basePath}chapterDetail.do?k=${chapter.manageKey}#content" target="_blank">
 							        	<img data-u="image" src="${basePath}filee/viewPic.do?manageKey=${chapter.cover.manageKey}" title="${chapter.title}" data-url="${basePath}chapterDetail.do?k=${chapter.manageKey}"/>
 							        </a>
 							        </li>
 							        </c:forEach>
 								</ul>
 								<ul class="lb-remarks">
-										<c:forEach items="${page.list}" var="chapter">
-											<li data-url="${basePath}chapterDetail.do?k=${chapter.manageKey}">
-												<a href="${basePath}chapterDetail.do?k=${chapter.manageKey}" target="_blank">
+										<c:forEach items="${zhiliangqiangqiList}" var="chapter">
+											<li data-url="${basePath}chapterDetail.do?k=${chapter.manageKey}#content">
+												<a href="${basePath}chapterDetail.do?k=${chapter.manageKey}#content" target="_blank">
 													${chapter.title}
 												</a>
 											</li>
@@ -67,7 +68,7 @@
 								<div class="controller next"><i class="fa fa-angle-right"></i></div>
 								
 								<div class="pointer">
-								<c:forEach items="${page.list}" var="chapter">
+								<c:forEach items="${zhiliangqiangqiList}" var="chapter">
 								<div ><i class="fa fa-circle"></i></div>
 								</c:forEach>
 								</div>
@@ -75,9 +76,9 @@
 							</div>
 							
 							<ul class="module-content" style="width:720px;display: inline-block;float:right;margin-top:0px;padding-top:0px;">
-		  					<c:forEach items="${page.list}" var="chapter">
+		  					<c:forEach items="${zhiliangqiangqiList}" var="chapter">
 			  					<li style="list-style-type: disc;">
-			  					<a href="${basePath}chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}"><n:shorthand length="33" content="${chapter.title}"></n:shorthand> </a>
+			  					<a href="${basePath}chapterDetail.do?k=${chapter.manageKey}#content"  target="_blank" title="${chapter.title}"><n:shorthand length="33" content="${chapter.title}"></n:shorthand> </a>
 			  					</li>
 		  					</c:forEach>
 		  				</ul>
@@ -254,6 +255,7 @@
 			    	    .appendTo( ul );
 			    }
  		}); */
+ 		
  		</script>
   </body>
 </html>

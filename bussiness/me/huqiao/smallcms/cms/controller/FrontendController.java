@@ -10,11 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 import me.huqiao.smallcms.cms.entity.Advertisement;
 import me.huqiao.smallcms.cms.entity.Carousel;
 import me.huqiao.smallcms.cms.entity.Chapter;
+import me.huqiao.smallcms.cms.entity.Comment;
 import me.huqiao.smallcms.cms.entity.FriendLink;
 import me.huqiao.smallcms.cms.entity.SearchResult;
+import me.huqiao.smallcms.cms.entity.propertyeditor.CommentEditor;
 import me.huqiao.smallcms.cms.service.IAdvertisementService;
 import me.huqiao.smallcms.cms.service.ICarouselService;
 import me.huqiao.smallcms.cms.service.IChapterService;
+import me.huqiao.smallcms.cms.service.ICommentService;
 import me.huqiao.smallcms.cms.service.IFriendLinkService;
 import me.huqiao.smallcms.common.entity.CommonFile;
 import me.huqiao.smallcms.common.entity.enumtype.UseStatus;
@@ -45,6 +48,8 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 /**
@@ -70,6 +75,7 @@ public class FrontendController {
 	private Integer PAGE_ID_HUODONGHUIGU = 6;
 	
 	private Integer PAGE_ID_SHISHIREDIAN= 7;
+	private Integer PAGE_ID_ZHILIANGQIANGQI= 8;
 	
 	@Resource
 	private IChapterService chapterService;
@@ -95,7 +101,17 @@ public class FrontendController {
 	private IWorkerService workerService;
 	@Resource
 	private IBrandService brandService;
+	@Resource
+	private ICommentService commentService;
 	
+	 /**
+	  * 注册属性编辑器
+	  * @param binder 数据绑定器
+	  */
+	    @InitBinder
+		public void initPropEditor(WebDataBinder binder){
+	    	binder.registerCustomEditor(Comment.class, new CommentEditor(commentService));
+		}
 	
 	
 	
@@ -258,18 +274,22 @@ public class FrontendController {
 		Page<Chapter> page = chapterService.getAll(PAGE_ID_HUIYUANFENGCAI,pageInfo);
 		request.setAttribute("page", page);
 	}
+	private void zhiliangqiangqiTop(HttpServletRequest request) {
+		List<Chapter> list = chapterService.getTop(8,PAGE_ID_ZHILIANGQIANGQI);
+		request.setAttribute("zhiliangqiangqiList", list);
+	}
 	private void zhiliangdanganPage(HttpServletRequest request,Page<QualityArchive> pageInfo) {
 		String categoryKey = request.getParameter("categoryKey");
 		QualityArchiveCategory category = null;
 		if(StringUtil.isNotEmpty(categoryKey)){
 			category =  qualityArchiveCategoryService.getEntityByProperty(QualityArchiveCategory.class, "manageKey",categoryKey);
 		}
-		if(category==null || category.getStatus()==UseStatus.UnUse){
-			List<QualityArchiveCategory> list = qualityArchiveCategoryService.getByProperties(QualityArchiveCategory.class, new String[]{"status"}, new Object[]{UseStatus.InUse}, "orderNum", 1);
-			if(list.size()>0){
-				category = list.get(0);
-			}
-		}
+		//if(category==null || category.getStatus()==UseStatus.UnUse){
+			///List<QualityArchiveCategory> list = qualityArchiveCategoryService.getByProperties(QualityArchiveCategory.class, new String[]{"status"}, new Object[]{UseStatus.InUse}, "orderNum", 1);
+			//if(list.size()>0){
+			//	category = list.get(0);
+			//}
+		//}
 		request.setAttribute("category", category);
 		Page<QualityArchive> page = qualityArchiveService.getAll(category,pageInfo);
 		request.setAttribute("page", page);
@@ -325,8 +345,9 @@ public class FrontendController {
 	public void zhiliangdangan(HttpServletRequest request,Page<QualityArchive> pageInfo){
 		prepareCarousel(request);
 		zhiliangdanganPage(request,pageInfo);
-		List<QualityArchiveCategory> categoryList = qualityArchiveCategoryService.getByProperties(QualityArchiveCategory.class, new String[]{"status"}, new Object[]{UseStatus.InUse}, "orderNum", null);
-		request.setAttribute("categoryList",categoryList);
+		//List<QualityArchiveCategory> categoryList = qualityArchiveCategoryService.getByProperties(QualityArchiveCategory.class, new String[]{"status"}, new Object[]{UseStatus.InUse}, "orderNum", null);
+		//request.setAttribute("categoryList",categoryList);
+		zhiliangqiangqiTop(request);
 	}
 
 	@RequestMapping("hangyezixun")
@@ -369,7 +390,7 @@ public class FrontendController {
 	
 
 	@RequestMapping("chapterDetail")
-	public void chapterDetail(HttpServletRequest request,@RequestParam(value = "manageKey",required = false)String key){
+	public String chapterDetail(HttpServletRequest request,@RequestParam(value = "manageKey",required = false)String key){
 		if(StringUtil.isEmpty(key)){
 			key = request.getParameter("k");
 		}
@@ -385,6 +406,11 @@ public class FrontendController {
 		zhiliangTop(request);
 		
 		request.setAttribute("top10ChapterList",chapterService.getTop10OfAll());
+		if(chapter.getPage().getKey().equals("zhiliangqiangqi")){
+			return "../jsp/chapterDetail-qiangqi";
+		}else{
+			return "chapterDetail";
+		}
 	}
 	
 	
@@ -397,7 +423,6 @@ public class FrontendController {
 	public void applyUI(){
 		
 	}
-	
 	@RequestMapping(value = "apply",method = RequestMethod.POST)
 	@ResponseBody
 	public JsonResult apply(HttpServletRequest request,@ModelAttribute("apply") Apply apply,
@@ -412,6 +437,27 @@ public class FrontendController {
 		apply.setCreateTime(new Date());
 		applyService.add(apply);
 		return JsonResult.success("申请成功!");
+	}
+	
+	@RequestMapping(value = "liuyan",method = RequestMethod.GET)
+	public void liuyanUI(){
+		
+	}
+	
+	@RequestMapping(value = "liuyan",method = RequestMethod.POST)
+	@ResponseBody
+	public JsonResult liuyan(HttpServletRequest request,@ModelAttribute("comment") Comment comment,
+			@RequestParam(value = "verifyCode")String checkcode){
+		String checkCodeInSession = (String)request.getSession().getAttribute(VerifyImageServlet.SIMPLE_CAPCHA_SESSION_KEY);
+		checkCodeInSession = checkCodeInSession==null ? null : checkCodeInSession.toLowerCase();
+		if(!(checkcode!=null && checkcode.toLowerCase().equals(checkCodeInSession))){
+			return JsonResult.error("验证码错误!");
+		}
+		request.getSession().removeAttribute(VerifyImageServlet.SIMPLE_CAPCHA_SESSION_KEY);
+		comment.setManageKey(Md5Util.getManageKey());
+		comment.setCreateTime(new Date());
+		commentService.add(comment);
+		return JsonResult.success("留言成功!");
 	}
 	
 	@RequestMapping(value = "query",method = RequestMethod.GET)

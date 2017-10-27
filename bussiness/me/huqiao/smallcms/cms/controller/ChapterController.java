@@ -209,7 +209,9 @@ request.setAttribute("useStatusMap",UseStatus.useStatusMap);
     	if(!validate(jsonResult,result)){
     		return jsonResult;
     	}
-    	chapter.setUpdateTime(new Date());
+    	if("Yes".equals(request.getParameter("updateToTop"))){
+    		chapter.setUpdateTime(new Date());
+    	}
     	chapter.setCover(parseFilee(request,"coverKeys",chapter.getCoverKey()));
     	
     	

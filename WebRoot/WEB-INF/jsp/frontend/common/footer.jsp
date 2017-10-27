@@ -6,11 +6,11 @@
 			<div class="footer-column">
 				<h1>网站导航</h1>
 				<ul class="column-item">
-					<li><a href="${basePath}">网站首页</a></li>
-					<li><a href="${basePath}">新闻动态</a></li>
-					<li><a href="${basePath}">质量热点</a></li>
-					<li><a href="${basePath}">企业风采</a></li>
-					<li><a href="${basePath}">质量档案</a></li>
+					<li><a href="${basePath}index.do">网站首页</a></li>
+					<li><a href="${basePath}zhengcedongtai.do">新闻动态</a></li>
+					<li><a href="${basePath}zhiliangredian.do">质量新闻</a></li>
+					<li><a href="${basePath}huiyuanfengcai.do">企业风采</a></li>
+					<li><a href="${basePath}zhiliangdangan.do">质量档案</a></li>
 				</ul>
 				<div class="di"></div>
 			</div>
@@ -18,8 +18,8 @@
 			<div class="footer-column">
 				<h1>关于我们</h1>
 				<ul class="column-item">
-					<li><a href="${basePath}">项目简介</a></li>
-					<li><a href="${basePath}">在线留言</a></li>
+					<li><a href="${basePath}zhiliangdangan.do#project">项目简介</a></li>
+					<li><a href="javascript:void(0);" id="liuyan">在线留言</a></li>
 					<li><a href="javascript:void(0);" id="chaxun">查询入口</a></li>
 					<%--
 					<li><a href="javascript:void(0);" id="ruhui">入会申请</a></li>
@@ -70,14 +70,87 @@
  	 				});
  					
  					$("#verifyCodeImage").click(function(){
- 						loadVerifyCode();
+ 						loadVerifyCode("verifyCodeImage");
  					});
- 					loadVerifyCode();
+ 					loadVerifyCode("verifyCodeImage");
  					
  				});
  			});
  			
- 			
+ 			$("#liuyan").on("click",function(){
+ 				loadWaitDialog();
+ 				$.get(basePath + 'liuyan.do',function(d){
+ 					closeWaitDialog();
+ 					$('<div class="dialog-content" id="applyNotice" style="width:500px;height:400px;overflow:auto;"></div>').html(d).dialog({
+ 	 					title : "在线留言",
+ 	 					width:500,
+ 	 					height:300,
+ 	 					modal:true,
+ 	 					buttons: {
+ 	 						"提交":function(){
+ 	 							if($("#liuyan-form").valid({errorPlacement:function(){}})){
+ 	 								var data = $("#liuyan-form").serializeArray();
+ 	 								if(!$("#liuyanPhone").val() && !$("#liuyanEmail").val()){
+ 	 									$("<div style='text-align:center;font-size:18px;'> 电话或邮箱至少需要填写一个 </div>").dialog({
+ 											title:'提示',
+ 											buttons: {
+ 					 	 						"确定":function(){
+ 					 	 							return true;
+ 					 	 						}
+ 											}
+ 										});
+ 	 									return false;
+ 	 		 						}
+ 	 								$.post(basePath + "liuyan.do",data,function(res){
+ 	 									if(res.statusCode!='200'){
+ 	 										//alert(res.message);
+ 	 										$("<div style='text-align:center;font-size:18px;'>" + res.message + "</div>").dialog({
+ 	 											title:'提示',
+ 	 											buttons: {
+ 	 					 	 						"确定":function(){
+ 	 					 	 							return true;
+ 	 					 	 						}
+ 	 											}
+ 	 										});
+ 	 									}else{
+ 	 										$("<div style='text-align:center;font-size:18px;margin-top:10px;'>" + res.message + "</div>").dialog({
+ 	 											title:'提示',
+ 	 											buttons: {
+ 	 					 	 						"确定":function(){
+ 	 					 	 						$("#apply").dialog("close");
+ 	 				 	 							$(".xdsoft_close").trigger("click");
+ 	 					 	 							return true;
+ 	 					 	 						}
+ 	 											}
+ 	 										});
+ 	 									}
+ 	 								});
+ 	 							}
+ 	 							return false;
+ 	 						},
+ 	 					},
+ 	 				});
+ 					
+ 					$("#verifyCodeImage2").click(function(){
+ 						loadVerifyCode("verifyCodeImage2");
+ 					});
+ 					
+ 					loadVerifyCode("verifyCodeImage2");
+ 					
+ 					$("#liuyanContent").keyup(function(){
+ 						var _this = $(this);
+ 						var inputCount = _this.val().length;
+ 						var avaliable = 300 - inputCount;
+ 						if(avaliable<0){
+ 							_this.val(_this.val().substring(0,300));
+ 							avaliable = 0;
+ 						}
+ 						$("#wordLimit").html(avaliable);
+ 						
+ 					});
+ 					
+ 				});
+ 			});
  			
  			$("#chaxun").click(function(){
  				loadWaitDialog();
@@ -154,8 +227,8 @@
  			
  		});
  		
- 		function loadVerifyCode(){
-	  		$("#verifyCodeImage").attr("src","${basePath}verifyimage.create?t="+new Date().getTime());
+ 		function loadVerifyCode(id){
+	  		$("#" + id).attr("src","${basePath}verifyimage.create?t="+new Date().getTime());
 	  	}
  		
  		function loadWaitDialog(){

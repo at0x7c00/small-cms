@@ -17,7 +17,7 @@
   		<div class="container" style="margin-top:150px;">
 	  		<div class="main-content">
 	  			<div class="module-group">
-		  			<div class="module left lg" style="background: #fff;">
+		  			<div class="module left lg" style="background: #fff;min-height:550px;">
 		  				<div class="module-title">
 		  					<a name="content"></a>
 		  				</div>
