@@ -29,7 +29,7 @@
 			</div>
 			
 			<div class="footer-column" style="width:345px;">
-				<h2>咨询热线：400-822-5757</h2>
+				<h2 >咨询热线：400-822-5757</h2>
 				<div style="text-align:center;">
 					<img alt="" src="${basePath}resource/brcode.png"/>
 					<h1 style="margin-top:5px;">扫描关注公众号</h1>

@@ -25,16 +25,18 @@
 <script>
 $(function(){
 	
-	$('.carousel .bxslider').bxSlider({
-		  mode: 'fade',
-		  captions: true,
-		  adaptiveHeight:false,
-		  pagerType:'full',
-		  auto:true,
-		  pause:3000
-	});
-	
-	 $(".carousel .bxslider").show();
+	window.setTimeout(function(){
+		$('.carousel .bxslider').bxSlider({
+			  mode: 'fade',
+			  captions: true,
+			  adaptiveHeight:false,
+			  pagerType:'full',
+			  auto:true,
+			  pause:3000
+		});
+		
+		 $(".carousel .bxslider").show();
+	},2000);
 });
 
 var _x = 0;

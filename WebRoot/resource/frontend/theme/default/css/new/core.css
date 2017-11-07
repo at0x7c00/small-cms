@@ -1,11 +1,13 @@
 @import url(./fonts.css);
 body{
-	font-family:"SourceHanSansCN-Regular","微软雅黑", Arial, Helvetica, sans-serif,"Source Han Sans CN Regular";
+	font-family:"微软雅黑","SourceHanSansCN-Regular", Arial, Helvetica, sans-serif,"Source Han Sans CN Regular";
 	margin-bottom:0px; 
 }
 .bx-wrapper img{
 	height:440px;
-	width:780px;
+	min-width:780px;
+	max-width:inherit;
+	width:auto;
 }
 
 .carousel{
@@ -65,9 +67,8 @@ div.header{
 .logo-img {
     background: url(./img/logo.png) no-repeat;
     height: 55px;
-    width: 640px;
-    margin-left: 15px;
-    background-position-x:60px;
+    width: 435px;
+    margin-left: 0px;
 }
 .left-full{
 	margin-top:10px;
@@ -79,28 +80,49 @@ div.header{
 }
 .right-note{
 	height:50px;
-	background: url(./img/search-box-bg.png)no-repeat;
+	/*background: url(./img/search-box-bg.png)no-repeat;*/
+	background: none;
+	width:435px;
 }
+textarea,input{outline:none}
 .search-box{
 	border:0px;
-	float:left;
-	font-size:14px;
+	float:right;
+	font-size:16px;
 	width:230px;
 	margin-left:15px;
 	margin-top:14px;
-	background: #dedede;
-	height:21px;
+	/* background: #dedede; */
+	border:1px solid #dedede;
+	height:30px;
+	line-height:30px;
+	border-radius:5px 0px 0px 5px;
+	padding:0px 5px;
 }
 .search-box:focus{
-	background: #eee;
 }
 .search-btn{
-	float:left;
-	height:51px;
-	width:70px;
+	float:right;
+	height:32px;
+	width:80px;
 	border:0px;
-	background: url(./img/search-btn-bg.png)no-repeat;
+	/* background: url(./img/search-btn-bg.png)no-repeat; */
+	background:none;
 	cursor:pointer;
+	background: #21498b;
+	margin-top:14px;
+	border-radius:0px 5px 5px 0px;
+	color:#fff;
+	font-size:16px;
+	line-height:30px;
+	outline: none;
+	font-weight:100;
+}
+.search-btn:hover{
+	background: #31599b;
+}
+.search-btn:focus{
+	background: #21498b;
 }
 
 .menu-bar ul{
@@ -108,10 +130,10 @@ div.header{
 }
 .menu-bar li>a{
 	height:60px;
-	font-size:25px;
+	font-size:22px;
 	position: relative;
 	padding:0px;
-	margin:0px 10px;
+	margin:0px 22px;
 	font-family:"SourceHanSansCN-Regular";
 	line-height:70px;
 	letter-spacing: 2px;
@@ -181,7 +203,7 @@ body>div.header{
 }
 .footer-sn{
 	background: #000;
-	color:#eee;
+	color:#666;
 	text-align:center;
 	padding:5px 0px;
 	font-family: "SourceHanSansCN-Regular","微软雅黑", Arial, Helvetica, sans-serif;
@@ -211,20 +233,23 @@ body>div.header{
 }
 .footer-column ul li a{
 	color:#fff;
-	font-size:20px;
+	font-size:14px;
 	font-family: "SourceHanSansCN-Regular","微软雅黑", Arial, Helvetica, sans-serif;
 }
 .footer-column h1{
 	font-weight: normal;
 	margin:0px;
+	font-size:20px;
 }
 
 .footer-column h2{
 	font-weight: normal;
 	font-family: "SourceHanSansCN-Regular","微软雅黑", Arial, Helvetica, sans-serif;
-	font-size:25px;
+	font-size:16px;
 	margin:10px 0px;
+	margin-top:0px;
 	color:#eee;
+	text-align: center;
 }
 
 .footer-detail>.footer-column:not(:last-child)>div.di{
@@ -403,9 +428,10 @@ body>div.header{
 }
 
 .index-dangan-banner{
-	width:100%;
+	width:1200px;
 	height:200px;
 	background: url(./img/dangan-banner.jpg)no-repeat;
+	margin:auto;
 	margin-bottom:13px;
 	cursor: pointer;
 	position: relative;
@@ -458,7 +484,8 @@ body>div.header{
 	to {opacity: 0.2;}
 }
 #image-flow{
-	height:110px;
+	height:125px;
+	width:1200px;
 }
 #image-flow-ul img{
 	width:170px;
@@ -466,13 +493,19 @@ body>div.header{
 	display:inline-block;
 }
 #image-flow ul{
-	height:110px;
+	height:125px;
 	overflow: hidden;
 }
+#image-flow ul li:nth-child(odd){
+	background: #ddd;
+}
 #image-flow ul li{
+	border:1px solid #ddd;
 	width:300px;
 	height:110px;
-	padding:0px;
+	padding:5px 5px;
+	margin:0px 8px;
+	overflow: hidden;
 }
 #image-flow-ul a{
 	display:inline-block;
@@ -481,6 +514,7 @@ body>div.header{
 	height:110px;
 	width:115px;
 	padding:3px;
+	float:right;
 }
 #image-flow-ul a span{
 	height:30px;	
@@ -590,7 +624,7 @@ table.x-table{
 .brand-table div.img-wrap>img{
 	min-width:100%;
 	width:150px;
-	height:50px;
+	height:auto;
 }
 
 .brand-table-wrap .ctr{
@@ -650,8 +684,8 @@ div.img-div{
 	background: url(./img/logo-dangan.png)no-repeat;
 	height:65px;
 	width:730px;
-	margin-left:45px;
-	display:inline-block
+	display:inline-block;
+	float:left;
 }
 body.dangan div.header{
 	height:96px;
@@ -665,8 +699,8 @@ body.dangan div.header{
 }
 .dangan .left-full{
 	margin:20px auto 0px auto;
-	width:90%;
 	float:none;
+	min-height:70px;
 }
 .dangan-menu a{
 	font-size:28px;
@@ -709,7 +743,7 @@ body.dangan div.header{
 
 .dangan .page-title{
 	text-align: center;
-	font-size:45px;
+	font-size:35px;
 	font-weight: 400;
 	color:#333;
 }
@@ -719,16 +753,18 @@ body.dangan div.header{
 }
 
 .dangan .brand-table-wrap .ctr{
-	height:130px;
-	width:100px;
-	top:175px;
+	height:60px;
+	width:45px;
+	top:210px;
 }
 .dangan .brand-table-wrap .ctr.prev{
-	background: url(./img/arrow-left-dangan.png)no-repeat;
+	background:url(./img/arrow-left-dangan-detail.png)no-repeat;
+/* 	background: url(./img/arrow-left-dangan.png)no-repeat; */
 	left:0px;
 }
 .dangan .brand-table-wrap .ctr.next{
-	background: url(./img/arrow-right-dangan.png)no-repeat;
+	background:url(./img/arrow-right-dangan-detail.png)no-repeat;
+	/* background: url(./img/arrow-right-dangan.png)no-repeat; */
 	right:0px;
 }
 
@@ -845,7 +881,7 @@ body>div.header>div{
 	display:none;
 }
 .search-btn:hover{
-	background: url(./img/search-btn-bg-hover.png)no-repeat;
+	/* background: url(./img/search-btn-bg-hover.png)no-repeat; */
 }
 
 .footer-column li a{
@@ -935,4 +971,50 @@ div.chapter-title>h1{
 a[name]{
 	margin-top: -100px;
 	position: absolute;
+}
+.module-group:not(:last-child){
+	border-bottom:1px solid #ddd;
+	margin-bottom:20px;
+	padding-bottom:20px;
+}
+
+
+@media screen and (min-width: 1435px) and (max-width: 1535px){
+	.dangan-menu a{
+		margin:0px 0px;
+	}
+}
+@media screen and (min-width: 1285px) and (max-width: 1435px){
+	.dangan-menu a{
+		margin:0px 0px;
+		font-size:20px;
+	}
+}
+
+@media screen and (min-width: 1030px) and (max-width: 1285px){
+	.dangan-menu a{
+		margin:0px 0px;
+	}
+	.logo-img.dangan{
+		width: 325px;
+		background-position-x:-400px;
+	}
+}
+
+@media screen and (min-width: 100px) and  (max-width:1030px){
+	.dangan-menu a{
+		margin:0px 0px;
+		font-size:20px;
+	}
+	.logo-img.dangan{
+		display: none;
+	}
+}
+
+
+body.dangan .menu-bar ul{
+	width:100%;
+}
+body.dangan>div.header>div{
+	width:100%;
 }

@@ -131,7 +131,6 @@
 						<div class="brand-table">
 							<div class="img-container" style="">
 			  					<c:forEach items="${qa.productDisplay}" var="b" varStatus="s">
-			  						<c:forEach begin="0" end="30">
 			  						<div class="img-wrap">
 			  						<img src="${basePath}filee/viewPic.do?manageKey=${b.manageKey}" 
 			  						title="${b.fileNameOnly }" data-key="${b.id}" />
@@ -140,7 +139,6 @@
 			  						<p>${qa.productDescArray[s.index]}</p> 
 			  						</div>
 			  						</div>
-			  						</c:forEach>
 			  					</c:forEach>
 							</div>
 							

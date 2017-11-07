@@ -95,13 +95,11 @@
 		  						<div class="brand-table">
 		  							<div class="img-container" style="width:${bWidth}px">
 				  					<c:forEach items="${page.list}" var="b" varStatus="s">
-				  						<c:forEach begin="0" end="30">
 				  						<div class="img-wrap">
 				  						<img src="${basePath}filee/viewPic.do?manageKey=${b.cover.manageKey}" 
 				  						title="${b.title }" data-key="${b.id}" />
 				  						<div><n:shorthand length="10" content="${b.title}"></n:shorthand> </div>
 				  						</div>
-				  						</c:forEach>
 				  					</c:forEach>
 		  							</div>
 		  							

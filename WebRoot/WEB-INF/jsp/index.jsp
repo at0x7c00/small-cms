@@ -187,30 +187,38 @@
 		  						<tr>
 		  							<td width="415px" style="text-align:center;">
 		  								<div class="table-column">
-			  								<a href="${basePath}chapterDetail.do?k=${hangyezixunTop.manageKey}" target="_blank">
+			  								<a href="${basePath}chapterDetail.do?k=${hangyezixunTop.manageKey}" target="_blank" title="${hangyezixunTop.title }">
 					  								<img alt="" style="width:415px;height:325px;" src="${basePath}filee/viewPic.do?manageKey=${hangyezixunTop.cover.manageKey}">
 			  								</a>
 		  								</div>
 		  							</td>
 		  							<td width="175px">
 		  								<div class="table-column" style="width:175px;background:#b8b8b8;">
-		  									<h1><n:shorthand length="8" content=" ${hangyezixunTop.title}"></n:shorthand></h1>
+		  									<h1>
+		  									<a href="${basePath}chapterDetail.do?k=${hangyezixunTop.manageKey}" target="_blank" title="${hangyezixunTop.title }">
+		  									<n:shorthand length="8" content=" ${hangyezixunTop.title}"></n:shorthand>
+		  									</a>
+		  									</h1>
 			  								<p>
-			  									<n:html value="${hangyezixunTop.contentText }" length="120"/>
+			  									<n:html value="${hangyezixunTop.contentText }" length="110"/>
 			  								</p>
 		  								</div>
 		  							</td>
 		  							<td width="175px" style="text-align:center;">
 		  								<div class="table-column pics" style="padding-left:10px;">
 		  								<c:forEach items="${hangyezixunList1 }" var="c" varStatus="s">
+		  									<a href="${basePath}chapterDetail.do?k=${c.manageKey}" target="_blank" title="${c.title }">
 		  									<img alt="" style="width:145px;height:100px;" src="${basePath}filee/viewPic.do?manageKey=${c.cover.manageKey}">
+		  									</a>
 		  								</c:forEach>
 		  								</div>
 		  							</td>
 		  							<td width="165px" style="text-align:center;">
 		  								<div class="table-column pics">
 		  								<c:forEach items="${hangyezixunList2 }" var="c" varStatus="s">
-		  									<img alt="" style="width:145px;height:100px;" src="${basePath}filee/viewPic.do?manageKey=${c.cover.manageKey}">
+		  									<a href="${basePath}chapterDetail.do?k=${c.manageKey}" target="_blank" title="${c.title }">
+		  										<img alt="" style="width:145px;height:100px;" src="${basePath}filee/viewPic.do?manageKey=${c.cover.manageKey}">
+		  									</a>
 		  								</c:forEach>
 		  								</div>
 		  							</td>
@@ -245,16 +253,20 @@
 		  						<tr>
 		  							<td width="415px" style="text-align:center;">
 		  								<div class="table-column">
-			  								<a href="${basePath}chapterDetail.do?k=${qiyefengcaiTop.manageKey}" target="_blank">
+			  								<a href="${basePath}chapterDetail.do?k=${qiyefengcaiTop.manageKey}" target="_blank" title="${qiyefengcaiTop.title}">
 					  								<img alt="" style="width:415px;height:325px;" src="${basePath}filee/viewPic.do?manageKey=${qiyefengcaiTop.cover.manageKey}">
 			  								</a>
 		  								</div>
 		  							</td>
 		  							<td width="175px">
 		  								<div class="table-column" style="width:175px;background:#b8b8b8;">
-		  									<h1>${qiyefengcaiTop.title}</h1>
+		  									<h1>
+		  									<a href="${basePath}chapterDetail.do?k=${qiyefengcaiTop.manageKey}" target="_blank" title="${qiyefengcaiTop.title}">
+		  									${qiyefengcaiTop.title}
+											</a>		  									
+		  									</h1>
 			  								<p>
-			  									<n:html value="${qiyefengcaiTop.contentText }" length="120"/>
+			  									<n:html value="${qiyefengcaiTop.contentText }" length="110"/>
 			  								</p>
 		  								</div>
 		  							</td>
@@ -262,10 +274,16 @@
 		  								<div class="table-column">
 		  									<c:forEach items="${huiyuanfengcaiList1}" var="chapter">
 				  								<div class="table-module">
-				  									<h2>${chapter.title}</h2>
+				  									<h2>
+				  									<a href="${basePath}chapterDetail.do?k=${chapter.manageKey}" target="_blank" title="${chapter.title }">
+				  									${chapter.title}
+				  									</a>
+				  									</h2>
 				  									<div class="table-module-content">
 				  										<div>
+				  										<a href="${basePath}chapterDetail.do?k=${chapter.manageKey}" target="_blank" title="${chapter.title }">
 				  										<img alt="" style="width:145px;height:100px;" src="${basePath}filee/viewPic.do?manageKey=${chapter.cover.manageKey}">
+				  										</a>
 				  										</div>
 				  										<div>
 				  										<n:html value="${chapter.contentText }" length="45"/>
@@ -279,10 +297,16 @@
 		  								<div class="table-column">
 			  								<c:forEach items="${huiyuanfengcaiList2}" var="chapter">
 				  								<div class="table-module">
-				  									<h2>${chapter.title}</h2>
+				  									<h2>
+					  									<a href="${basePath}chapterDetail.do?k=${chapter.manageKey}" target="_blank" title="${chapter.title }">
+					  										${chapter.title}
+					  									</a>
+				  									</h2>
 				  									<div class="table-module-content">
 				  										<div>
-				  										<img alt="" style="width:145px;height:100px;" src="${basePath}filee/viewPic.do?manageKey=${chapter.cover.manageKey}">
+				  										<a href="${basePath}chapterDetail.do?k=${chapter.manageKey}" target="_blank" title="${chapter.title }">
+				  											<img alt="" style="width:145px;height:100px;" src="${basePath}filee/viewPic.do?manageKey=${chapter.cover.manageKey}">
+				  										</a>
 				  										</div>
 				  										<div>
 				  										<n:html value="${chapter.contentText }" length="45"/>
