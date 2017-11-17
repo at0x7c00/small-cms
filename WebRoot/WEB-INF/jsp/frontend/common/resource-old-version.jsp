@@ -29,7 +29,6 @@ var basePath = '${basePath}';
 
 <link rel="stylesheet" type="text/css" media="screen" href="${basePath}js/image-flow/style.css">
 <script src="${basePath}js/image-flow/image-flow.js"></script>
-<link rel="stylesheet" type="text/css" media="screen" href="${basePath}resource/frontend/theme/default/css/new/core.css?_t=${_random}">
 		
 <%--
 <script src="${basePath}js/flash-3d-gallery/js/html.js"></script>

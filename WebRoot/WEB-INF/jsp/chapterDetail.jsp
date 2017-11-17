@@ -18,11 +18,6 @@
 	  		<div class="main-content">
 	  			<div class="module-group">
 		  			<div class="module left lg" style="background: #fff;min-height:550px;">
-		  				<div class="module-title">
-		  					<a name="content"></a>
-		  				</div>
-		  				<div class="module-header">
-		  				</div>
 		  				<div class="module-content" style="margin:10px 35px;">
 		  					
 		  					<div class="chapter-title">

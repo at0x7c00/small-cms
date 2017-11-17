@@ -16,7 +16,7 @@
 		<c:forEach items="${carouselList }" var="c">
         <li style="display:none;">
         <a href="${c.url}" target="_blank" title="${c.title}">
-        <img data-u="image" onload="imageLoaded()" src="${basePath}filee/viewPic.do?manageKey=${c.picture.manageKey}" title="${c.title}"/>
+        <img data-u="image"  src="${basePath}filee/viewPic.do?manageKey=${c.picture.manageKey}" title="${c.title}"/>
         </a>
         </li>
         </c:forEach>
@@ -37,6 +37,12 @@ $(function(){
 		
 		 $(".carousel .bxslider").show();
 	},2000);
+	
+	$(".bxslider a>img").each(function(){
+		$(this).load(function(){
+			imageLoaded();
+		});
+	});
 });
 
 var _x = 0;

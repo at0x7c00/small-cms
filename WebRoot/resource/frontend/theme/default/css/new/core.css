@@ -16,7 +16,7 @@ body{
 }
 .carousel .bx-wrapper{
 	background: transparent;
-	padding-top:35px;
+	padding-top:65px;
 }
 
 .carousel .bx-viewport{
@@ -163,11 +163,20 @@ textarea,input{outline:none}
 
 .module-header{
 	background: none;	
+	display: none;
 }
 .module-title{
 	font-family: "SourceHanSansCN-Regular","微软雅黑", Arial, Helvetica, sans-serif;
-	font-size:30px;
+	font-size:23px;
 	font-weight:500;
+	border-bottom:1px solid #333;
+	float:none;
+	height:35px;
+}
+.module-title>span{
+	border-bottom:1px solid #ff4d4d;
+	height:35px;
+	display:inline-block;
 }
 .module{
 	border:0px;
@@ -219,8 +228,9 @@ body>div.header{
 	width:193px;
 	font-family: "SourceHanSansCN-Regular","微软雅黑", Arial, Helvetica, sans-serif;
 	margin-left:10px;
-	height:265px;
+	height:235px;
 	position:relative;
+	padding-top:30px;
 }
 
 .footer-column ul {
@@ -336,6 +346,7 @@ body>div.header{
 
 /*轮播*/
 .lunbo{
+	background:#eee;
 	position: relative;
 }
 .lunbo>ul.lb-imgs{
@@ -356,7 +367,7 @@ body>div.header{
 .lunbo>ul.lb-imgs>li img{
 	max-width:100%;
 	max-height:100%;
-	min-height:100%;
+	min-width:100%;
 	cursor: pointer;
 }
 .lunbo>ul.lb-remarks{
@@ -428,7 +439,7 @@ body>div.header{
 }
 
 .index-dangan-banner{
-	width:1200px;
+	width:1245px;
 	height:200px;
 	background: url(./img/dangan-banner.jpg)no-repeat;
 	margin:auto;
@@ -485,7 +496,7 @@ body>div.header{
 }
 #image-flow{
 	height:125px;
-	width:1200px;
+	width:1245px;
 }
 #image-flow-ul img{
 	width:170px;
@@ -556,6 +567,8 @@ body>div.header{
 }
 .table-module-content>div:last-child{
 	float:right;
+	padding-left:5px;
+	width:140px;
 }
 table.x-table{
 	cell
@@ -566,10 +579,15 @@ table.x-table{
 .table-column h1{
 	margin:0px;
 	padding:0px;
-	font-size:20px;
+	font-size:16px;
 	font-weight:normal;
 	text-align:center;
-	padding-top:10px;
+	padding:10px 0px;
+	background: #707070;
+	color:#fff;
+}
+.table-column h1 a{
+	color:#fff;
 }
 .table-column p{
 	padding:0px 15px;
@@ -660,7 +678,7 @@ ul.module-content>li{
 }
 
 ul.module-content>li>a,ul.module-content>li>a:hover{
-	font-size:20px;
+	font-size:16px;
 	text-decoration: none;
 }
 
@@ -848,8 +866,9 @@ body.dangan div.header{
 }
 
 body{
-	background: url(./img/big-bg.png)no-repeat;
+	background:url(./img/big-bg-2.png)no-repeat;
 	background-position: center top;
+	background-position-y:120px;
 }
 
 .container{
@@ -921,6 +940,7 @@ body>div.header>div{
 .search-page .search-abstract p{
 	margin:0px;
 	font-size:16px;
+	color:#333;
 }
 .search-page .sub-abstract{
 	position: absolute;
@@ -933,8 +953,16 @@ body>div.header>div{
 }
 .search-page ul.module-content>li>a{
 	text-decoration: underline;
-	font-size:24px;
+	font-size:18px;
 	font-weight:100;
+	color:blue;
+}
+.search-page ul.module-content>li{
+	list-style-type: none;
+}
+
+.search-page ul.module-content>li div>div.search-abstract.full>div.sub-abstract>span{
+	color:green;
 }
 
 div.chapter-title>h1{
@@ -973,7 +1001,6 @@ a[name]{
 	position: absolute;
 }
 .module-group:not(:last-child){
-	border-bottom:1px solid #ddd;
 	margin-bottom:20px;
 	padding-bottom:20px;
 }
@@ -1017,4 +1044,45 @@ body.dangan .menu-bar ul{
 }
 body.dangan>div.header>div{
 	width:100%;
+}
+
+ul.module-content>li{
+	list-style-type: disc;
+	color:#f00;
+}
+.table-column ul.module-content>li{
+	list-style-type: none;
+}
+ul.module-content>li a{
+	color:black;
+}
+ul.module-content>li span{
+	color:#666;
+}
+
+ul.module-content>li{
+	margin:20px 0px;
+}
+.module-group{
+}
+
+.table-column.pics a{
+	width:145px;
+	height:100px;
+	display:inline-block;
+	float:left;
+	border:1px solid #ddd;
+}
+.table-column.pics a:not(:first-child){
+	margin-top:10px;
+}
+.table-column .table-module-content div>a{
+	border:1px solid #ddd;
+	width:145px;
+	height:100px;
+	display:inline-block;
+}
+
+.module.blue ul.module-content>li{
+	list-style-type: none;
 }

@@ -11,13 +11,14 @@
 		<link rel="stylesheet" type="text/css" media="screen" href="${basePath}js/3d-gallery/css/style.css">
 		 --%>
 		<link rel="stylesheet" type="text/css" media="screen" href="${basePath}resource/frontend/theme/default/css/detail.css">
-		<link rel="stylesheet" type="text/css" media="screen" href="${basePath}resource/frontend/theme/default/css/new/detail.css?t=${_random}">
 		<link rel="stylesheet" type="text/css" media="screen" href="${basePath}js/zoom-pic/css/style.css">
 		
 		<link href="http://vjs.zencdn.net/5.8.8/video-js.css" rel="stylesheet">
 
 		 <!-- If you'd like to support IE8 -->
 		 <script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
+		 
+		 <script src="${basePath}js/zoom-pic/js/ZoomPic.js" type="text/javascript"></script>
 		 
 		 
 		<link rel="stylesheet" href="${basePath}photoswipe/photoswipe.css"> 
@@ -70,19 +71,27 @@
 			margin:20px;
 			width:205px;
 		}
-		
+		.search-btn,.search-box{
+			display:none;
+		}
 		 </style>
 		 
 		 
   	</head>
   
-  <body style="margin:0px auto;" class="dangan detail">
+  <body style="width:1280px;margin:0px auto;">
+  		<%--
+  		<div class="dangan-detail-line"></div>
+  		 --%>
   		<div class="dangan-detail-banner">
   		</div>
+  		<div class="dangan-devider"></div>
+  		<div class="smark"></div>
   		<div class="container-x">
 	  
   			<div class="qute" style="margin-top:5px;">
-  				<h1 class="page-title">企业简介</h1>
+  				<div style="text-align:center;" class="image-devider a">
+  				</div>
 	  			<div class="dangan-detail-content">
 	  			
 	  					<div class="dangan-cover">
@@ -123,32 +132,54 @@
   			</div>
   			<div class="qute">
   				<div class="dangan-devider" style="margin-bottom:34px;"></div>
-  				<h1 class="page-title">产品展示</h1>
+  				<div class="image-devider b">
+  				</div>
   				
-  				
-  				
-  				<div class="brand-table-wrap" style="position: relative;">
-						<div class="brand-table">
-							<div class="img-container" style="">
-			  					<c:forEach items="${qa.productDisplay}" var="b" varStatus="s">
-			  						<div class="img-wrap">
-			  						<img src="${basePath}filee/viewPic.do?manageKey=${b.manageKey}" 
-			  						title="${b.fileNameOnly }" data-key="${b.id}" />
-			  						<div>
-			  						<h1>${b.fileNameOnly }</h1>
-			  						<p>${qa.productDescArray[s.index]}</p> 
-			  						</div>
-			  						</div>
-			  					</c:forEach>
-							</div>
-							
-						</div>
-						<div class="ctr prev"></div>
-						<div class="ctr next"></div>
+  				 <div class="gallery-box">
+  				<%--
+  				 <div class="gallery">
+  					<div class="g-container">
+  						<c:forEach items="${qa.productDisplay}" var="p">
+							 <div class="img-holder">
+							    <img src="${basePath}filee/viewPic.do?manageKey=${p.manageKey}">
+							  	<div class="title">${p.fileNameOnly}</div>
+							    <div class="img-ref">
+							       <img src="${basePath}filee/viewPic.do?manageKey=${p.manageKey}">
+							    </div>
+							  </div>
+  						</c:forEach>
 					</div>
-  				
-  				 <%-- <div class="gallery-box">
-  				
+					
+					<div class="scrolller-container">
+					    <div class="scroller"></div>
+					  </div>
+					  
+					  <div class="arrow left">
+					  	<i class="fa fa-chevron-left"></i>
+					  </div>
+					  
+					  <div class="arrow right">
+					  	<i class="fa fa-chevron-right"></i>
+					  </div>
+					
+				</div> 
+  				--%>
+				<%--
+				<div class="main_flash">
+				<script type="text/javascript" language="javascript">printFlash('${basePath}js/flash-3d-gallery/mainVisual.swf','1110','480','mainVisual','xml=${basePath}pictureXML/${qa.manageKey}.do&currItem=1&charset=utf-8');</script>
+				</div>
+				 --%>
+				 <%--
+				 <div id="LoopDiv">
+					<input id="S_Num" type="hidden" value="8" />
+					<div id="starsIF" class="imageflow"> 
+						<c:forEach items="${qa.productDisplay}" var="file" varStatus="s">
+						<img src="${basePath}filee/viewPic.do?manageKey=${file.manageKey }" longdesc="#" width="280" height="300" alt="Picture" /> 
+						</c:forEach>
+					</div>
+				</div>
+				<div class="clear"></div>
+				  --%>
 				 
 						<div id="Index_Box"">
 						  <pre class="prev">&nbsp;</pre>
@@ -166,14 +197,14 @@
 						    </c:forEach>
 						  </ul>
 						</div>
-				  </div> --%>
+				  </div>
 				 
   			</div>
   			<div class="qute" style="">
-  					
-  					<h1 class="page-title">荣誉资质</h1>
-  					
   					<div class="dangan-devider"></div>
+  					<div class="image-devider c">
+  					</div>
+  					
   					<div style="margin:20px;margin-top:20px;text-aling:center;background: #e7e4d5;">
   					
   					
@@ -227,13 +258,13 @@
   					
   					
   					</div>
-  					<div class="dangan-devider"></div>
   					
   					
   			</div>
   		</div>
   		<div></div>
   		<div class="detail-footer" style="width:100%;margin:auto auto;">
+  			<div class="line" style="margin:0px auto;margin-top:50px;"></div>
   			<div style="text-align:center;margin-top:50px;font-size:24px;">
   			<%--${basePath}resource/frontend/theme/default/css/img/new/code.png --%>
   				<img alt="" src="${basePath }filee/viewPic.do?manageKey=${qa.codeKey}"/>
@@ -251,7 +282,7 @@
   			 --%>
   		</div>
   		
-  		<%@include file="/WEB-INF/jsp/frontend/common/footer.jsp" %>
+  		<%@include file="/WEB-INF/jsp/frontend/common/footer-oldversion.jsp" %>
   		
   		<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
 
@@ -347,7 +378,7 @@
 		</script>
   	   --%>
   	   <script>
-		    /* var speed = 30//速度数值越大速度越慢
+		    var speed = 30//速度数值越大速度越慢
 		    var colee_left2 = document.getElementById("colee_left2");
 		    var colee_left1 = document.getElementById("colee_left1");
 		    var colee_left = document.getElementById("colee_left");
@@ -370,7 +401,7 @@
 		    }
 		    colee_left.onmouseout = function () {
 		        MyMar3 = setInterval(Marquee3, speed)
-		    } */
+		    }
 		    
 		   $(function(){
 			   
@@ -430,71 +461,4 @@
 				
 			}
 		</script>
-		
-		
-		<script type="text/javascript">
- 		var imgContainerWidth = 0;
- 		var brandInter = null;
- 		var brandDirection = "left";
- 		$(function(){
- 			var imgSize = $(".img-container img").size();
- 			var imgTotalWidth = (imgSize/2) * 240;
- 			imgContainerWidth = $(".brand-table").width();
- 			while(imgContainerWidth<imgTotalWidth){
- 				imgContainerWidth += imgContainerWidth;
- 			}
- 			$(".img-container").css("width",imgContainerWidth+"px");
- 			
- 			
- 			$(".brand-table-wrap .ctr.prev").click(function(){
- 				brandDirection = "left";
- 				stopBrandInter();
- 				doBrandSwitch();
- 				startBrandInter();
- 			});
- 			
- 			$(".brand-table-wrap .ctr.next").click(function(){
- 				brandDirection = "right";
- 				stopBrandInter();
- 				doBrandSwitch();
- 				startBrandInter();
- 			});
- 			
- 			//startBrandInter();
- 			
- 		});
- 		
- 		function stopBrandInter(){
- 			if(brandInter){
-				window.clearInterval(brandInter);
-			}
- 		}
- 		
- 		function startBrandInter(){
- 			brandInter = window.setInterval(function(){
- 				doBrandSwitch();
- 			}, 4000);
- 		}
- 		
- 		function doBrandSwitch(){
- 			var left = $(".img-container").css("left");
-			var step = $(".brand-table").width();
-			if(left.indexOf("px")>0){
-				left = parseInt(left.substring(0,left.length - 2));
-			}
-			if(brandDirection == 'left'){
-				left -= step;
-				if(left + imgContainerWidth<=0){//已经到最右边了
-					left = 0;
-				}
-			}else{
-				left += step;
-				if(left > 0){//已经到最左边了
-					left = $(".brand-table").width()-imgContainerWidth;
-				}
-			}
-			
-			$(".img-container").animate({left:left + "px"});
- 		}
- 		</script>
 </html>

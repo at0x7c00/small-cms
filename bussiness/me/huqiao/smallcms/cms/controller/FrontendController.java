@@ -345,8 +345,8 @@ public class FrontendController {
 	public void zhiliangdangan(HttpServletRequest request,Page<QualityArchive> pageInfo){
 		prepareCarousel(request);
 		zhiliangdanganPage(request,pageInfo);
-		//List<QualityArchiveCategory> categoryList = qualityArchiveCategoryService.getByProperties(QualityArchiveCategory.class, new String[]{"status"}, new Object[]{UseStatus.InUse}, "orderNum", null);
-		//request.setAttribute("categoryList",categoryList);
+		List<QualityArchiveCategory> categoryList = qualityArchiveCategoryService.getByProperties(QualityArchiveCategory.class, new String[]{"status"}, new Object[]{UseStatus.InUse}, "orderNum", null);
+		request.setAttribute("categoryList",categoryList);
 		zhiliangqiangqiTop(request);
 	}
 
@@ -366,11 +366,12 @@ public class FrontendController {
 	}
 	
 	@RequestMapping("dangan")
-	public void danganDetail(HttpServletRequest request,@RequestParam("id")Integer id){
+	public String danganDetail(HttpServletRequest request,@RequestParam("id")Integer id){
 		QualityArchive qa = qualityArchiveService.getById(QualityArchive.class, id);
 		if(qa!=null && qa.getStatus()==UseStatus.InUse){
 			request.setAttribute("qa", qa);
 		}
+		return "dangan-old-version";
 	}
 	
 	@RequestMapping("about")

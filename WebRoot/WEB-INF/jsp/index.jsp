@@ -15,11 +15,10 @@
 	}
 	</style>
   <body>
-			<%@include file="/WEB-INF/jsp/frontend/common/header.jsp" %>
+		<%@include file="/WEB-INF/jsp/frontend/common/header.jsp" %>
   		<div class="container">
-  			
 	  		
-	  		<div class="main-content">
+	  		<div class="main-content" style="margin-top:80px;">
 	  			<div class="module-group"  style="min-height:430px;">
 		  			<div class="module left" style="width:485px;">
 		  				<div class="module-title">
@@ -28,13 +27,13 @@
 		  				<div class="module-header">
 		  					<a class="more" href="${basePath}zhengcedongtai.do"></a>
 		  				</div>
-		  				<div class="module-content">
-		  					<div class="lunbo" style="width:455px;height:360px;" id="lunbo1">
+		  				<div class="module-content" style="padding-left:5px;">
+		  					<div class="lunbo" style="width:480px;height:360px;" id="lunbo1">
 								<ul class="lb-imgs">
 									<c:forEach items="${zhengcedongtaiList}" var="chapter">
 							        <li>
 							        <a href="${basePath}chapterDetail.do?k=${chapter.manageKey}" target="_blank">
-							        	<img data-u="image" src="${basePath}filee/viewPic.do?manageKey=${chapter.cover.manageKey}" title="${chapter.title}" data-url="${basePath}chapterDetail.do?k=${chapter.manageKey}"/>
+							        	<img data-u="image" src="${basePath}filee/viewPic.do?manageKey=${chapter.cover.manageKey}" title="${chapter.title}" alt="" data-url="${basePath}chapterDetail.do?k=${chapter.manageKey}"/>
 							        </a>
 							        </li>
 							        </c:forEach>
@@ -43,7 +42,7 @@
 										<c:forEach items="${zhengcedongtaiList}" var="chapter">
 											<li data-url="${basePath}chapterDetail.do?k=${chapter.manageKey}">
 												<a href="${basePath}chapterDetail.do?k=${chapter.manageKey}" target="_blank">
-													${chapter.title}
+													<n:shorthand length="50" content="${chapter.title}"></n:shorthand>
 												</a>
 											</li>
 										</c:forEach>
@@ -71,10 +70,12 @@
 		  				<ul class="module-content">
 		  					<c:forEach items="${shishiredianList}" var="chapter">
 			  					<li>
+			  					<%--
 			  					<font class="title-prefix">■</font>
+			  					 --%>
 			  					<a href="${basePath}chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}"><n:shorthand length="25" content="${chapter.title}"></n:shorthand> </a>
 			  					<span style="float:right;">
-			  						<fmt:formatDate value="${chapter.createTime}" pattern="yyyy年MM月dd"/>
+			  						<fmt:formatDate value="${chapter.createTime}" pattern="yyyy/MM/dd"/>
 			  					</span>
 			  					</li>
 		  					</c:forEach>
@@ -92,7 +93,7 @@
 		  					<a class="more" href="${basePath}zhiliangdangan.do"></a>
 		  				</div>
 		  				
-		  				<div class="module-content" style="padding-bottom:10px;position:relative;" >
+		  				<div class="module-content" style="padding-left:5px;padding-right:5px;padding-bottom:10px;position:relative;" >
 		  				
 		  				
 		  				<span id="btn-left" class="btn btn-left"></span>
@@ -108,7 +109,8 @@
 						      <c:forEach items="${qualityArchiveList }" var="qa">
 						      	<li>
 						      	<a href="${basePath}dangan.do?id=${qa.id}" target="_blank" title="${qa.title}">
-						      	<img src="${basePath}filee/viewPic.do?manageKey=${qa.cover.manageKey}">
+						      	<img src="${basePath}js/jquery-lazyload/img/grey.gif"
+				  						data-original="${basePath}filee/viewPic.do?manageKey=${qa.cover.manageKey}">
 						      	</a>
 						      	<a href="${basePath}dangan.do?id=${qa.id}" target="_blank" title="${qa.title}" class="remark">
 								<span>
@@ -140,10 +142,12 @@
 			  				<ul class="module-content">
 			  					<c:forEach items="${zhiliangredianList}" var="chapter">
 				  					<li>
+				  					<%--
 				  					<font class="title-prefix">■</font>
+				  					 --%>
 				  					<a href="${basePath}chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}"><n:shorthand length="20" content="${chapter.title}"></n:shorthand> </a>
 				  					<span style="float:right;">
-				  						<fmt:formatDate value="${chapter.createTime}" pattern="yyyy年MM月dd"/>
+				  						<fmt:formatDate value="${chapter.createTime}" pattern="yyyy/MM/dd"/>
 				  					</span>
 				  					</li>
 			  					</c:forEach>
@@ -160,10 +164,12 @@
 		  				<ul class="module-content">
 		  					<c:forEach items="${qualityExposureList}" var="chapter">
 			  					<li>
+			  					<%--
 			  					<font class="title-prefix">■</font>
+			  					 --%>
 			  					<a href="${basePath}chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}"><n:shorthand length="20" content="${chapter.title}"></n:shorthand> </a>
 			  					<span style="float:right;">
-			  						<fmt:formatDate value="${chapter.createTime}" pattern="yyyy年MM月dd"/>
+			  						<fmt:formatDate value="${chapter.createTime}" pattern="yyyy/MM/dd"/>
 			  					</span>
 			  					</li>
 		  					</c:forEach>
@@ -182,21 +188,21 @@
 		  				<div class="module-header">
 		  					<a class="more" href="${basePath}huiyuanfengcai.do"></a>
 		  				</div>
-		  				<div style="margin-top:25px;">	
+		  				<div style="margin-top:25px;margin-left:5px;margin-right:5px;">	
 		  					<table width="100%" border="0" class="x-table" cellspacing="0"  cellpadding="0">
 		  						<tr>
 		  							<td width="415px" style="text-align:center;">
 		  								<div class="table-column">
 			  								<a href="${basePath}chapterDetail.do?k=${hangyezixunTop.manageKey}" target="_blank" title="${hangyezixunTop.title }">
-					  								<img alt="" style="width:415px;height:325px;" src="${basePath}filee/viewPic.do?manageKey=${hangyezixunTop.cover.manageKey}">
+					  								<img alt="" style="width:415px;height:325px;" src="${basePath}js/jquery-lazyload/img/grey.gif" data-original="${basePath}filee/viewPic.do?manageKey=${hangyezixunTop.cover.manageKey}" alt="${hangyezixunTop.title }">
 			  								</a>
 		  								</div>
 		  							</td>
 		  							<td width="175px">
-		  								<div class="table-column" style="width:175px;background:#b8b8b8;">
+		  								<div class="table-column" style="width:175px;background:#cbcbcb;">
 		  									<h1>
 		  									<a href="${basePath}chapterDetail.do?k=${hangyezixunTop.manageKey}" target="_blank" title="${hangyezixunTop.title }">
-		  									<n:shorthand length="8" content=" ${hangyezixunTop.title}"></n:shorthand>
+		  									<n:shorthand length="10" content=" ${hangyezixunTop.title}"></n:shorthand>
 		  									</a>
 		  									</h1>
 			  								<p>
@@ -208,7 +214,7 @@
 		  								<div class="table-column pics" style="padding-left:10px;">
 		  								<c:forEach items="${hangyezixunList1 }" var="c" varStatus="s">
 		  									<a href="${basePath}chapterDetail.do?k=${c.manageKey}" target="_blank" title="${c.title }">
-		  									<img alt="" style="width:145px;height:100px;" src="${basePath}filee/viewPic.do?manageKey=${c.cover.manageKey}">
+		  									<img alt="${c.title }" style="width:145px;height:100px;" src="${basePath}js/jquery-lazyload/img/grey.gif" data-original="${basePath}filee/viewPic.do?manageKey=${c.cover.manageKey}">
 		  									</a>
 		  								</c:forEach>
 		  								</div>
@@ -217,7 +223,7 @@
 		  								<div class="table-column pics">
 		  								<c:forEach items="${hangyezixunList2 }" var="c" varStatus="s">
 		  									<a href="${basePath}chapterDetail.do?k=${c.manageKey}" target="_blank" title="${c.title }">
-		  										<img alt="" style="width:145px;height:100px;" src="${basePath}filee/viewPic.do?manageKey=${c.cover.manageKey}">
+		  										<img alt="${c.title }" style="width:145px;height:100px;" src="${basePath}js/jquery-lazyload/img/grey.gif" data-original="${basePath}filee/viewPic.do?manageKey=${c.cover.manageKey}">
 		  									</a>
 		  								</c:forEach>
 		  								</div>
@@ -248,21 +254,21 @@
 		  				<div class="module-header">
 		  					<a class="more" href="${basePath}huiyuanfengcai.do"></a>
 		  				</div>
-		  				<div style="margin-top:25px;">	
+		  				<div style="margin-top:25px;margin-left:5px;margin-right:5px;">	
 		  					<table width="100%" border="0" class="x-table" cellspacing="0"  cellpadding="0">
 		  						<tr>
 		  							<td width="415px" style="text-align:center;">
 		  								<div class="table-column">
 			  								<a href="${basePath}chapterDetail.do?k=${qiyefengcaiTop.manageKey}" target="_blank" title="${qiyefengcaiTop.title}">
-					  								<img alt="" style="width:415px;height:325px;" src="${basePath}filee/viewPic.do?manageKey=${qiyefengcaiTop.cover.manageKey}">
+					  								<img alt="" style="width:415px;height:325px;" src="${basePath}js/jquery-lazyload/img/grey.gif" data-original="${basePath}filee/viewPic.do?manageKey=${qiyefengcaiTop.cover.manageKey}">
 			  								</a>
 		  								</div>
 		  							</td>
 		  							<td width="175px">
-		  								<div class="table-column" style="width:175px;background:#b8b8b8;">
+		  								<div class="table-column" style="width:175px;background:#cbcbcb;">
 		  									<h1>
 		  									<a href="${basePath}chapterDetail.do?k=${qiyefengcaiTop.manageKey}" target="_blank" title="${qiyefengcaiTop.title}">
-		  									${qiyefengcaiTop.title}
+		  									<n:shorthand length="10" content="${qiyefengcaiTop.title}"></n:shorthand>
 											</a>		  									
 		  									</h1>
 			  								<p>
@@ -276,13 +282,15 @@
 				  								<div class="table-module">
 				  									<h2>
 				  									<a href="${basePath}chapterDetail.do?k=${chapter.manageKey}" target="_blank" title="${chapter.title }">
-				  									${chapter.title}
+				  										<n:shorthand length="16" content="${chapter.title}"/>
 				  									</a>
 				  									</h2>
 				  									<div class="table-module-content">
 				  										<div>
 				  										<a href="${basePath}chapterDetail.do?k=${chapter.manageKey}" target="_blank" title="${chapter.title }">
-				  										<img alt="" style="width:145px;height:100px;" src="${basePath}filee/viewPic.do?manageKey=${chapter.cover.manageKey}">
+				  										<img alt="${chapter.title }" style="width:145px;height:100px;" 
+				  										src="${basePath}js/jquery-lazyload/img/grey.gif"
+				  										data-original="${basePath}filee/viewPic.do?manageKey=${chapter.cover.manageKey}">
 				  										</a>
 				  										</div>
 				  										<div>
@@ -299,13 +307,15 @@
 				  								<div class="table-module">
 				  									<h2>
 					  									<a href="${basePath}chapterDetail.do?k=${chapter.manageKey}" target="_blank" title="${chapter.title }">
-					  										${chapter.title}
+					  										<n:shorthand length="16" content="${chapter.title}"/>
 					  									</a>
 				  									</h2>
 				  									<div class="table-module-content">
 				  										<div>
 				  										<a href="${basePath}chapterDetail.do?k=${chapter.manageKey}" target="_blank" title="${chapter.title }">
-				  											<img alt="" style="width:145px;height:100px;" src="${basePath}filee/viewPic.do?manageKey=${chapter.cover.manageKey}">
+				  											<img alt="${chapter.title }" 
+				  											style="width:145px;height:100px;" 
+				  											src="${basePath}js/jquery-lazyload/img/grey.gif" data-original="${basePath}filee/viewPic.do?manageKey=${chapter.cover.manageKey}">
 				  										</a>
 				  										</div>
 				  										<div>
@@ -335,8 +345,10 @@
 		  							<div class="img-container" style="width:${bWidth}px">
 				  					<c:forEach items="${brandList}" var="b" varStatus="s">
 				  						<div class="img-wrap">
-				  						<img src="${basePath}filee/viewPic.do?manageKey=${b.logo.manageKey}" 
-				  						title="${b.name }" data-href="${b.url}" />
+				  						<img 
+				  						src="${basePath}js/jquery-lazyload/img/grey.gif"
+				  						data-original="${basePath}filee/viewPic.do?manageKey=${b.logo.manageKey}" 
+				  						title="${b.name }" data-href="${b.url}" /> 
 				  						</div>
 				  					</c:forEach>
 		  							</div>
@@ -356,9 +368,9 @@
 		  				</div>
 		  				<div class="module-header">
 		  				</div>
-		  				<div class="module-content">
+		  				<div class="module-content" style="padding-left:0px;padding-right:0px;">
 		  					<c:forEach items="${flinkList}" var="flink">
-			  					<a href="${flink.url}" target="_blank" style="font-family:'SourceHanSansCN-Light';font-size:20px;color:#444;">${flink.name}</a>
+			  					<a href="${flink.url}" target="_blank" style="font-family:'SourceHanSansCN-Light';font-size:16px;color:#444;">${flink.name}</a>
 		  					</c:forEach>
 		  				</div>
 		  			</div>
@@ -407,6 +419,14 @@
 	 					window.open(url);
  					}
  				});
+ 			});
+ 			
+ 			$("#image-flow-ul img").each(function(){
+ 				var _this = $(this);
+ 				if(!_this.attr("loaded")){
+ 					_this.attr("src",_this.data("original"));
+ 					_this.attr("loaded","yes");
+ 				}
  			});
  			
  		});

@@ -12,6 +12,15 @@ $(function(){
 		}
 	});
 	
+	
+	$(".module-title").each(function(){
+		var _this = $(this);
+		var content = _this.html();
+		_this.html("<span>" + content + "</span>");
+	});
+	
+	
+	$("img").lazyload({effect: "fadeIn"});
 });
 
 
