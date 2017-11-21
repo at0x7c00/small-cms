@@ -73,6 +73,8 @@ private WebPage page;
 private String pageQuery;
 /**封面*/
 private CommonFile cover;
+private CommonFile coverSmall;
+private CommonFile coverLarge;
 	/**封面模糊查询条件*/
 private String coverQuery;
 /**排序*/
@@ -299,6 +301,27 @@ public CommonFile getCover(){
 public String getCoverQuery(){
     return this.coverQuery;
 }
+
+@ManyToOne(targetEntity=me.huqiao.smallcms.common.entity.CommonFile.class,fetch=FetchType.LAZY)
+@JoinColumn(name="cover_small_id",nullable=true)
+@Fetch(FetchMode.SELECT)
+@JsonIgnore
+public CommonFile getCoverSmall() {
+	return coverSmall;
+}
+public void setCoverSmall(CommonFile coverSmall) {
+	this.coverSmall = coverSmall;
+}
+@ManyToOne(targetEntity=me.huqiao.smallcms.common.entity.CommonFile.class,fetch=FetchType.LAZY)
+@JoinColumn(name="cover_large_id",nullable=true)
+@Fetch(FetchMode.SELECT)
+@JsonIgnore
+public CommonFile getCoverLarge() {
+	return coverLarge;
+}
+public void setCoverLarge(CommonFile coverLarge) {
+	this.coverLarge = coverLarge;
+}
 /**
  * @param orderNum 要设置的排序
  */
@@ -426,6 +449,20 @@ public UseStatus getStatus(){
 		}
 		return null;
 	}
+	@Transient
+	public String getCoverSmallKey() {
+		if(getCover()!=null){
+			return getCover().getManageKey();
+		}
+		return null;
+	}
+	@Transient
+	public String getCoverLargeKey() {
+		if(getCover()!=null){
+			return getCover().getManageKey();
+		}
+		return null;
+	}
 	
 	@Transient
 	public String getKey() {
@@ -434,6 +471,49 @@ public UseStatus getStatus(){
 	public void setKey(String key) {
 		this.key = key;
 	} 
+	
+	
+	@Transient
+	public CommonFile getMiddleCoverFirst(){
+		if(getCover()!=null){
+			return getCover();
+		}
+		if(getCoverSmall()!=null){
+			return getCoverSmall();
+		}
+		if(getCoverLarge()!=null){
+			return getCoverLarge();
+		}
+		return null;
+	}
+	
+	@Transient
+	public CommonFile getSmallCoverFirst(){
+		if(getCoverSmall()!=null){
+			return getCoverSmall();
+		}
+		if(getCover()!=null){
+			return getCover();
+		}
+		if(getCoverLarge()!=null){
+			return getCoverLarge();
+		}
+		return null;
+	}
+	
+	@Transient
+	public CommonFile getLargeCoverFirst(){
+		if(getCoverLarge()!=null){
+			return getCoverLarge();
+		}
+		if(getCover()!=null){
+			return getCover();
+		}
+		if(getCoverSmall()!=null){
+			return getCoverSmall();
+		}
+		return null;
+	}
 	
 	
 }

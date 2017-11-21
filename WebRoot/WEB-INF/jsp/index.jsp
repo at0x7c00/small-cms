@@ -33,7 +33,7 @@
 									<c:forEach items="${zhengcedongtaiList}" var="chapter">
 							        <li>
 							        <a href="${basePath}chapterDetail.do?k=${chapter.manageKey}" target="_blank">
-							        	<img data-u="image" src="${basePath}filee/viewPic.do?manageKey=${chapter.cover.manageKey}" title="${chapter.title}" alt="" data-url="${basePath}chapterDetail.do?k=${chapter.manageKey}"/>
+							        	<img data-u="image" src="${basePath}filee/viewPic.do?manageKey=${chapter.middleCoverFirst.manageKey}" title="${chapter.title}" alt="" data-url="${basePath}chapterDetail.do?k=${chapter.manageKey}"/>
 							        </a>
 							        </li>
 							        </c:forEach>
@@ -65,7 +65,7 @@
 		  					时事热点
 		  				</div>
 		  				<div class="module-header">
-		  					<a class="more" href="${basePath}zhiliangredian.do"></a>
+		  					<a class="more" href="${basePath}shishiredian.do"></a>
 		  				</div>
 		  				<ul class="module-content">
 		  					<c:forEach items="${shishiredianList}" var="chapter">
@@ -84,7 +84,7 @@
 	  			</div>
 	  			
 	  			
-	  			<div class="module-group" style="min-height:243px;margin-top:25px;">
+	  			<div class="module-group" style="min-height:243px;margin-top:20px;">
 		  			<div class="module full-page">
 		  				<div class="module-title">
 		  					质量档案
@@ -130,9 +130,9 @@
 		  		</div>
 	  			
 	  			
-	  			<div class="module-group"  style="min-height:430px;">
+	  			<div class="module-group"  style="min-height:400px;margin-top:10px;margin-bottom:0px;padding-bottom:0px;">
 	  			
-		  			<div class="module left" style="min-height:430px;">
+		  			<div class="module left" style="min-height:400px;">
 			  				<div class="module-title">
 			  					质量新闻
 			  				</div>
@@ -154,12 +154,12 @@
 			  				</ul>
 			  			</div>
 		  			
-		  			<div class="module right" style="min-height:430px;">
+		  			<div class="module right" style="min-height:400px;">
 		  				<div class="module-title">
 		  					质量曝光
 		  				</div>
 		  				<div class="module-header">
-		  					<a class="more" href="${basePath}zhiliangredian.do"></a>
+		  					<a class="more" href="${basePath}zhiliangbaoguang.do"></a>
 		  				</div>
 		  				<ul class="module-content">
 		  					<c:forEach items="${qualityExposureList}" var="chapter">
@@ -180,7 +180,7 @@
 	  			
 	  			<div style="clear:both;"></div>
 	  			
-	  			<div class="module-group">
+	  			<div class="module-group" style="margin-top:15px;">
 		  			<div class="module full-page">
 		  				<div class="module-title">
 		  					行业资讯
@@ -194,7 +194,7 @@
 		  							<td width="415px" style="text-align:center;">
 		  								<div class="table-column">
 			  								<a href="${basePath}chapterDetail.do?k=${hangyezixunTop.manageKey}" target="_blank" title="${hangyezixunTop.title }">
-					  								<img alt="" style="width:415px;height:325px;" src="${basePath}js/jquery-lazyload/img/grey.gif" data-original="${basePath}filee/viewPic.do?manageKey=${hangyezixunTop.cover.manageKey}" alt="${hangyezixunTop.title }">
+					  								<img alt="" style="width:415px;height:325px;" src="${basePath}js/jquery-lazyload/img/grey.gif" data-original="${basePath}filee/viewPic.do?manageKey=${hangyezixunTop.middleCoverFirst.manageKey}" alt="${hangyezixunTop.title }">
 			  								</a>
 		  								</div>
 		  							</td>
@@ -214,7 +214,7 @@
 		  								<div class="table-column pics" style="padding-left:10px;">
 		  								<c:forEach items="${hangyezixunList1 }" var="c" varStatus="s">
 		  									<a href="${basePath}chapterDetail.do?k=${c.manageKey}" target="_blank" title="${c.title }">
-		  									<img alt="${c.title }" style="width:145px;height:100px;" src="${basePath}js/jquery-lazyload/img/grey.gif" data-original="${basePath}filee/viewPic.do?manageKey=${c.cover.manageKey}">
+		  									<img alt="${c.title }" style="width:145px;height:100px;" src="${basePath}js/jquery-lazyload/img/grey.gif" data-original="${basePath}filee/viewPic.do?manageKey=${c.smallCoverFirst.manageKey}">
 		  									</a>
 		  								</c:forEach>
 		  								</div>
@@ -223,7 +223,7 @@
 		  								<div class="table-column pics">
 		  								<c:forEach items="${hangyezixunList2 }" var="c" varStatus="s">
 		  									<a href="${basePath}chapterDetail.do?k=${c.manageKey}" target="_blank" title="${c.title }">
-		  										<img alt="${c.title }" style="width:145px;height:100px;" src="${basePath}js/jquery-lazyload/img/grey.gif" data-original="${basePath}filee/viewPic.do?manageKey=${c.cover.manageKey}">
+		  										<img alt="${c.title }" style="width:145px;height:100px;" src="${basePath}js/jquery-lazyload/img/grey.gif" data-original="${basePath}filee/viewPic.do?manageKey=${c.smallCoverFirst.manageKey}">
 		  									</a>
 		  								</c:forEach>
 		  								</div>
@@ -232,7 +232,7 @@
 		  								<div class="table-column">
 		  								<ul class="module-content" style="padding-left:5px;">
 						  					<c:forEach items="${hangyezixunList}" var="chapter">
-							  					<li>
+							  					<li style="border-bottom:0px;">
 							  					<!-- <font class="title-prefix">■</font> -->
 							  					<a href="${basePath}chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}"><n:shorthand length="13" content="${chapter.title}"></n:shorthand> </a></li>
 						  					</c:forEach>
@@ -246,7 +246,7 @@
 		  		</div>
 	  			
 	  			
-	  			<div class="module-group">
+	  			<div class="module-group" style="margin-top:15px;">
 		  			<div class="module full-page">
 		  				<div class="module-title">
 		  					企业风采
@@ -260,7 +260,7 @@
 		  							<td width="415px" style="text-align:center;">
 		  								<div class="table-column">
 			  								<a href="${basePath}chapterDetail.do?k=${qiyefengcaiTop.manageKey}" target="_blank" title="${qiyefengcaiTop.title}">
-					  								<img alt="" style="width:415px;height:325px;" src="${basePath}js/jquery-lazyload/img/grey.gif" data-original="${basePath}filee/viewPic.do?manageKey=${qiyefengcaiTop.cover.manageKey}">
+					  								<img alt="" style="width:415px;height:325px;" src="${basePath}js/jquery-lazyload/img/grey.gif" data-original="${basePath}filee/viewPic.do?manageKey=${qiyefengcaiTop.middleCoverFirst.manageKey}">
 			  								</a>
 		  								</div>
 		  							</td>
@@ -290,7 +290,7 @@
 				  										<a href="${basePath}chapterDetail.do?k=${chapter.manageKey}" target="_blank" title="${chapter.title }">
 				  										<img alt="${chapter.title }" style="width:145px;height:100px;" 
 				  										src="${basePath}js/jquery-lazyload/img/grey.gif"
-				  										data-original="${basePath}filee/viewPic.do?manageKey=${chapter.cover.manageKey}">
+				  										data-original="${basePath}filee/viewPic.do?manageKey=${chapter.smallCoverFirst.manageKey}">
 				  										</a>
 				  										</div>
 				  										<div>
@@ -315,7 +315,7 @@
 				  										<a href="${basePath}chapterDetail.do?k=${chapter.manageKey}" target="_blank" title="${chapter.title }">
 				  											<img alt="${chapter.title }" 
 				  											style="width:145px;height:100px;" 
-				  											src="${basePath}js/jquery-lazyload/img/grey.gif" data-original="${basePath}filee/viewPic.do?manageKey=${chapter.cover.manageKey}">
+				  											src="${basePath}js/jquery-lazyload/img/grey.gif" data-original="${basePath}filee/viewPic.do?manageKey=${chapter.smallCoverFirst.manageKey}">
 				  										</a>
 				  										</div>
 				  										<div>
@@ -332,7 +332,7 @@
 		  			</div>
 		  		</div>
 		  		
-		  		<div class="module-group"  style="min-height:73px;">
+		  		<div class="module-group"  style="min-height:73px;margin-top:10px;padding-bottom:0px;margin-bottom:0px;">
 		  			<div class="module full-page">
 		  				<div class="module-title">
 		  					品牌展示
@@ -346,8 +346,7 @@
 				  					<c:forEach items="${brandList}" var="b" varStatus="s">
 				  						<div class="img-wrap">
 				  						<img 
-				  						src="${basePath}js/jquery-lazyload/img/grey.gif"
-				  						data-original="${basePath}filee/viewPic.do?manageKey=${b.logo.manageKey}" 
+				  						src="${basePath}filee/viewPic.do?manageKey=${b.logo.manageKey}" 
 				  						title="${b.name }" data-href="${b.url}" /> 
 				  						</div>
 				  					</c:forEach>
@@ -361,7 +360,7 @@
 		  			</div>
 		  		</div>
 		  		
-		  		<div class="module-group"  style="min-height:73px;">
+		  		<div class="module-group"  style="min-height:73px;margin-top:10px;">
 		  			<div class="module full-page">
 		  				<div class="module-title">
 		  				友情链接

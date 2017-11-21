@@ -64,7 +64,7 @@ public class ChapterServiceImpl extends BaseServiceImpl<Chapter> implements ICha
 	
 	public List<Chapter> getTop(Integer top,Integer type){
 		WebPage p = pageService.getById(WebPage.class, type);
-		return getByProperties(Chapter.class, new String[]{"status","page"}, new Object[]{UseStatus.InUse,p}, "orderNum asc,updateTime desc", top);
+		return getByProperties(Chapter.class, new String[]{"status","page"}, new Object[]{UseStatus.InUse,p}, "orderNum desc", top);
 	}
 	
 	public Page<Chapter> getAll(Integer type,Page<Chapter> pageInfo){
@@ -72,7 +72,7 @@ public class ChapterServiceImpl extends BaseServiceImpl<Chapter> implements ICha
 		Chapter chapter = new Chapter();
 		chapter.setPage(p);
 		chapter.setStatus(UseStatus.InUse);
-		pageInfo.setOrderField("updateTime");
+		pageInfo.setOrderField("orderNum");
 		pageInfo.setOrderDirection("desc");
 		return getListPage(chapter, pageInfo);
 	}

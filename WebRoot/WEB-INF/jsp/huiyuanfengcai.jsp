@@ -5,10 +5,11 @@
 	<head>
 		<title>企业风采 - ${systemTitle}</title>
 		<%@include file="/WEB-INF/jsp/frontend/common/resource.jsp" %>
+  			<link rel="stylesheet" type="text/css" media="screen"  href="${basePath}resource/frontend/theme/default/css/new/column.css?_t=${_random}">
   	</head>
   
   <body>
-		<%@include file="/WEB-INF/jsp/frontend/common/header.jsp" %>
+		<%@include file="/WEB-INF/jsp/frontend/common/logo-and-menu.jsp" %> 
   		<div class="container">
   			
 	  		
@@ -32,7 +33,7 @@
 									<div class="img-div">
 										<c:if test="${not empty chapter.cover}">
 											<a href="${basePath}chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}">
-												<img alt="" src="${basePath}filee/viewPic.do?manageKey=${chapter.cover.manageKey}" style="width:285px;height:170px"/>
+												<img alt="" src="${basePath}filee/viewPic.do?manageKey=${chapter.middleCoverFirst.manageKey}" style="width:285px;height:170px"/>
 											</a>
 										</c:if>
 									</div>

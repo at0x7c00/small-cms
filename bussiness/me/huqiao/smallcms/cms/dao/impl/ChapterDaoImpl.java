@@ -218,7 +218,7 @@ public class ChapterDaoImpl extends BaseDaoImpl<Chapter> implements IChapterDao 
 	
 	private List<SearchResult> searchList(String key,Page pageInfo){
 		
-		String hql = "select new me.huqiao.smallcms.cms.entity.SearchResult('chapter',c.id,c.manageKey,c.title,c.content,c.page,cover,c.updateTime) from Chapter c  left join c.cover cover where  c.status=:status and (c.title like :key or c.content like :key) order by c.updateTime desc";
+		String hql = "select new me.huqiao.smallcms.cms.entity.SearchResult('chapter',c.id,c.manageKey,c.title,c.content,c.page,c,c.updateTime) from Chapter c  left join c.cover cover where  c.status=:status and (c.title like :key or c.content like :key) order by c.updateTime desc";
 		hql += " union all ";
 		hql += "select new me.huqiao.smallcms.cms.entity.SearchResult('qa',qa.id,qa.manageKey,qa.title,qa.content,cover,qa.updateTime) from QualityArchive qa left join qa.cover cover where qa.status=:status and (qa.title like :key or qa.content like :key) order by c.updateTime desc";
 		Query query = getSession().createQuery(hql);

@@ -54,7 +54,7 @@
 				</label>
 				</section>
 				
-				<section class="col col-3">
+				<!-- <section class="col col-3">
 					<label class="input">
 						置顶:
 								<label class="select">
@@ -64,4 +64,4 @@
 								</select><i></i>
 								</label>
 				</label>
-				</section>
+				</section> -->

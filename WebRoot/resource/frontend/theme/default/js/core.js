@@ -21,6 +21,41 @@ $(function(){
 	
 	
 	$("img").lazyload({effect: "fadeIn"});
+	
+	$(".module-header a.more").each(function(){
+		$(this).html("更多 <i class='fa fa-angle-double-right'></i>");
+	});
+	$(".module-header").each(function(){
+		var $this = $(this);
+		$this.appendTo($this.parent().find(".module-title").first());
+	});
+	
+	//**临时 开始
+	$(".pic-calendar").each(function(){
+		
+		var _this = $(this);
+		var g = _this.parents(".module-group");
+		if(g.length>0){
+			g = g.first();
+			g.find(".module.right.blue").remove();
+			var lg = g.find(".module.left.lg");
+			if(lg.length>0){
+				lg = lg.first();
+				lg.addClass("module-tmp");
+				lg.css("width","1000px");
+			}
+		}
+	}); 
+	if($(".pic-calendar").length==0){
+		var lg = $(".module.left.lg");
+		if(lg.length>0){
+			lg = lg.first();
+			//lg.addClass("module-tmp");
+			//lg.css("width","1000px");
+			lg.css("display","block");
+		}
+	}
+	//**临时 结束
 });
 
 

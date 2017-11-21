@@ -27,7 +27,7 @@
 	</div>
 	<strong>说明</strong>
 	<ul>
-	<li style="list-style-type: none;">推荐图片尺寸：高：415像素，宽1150像素</li>
-	<li style="list-style-type: none;">上传一张图片，多余图片将被忽略。</li>
+	<li style="list-style-type: none;">1)推荐图片尺寸：高：440像素，宽1000像素。显示时按固定高度440（太小会被拉伸，太大会被压缩），宽度不限制，但超过1000的部分将无法显示</li>
+	<li style="list-style-type: none;">2)上传一张图片，多余图片将被忽略。</li>
 	</ul>
 </div>

@@ -9,6 +9,9 @@
 		body{
 			background: none;
 		}
+		.container{
+			margin-top:150px;
+		}
 		</style>
   	</head>
   

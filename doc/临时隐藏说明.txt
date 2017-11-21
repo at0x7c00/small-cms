@@ -1,0 +1,2 @@
+1./new/core.css: .pic-calendar的display设置为none;
+2.core.js:去除.pic-calendar的外壳，并为module增加一个临时样式module.left.lg.module-tmp

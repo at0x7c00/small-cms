@@ -1,11 +1,11 @@
 @import url(./fonts.css);
 body{
-	font-family:"微软雅黑","SourceHanSansCN-Regular", Arial, Helvetica, sans-serif,"Source Han Sans CN Regular";
+	font-family:"Microsoft yahei","微软雅黑","SourceHanSansCN-Regular", Arial, Helvetica, sans-serif,"Source Han Sans CN Regular";
 	margin-bottom:0px; 
 }
 .bx-wrapper img{
 	height:440px;
-	min-width:780px;
+	min-width:1000px;
 	max-width:inherit;
 	width:auto;
 }
@@ -134,7 +134,7 @@ textarea,input{outline:none}
 	position: relative;
 	padding:0px;
 	margin:0px 22px;
-	font-family:"SourceHanSansCN-Regular";
+	font-family:"Microsoft yahei","SourceHanSansCN-Regular";
 	line-height:70px;
 	letter-spacing: 2px;
 }
@@ -161,12 +161,15 @@ textarea,input{outline:none}
 	display: block;
 }
 
-.module-header{
-	background: none;	
+.module>.module-header{
 	display: none;
 }
+.module-header{
+	background: none;	
+	/* display: none; */
+}
 .module-title{
-	font-family: "SourceHanSansCN-Regular","微软雅黑", Arial, Helvetica, sans-serif;
+	font-family: "Microsoft yahei","SourceHanSansCN-Regular","微软雅黑", Arial, Helvetica, sans-serif;
 	font-size:23px;
 	font-weight:500;
 	border-bottom:1px solid #333;
@@ -177,6 +180,18 @@ textarea,input{outline:none}
 	border-bottom:1px solid #ff4d4d;
 	height:35px;
 	display:inline-block;
+}
+.module-title>.module-header{
+	display:inline-block;
+	height:35px;
+	float:right;
+}
+.module-title>.module-header>a.more{
+	height:35px;
+	width:40px;
+	line-height:35px;
+	font-size:12px;
+	text-decoration: none;
 }
 .module{
 	border:0px;
@@ -215,7 +230,7 @@ body>div.header{
 	color:#666;
 	text-align:center;
 	padding:5px 0px;
-	font-family: "SourceHanSansCN-Regular","微软雅黑", Arial, Helvetica, sans-serif;
+	font-family: "Microsoft yahei","SourceHanSansCN-Regular","微软雅黑", Arial, Helvetica, sans-serif;
 }
 .footer-detail{
 	width:800px;
@@ -226,7 +241,7 @@ body>div.header{
 	display:inline-block;
 	float:left;
 	width:193px;
-	font-family: "SourceHanSansCN-Regular","微软雅黑", Arial, Helvetica, sans-serif;
+	font-family: "Microsoft yahei","SourceHanSansCN-Regular","微软雅黑", Arial, Helvetica, sans-serif;
 	margin-left:10px;
 	height:235px;
 	position:relative;
@@ -244,7 +259,7 @@ body>div.header{
 .footer-column ul li a{
 	color:#fff;
 	font-size:14px;
-	font-family: "SourceHanSansCN-Regular","微软雅黑", Arial, Helvetica, sans-serif;
+	font-family: "Microsoft yahei","SourceHanSansCN-Regular","微软雅黑", Arial, Helvetica, sans-serif;
 }
 .footer-column h1{
 	font-weight: normal;
@@ -254,7 +269,7 @@ body>div.header{
 
 .footer-column h2{
 	font-weight: normal;
-	font-family: "SourceHanSansCN-Regular","微软雅黑", Arial, Helvetica, sans-serif;
+	font-family: "Microsoft yahei","SourceHanSansCN-Regular","微软雅黑", Arial, Helvetica, sans-serif;
 	font-size:16px;
 	margin:10px 0px;
 	margin-top:0px;
@@ -272,7 +287,9 @@ body>div.header{
 }
 
 .module-header>a.more{
-	display: none;
+	/* display: none; */
+	background: none;
+	margin:0px;
 }
 
 .pic-calendar{
@@ -581,9 +598,12 @@ table.x-table{
 	padding:0px;
 	font-size:16px;
 	font-weight:normal;
-	text-align:center;
-	padding:10px 0px;
+	text-align:left;
+	padding:10px 0px 10px 10px;
 	background: #707070;
+	width:163px;
+	overflow:hidden;
+	border:1px solid #707070;
 	color:#fff;
 }
 .table-column h1 a{
@@ -1085,4 +1105,36 @@ ul.module-content>li{
 
 .module.blue ul.module-content>li{
 	list-style-type: none;
+}
+.module.full-page ul.module-content>li{
+	border-bottom:1px dashed #666;
+}
+
+/*临时样式*/
+.module.left.lg{
+	display: none;
+}
+.pic-calendar{
+	display: none;
+}
+.module.left.lg.module-tmp{
+	margin:auto;
+	float:none;
+	width:1000px;
+	display: block;
+}
+
+.module.left.lg.module-tmp ul.module-content>li{
+	border-bottom:1px dashed #666;
+}
+
+.footer{
+	width:100%;
+}
+
+
+@media screen and (min-width: 1px) and  (max-width:1250px){
+	.carousel,.footer{
+		width:1250px;
+	}
 }

@@ -22,14 +22,14 @@ public class SearchResult {
 			Integer id, String key,
 			String title,
 			String content,
-			WebPage webPage, CommonFile cover,Date updateTime) {
+			WebPage webPage, Chapter c,Date updateTime) {
 		super();
 		this.source = source;
 		this.key = key;
 		this.id = id;
 		this.title = title;
 		this.webPage = webPage;
-		this.cover = cover;
+		this.cover = c.getSmallCoverFirst();
 		this.content = content;
 		this.updateTime = updateTime;
 	}

@@ -5,14 +5,15 @@
 	<head>
 		<title>活动回顾 - ${systemTitle}</title>
 		<%@include file="/WEB-INF/jsp/frontend/common/resource.jsp" %>
+  			<link rel="stylesheet" type="text/css" media="screen"  href="${basePath}resource/frontend/theme/default/css/new/column.css?_t=${_random}">
   	</head>
   
   <body>
-		<%@include file="/WEB-INF/jsp/frontend/common/header.jsp" %>
+		<%@include file="/WEB-INF/jsp/frontend/common/logo-and-menu.jsp" %> 
   		<div class="container">
 	  		<div class="main-content">
 	  			<div class="module-group">
-		  			<div class="module left lg" style="min-height:420px;width:750px;">
+		  			<div class="module full-page" style="min-height:420px;">
 		  				<div class="module-title">
 		  				活动回顾<a name="content"></a>
 		  				</div>
@@ -29,11 +30,6 @@
 		  				
 		  			</div>
 		  			
-		  			<div class="module right blue" style="width:450px;">
-		  			
-		  					<%@include file="/WEB-INF/jsp/frontend/common/calendar.jsp"%>
-		  			
-		  			</div>
 		  			<%-- <div class="module right blue">
 		  				<div class="module-title">
 		  					<img alt="" src="${basePath}resource/frontend/theme/default/css/img/zhiliangredian-left.png">

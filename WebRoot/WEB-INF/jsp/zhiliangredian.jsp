@@ -5,10 +5,11 @@
 	<head>
 		<title>质量新闻 - ${systemTitle}</title>
 		<%@include file="/WEB-INF/jsp/frontend/common/resource.jsp" %>
+  			<link rel="stylesheet" type="text/css" media="screen"  href="${basePath}resource/frontend/theme/default/css/new/column.css?_t=${_random}">
   	</head>
   
   <body>
-			<%@include file="/WEB-INF/jsp/frontend/common/header.jsp" %>
+		<%@include file="/WEB-INF/jsp/frontend/common/logo-and-menu.jsp" %> 
   		<div class="container">
   			
 	  		

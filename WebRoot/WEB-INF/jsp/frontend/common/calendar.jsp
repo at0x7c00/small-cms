@@ -14,7 +14,7 @@
 		<c:forEach items="${page.list}" var="chapter" varStatus="s">
 			<c:if test="${s.count<6}">
 				<li>
-					<img src="${basePath}filee/viewPic.do?manageKey=${chapter.cover.manageKey}" data-url="${basePath}chapterDetail.do?k=${chapter.manageKey}"/>
+					<img src="${basePath}filee/viewPic.do?manageKey=${chapter.largeCoverFirst.manageKey}" data-url="${basePath}chapterDetail.do?k=${chapter.manageKey}"/>
 				</li>
 			</c:if>
 		</c:forEach>

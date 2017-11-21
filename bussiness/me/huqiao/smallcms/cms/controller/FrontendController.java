@@ -191,21 +191,21 @@ public class FrontendController {
 	}
 
 	private void hangyeTop(HttpServletRequest request) {
-		List<Chapter> hangyezixunList = chapterService.getTop(8, PAGE_ID_HANGYEZIXUN);
+		List<Chapter> hangyezixunList = chapterService.getTop(9, PAGE_ID_HANGYEZIXUN);
 		if(hangyezixunList.size()>0){
 			request.setAttribute("hangyezixunTop", hangyezixunList.get(0));
 		}
 		List<Chapter> hangyezixunList1 = new ArrayList<Chapter>();
 		List<Chapter> hangyezixunList2 = new ArrayList<Chapter>();
 		List<Chapter> hangyezixunList3 = new ArrayList<Chapter>();
-		for(int i = 0;i<hangyezixunList.size();i++){
-			if(i<3){
+		for(int i = 1;i<hangyezixunList.size();i++){
+			if(hangyezixunList1.size()<3 && i%2==1){
 				hangyezixunList1.add(hangyezixunList.get(i));
-			}else if(i<6){
-				hangyezixunList2.add(hangyezixunList.get(i));
-			}else{
-				hangyezixunList3.add(hangyezixunList.get(i));
 			}
+			if(hangyezixunList2.size()<3 && i%2==0){
+				hangyezixunList2.add(hangyezixunList.get(i));
+			}
+			hangyezixunList3.add(hangyezixunList.get(i));
 		}
 		request.setAttribute("hangyezixunList1", hangyezixunList1);
 		request.setAttribute("hangyezixunList2", hangyezixunList2);
@@ -264,6 +264,10 @@ public class FrontendController {
 	}
 	private void zhiliangPage(HttpServletRequest request,Page<Chapter> pageInfo) {
 		Page<Chapter> page = chapterService.getAll(PAGE_ID_ZHILIANGREDIAN,pageInfo);
+		request.setAttribute("page", page);
+	}
+	private void shishiPage(HttpServletRequest request,Page<Chapter> pageInfo) {
+		Page<Chapter> page = chapterService.getAll(PAGE_ID_SHISHIREDIAN,pageInfo);
 		request.setAttribute("page", page);
 	}
 	private void hangyePage(HttpServletRequest request,Page<Chapter> pageInfo) {
@@ -332,6 +336,14 @@ public class FrontendController {
 		hangyeTop(request);
 		pageInfo.setNumPerPage(15);
 		zhiliangPage(request, pageInfo);
+	}
+	@RequestMapping("shishiredian")
+	public void shishiredian(HttpServletRequest request,Page<Chapter> pageInfo){
+		prepareCarousel(request);
+		zhengceTop(request);
+		hangyeTop(request);
+		pageInfo.setNumPerPage(15);
+		shishiPage(request, pageInfo);
 	}
 	
 	@RequestMapping("huiyuanfengcai")

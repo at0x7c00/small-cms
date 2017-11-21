@@ -160,6 +160,8 @@ request.setAttribute("useStatusMap",UseStatus.useStatusMap);
     	chapter.setUpdateTime(chapter.getUpdateTime());
     	chapter.setPage((WebPage)request.getSession().getAttribute("cPage"));
     	chapter.setCover(parseFilee(request,"coverKeys",null));
+    	chapter.setCoverSmall(parseFilee(request,"smallCoverKeys",null));
+    	chapter.setCoverLarge(parseFilee(request,"largeCoverKeys",null));
     	chapter.setManageKey(Md5Util.getManageKey());
     	
     	List<CommonFile> atts = commonFileService.findAttachementFromContent(chapter.getContent());
@@ -178,19 +180,19 @@ request.setAttribute("useStatusMap",UseStatus.useStatusMap);
      */
     @RequestMapping(value="/update",method=RequestMethod.GET)
 	public void updateUI(@ModelAttribute(value="chapter") Chapter chapter,HttpServletRequest request) {
-	request.setAttribute("tempBean", chapter);
+    	request.setAttribute("tempBean", chapter);
     	//复杂关联关系数据准备
-					List<User> userList = userService.getByProperties(User.class,null,null,null,null);
-	request.setAttribute("userList",userList);
-					List<WebPage> webPageList = webPageService.getByProperties(WebPage.class,new String[]{"status"},new Object[]{UseStatus.InUse},null,null);
-					if(chapter.getPage()!=null && chapter.getPage().getStatus()==UseStatus.UnUse){
-						webPageList.add(chapter.getPage());
-					}
-	request.setAttribute("webPageList",webPageList);
-					List<CommonFile> commonFileList = commonFileService.getByProperties(CommonFile.class,null,null,null,null);
-	request.setAttribute("commonFileList",commonFileList);
-request.setAttribute("useStatusMap",UseStatus.useStatusMap);
-	//clearTempDataList(request.getSession(),"chapter");
+		List<User> userList = userService.getByProperties(User.class,null,null,null,null);
+		request.setAttribute("userList",userList);
+		List<WebPage> webPageList = webPageService.getByProperties(WebPage.class,new String[]{"status"},new Object[]{UseStatus.InUse},null,null);
+		if(chapter.getPage()!=null && chapter.getPage().getStatus()==UseStatus.UnUse){
+			webPageList.add(chapter.getPage());
+		}
+		request.setAttribute("webPageList",webPageList);
+		List<CommonFile> commonFileList = commonFileService.getByProperties(CommonFile.class,null,null,null,null);
+		request.setAttribute("commonFileList",commonFileList);
+		request.setAttribute("useStatusMap",UseStatus.useStatusMap);
+		//clearTempDataList(request.getSession(),"chapter");
     }
     /**
      *  修改文章 
@@ -209,11 +211,12 @@ request.setAttribute("useStatusMap",UseStatus.useStatusMap);
     	if(!validate(jsonResult,result)){
     		return jsonResult;
     	}
-    	if("Yes".equals(request.getParameter("updateToTop"))){
+    	//if("Yes".equals(request.getParameter("updateToTop"))){
     		chapter.setUpdateTime(new Date());
-    	}
+    	///}
     	chapter.setCover(parseFilee(request,"coverKeys",chapter.getCoverKey()));
-    	
+    	chapter.setCoverSmall(parseFilee(request,"smallCoverKeys",chapter.getCoverSmallKey()));
+    	chapter.setCoverLarge(parseFilee(request,"largeCoverKeys",chapter.getCoverLargeKey()));
     	
     	List<CommonFile> oldAtts = commonFileService.findAttachementFromContent(chapter.getContent());
         List<CommonFile> newAtts = commonFileService.findAttachementFromContent(newContent);
