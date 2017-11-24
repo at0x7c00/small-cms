@@ -12,6 +12,7 @@ import me.huqiao.smallcms.cms.service.IWebPageService;
 import me.huqiao.smallcms.common.entity.enumtype.UseStatus;
 import me.huqiao.smallcms.common.service.impl.BaseServiceImpl;
 import me.huqiao.smallcms.history.entity.HistoryRecord;
+import me.huqiao.smallcms.util.StringUtil;
 import me.huqiao.smallcms.util.web.Page;
 
 import org.springframework.stereotype.Service;
@@ -32,16 +33,16 @@ public class ChapterServiceImpl extends BaseServiceImpl<Chapter> implements ICha
     @Override
     public Page<Chapter> getListPage(Chapter chapter,Page pageInfo) {
       	pageInfo.setTotalCount(chapterDao.findListRowCount(chapter).intValue());
-		pageInfo.setOrderField(pageInfo.getOrderField() == null ? "id": pageInfo.getOrderField());
-		pageInfo.setOrderDirection(pageInfo.getOrderDirection() == null ? "asc": pageInfo.getOrderDirection());
+		pageInfo.setOrderField(StringUtil.isEmpty(pageInfo.getOrderField())? "orderNum": pageInfo.getOrderField());
+		pageInfo.setOrderDirection(StringUtil.isEmpty(pageInfo.getOrderDirection()) ? "desc": pageInfo.getOrderDirection());
 		pageInfo.setList(chapterDao.findListPage(chapter,pageInfo));
         return pageInfo;
-    }
+    } 
 	@Override
 	public Page<HistoryRecord<Chapter>> getHistoryListPage(Chapter chapter, Page pageInfo) {
 		pageInfo.setTotalCount(chapterDao.findHistoryListRowCount(chapter,pageInfo).intValue());
-		pageInfo.setOrderField(pageInfo.getOrderField() == null ? "id": pageInfo.getOrderField());
-		pageInfo.setOrderDirection(pageInfo.getOrderDirection() == null ? "asc": pageInfo.getOrderDirection());
+		pageInfo.setOrderField(pageInfo.getOrderField() == null ? "orderNum": pageInfo.getOrderField());
+		pageInfo.setOrderDirection(pageInfo.getOrderDirection() == null ? "desc": pageInfo.getOrderDirection());
 		pageInfo.setList(chapterDao.findHistoryListPage(chapter,pageInfo));
         return pageInfo;
 	}
@@ -64,7 +65,7 @@ public class ChapterServiceImpl extends BaseServiceImpl<Chapter> implements ICha
 	
 	public List<Chapter> getTop(Integer top,Integer type){
 		WebPage p = pageService.getById(WebPage.class, type);
-		return getByProperties(Chapter.class, new String[]{"status","page"}, new Object[]{UseStatus.InUse,p}, "orderNum desc", top);
+		return getByProperties(Chapter.class, new String[]{"status","page"}, new Object[]{UseStatus.InUse,p}, "orderNum desc,updateTime desc", top);
 	}
 	
 	public Page<Chapter> getAll(Integer type,Page<Chapter> pageInfo){

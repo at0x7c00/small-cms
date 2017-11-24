@@ -13,7 +13,7 @@
   		<div class="container">
 	  		<div class="main-content">
 	  			<div class="module-group">
-		  			<div class="module full-page" style="min-height:420px;">
+		  			<div class="module left lg module-tmp" style="min-height:420px;">
 		  				<div class="module-title">
 		  				活动回顾<a name="content"></a>
 		  				</div>
@@ -25,7 +25,7 @@
 		  				
 		  				 <jsp:include page="/WEB-INF/jsp/frontend/common/pageBar.jsp">
 		  				 	<jsp:param value="${page}" name="page"/>
-		  				 	<jsp:param value="zhengcedongtai.do" name="url"/>
+		  				 	<jsp:param value="huodonghuigu.do" name="url"/>
 		  				 </jsp:include>
 		  				
 		  			</div>

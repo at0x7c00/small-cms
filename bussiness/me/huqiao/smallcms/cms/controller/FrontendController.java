@@ -29,6 +29,7 @@ import me.huqiao.smallcms.ppll.entity.QualityArchive;
 import me.huqiao.smallcms.ppll.entity.QualityArchiveCategory;
 import me.huqiao.smallcms.ppll.entity.QualityArchiveCompany;
 import me.huqiao.smallcms.ppll.entity.Worker;
+import me.huqiao.smallcms.ppll.entity.ZwCode;
 import me.huqiao.smallcms.ppll.service.IApplyService;
 import me.huqiao.smallcms.ppll.service.IAuthOrgService;
 import me.huqiao.smallcms.ppll.service.IBrandService;
@@ -37,6 +38,7 @@ import me.huqiao.smallcms.ppll.service.IQualityArchiveCategoryService;
 import me.huqiao.smallcms.ppll.service.IQualityArchiveCompanyService;
 import me.huqiao.smallcms.ppll.service.IQualityArchiveService;
 import me.huqiao.smallcms.ppll.service.IWorkerService;
+import me.huqiao.smallcms.ppll.service.IZwCodeService;
 import me.huqiao.smallcms.servlet.VerifyImageServlet;
 import me.huqiao.smallcms.util.Md5Util;
 import me.huqiao.smallcms.util.StringUtil;
@@ -103,6 +105,8 @@ public class FrontendController {
 	private IBrandService brandService;
 	@Resource
 	private ICommentService commentService;
+	@Resource
+	private IZwCodeService zwCodeService;
 	
 	 /**
 	  * 注册属性编辑器
@@ -354,12 +358,13 @@ public class FrontendController {
 	}
 	
 	@RequestMapping("zhiliangdangan")
-	public void zhiliangdangan(HttpServletRequest request,Page<QualityArchive> pageInfo){
+	public String zhiliangdangan(HttpServletRequest request,Page<QualityArchive> pageInfo){
 		prepareCarousel(request);
 		zhiliangdanganPage(request,pageInfo);
 		List<QualityArchiveCategory> categoryList = qualityArchiveCategoryService.getByProperties(QualityArchiveCategory.class, new String[]{"status"}, new Object[]{UseStatus.InUse}, "orderNum", null);
 		request.setAttribute("categoryList",categoryList);
 		zhiliangqiangqiTop(request);
+		return "zhiliangdangan";
 	}
 
 	@RequestMapping("hangyezixun")
@@ -488,6 +493,11 @@ public class FrontendController {
 			request.setAttribute("tempBean", pageInfo.getList().get(0));
 		}
 		return "frontend/queryMemberOrg";
+	}
+	@RequestMapping(value = "zwQuery",method = RequestMethod.POST)
+	public String zwQuery(HttpServletRequest request, @RequestParam("key")String key){
+		request.setAttribute("tempBean",zwCodeService.getEntityByProperty(ZwCode.class, "companyName", key));
+		return "frontend/zwCode";
 	}
 	
 	@RequestMapping(value = "query",method = RequestMethod.POST,params = "queryType=qualityArchive")

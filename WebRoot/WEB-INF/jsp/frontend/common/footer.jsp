@@ -20,8 +20,9 @@
 				<ul class="column-item">
 					<li><a href="${basePath}zhiliangdangan.do#project">项目简介</a></li>
 					<li><a href="javascript:void(0);" id="liuyan">在线留言</a></li>
-					<li><a href="javascript:void(0);" id="chaxun">查询入口</a></li>
+					<li><a href="javascript:void(0);" id="zhiweima">质维码下载</a></li>
 					<%--
+					<li><a href="javascript:void(0);" id="chaxun">查询入口</a></li>
 					<li><a href="javascript:void(0);" id="ruhui">入会申请</a></li>
 					 --%>
 				</ul>
@@ -33,22 +34,22 @@
 					<img alt="" src="${basePath}resource/brcode.png"/>
 					<h2 style="margin-top:5px;">扫描关注公众号</h2>
 				</div>
+				<%--
 				<h1 style="text-align:center;">咨询热线：400-822-5757</h1>
+				 --%>
 			</div>
 		</div>
-<%-- 
-		<div style="margin-top:20px;text-align:center;">
-			 版权所有 &copy;${copyRight } 网站管理：${copyRight }网络中心
-		</div>
-		<div style="margin:5px;text-align:center;">
-		地址：北京市朝阳区北三环东路18号  电话：010-64213739  邮编：100013		 
-		</div>
-		<div style="margin:5px;text-align:center;">
-			
-		</div> --%>
 		
 	</div>
 	<div class="footer-sn">京ICP备17017591号-1号</div>
+</div>
+<div class="query-form" style="display: none;">
+	<h1 style="margin-top:50px;">质维码下载专区</h1>
+	<div class="query-group">
+		<span class="query-title-zwm">企业名称</span>
+   	 	<input type="text" class="query-input" data-target="authOrg" placeholder="请输入完整企业名称">
+   	 	<button class="query-btn" data-target="authOrg"><i class="fa fa-search"></i> 搜索</button>
+	</div>
 </div>
 <script type="text/javascript">
  		$(function(){
@@ -200,9 +201,9 @@
  							var queryType = _this.data("query-type");
  							var title = '会员单位';
  							if(queryType=='qualityArchive'){
- 								title = "质量档案";
+ 								title = "收录企业";
  							}else if(queryType =='authOrg'){
- 								title = "授权机构";
+ 								title = "服务机构";
  							}else if(queryType =='worker'){
  								title = "工作人员";
  							}
@@ -337,6 +338,45 @@
 					
 				});
  		}
+ 		//////////////////////////
+ 		
+ 		$(function(){
+ 			$("#zhiweima").click(startQuery);
+ 		});
+	function startQuery(){
+		loadQuery($(".query-form").html());
+	}
+	function loadQuery(html){
+		var dialog = $("<div class='dialog-box'/>");
+		var mask = $("<div class='dialog-mask'/>");
+		var dialogBody = html;
+		var dialogContent = $("<div class='dialog-container'><div class='dialog-content'><span class='close'></span>"+dialogBody+"</div></div>")
+		dialog.append(mask).append(dialogContent);
+		mask.css("height",$(document).height());
+		$(document.body).append(dialog);
+		$(".close",dialog).click(function(){
+			dialog.remove();
+		});
+		
+		$(".query-btn",dialog).click(function(){
+			doQuery($(this).parent().find(".query-input").first());
+		});
+		
+		$(".query-input",dialog).keyup(function(e){
+			if(e.keyCode==13){
+				doQuery($(this));
+			}
+		});
+		
+		$(".query-input",dialog).first().focus();
+	}
+	function doQuery(a){
+		if(!a.val()) return;
+		$.post(basePath + 'zwQuery.do',{key:a.val(),_t:new Date().getTime()},function(d){
+			loadQuery(d);
+		});
+	}
+	
  		</script>
  		<script type="text/javascript" src="${basePath}js/city.js"></script>
 		  

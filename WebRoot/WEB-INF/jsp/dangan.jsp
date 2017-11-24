@@ -6,7 +6,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title>${qa.title} - 质量档案 - ${systemTitle}</title>
-		<%@include file="/WEB-INF/jsp/frontend/common/resource-old-version.jsp" %>
+		<%@include file="/WEB-INF/jsp/frontend/common/resource.jsp" %>
 		<%--
 		<link rel="stylesheet" type="text/css" media="screen" href="${basePath}js/3d-gallery/css/style.css">
 		 --%>

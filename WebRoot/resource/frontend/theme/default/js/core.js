@@ -31,7 +31,7 @@ $(function(){
 	});
 	
 	//**临时 开始
-	$(".pic-calendar").each(function(){
+	/**/$(".pic-calendar").each(function(){
 		
 		var _this = $(this);
 		var g = _this.parents(".module-group");

@@ -451,15 +451,15 @@ public UseStatus getStatus(){
 	}
 	@Transient
 	public String getCoverSmallKey() {
-		if(getCover()!=null){
-			return getCover().getManageKey();
+		if(getCoverSmall()!=null){
+			return getCoverSmall().getManageKey();
 		}
 		return null;
 	}
 	@Transient
 	public String getCoverLargeKey() {
-		if(getCover()!=null){
-			return getCover().getManageKey();
+		if(getCoverLarge()!=null){
+			return getCoverLarge().getManageKey();
 		}
 		return null;
 	}
