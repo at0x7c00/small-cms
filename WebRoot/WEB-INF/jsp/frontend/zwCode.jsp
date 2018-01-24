@@ -25,6 +25,7 @@
  				<tr>
  					<td style="text-align:center">
  						<a href="${basePath}filee/downloadFile.do?key=${tempBean.code.manageKey}" target="_blank" class="button lg">下载图片</a>
+ 						<a href="${basePath}api/code/download.do?key=${tempBean.manageKey}" target="_blank" class="button lg">漂浮窗代码</a>
  					</td>
  				</tr>
  			</table>

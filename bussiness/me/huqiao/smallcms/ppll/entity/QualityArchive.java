@@ -93,6 +93,7 @@ private Date updateTime;
 
 private String phoneNumber;
 private String address;
+private String email;
 private CommonFile code;
 
 private String productDesc;
@@ -529,8 +530,10 @@ public UseStatus getStatus(){
 	public void setKey(String key) {
 		this.key = key;
 	}
-	
-	
-	
-	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 }

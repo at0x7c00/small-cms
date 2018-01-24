@@ -5,8 +5,6 @@
 	<head>
 		<title>质量档案 - ${systemTitle}</title>
 		<%@include file="/WEB-INF/jsp/frontend/common/resource.jsp" %>
-		<script src="${basePath}js/jqueryui/1.10.3/jquery-ui.min.js"></script>
-		<link rel="stylesheet" type="text/css" media="screen" href="${basePath}js/jqueryui/1.10.3/css/jquery-ui-1.10.4.custom.min.css">
 		<style type="text/css">
 		.qa-search-div>span[role=status]{
 			position: absolute;
@@ -29,12 +27,12 @@
 	  			<div class="module-group blue">
 	  			<a name="content"></a>
 	  				<div>
-	  					<h1 class="page-title" style="text-align:left;">${p.title }</h1>
+	  					<h1 class="page-title" style="text-align:left;">${p.title }
 	  					
-	  					<div>
+	  					<span style="float:right;font-size:14px;color:#333;">
 	  					<fmt:formatDate value="${p.updateTime}" pattern="yyyy-MM-dd"/> 来源：质量档案  编辑：${p.creator.chineseName }
-	  					</div>
-	  					<hr>
+	  					</span>
+	  					</h1>
 	  					
 	  					<n:html value="${p.content}"></n:html>
 	  					

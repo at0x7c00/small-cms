@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import me.huqiao.smallcms.cms.entity.AccessRecord;
+import me.huqiao.smallcms.cms.service.IAccessRecordService;
 import me.huqiao.smallcms.common.controller.BaseController;
 import me.huqiao.smallcms.common.entity.CommonFile;
 import me.huqiao.smallcms.common.entity.Select2;
@@ -39,6 +41,8 @@ public class ZwCodeController  extends BaseController {
    /**质维码服务*/
     @Resource
     private IZwCodeService zwCodeService;
+    @Resource
+    private IAccessRecordService accessRecordService;
  /**
   * 注册属性编辑器
   * @param binder 数据绑定器
@@ -80,13 +84,16 @@ public class ZwCodeController  extends BaseController {
         Page<ZwCode> zwCodePage = zwCodeService.getListPage(zwCode,pageInfo);
         request.setAttribute("pageBean", zwCodePage);
 		listFormParam(request,zwCode,pageInfo);
+		for(ZwCode code : zwCodePage.getList()){
+			code.setBtnAccessCount(accessRecordService.countBy(AccessRecord.key_zlda_code_button+"_"+code.getCodeId()).intValue());
+			code.setWechatAccessCount(accessRecordService.countBy(AccessRecord.key_zlda_wechat+"_"+code.getCodeId()).intValue());
+		}
     }
  	/**
      * 为质维码分页查询表单准备数据
      * @param request HttpServletRequest对象
      * @param zwCode 质维码查询对象
      * @param pageInfo 分页查询对象
-     * 
      */
 	public void listFormParam(HttpServletRequest request,ZwCode zwCode,Page pageInfo){
 		//复杂关联关系数据准备

@@ -34,10 +34,10 @@ img{border:0;}
 	Z-INDEX: 100; OVERFLOW: hidden; CURSOR: pointer
 }
 #Index_Box .prev {
-	POSITION: absolute; WIDTH: 80px; BACKGROUND: url(./images/next.png) 0px 0px; HEIGHT: 120px; TOP: 120px; LEFT: -35px
+	POSITION: absolute; WIDTH: 80px; BACKGROUND: url(./images/arrow-left-dangan-detail.png)no-repeat center; HEIGHT: 120px; TOP: 120px; LEFT: -55px
 }
 #Index_Box .next {
-	POSITION: absolute; WIDTH: 80px; BACKGROUND: url(./images/next.png) -80px 0px; HEIGHT: 120px; TOP: 120px; RIGHT: -35px
+	POSITION: absolute; WIDTH: 80px; BACKGROUND: url(./images/arrow-right-dangan-detail.png)no-repeat center; HEIGHT: 120px; TOP: 120px; RIGHT: -55px
 }
 
 #Index_Box li p {

@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import me.huqiao.smallcms.cms.entity.AccessRecord;
 import me.huqiao.smallcms.cms.entity.Advertisement;
 import me.huqiao.smallcms.cms.entity.Carousel;
 import me.huqiao.smallcms.cms.entity.Chapter;
@@ -14,6 +15,7 @@ import me.huqiao.smallcms.cms.entity.Comment;
 import me.huqiao.smallcms.cms.entity.FriendLink;
 import me.huqiao.smallcms.cms.entity.SearchResult;
 import me.huqiao.smallcms.cms.entity.propertyeditor.CommentEditor;
+import me.huqiao.smallcms.cms.service.IAccessRecordService;
 import me.huqiao.smallcms.cms.service.IAdvertisementService;
 import me.huqiao.smallcms.cms.service.ICarouselService;
 import me.huqiao.smallcms.cms.service.IChapterService;
@@ -25,6 +27,7 @@ import me.huqiao.smallcms.ppll.entity.Apply;
 import me.huqiao.smallcms.ppll.entity.AuthOrg;
 import me.huqiao.smallcms.ppll.entity.Brand;
 import me.huqiao.smallcms.ppll.entity.MemberOrganization;
+import me.huqiao.smallcms.ppll.entity.ProjectInfo;
 import me.huqiao.smallcms.ppll.entity.QualityArchive;
 import me.huqiao.smallcms.ppll.entity.QualityArchiveCategory;
 import me.huqiao.smallcms.ppll.entity.QualityArchiveCompany;
@@ -34,6 +37,7 @@ import me.huqiao.smallcms.ppll.service.IApplyService;
 import me.huqiao.smallcms.ppll.service.IAuthOrgService;
 import me.huqiao.smallcms.ppll.service.IBrandService;
 import me.huqiao.smallcms.ppll.service.IMemberOrganizationService;
+import me.huqiao.smallcms.ppll.service.IProjectInfoService;
 import me.huqiao.smallcms.ppll.service.IQualityArchiveCategoryService;
 import me.huqiao.smallcms.ppll.service.IQualityArchiveCompanyService;
 import me.huqiao.smallcms.ppll.service.IQualityArchiveService;
@@ -107,6 +111,10 @@ public class FrontendController {
 	private ICommentService commentService;
 	@Resource
 	private IZwCodeService zwCodeService;
+	@Resource
+	private IAccessRecordService accessRecordService;
+	@Resource
+	IProjectInfoService projectInfoService;
 	
 	 /**
 	  * 注册属性编辑器
@@ -360,11 +368,20 @@ public class FrontendController {
 	@RequestMapping("zhiliangdangan")
 	public String zhiliangdangan(HttpServletRequest request,Page<QualityArchive> pageInfo){
 		prepareCarousel(request);
+		pageInfo.setNumPerPage(24000);
+		zhiliangdanganPage(request,pageInfo);
+		zhiliangqiangqiTop(request);
+		request.setAttribute("projectInfo", projectInfoService.getById(ProjectInfo.class, 1));
+		return "zhiliangdangan";
+	}
+	
+	@RequestMapping("zhiliangdanganList")
+	public String zhiliangdanganList(HttpServletRequest request,Page<QualityArchive> pageInfo){
+		prepareCarousel(request);
 		zhiliangdanganPage(request,pageInfo);
 		List<QualityArchiveCategory> categoryList = qualityArchiveCategoryService.getByProperties(QualityArchiveCategory.class, new String[]{"status"}, new Object[]{UseStatus.InUse}, "orderNum", null);
 		request.setAttribute("categoryList",categoryList);
-		zhiliangqiangqiTop(request);
-		return "zhiliangdangan";
+		return "zhiliangdanganList";
 	}
 
 	@RequestMapping("hangyezixun")
@@ -388,9 +405,55 @@ public class FrontendController {
 		if(qa!=null && qa.getStatus()==UseStatus.InUse){
 			request.setAttribute("qa", qa);
 		}
-		return "dangan-old-version";
+		
+		accessRecord(request,id);
+		
+		return "dangan";
 	}
 	
+	private void accessRecord(HttpServletRequest request, Integer id) {
+		String userAgent = request.getHeader("user-agent");
+		String referer =  request.getHeader("referer");
+		
+		userAgent= userAgent==null ? "" : userAgent;
+		/*Enumeration<String> headers = request.getHeaderNames();
+		while(headers.hasMoreElements()){
+			String header = headers.nextElement();
+			log.info(header + ":" + request.getHeader(header));
+		}*/
+		boolean isWechat = userAgent.toLowerCase().contains("micromessenger");
+		AccessRecord record = new AccessRecord();
+		record.setAccessTime(new Date());
+		record.setIp(request.getRemoteHost());
+		record.setManageKey(Md5Util.getManageKey());
+		record.setOrigin(referer);
+		
+		StringBuffer requestURL = request.getRequestURL();
+	    String queryString = request.getQueryString();
+
+	    if (queryString != null) {
+	        requestURL.append('?').append(queryString).toString();
+	    }
+	    
+		record.setUrl(requestURL.toString());
+		
+		String key = null;
+		if(isWechat){
+			key = "zlda_wechat";
+		}else{
+			if("button".equals(request.getParameter("from"))){
+				key = "zlda_code_button";
+			}else{
+				key = "zlda_web";
+			}
+		}
+		key += "_" + id;
+		record.setKey(key);
+		accessRecordService.add(record);
+	}
+
+
+
 	@RequestMapping("about")
 	public void about(HttpServletRequest request){
 		prepareCarousel(request);
@@ -597,5 +660,73 @@ public class FrontendController {
 		return qualityArchiveService.getListPage(qualityArchive, pageInfo).getList();
 	}
 	
+	
+	@RequestMapping(value = "api/code/download",method = RequestMethod.GET)
+	public void code(HttpServletRequest request, @RequestParam("key")String key){
+		ZwCode zwCode = zwCodeService.getEntityByProperty(ZwCode.class, "manageKey", key);
+		request.setAttribute("tempBean", zwCode);
+	}
+	
+	@RequestMapping(value = "api/code/js",method = RequestMethod.GET)
+	public String js(
+			HttpServletRequest request,
+			@RequestParam("key")String key,
+			@RequestParam("display")String display,
+			@RequestParam("width")Integer width,
+			@RequestParam("height")String height,
+			@RequestParam("top")String top,
+			@RequestParam("bg")String bg,
+			@RequestParam("enable")String enable
+			){
+		ZwCode zwCode = zwCodeService.getEntityByProperty(ZwCode.class, "manageKey", key);
+		request.setAttribute("tempBean", zwCode);
+		request.setAttribute("key", key);
+		String targetUrl = zwCode.getUrl();
+		if(StringUtil.isNotEmpty(targetUrl)){
+			if(targetUrl.contains("?")){
+				targetUrl += "&from=button";
+			}else{
+				targetUrl += "?from=button";
+			}
+			request.setAttribute("targetUrl", targetUrl);
+		}
+		request.setAttribute("cssUrl", getBasePath(request) + "api/code/css.do?key=" + key 
+				+ "&display=" + display
+				+ "&width=" + width
+				+ "&height=" + height
+				+ "&top=" + top
+				+ "&bg=" + bg
+				+ "&enable=" + enable
+				);
+		return "/api/code/js";
+	}
+	@RequestMapping(value = "api/code/css",method = RequestMethod.GET)
+	public String css(
+			HttpServletRequest request,
+			@RequestParam("key")String key,
+			@RequestParam("display")String display,
+			@RequestParam("width")Integer width,
+			@RequestParam("height")String height,
+			@RequestParam("top")String top,
+			@RequestParam("bg")String bg,
+			@RequestParam("enable")String enable
+			){
+		request.setAttribute("display",display );
+		request.setAttribute("width",width );
+		request.setAttribute("height",height );
+		request.setAttribute("top",top );
+		request.setAttribute("bg",bg );
+		request.setAttribute("enable",enable );
+		
+		return "/api/code/css";
+	}
+	
+	private String getBasePath(HttpServletRequest request){
+		String path = request.getContextPath();
+		String basePath = request.getScheme() + "://"
+				+ request.getServerName() + ":" + request.getServerPort()
+				+ path + "/";
+		return basePath;
+	}
 	
 }

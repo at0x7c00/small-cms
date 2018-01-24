@@ -42,6 +42,8 @@ private String companyName;
 private CommonFile code;
 	/**二维码模糊查询条件*/
 private String codeQuery;
+
+private String url;
 	/**MD5管理ID*/
 	protected String manageKey;
 	/**@return String MD5管理ID */
@@ -126,4 +128,47 @@ public String getCodeQuery(){
 	public String toString() {
 		return "ZwCode [manageKey=" + manageKey + "]";
 	}
+	
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	
+	private Integer wechatAccessCount;
+	private Integer btnAccessCount;
+	
+	@Transient
+	public Integer getWechatAccessCount() {
+		return wechatAccessCount;
+	}
+	public void setWechatAccessCount(Integer wechatAccessCount) {
+		this.wechatAccessCount = wechatAccessCount;
+	}
+	@Transient
+	public Integer getBtnAccessCount() {
+		return btnAccessCount;
+	}
+	public void setBtnAccessCount(Integer btnAccessCount) {
+		this.btnAccessCount = btnAccessCount;
+	}
+	
+
+	@Transient
+	public String getCodeId(){
+		String url = this.url;
+		if(url==null || !url.contains("?") || !url.contains("=")){
+			return "none";
+		}
+		url = url.substring(url.indexOf("?")+1);
+		for(String pv : url.split("&")){
+			String[] pair = pv.split("=");
+			if(pair[0].equals("id")){
+				return pair[1];
+			}
+		}
+		return "none";
+	}
+	
 }

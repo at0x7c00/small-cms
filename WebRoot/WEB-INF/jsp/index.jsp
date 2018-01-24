@@ -13,6 +13,12 @@
 		padding-bottom: 0px;
 		border-bottom:0px;
 	}
+	.img-container .img-group{
+		width:1035px;
+		float:left;
+		display:inline-block;
+		height:200px;
+	}
 	</style>
   <body>
 		<%@include file="/WEB-INF/jsp/frontend/common/header.jsp" %>
@@ -343,13 +349,21 @@
 		  					<div class="brand-table-wrap" style="position: relative;">
 		  						<div class="brand-table">
 		  							<div class="img-container" style="width:${bWidth}px">
-				  					<c:forEach items="${brandList}" var="b" varStatus="s">
-				  						<div class="img-wrap">
-				  						<img 
-				  						src="${basePath}filee/viewPic.do?manageKey=${b.logo.manageKey}" 
-				  						title="${b.name }" data-href="${b.url}" /> 
-				  						</div>
-				  					</c:forEach>
+		  								<div class="img-group">
+					  					<c:forEach items="${brandList}" var="b" varStatus="s">
+					  						<div class="img-wrap">
+					  						<img 
+					  						src="${basePath}filee/viewPic.do?manageKey=${b.logo.manageKey}" 
+					  						title="${b.name }" data-href="${b.url}" /> 
+					  						</div>
+					  						<c:if test="${s.count % 18 ==0}"></div></c:if>
+					  						<c:if test="${s.count % 18 ==0 and (not s.last)}"><div class="img-group"></c:if>
+					  						
+					  					</c:forEach>
+					  					<c:if test="${fn:length(brandList) % 18 !=0 }">
+					  						</div>
+					  					</c:if>
+					  					
 		  							</div>
 		  							
 		  						</div>
@@ -379,21 +393,19 @@
 	  		</div>
 	  		
   		</div>
-		  		<%@include file="/WEB-INF/jsp/frontend/common/footer.jsp" %>
+		<%@include file="/WEB-INF/jsp/frontend/common/footer.jsp" %>
  		<%@include file="/WEB-INF/jsp/frontend/common/js.jsp" %>
  		<script type="text/javascript">
  		var imgContainerWidth = 0;
  		var brandInter = null;
  		var brandDirection = "left";
+ 		var imgTotalWidth = 0;
  		$(function(){
  			var imgSize = $(".img-container img").size();
- 			var imgTotalWidth = (imgSize/3) * 170;
- 			imgContainerWidth = $(".brand-table").width();
- 			while(imgContainerWidth<imgTotalWidth){
- 				imgContainerWidth += imgContainerWidth;
- 			}
- 			$(".img-container").css("width",imgContainerWidth+"px");
+ 			imgContainerWidth = $(".brand-table").width();//1025
  			
+ 			imgTotalWidth = parseInt((imgSize/18)) * imgContainerWidth + (imgSize%18==0 ? 0 : 1035);
+ 			$(".img-container").css("width",imgTotalWidth+"px");
  			
  			$(".brand-table-wrap .ctr.prev").click(function(){
  				brandDirection = "left";
@@ -448,15 +460,18 @@
 			if(left.indexOf("px")>0){
 				left = parseInt(left.substring(0,left.length - 2));
 			}
+			console.log(brandDirection)
 			if(brandDirection == 'left'){
 				left -= step;
-				if(left + imgContainerWidth<=0){//已经到最右边了
+				console.log(left)
+				if(left + imgTotalWidth<=0){//已经到最右边了
 					left = 0;
 				}
 			}else{
 				left += step;
+				console.log(left)
 				if(left > 0){//已经到最左边了
-					left = $(".brand-table").width()-imgContainerWidth;
+					left = $(".brand-table").width()-imgTotalWidth;
 				}
 			}
 			

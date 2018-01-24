@@ -136,51 +136,6 @@
   				</div>
   				
   				 <div class="gallery-box">
-  				<%--
-  				 <div class="gallery">
-  					<div class="g-container">
-  						<c:forEach items="${qa.productDisplay}" var="p">
-							 <div class="img-holder">
-							    <img src="${basePath}filee/viewPic.do?manageKey=${p.manageKey}">
-							  	<div class="title">${p.fileNameOnly}</div>
-							    <div class="img-ref">
-							       <img src="${basePath}filee/viewPic.do?manageKey=${p.manageKey}">
-							    </div>
-							  </div>
-  						</c:forEach>
-					</div>
-					
-					<div class="scrolller-container">
-					    <div class="scroller"></div>
-					  </div>
-					  
-					  <div class="arrow left">
-					  	<i class="fa fa-chevron-left"></i>
-					  </div>
-					  
-					  <div class="arrow right">
-					  	<i class="fa fa-chevron-right"></i>
-					  </div>
-					
-				</div> 
-  				--%>
-				<%--
-				<div class="main_flash">
-				<script type="text/javascript" language="javascript">printFlash('${basePath}js/flash-3d-gallery/mainVisual.swf','1110','480','mainVisual','xml=${basePath}pictureXML/${qa.manageKey}.do&currItem=1&charset=utf-8');</script>
-				</div>
-				 --%>
-				 <%--
-				 <div id="LoopDiv">
-					<input id="S_Num" type="hidden" value="8" />
-					<div id="starsIF" class="imageflow"> 
-						<c:forEach items="${qa.productDisplay}" var="file" varStatus="s">
-						<img src="${basePath}filee/viewPic.do?manageKey=${file.manageKey }" longdesc="#" width="280" height="300" alt="Picture" /> 
-						</c:forEach>
-					</div>
-				</div>
-				<div class="clear"></div>
-				  --%>
-				 
 						<div id="Index_Box"">
 						  <pre class="prev">&nbsp;</pre>
 						  <pre class="next">&nbsp;</pre>
@@ -351,32 +306,8 @@
 
 </div>
   </body>
-  <%--
-	  <script src='${basePath}js/3d-gallery/js/TweenMax.min.js'></script>
-	  <script src='${basePath}js/3d-gallery/js/Draggable.min.js'></script>
-  	  <script src="${basePath}js/3d-gallery/js/index.js"></script>
-   --%>
   	  
   	  <script src="http://vjs.zencdn.net/5.8.8/video.js"></script>
-  	  <%--
-  	  <script type="text/javascript">
-		stepcarousel.setup({
-			galleryid: 'mygallery', //id of carousel DIV
-			beltclass: 'belt', //class of inner "belt" DIV containing all the panel DIVs
-			panelclass: 'panel', //class of panel DIVs each holding content
-			panelbehavior: {speed:500, wraparound:false, persist:true},
-			autostep: {enable:true, moveby:4, pause:10000},
-			defaultbuttons: {enable: true, moveby: 4, leftnav: ['${basePath}js/step-gallery/images/butt-left.gif', 0, 64], rightnav: ['${basePath}js/step-gallery/images/butt-right.gif', -11, 64]},
-			statusvars: ['statusA', 'statusB', 'statusC'], //register 3 variables that contain current panel (start), current panel (last), and total panels
-			contenttype: ['inline'], //content setting ['inline'] or ['external', 'path_to_external_file']
-			oninit:function(){
-				isloaded=true
-				document.getElementById('displaycssbelt').style.visibility="visible";
-				//document.getElementById('stocklevels').style.visibility="visible";
-			}
-		});
-		</script>
-  	   --%>
   	   <script>
 		    var speed = 30//速度数值越大速度越慢
 		    var colee_left2 = document.getElementById("colee_left2");

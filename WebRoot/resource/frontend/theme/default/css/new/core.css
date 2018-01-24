@@ -234,7 +234,7 @@ body>div.header{
 	font-family: "Microsoft yahei","SourceHanSansCN-Regular","微软雅黑", Arial, Helvetica, sans-serif;
 }
 .footer-detail{
-	width:800px;
+	width:900px;
 	margin:auto;
 	min-height:250px;
 }
@@ -721,13 +721,13 @@ div.img-div{
 
 .logo-img.dangan{
 	background: url(./img/logo-dangan.png)no-repeat;
-	height:65px;
-	width:730px;
+	height:55px;
+	width:435px;
 	display:inline-block;
 	float:left;
 }
 body.dangan div.header{
-	height:96px;
+	height:70px;
 }
 .dangan .container{
 	width:100%;
@@ -737,12 +737,12 @@ body.dangan div.header{
 	border-bottom:4px solid #db9f45;
 }
 .dangan .left-full{
-	margin:20px auto 0px auto;
+	margin:10px auto 0px auto;
 	float:none;
 	min-height:70px;
 }
 .dangan-menu a{
-	font-size:28px;
+	font-size:20px;
 	padding:0px 10px;
 	margin:0px 10px;
 	color:#444;
@@ -760,10 +760,16 @@ body.dangan div.header{
 }
 
 .dangan-big-banner{
-	width:100%;
-	height:650px;
+	width:1250px;
+	height:600px;
 	background: url(./img/dangan-big-banner.png)no-repeat;
 	background-position: center top;
+	margin:auto;
+}
+.dangan-big-banner.mask{
+	background: url(./img/dangan-big-banner-mask.png)no-repeat;
+    background-position: center top;
+    height:auto;
 }
 
 .dangan .main-content{
@@ -774,6 +780,7 @@ body.dangan div.header{
 .dangan .container,body.dangan {
 	background: url(./img/dangan-bg.png)repeat-y;
 	background-position: center;
+	background-size:cover;
 }
 
 .dangan .module-group.blue{
@@ -781,14 +788,26 @@ body.dangan div.header{
 }
 
 .dangan .page-title{
-	text-align: center;
-	font-size:35px;
+	text-align: left;
+	font-size:22px;
 	font-weight: 400;
+	letter-spacing:2px;
 	color:#333;
+	border-bottom:1px dashed #4c4c4c;
+	padding:5px 0px;
+}
+
+.dangan .page-title>small{
+	color:#e9a955;
+	font-size:16px;
+	padding-left:10px;
 }
 
 .dangan .module-group.blue{
 	border:0px;
+}
+.dangan .module-group.blue>div{
+	margin-top:40px;
 }
 
 .dangan .brand-table-wrap .ctr{
@@ -930,6 +949,9 @@ body>div.header>div{
 .footer-column{
 	width:200px;
 }
+.footer-column:first-child{
+	padding-left:100px;
+}
 .search-page ul li a:hover{
 	color: #3f3f3f;
 }
@@ -1027,44 +1049,14 @@ a[name]{
 }
 
 
-@media screen and (min-width: 1435px) and (max-width: 1535px){
-	.dangan-menu a{
-		margin:0px 0px;
-	}
-}
-@media screen and (min-width: 1285px) and (max-width: 1435px){
-	.dangan-menu a{
-		margin:0px 0px;
-		font-size:20px;
-	}
-}
 
-@media screen and (min-width: 1030px) and (max-width: 1285px){
-	.dangan-menu a{
-		margin:0px 0px;
-	}
-	.logo-img.dangan{
-		width: 325px;
-		background-position-x:-400px;
-	}
-}
-
-@media screen and (min-width: 100px) and  (max-width:1030px){
-	.dangan-menu a{
-		margin:0px 0px;
-		font-size:20px;
-	}
-	.logo-img.dangan{
-		display: none;
-	}
-}
 
 
 body.dangan .menu-bar ul{
 	width:100%;
 }
 body.dangan>div.header>div{
-	width:100%;
+	width:1250px;
 }
 
 ul.module-content>li{
@@ -1233,7 +1225,7 @@ ul.module-content>li{
 }
 
 .dialog-content a.button.lg{
-	font-size:25px;
+	font-size:20px;
 	background: #5cb85c;
 	border-radius:10px;
 	color:#fff;
@@ -1244,5 +1236,57 @@ ul.module-content>li{
 	font-weight:300;
 	letter-spacing: 1px;
 	display: inline-block;
-	width:165px;
+	width:125px;
+}
+
+.header.small{
+	height: 30px;	
+}
+
+div.project-info{
+	background: url(./img/project-info-pic.png) no-repeat;
+	width:455px;
+	height:305px;
+	display:inline-block;
+}
+.module-category{
+	border-top:0px;
+	margin-top:5px;
+	margin-bottom:20px;
+}
+.category-content{
+	width:100%;
+	float:none;
+}
+.category-content a{
+	display:block;
+	color:#fff;
+	font-weight:300;
+	text-align:right;
+	margin:10px 0px;
+	letter-spacing: 2px;
+	padding-right:20px;
+}
+.category-content a.active, .category-content a:hover{
+	color:black;
+	background: rgba(221,221,221,.8);
+}
+
+.dangan .container{
+	background: transparent;
+}
+
+.dangan-detail{
+	margin:20px 20px;
+}
+.dangan-detail:first-child,.dangan-detail:nth-child(2){
+	margin-top:0px;
+}
+
+.dangan-detail:hover {
+    -webkit-box-shadow:0 0px 19px 5px rgba(255, 255, 255, 1);
+    box-shadow: 0 0px 19px 5px rgba(255, 255, 255, 1);
+}
+.dangan-devider{
+	display: none;
 }

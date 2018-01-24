@@ -47,6 +47,14 @@
 				
 				<section class="col col-12">
 					<label class="input">
+						邮箱:
+								<form:input path="email"
+									id="qualityArchive.email" type="text"
+									cssClass="textInput" />
+				</label>
+				</section>
+				<section class="col col-12">
+					<label class="input">
 						地址:
 							<font style='color:red' class="required-mark">*</font>
 								<form:input path="address"

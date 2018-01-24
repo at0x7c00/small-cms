@@ -7,5 +7,13 @@
 											id="zwCode.companyName"
 											cssClass="textInput required"
 											maxlength="255" />
-				</label>
+					</label>
+					<label class="input">
+						链接地址:
+							<font style='color:red' class="required-mark">*</font>
+										<form:input path="url"
+											id="url"
+											cssClass="textInput required"
+											maxlength="255" />
+					</label>
 				</section>

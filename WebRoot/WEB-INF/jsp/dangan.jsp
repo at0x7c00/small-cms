@@ -19,6 +19,7 @@
 		 <!-- If you'd like to support IE8 -->
 		 <script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
 		 
+		 <script src="${basePath}js/zoom-pic/js/ZoomPic.js" type="text/javascript"></script>
 		 
 		<link rel="stylesheet" href="${basePath}photoswipe/photoswipe.css"> 
 		<link rel="stylesheet" href="${basePath}photoswipe/default-skin/default-skin.css"> 
@@ -70,17 +71,15 @@
 			margin:20px;
 			width:205px;
 		}
-		
 		 </style>
 		 
 		 
   	</head>
   
   <body style="margin:0px auto;" class="dangan detail">
-  		<div class="dangan-detail-banner">
-  		</div>
-  		<div class="container-x">
-	  
+  		 <%@include file="/WEB-INF/jsp/frontend/common/dangan-logo.jsp" %>
+  		<div class="dangan-big-banner mask"   style="margin-top:70px;">
+  		<div class="container-x" style="border:1px solid transparent;padding-top:300px;">
   			<div class="qute" style="margin-top:5px;">
   				<h1 class="page-title">企业简介</h1>
 	  			<div class="dangan-detail-content">
@@ -127,7 +126,7 @@
   				
   				
   				
-  				<div class="brand-table-wrap" style="position: relative;">
+  				<%-- <div class="brand-table-wrap" style="position: relative;">
 						<div class="brand-table">
 							<div class="img-container" style="">
 			  					<c:forEach items="${qa.productDisplay}" var="b" varStatus="s">
@@ -145,12 +144,10 @@
 						</div>
 						<div class="ctr prev"></div>
 						<div class="ctr next"></div>
-					</div>
+					</div> --%>
   				
-  				 <%-- <div class="gallery-box">
-  				
-				 
-						<div id="Index_Box"">
+  				<div class="gallery-box">
+						<div id="Index_Box">
 						  <pre class="prev">&nbsp;</pre>
 						  <pre class="next">&nbsp;</pre>
 						  <ul style="padding-left:0px;">
@@ -166,7 +163,7 @@
 						    </c:forEach>
 						  </ul>
 						</div>
-				  </div> --%>
+				  </div>
 				 
   			</div>
   			<div class="qute" style="">
@@ -231,25 +228,36 @@
   					
   					
   			</div>
+	  		<div class="qute" style="width:100%;margin:auto auto;">
+	  					
+	  					<h1 class="page-title">联系方式</h1>
+	  			<div style="ertical-align:top; text-align:center;margin-top:50px;font-size:24px;border:1px solid transparent;">
+	  				<div style="display:inline-block;width:200px;height:200px;vertical-align:middle;margin-bottom:10px;">
+		  				<img alt="" src="${basePath }filee/viewPic.do?manageKey=${qa.codeKey}" style="height:200px;width:200px;"/>
+	  				</div>
+	  				<div style="display:inline-block;width:auto;height:185px;margin-left:20px;vertical-align:middle;font-size:16px;">
+			  				<div style="padding:45px 0px 10px 0px;">
+			  				联系方式：${qa.phoneNumber}
+			  				</div>
+			  				<c:if test="${not empty qa.email }">
+				  				<div  style="padding:5px 0px 10px 0px;">
+				  				邮箱：${qa.email}
+				  				</div>
+			  				</c:if>
+			  				<div  style="padding:5px 0px 10px 0px;${empty qa.email ? 'padding-top:40px;' :''}">
+			  				地址：${qa.address}
+			  				</div>
+	  				</div>
+	  			</div>
+	  			<%--
+	  			<div style="margin:0px auto;text-align:center;color:#663333;font-weight:bold;font-size:20px;padding:20px 0px 30px 0px;">
+	  				<span>品质·信誉·未来</span>
+	  			</div>
+	  			 --%>
+	  		</div>
+  		</div>
   		</div>
   		<div></div>
-  		<div class="detail-footer" style="width:100%;margin:auto auto;">
-  			<div style="text-align:center;margin-top:50px;font-size:24px;">
-  			<%--${basePath}resource/frontend/theme/default/css/img/new/code.png --%>
-  				<img alt="" src="${basePath }filee/viewPic.do?manageKey=${qa.codeKey}"/>
-  				<div style="padding:15px 0px 10px 0px;">
-  				联系方式：${qa.phoneNumber}
-  				</div>
-  				<div  style="padding:5px 0px 50px 0px;">
-  				地址：${qa.address}
-  				</div>
-  			</div>
-  			<%--
-  			<div style="margin:0px auto;text-align:center;color:#663333;font-weight:bold;font-size:20px;padding:20px 0px 30px 0px;">
-  				<span>品质·信誉·未来</span>
-  			</div>
-  			 --%>
-  		</div>
   		
   		<%@include file="/WEB-INF/jsp/frontend/common/footer.jsp" %>
   		
@@ -320,34 +328,10 @@
 
 </div>
   </body>
-  <%--
-	  <script src='${basePath}js/3d-gallery/js/TweenMax.min.js'></script>
-	  <script src='${basePath}js/3d-gallery/js/Draggable.min.js'></script>
-  	  <script src="${basePath}js/3d-gallery/js/index.js"></script>
-   --%>
-  	  
   	  <script src="http://vjs.zencdn.net/5.8.8/video.js"></script>
-  	  <%--
-  	  <script type="text/javascript">
-		stepcarousel.setup({
-			galleryid: 'mygallery', //id of carousel DIV
-			beltclass: 'belt', //class of inner "belt" DIV containing all the panel DIVs
-			panelclass: 'panel', //class of panel DIVs each holding content
-			panelbehavior: {speed:500, wraparound:false, persist:true},
-			autostep: {enable:true, moveby:4, pause:10000},
-			defaultbuttons: {enable: true, moveby: 4, leftnav: ['${basePath}js/step-gallery/images/butt-left.gif', 0, 64], rightnav: ['${basePath}js/step-gallery/images/butt-right.gif', -11, 64]},
-			statusvars: ['statusA', 'statusB', 'statusC'], //register 3 variables that contain current panel (start), current panel (last), and total panels
-			contenttype: ['inline'], //content setting ['inline'] or ['external', 'path_to_external_file']
-			oninit:function(){
-				isloaded=true
-				document.getElementById('displaycssbelt').style.visibility="visible";
-				//document.getElementById('stocklevels').style.visibility="visible";
-			}
-		});
-		</script>
-  	   --%>
-  	   <script>
-		    /* var speed = 30//速度数值越大速度越慢
+  	  
+		<script>
+		    var speed = 30//速度数值越大速度越慢
 		    var colee_left2 = document.getElementById("colee_left2");
 		    var colee_left1 = document.getElementById("colee_left1");
 		    var colee_left = document.getElementById("colee_left");
@@ -370,7 +354,7 @@
 		    }
 		    colee_left.onmouseout = function () {
 		        MyMar3 = setInterval(Marquee3, speed)
-		    } */
+		    }
 		    
 		   $(function(){
 			   
@@ -429,72 +413,7 @@
 				});
 				
 			}
-		</script>
+		</script>		
 		
 		
-		<script type="text/javascript">
- 		var imgContainerWidth = 0;
- 		var brandInter = null;
- 		var brandDirection = "left";
- 		$(function(){
- 			var imgSize = $(".img-container img").size();
- 			var imgTotalWidth = (imgSize/2) * 240;
- 			imgContainerWidth = $(".brand-table").width();
- 			while(imgContainerWidth<imgTotalWidth){
- 				imgContainerWidth += imgContainerWidth;
- 			}
- 			$(".img-container").css("width",imgContainerWidth+"px");
- 			
- 			
- 			$(".brand-table-wrap .ctr.prev").click(function(){
- 				brandDirection = "left";
- 				stopBrandInter();
- 				doBrandSwitch();
- 				startBrandInter();
- 			});
- 			
- 			$(".brand-table-wrap .ctr.next").click(function(){
- 				brandDirection = "right";
- 				stopBrandInter();
- 				doBrandSwitch();
- 				startBrandInter();
- 			});
- 			
- 			//startBrandInter();
- 			
- 		});
- 		
- 		function stopBrandInter(){
- 			if(brandInter){
-				window.clearInterval(brandInter);
-			}
- 		}
- 		
- 		function startBrandInter(){
- 			brandInter = window.setInterval(function(){
- 				doBrandSwitch();
- 			}, 4000);
- 		}
- 		
- 		function doBrandSwitch(){
- 			var left = $(".img-container").css("left");
-			var step = $(".brand-table").width();
-			if(left.indexOf("px")>0){
-				left = parseInt(left.substring(0,left.length - 2));
-			}
-			if(brandDirection == 'left'){
-				left -= step;
-				if(left + imgContainerWidth<=0){//已经到最右边了
-					left = 0;
-				}
-			}else{
-				left += step;
-				if(left > 0){//已经到最左边了
-					left = $(".brand-table").width()-imgContainerWidth;
-				}
-			}
-			
-			$(".img-container").animate({left:left + "px"});
- 		}
- 		</script>
 </html>

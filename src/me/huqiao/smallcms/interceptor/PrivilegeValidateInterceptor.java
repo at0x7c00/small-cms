@@ -49,6 +49,7 @@ public class PrivilegeValidateInterceptor extends HandlerInterceptorAdapter {
     	"zhiliangredian.do",
     	"huiyuanfengcai.do",
     	"zhiliangdangan.do",
+    	"zhiliangdanganList.do",
     	"chapterDetail.do",
     	"shishiredian.do",
     	"hangyezixun.do",
@@ -62,7 +63,8 @@ public class PrivilegeValidateInterceptor extends HandlerInterceptorAdapter {
     	"dangan.do",
     	"danganDetail.do",
     	"adminIndex.do",
-    	"search.do"
+    	"search.do",
+    	"api/"
 	};
 	private static final String[] urlsWithLogin = new String[] {// 只需要登录就能拥有的权限
 		"home.do",
@@ -70,6 +72,7 @@ public class PrivilegeValidateInterceptor extends HandlerInterceptorAdapter {
 		"filee/downloadFile.do",
 		"filee/viewPic.do",
 		"frag.do",
+		"accessRecord/",
 		"user/myfile.do",
 		"notice/detail.do",
 		"user/selectAllList.do",
