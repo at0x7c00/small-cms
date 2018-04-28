@@ -6,46 +6,57 @@
 	</c:when>
 	<c:otherwise>
 		<table width="100%" cellpadding="5px">
- 				<tr>
- 					<td width="165px" style="text-align: right">公司名称：</td>
- 					<td>
- 						<strong style="color:#56a5f9;">${tempBean.name}</strong>
+				<tr>
+ 					<td colspan="2">
+ 						档案号：${tempBean.archiveId }
  					</td>
  				</tr>
  				<tr>
- 					<td width="165px" style="text-align: right">法人代表：</td>
- 					<td>
- 						${tempBean.lawPerson }
+ 					<td colspan="2">
+ 						公司名称：<strong style="color:#56a5f9;">${tempBean.name}</strong>
  					</td>
  				</tr>
  				<tr>
- 					<td width="165px" style="text-align: right">注册资金：</td>
- 					<td>
- 						${tempBean.registerMoney }万元
+ 					<td colspan="2">
+ 						法人代表：${tempBean.lawPerson }
  					</td>
  				</tr>
  				<tr>
- 					<td width="165px" style="text-align: right;vertical-align: top;">企业所在地：</td>
- 					<td>
- 						${tempBean.address }
+ 					<td colspan="2">
+ 						企业所在地：${tempBean.address }
  					</td>
  				</tr>
  				<tr>
- 					<td width="165px" style="text-align: right;vertical-align: top;">经营范围：</td>
+ 					<td colspan="2">
+ 						收录年限：<fmt:formatDate value="${tempBean.timeStart }" pattern="yyyy年MM月"/>-
+ 						<fmt:formatDate value="${tempBean.timeEnd }" pattern="yyyy年MM月"/>
+ 					</td>
+ 				</tr>
+ 				
+ 				<tr>
+ 					<td width="50%" style="text-align: right;vertical-align: top;">
+ 						<div>
+ 						<img alt="" src="${basePath}filee/viewPic.do?manageKey=${tempBean.license.manageKey}" class="query-pic" style="cursor:pointer;">
+ 						</div>
+ 					</td>
+ 					
  					<td>
- 						${tempBean.tradeScope }
+ 						<div>
+ 						<img alt="" src="${basePath}filee/viewPic.do?manageKey=${tempBean.apply.manageKey}" class="query-pic" style="cursor:pointer;">
+ 						</div>
  					</td>
  				</tr>
  				<tr>
- 					<td width="165px" style="text-align: right">所属服务中心：</td>
- 					<td>
- 						${tempBean.serviceCenter }
+ 					<td width="50%" style="text-align: right;vertical-align: top;">
+ 						<div style="text-align: center;">
+ 						营业执照
+ 						</div>
  					</td>
- 				</tr>
- 				<tr>
- 					<td width="175px" style="text-align: right">审核状态：</td>
+ 					
  					<td>
- 						${tempBean.auditStatus }
+ 						<div  style="text-align: center;">
+ 						入档申请表
+ 						</div>
  					</td>
  				</tr>
  			</table>

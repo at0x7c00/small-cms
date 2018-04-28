@@ -26,6 +26,7 @@ import me.huqiao.smallcms.common.entity.enumtype.UseStatus;
 import me.huqiao.smallcms.ppll.entity.Apply;
 import me.huqiao.smallcms.ppll.entity.AuthOrg;
 import me.huqiao.smallcms.ppll.entity.Brand;
+import me.huqiao.smallcms.ppll.entity.Company;
 import me.huqiao.smallcms.ppll.entity.MemberOrganization;
 import me.huqiao.smallcms.ppll.entity.ProjectInfo;
 import me.huqiao.smallcms.ppll.entity.QualityArchive;
@@ -36,6 +37,7 @@ import me.huqiao.smallcms.ppll.entity.ZwCode;
 import me.huqiao.smallcms.ppll.service.IApplyService;
 import me.huqiao.smallcms.ppll.service.IAuthOrgService;
 import me.huqiao.smallcms.ppll.service.IBrandService;
+import me.huqiao.smallcms.ppll.service.ICompanyService;
 import me.huqiao.smallcms.ppll.service.IMemberOrganizationService;
 import me.huqiao.smallcms.ppll.service.IProjectInfoService;
 import me.huqiao.smallcms.ppll.service.IQualityArchiveCategoryService;
@@ -101,6 +103,8 @@ public class FrontendController {
 	private IMemberOrganizationService memberOrgService;
 	@Resource
 	private IQualityArchiveCompanyService qaCompanyService;
+	@Resource
+	private ICompanyService comanyService;
 	@Resource
 	private IAuthOrgService authOrgService;
 	@Resource
@@ -565,14 +569,27 @@ public class FrontendController {
 	
 	@RequestMapping(value = "query",method = RequestMethod.POST,params = "queryType=qualityArchive")
 	public String queryQualityArchive(HttpServletRequest request,@RequestParam("key")String key){
-		QualityArchiveCompany qaCompany = new QualityArchiveCompany();
-		Page<QualityArchiveCompany> pageInfo = new Page<QualityArchiveCompany>();
-		qaCompany.setName(key);
-		pageInfo = qaCompanyService.getListPage(qaCompany, pageInfo);
+		if(key!=null){
+			key = key.trim();
+		}
+		Worker worker = new Worker();
+		Page<Worker> pageInfo = new Page<Worker>();
+		worker.setName(key);
+		pageInfo = workerService.getListPage(worker, pageInfo);
 		if(pageInfo.getList().size()>0){
 			request.setAttribute("tempBean", pageInfo.getList().get(0));
+			return "frontend/queryWorker";
+		}else{
+			Company company = new Company();
+			Page<Company> pageInfo2 = new Page<Company>();
+			company.setQueryKey(key);
+			pageInfo2 = comanyService.getListPage(company, pageInfo2);
+			if(pageInfo2.getList().size()>0){
+				request.setAttribute("tempBean", pageInfo2.getList().get(0));
+			}
+			
+			return "frontend/queryQualityArchiveCompany";
 		}
-		return "frontend/queryQualityArchiveCompany";
 	}
 	
 	@RequestMapping(value = "query",method = RequestMethod.POST,params = "queryType=authOrg")
@@ -599,6 +616,8 @@ public class FrontendController {
 		
 		return "frontend/queryWorker";
 	}
+	
+	
 	
 	@RequestMapping(value = "pictureXML/{key}",produces = "application/xml")
 	public ResponseEntity<String> pictureXML(HttpServletRequest request, HttpServletResponse response, @PathVariable(value = "key")String key){

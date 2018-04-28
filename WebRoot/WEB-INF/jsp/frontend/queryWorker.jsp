@@ -29,12 +29,12 @@
 		 						${tempBean.area }
 		 					</td>
 		 				</tr>
-		 				<tr>
+		 				<%-- <tr>
 		 					<td width="150px" style="text-align: right">职&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;务：</td>
 		 					<td>
 		 						${tempBean.job }
 		 					</td>
-		 				</tr>
+		 				</tr> --%>
 		 			</table>
 				</td>
 				<td>

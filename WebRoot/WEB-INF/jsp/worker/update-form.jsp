@@ -29,6 +29,7 @@
 											maxlength="255" />
 				</label>
 				</section>
+				<%--
 				<section class="col col-3">
 					<label class="input">
 						<spring:message code="props.me.huqiao.smallcms.ppll.entity.Worker.job"/>:
@@ -39,3 +40,4 @@
 											maxlength="255" />
 				</label>
 				</section>
+				--%>

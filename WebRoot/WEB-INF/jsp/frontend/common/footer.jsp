@@ -21,8 +21,8 @@
 					<li><a href="${basePath}zhiliangdangan.do#project">项目简介</a></li>
 					<li><a href="javascript:void(0);" id="liuyan">在线留言</a></li>
 					<li><a href="javascript:void(0);" id="zhiweima">质维码下载</a></li>
-					<%--
 					<li><a href="javascript:void(0);" id="chaxun">查询入口</a></li>
+					<%--
 					<li><a href="javascript:void(0);" id="ruhui">入会申请</a></li>
 					 --%>
 				</ul>
@@ -43,6 +43,74 @@
 	</div>
 	<div class="footer-sn">京ICP备17017591号-1号</div>
 </div>
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="关闭"></button>
+<%--
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+ --%>
+
+                <button class="pswp__button pswp__button--fs" title="全屏"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="缩放"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="上一张">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="下一张">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
 <div class="query-form" style="display: none;">
 	<h1 style="margin-top:50px;">质维码下载专区</h1>
 	<div class="query-group">
@@ -51,6 +119,11 @@
    	 	<button class="query-btn" data-target="authOrg"><i class="fa fa-search"></i> 搜索</button>
 	</div>
 </div>
+<link rel="stylesheet" href="${basePath}photoswipe/photoswipe.css"> 
+<link rel="stylesheet" href="${basePath}photoswipe/default-skin/default-skin.css"> 
+<script src="${basePath}photoswipe/photoswipe.min.js?v=2.0"></script> 
+<script src="${basePath}photoswipe/photoswipe-ui-default.min.js?v=2.0"></script> 
+
 <script type="text/javascript">
  		$(function(){
  			$("#ruhui").on("click",function(){
@@ -157,7 +230,7 @@
  				loadWaitDialog();
  				$.get(basePath + 'query.do',function(d){
  					closeWaitDialog();
- 					var dialog = $('<div class="dialog-content" id="query" style="width:500px;height:300px;"></div>').html(d).dialog({
+ 					var dialog = $('<div class="dialog-content" id="query" style="width:500px;height:200px;"></div>').html(d).dialog({
  	 					title : "查询中心",
  	 					width:600,
  	 					height:400,
@@ -207,8 +280,9 @@
  							}else if(queryType =='worker'){
  								title = "工作人员";
  							}
+ 							title = '查询结果';
  							$.post(basePath + "query.do",{key:key,queryType:queryType},function(res){
- 								$('<div class="dialog-content" id="query" style="width:500px;height:380px;overflow:auto;">'  + res + '</div>').dialog({
+ 								$('<div class="dialog-content" id="query" style="width:500px;height:'+(queryType=='qualityArchive'? 500 :380)+'px;overflow:auto;">'  + res + '</div>').dialog({
  									title:title,
 									buttons: {
 			 	 					/* 	"关闭":function(){
@@ -216,6 +290,39 @@
 			 	 						} */
 									}
  								});
+ 								
+ 								$(".dialog-content img.query-pic").click(function(){
+ 									
+ 									var pswpElement = document.querySelectorAll('.pswp')[0];
+
+ 									var thisSrc = $(this).attr("src");
+ 									var index = 0;
+ 									
+ 									var images = [];
+ 									$(".query-pic").each(function(i){
+ 										var _this = $(this);
+ 										images.push(_this);
+ 										var src = _this.attr("src");
+ 										if(src==thisSrc){
+ 											index = i;
+ 										}
+ 									});
+ 									
+ 									addImageToItemArray(images,null,function(items){
+ 										
+ 										var options = {
+ 										    index: index ,
+ 										    bgOpacity:0.7
+ 										};
+
+ 										var gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
+ 										gallery.init();
+ 										
+ 									});
+ 									
+ 								});
+
+ 								
  							});
  						});
  					});
@@ -227,6 +334,30 @@
  			
  			
  		});
+ 		
+ 		 function addImageToItemArray(images,items,callback){
+				if(!items){
+					items = [];
+				}
+				if(images.length==0){
+					callback(items);
+					return;
+				}
+				var image = $(images[0]);
+				var src = image.attr("src");
+				$("<img>").attr("src",src).load(function(){
+					//console.log("image loaded:width=" + this.width+",height=" + this.height)
+					items.push({
+				        src: src,
+				        w: this.width,
+				        h: this.height
+				    });
+					images.shift();
+					addImageToItemArray(images,items,callback);
+				});
+				
+			}
+
  		
  		function loadVerifyCode(id){
 	  		$("#" + id).attr("src","${basePath}verifyimage.create?t="+new Date().getTime());

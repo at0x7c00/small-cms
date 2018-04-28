@@ -12,9 +12,11 @@
 			<th align="center" data-sortfield="area" class="${nfn:sortClass(pageBean,'area')}">
 			<spring:message code="props.me.huqiao.smallcms.ppll.entity.Worker.area"/>
 		</th>
+		<%--
 			<th align="center" data-sortfield="job" class="${nfn:sortClass(pageBean,'job')}">
 			<spring:message code="props.me.huqiao.smallcms.ppll.entity.Worker.job"/>
 		</th>
+		--%>
 			<th align="center" data-sortfield="status" class="${nfn:sortClass(pageBean,'status')}">
 			<spring:message code="props.me.huqiao.smallcms.ppll.entity.Worker.status"/>
 		</th>

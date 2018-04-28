@@ -16,9 +16,11 @@
 		<td>
 		${tempBean.area}
 		</td>
+		<%--
 		<td>
 		${tempBean.job}
 		</td>
+		 --%>
 		<td>
 		${useStatusMap[tempBean.status]}
 		</td>

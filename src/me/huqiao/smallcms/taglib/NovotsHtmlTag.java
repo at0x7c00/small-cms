@@ -37,7 +37,9 @@ public class NovotsHtmlTag  extends TagSupport{
 			value = value.replaceAll(entry.getKey(), entry.getValue());
 		}
 		if(length!=null && length >0){
-			value = value.substring(0,length);
+			if(value.length()>length){
+				value = value.substring(0,length);
+			}
 		}
 		try {
 			pageContext.getOut().write(value);

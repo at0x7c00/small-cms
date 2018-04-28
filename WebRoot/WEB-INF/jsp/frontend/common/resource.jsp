@@ -16,7 +16,7 @@ var basePath = '${basePath}';
 <link rel="stylesheet" href="${basePath}css/googlefonts/css.css">
 
 <link rel="stylesheet" type="text/css" media="screen" href="${basePath}css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" media="screen" href="${basePath}resource/frontend/theme/default/css/core.css">
+<link rel="stylesheet" type="text/css" media="screen" href="${basePath}resource/frontend/theme/default/css/core.css?v=2.0">
 <link rel="stylesheet" type="text/css" media="screen" href="${basePath}js/jquery.bxslider/jquery.bxslider.css">
 
 

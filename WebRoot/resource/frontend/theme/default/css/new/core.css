@@ -1290,3 +1290,8 @@ div.project-info{
 .dangan-devider{
 	display: none;
 }
+.query-pic{
+	max-width:200px;
+	max-height:265px;
+	height:auto;
+}
