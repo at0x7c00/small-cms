@@ -3,6 +3,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import me.huqiao.smallcms.common.entity.enumtype.UseStatus;
 import me.huqiao.smallcms.common.service.impl.BaseServiceImpl;
 import me.huqiao.smallcms.history.entity.HistoryRecord;
 import me.huqiao.smallcms.ppll.dao.IQualityArchiveDao;
@@ -58,6 +59,7 @@ public class QualityArchiveServiceImpl extends BaseServiceImpl<QualityArchive> i
 	public Page<QualityArchive> getAll(QualityArchiveCategory category,Page<QualityArchive> pageInfo) {
 		QualityArchive qualityArchive = new QualityArchive();
 		qualityArchive.setCategory(category);
+		qualityArchive.setStatus(UseStatus.InUse);
 		getListPage(qualityArchive, pageInfo);
 		return null;
 	}
