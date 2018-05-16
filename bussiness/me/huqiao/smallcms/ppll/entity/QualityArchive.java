@@ -93,6 +93,7 @@ private Date updateTime;
 
 private String phoneNumber;
 private String address;
+private String homePage;
 private String email;
 private CommonFile code;
 
@@ -536,4 +537,12 @@ public UseStatus getStatus(){
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	@Column(name = "home_page")
+	public String getHomePage() {
+		return homePage;
+	}
+	public void setHomePage(String homePage) {
+		this.homePage = homePage;
+	}
+	
 }

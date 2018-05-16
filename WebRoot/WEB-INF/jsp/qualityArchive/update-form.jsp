@@ -64,6 +64,15 @@
 				</label>
 				</section>
 				
+				<section class="col col-12">
+					<label class="input">
+						主页:
+							<form:input path="homePage"
+								id="qualityArchive.homePage" type="text"
+								cssClass="textInput" />
+				</label>
+				</section>
+				
 				<section class="col col-4">
 					<label class="input">
 						<spring:message code="props.me.huqiao.smallcms.ppll.entity.QualityArchive.orderNum"/>:

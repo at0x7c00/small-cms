@@ -69,3 +69,36 @@
 			</span>
 		</label>
 	</section>
+	
+	<section class="col col-3">
+		<label class="input">
+			<span class="">
+						联系电话:
+								${tempBean.phoneNum}
+			</span>
+		</label>
+	</section>
+	<section class="col col-3">
+		<label class="input">
+			<span class="">
+						邮箱:
+								${tempBean.email}
+			</span>
+		</label>
+	</section>
+	<section class="col col-3">
+		<label class="input">
+			<span class="">
+						地址:
+								${tempBean.address}
+			</span>
+		</label>
+	</section>
+	<section class="col col-3">
+		<label class="input">
+			<span class="">
+						主页:
+								${tempBean.homePage}
+			</span>
+		</label>
+	</section>

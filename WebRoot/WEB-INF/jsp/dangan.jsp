@@ -247,6 +247,11 @@
 			  				<div  style="padding:5px 0px 10px 0px;${empty qa.email ? 'padding-top:40px;' :''}">
 			  				地址：${qa.address}
 			  				</div>
+			  				<c:if test="${not empty qa.homePage }">
+			  				<div  style="padding:5px 0px 10px 0px;${empty qa.email ? 'padding-top:40px;' :''}">
+			  				主页：<a href="${qa.homePage}" target="_blank">${qa.homePage}</a>
+			  				</div>
+			  				</c:if>
 	  				</div>
 	  			</div>
 	  			<%--
