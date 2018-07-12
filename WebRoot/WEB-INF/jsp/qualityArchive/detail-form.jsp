@@ -74,7 +74,7 @@
 		<label class="input">
 			<span class="">
 						联系电话:
-								${tempBean.phoneNum}
+								${tempBean.phoneNumber}
 			</span>
 		</label>
 	</section>
