@@ -11,8 +11,12 @@
 						data-formtargetpanel = "${formTargetPanel }"
 						data-maxfilesize = "${maxFilesize }"
 						data-acceptedfiles = "${acceptedFiles }"
+						data-width = "${width }"
+						data-height = "${height }"
 						>
 							<input type="hidden" name="folderId" value="1" />
+							<input type="hidden" name="width" value="${width}" />
+							<input type="hidden" name="height" value="${height}" />
 						</form>
 					</div>
 				</div>

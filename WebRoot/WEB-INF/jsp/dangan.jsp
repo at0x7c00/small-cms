@@ -91,7 +91,7 @@
 		  							<c:when test="${qa.detailCover.video }">
 				  							<div style="width:434px;height:330px;float:right;">
 						  						<video id="my-video" class="video-js" controls preload="auto" width="430" height="330"
-											  poster="${basePath}filee/viewPic.do?manageKey=${qa.detailCover.manageKey}" data-setup="{}">
+											  poster="${basePath}filee/viewPic.do?manageKey=${qa.detailCover.manageKey}_x" data-setup="{}">
 											    <source src="${basePath}filee/downloadFile.do?key=${qa.detailCover.manageKey}" type='video/mp4'>
 											    <p class="vjs-no-js">
 											      To view this video please enable JavaScript, and consider upgrading to a web browser that
@@ -152,7 +152,7 @@
 						  <pre class="next">&nbsp;</pre>
 						  <ul style="padding-left:0px;">
 							<c:forEach items="${qa.productDisplay}" var="file" varStatus="s">
-						    <li><a href="javascript:void(0);"><img src="${basePath}filee/viewPic.do?manageKey=${file.manageKey }"></a>
+						    <li><a href="javascript:void(0);"><img src="${basePath}filee/viewPic.do?manageKey=${file.manageKey }_x"></a>
 						    <p>
 						    	<span class="t">${file.fileNameOnly }</span>
 						    	<span class="c">
@@ -182,7 +182,7 @@
                                 <tbody><tr>
                                    <c:forEach items="${qa.gloryDisplay}" var="p">
                                     <td>
-                                    <img src="${basePath}filee/viewPic.do?manageKey=${p.manageKey}" 
+                                    <img src="${basePath}filee/viewPic.do?manageKey=${p.manageKey}_x" 
 								alt="butterflies-are-gross" class="post-image" width="205" height="275" />
                                     </td>
                                     </c:forEach>
@@ -194,7 +194,7 @@
                                 <tbody><tr>
                                 <c:forEach items="${qa.gloryDisplay}" var="p">
                                     <td>
-                                    <img src="${basePath}filee/viewPic.do?manageKey=${p.manageKey}" 
+                                    <img src="${basePath}filee/viewPic.do?manageKey=${p.manageKey}_x" 
 								alt="butterflies-are-gross" class="post-image" width="205" height="275" />
                                     </td>
                                     </c:forEach>
@@ -238,7 +238,7 @@
 	  				
 	  					<div style="display: inline-block;width:50%;float:left;text-align: right;">
 	  						<div style="display:inline-block;width:200px;height:200px;vertical-align:middle;margin-bottom:10px;">
-				  				<img alt="" src="${basePath }filee/viewPic.do?manageKey=${qa.codeKey}" style="height:200px;width:200px;"/>
+				  				<img alt="" src="${basePath }filee/viewPic.do?manageKey=${qa.codeKey}_x" style="height:200px;width:200px;"/>
 			  				</div>
 	  					</div>
 	  					

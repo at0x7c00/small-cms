@@ -129,9 +129,13 @@ $.fn.extend({
 				var targetPanel = $this.data("targetpanel");
 				var maxFilesize = $this.data("maxfilesize");
 				var acceptedFiles = $this.data("acceptedfiles");
+				var width = $this.data("width");
+				var height = $this.data("height");
 				jquiDialogTodo(title,basePath + 'filee/dialogToAdd.do?selectlist='+selectlist
 						+'&formTargetPanel=' + targetPanel
 						+'&maxFilesize=' + maxFilesize
+						+'&width=' + (width ? width : '')
+						+'&height=' + (height ? height : '')
 						+'&acceptedFiles=' + acceptedFiles);
 			});
 		});

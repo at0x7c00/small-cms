@@ -22,6 +22,7 @@ import me.huqiao.smallcms.common.service.ICommonFileService;
 import me.huqiao.smallcms.common.service.ICommonFolderService;
 import me.huqiao.smallcms.util.FileUtil;
 import me.huqiao.smallcms.util.Md5Util;
+import me.huqiao.smallcms.util.ThumbInfo;
 import me.huqiao.smallcms.util.web.JsonResult;
 import me.huqiao.smallcms.util.web.Page;
 
@@ -116,8 +117,11 @@ public class CommonFileController extends BaseController {
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	@ResponseBody
-	public UploadResult add(MultipartFile photofile, @RequestParam(value = "folderId", required = false) Integer folderId,
+	public UploadResult add(MultipartFile photofile, 
+			@RequestParam(value = "folderId", required = false) Integer folderId,
 			@RequestParam(value = "userKey",required=false)String userKey,
+			@RequestParam(value = "width",required=false)Integer width,
+			@RequestParam(value = "height",required=false)Integer height,
             HttpServletRequest request) {
 		
 		//System.out.println("userKey=" + userKey);
@@ -143,7 +147,14 @@ public class CommonFileController extends BaseController {
 		filee.setExtensionName(FileUtil.getExtensionName(photofile.getOriginalFilename()));
 		filee.setName(photofile.getOriginalFilename());
 		try {
-			FileUtil.saveFileOnDisk(folder.getStorePath(),filee.getManageKey(), photofile.getInputStream());
+			ThumbInfo thumbInfo = null;
+			if(width != null && height != null){
+				thumbInfo = new ThumbInfo(width,height,0.5f,filee.getExtensionName(),folder,filee.getName());
+			}
+			CommonFile extFile = FileUtil.saveFileOnDisk(folder.getStorePath(),filee.getManageKey(), photofile.getInputStream(),thumbInfo);
+			if(extFile!=null){
+				fileeService.add(extFile);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new UploadResult(false,e.getMessage());
@@ -169,12 +180,16 @@ public class CommonFileController extends BaseController {
 			@RequestParam(value = "selectlist") String selectlist,
 			@RequestParam(value = "formTargetPanel")String formTargetPanel,
 			@RequestParam(value = "maxFilesize")String maxFilesize,
-			@RequestParam(value = "acceptedFiles")String acceptedFiles
+			@RequestParam(value = "acceptedFiles")String acceptedFiles,
+			@RequestParam(value = "width")String width,
+			@RequestParam(value = "height")String height
 			){
 		request.setAttribute("selectlist", selectlist);
 		request.setAttribute("formTargetPanel", formTargetPanel);
 		request.setAttribute("maxFilesize", maxFilesize);
 		request.setAttribute("acceptedFiles", acceptedFiles);
+		request.setAttribute("width", width);
+		request.setAttribute("height", height);
 	}
 	
 	/**
@@ -311,6 +326,10 @@ public class CommonFileController extends BaseController {
 	public String viewPic(@RequestParam(value = "manageKey")String manageKey,HttpServletRequest request,HttpServletResponse response){
 		
 		CommonFile filee = fileeService.getEntityByProperty(CommonFile.class, "manageKey", manageKey);
+		if(manageKey.endsWith("_x") && filee==null){
+			manageKey = manageKey.substring(0,manageKey.length() - 2);
+			filee = fileeService.getEntityByProperty(CommonFile.class, "manageKey", manageKey);
+		}
 		if(filee==null){
 			return null;
 		}
@@ -375,14 +394,14 @@ public class CommonFileController extends BaseController {
 		filee.setManageKey(Md5Util.getManageKey());
 		filee.setExtensionName(FileUtil.getExtensionName(multipartFile.getOriginalFilename()));
 		filee.setName(multipartFile.getOriginalFilename());
+		filee.setStoreName("");
+		filee.setFolder(folder);
 		try {
-			FileUtil.saveFileOnDisk(folder.getStorePath(),filee.getManageKey(), bytes);
+			FileUtil.saveFileOnDisk(folder.getStorePath(),filee.getManageKey(), bytes,null);
 		} catch (Exception e) {
 			e.printStackTrace();
 			errorMessage =  e.getMessage();
 		}
-		filee.setStoreName("");
-		filee.setFolder(folder);
 		fileeService.add(filee);
         return new ModelMap("CKEditorFuncNum",CKEditorFuncNum)
                     .addAttribute("errorMessage",errorMessage)

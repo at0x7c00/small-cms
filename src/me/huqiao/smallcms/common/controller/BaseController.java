@@ -1089,15 +1089,13 @@ private Object getSerivceByName(String modelClassName){
 	    	if(StringUtil.isNotEmpty(coverKey)){
 	    		file = commonFileService.getEntityByProperty(CommonFile.class, "manageKey", coverKey);
 	    		if(file!=null){
-	    			file.setInuse(UseStatus.InUse);
-	    			commonFileService.update(file);
+	    			markFileAsInuse(file);
 	    		}
 	    	}
 	    	if(StringUtil.isNotEmpty(oldKey) && !oldKey.equals(coverKey)){
 	    		CommonFile oldFile = commonFileService.getEntityByProperty(CommonFile.class, "manageKey", oldKey);
 	    		if(oldFile!=null){
-	    			oldFile.setInuse(UseStatus.UnUse);
-	    			commonFileService.update(oldFile);
+	    			markFileAsUnuse(oldFile);
 	    		}
 	    	}
 	    	return file;
@@ -1109,15 +1107,31 @@ private Object getSerivceByName(String modelClassName){
 					if(filee==null) continue;
 					filee.setInuse(UseStatus.InUse);
 					commonFileService.update(filee);
+					CommonFile extFile = findExtFile(filee.getManageKey());
+					if(extFile!=null){
+						extFile.setInuse(UseStatus.InUse);
+						commonFileService.update(extFile);
+					}
 				}
 			}
 		}
+		protected void markFileAsInuse(CommonFile filee){
+			if(filee!=null){
+				filee.setInuse(UseStatus.InUse);
+				commonFileService.update(filee);
+				CommonFile extFile = findExtFile(filee.getManageKey());
+				if(extFile!=null){
+					extFile.setInuse(UseStatus.InUse);
+					commonFileService.update(extFile);
+				}
+			}
+	}
+		
 		protected void markFileAsUnuse(Collection<CommonFile> filees){
 			if(filees!=null){
 				for(CommonFile filee : filees){
 					if(filee==null) continue;
-					filee.setInuse(UseStatus.UnUse);
-					commonFileService.update(filee);
+					markFileAsUnuse(filee);
 				}
 			}
 		}
@@ -1125,7 +1139,15 @@ private Object getSerivceByName(String modelClassName){
 				if(filee!=null){
 					filee.setInuse(UseStatus.UnUse);
 					commonFileService.update(filee);
+					CommonFile extFile = findExtFile(filee.getManageKey());
+					if(extFile!=null){
+						extFile.setInuse(UseStatus.UnUse);
+						commonFileService.update(extFile);
+					}
 				}
+		}
+		private CommonFile findExtFile(String manageKey){
+			return commonFileService.getEntityByProperty(CommonFile.class, "manageKey", manageKey + "_x");
 		}
 	
 	

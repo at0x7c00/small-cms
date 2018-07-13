@@ -157,7 +157,7 @@
 			  							<div class="img-group">
 					  					<c:forEach items="${page.list}" var="b" varStatus="s">
 					  						<div class="img-wrap">
-					  						<img src="${basePath}filee/viewPic.do?manageKey=${b.cover.manageKey}" 
+					  						<img src="${basePath}filee/viewPic.do?manageKey=${b.cover.manageKey}_x" 
 					  						title="${b.title }" data-key="${b.id}" />
 					  						<div><n:shorthand length="10" content="${b.title}"></n:shorthand> </div>
 					  						</div>
