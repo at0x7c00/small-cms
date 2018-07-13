@@ -332,11 +332,16 @@
 					var images = [];
 					$(".post-image").each(function(i){
 						var _this = $(this);
-						images.push(_this);
+						//images.push(_this);
 						var src = _this.attr("src");
 						if(src==thisSrc){
 							index = i;
 						}
+						if(src.indexOf("_x")>0){
+							src = src.substring(0,src.length - 2);
+						}
+						var img = $("<img src='"+src+"'/>");
+						images.push(img);
 					});
 					
 					addImageToItemArray(images,null,function(items){
