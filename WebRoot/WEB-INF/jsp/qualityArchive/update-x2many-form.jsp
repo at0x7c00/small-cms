@@ -89,8 +89,8 @@
 						   data-targetpanel="${targetPanel}"
 						   data-maxfilesize="100"
 						  data-acceptedfiles="${file_format_picture}"
-						  data-width="362"
-		  					 data-height="345"
+						  data-width="300"
+		  					 data-height="300"
 						   >
 							<i class="fa fa-plus"></i> <spring:message code="base.function.add"/>
 						</a>
@@ -147,8 +147,8 @@
 						   data-targetpanel="${targetPanel}"
 						   data-maxfilesize="100"
 						  data-acceptedfiles="${file_format_picture}"
-						  data-width="205"
-		                  data-height="275"
+						  data-width="400"
+		                  data-height="400"
 						   >
 							<i class="fa fa-plus"></i> <spring:message code="base.function.add"/>
 						</a>

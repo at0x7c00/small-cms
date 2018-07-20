@@ -101,7 +101,7 @@
 				  							</div>
 		  							</c:when>
 		  							<c:otherwise>
-				  						<img alt="" src="${basePath}filee/viewPic.do?manageKey=${qa.detailCover.manageKey}" class="title-img">
+				  						<img alt="" src="${basePath}filee/viewPic.do?manageKey=${qa.detailCover.manageKey}_x" class="title-img">
 		  							</c:otherwise>
 		  						</c:choose>
 	  						</c:if>
@@ -147,7 +147,7 @@
 					</div> --%>
   				
   				<div class="gallery-box">
-						<div id="Index_Box">
+						<div id="Index_Box" style="display:none">
 						  <pre class="prev">&nbsp;</pre>
 						  <pre class="next">&nbsp;</pre>
 						  <ul style="padding-left:0px;">
@@ -295,6 +295,7 @@
   	  <script src="http://vjs.zencdn.net/5.8.8/video.js"></script>
   	  
 		<script>
+$(function(){
 		    var speed = 30//速度数值越大速度越慢
 		    var colee_left2 = document.getElementById("colee_left2");
 		    var colee_left1 = document.getElementById("colee_left1");
@@ -319,6 +320,8 @@
 		    colee_left.onmouseout = function () {
 		        MyMar3 = setInterval(Marquee3, speed)
 		    }
+$("#Index_Box").css("display","block");
+});
 		    
 		   $(function(){
 			   
@@ -338,7 +341,7 @@
 							index = i;
 						}
 						if(src.indexOf("_x")>0){
-							src = src.substring(0,src.length - 2);
+							//src = src.substring(0,src.length - 2);
 						}
 						var img = $("<img src='"+src+"'/>");
 						images.push(img);
@@ -382,6 +385,9 @@
 				});
 				
 			}
+$(function(){
+   $(".dangan-big-banner.mask").css("background","url(${basePath}resource/frontend/theme/default/css/new/img/dangan-big-banner-mask.png)no-repeat");
+});
 		</script>		
 		
 		

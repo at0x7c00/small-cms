@@ -259,7 +259,9 @@
 			
 			$(".img-container").animate({left:left + "px"});
  		}
- 		
+ 		$(function(){
+   $(".dangan-big-banner").css("background","url(${basePath}resource/frontend/theme/default/css/new/img/dangan-big-banner-mask.png)no-repeat");
+});
  		</script>
   </body>
 </html>
