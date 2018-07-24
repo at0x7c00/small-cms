@@ -61,6 +61,7 @@ public class PrivilegeValidateInterceptor extends HandlerInterceptorAdapter {
     	"liuyan",
     	"apply",
     	"dangan.do",
+    	"dangan",
     	"danganDetail.do",
     	"adminIndex.do",
     	"search.do",

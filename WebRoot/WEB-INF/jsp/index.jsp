@@ -39,7 +39,7 @@
 									<c:forEach items="${zhengcedongtaiList}" var="chapter">
 							        <li>
 							        <a href="${basePath}chapterDetail.do?k=${chapter.manageKey}" target="_blank">
-							        	<img data-u="image" src="${basePath}filee/viewPic.do?manageKey=${chapter.middleCoverFirst.manageKey}" title="${chapter.title}" alt="" data-url="${basePath}chapterDetail.do?k=${chapter.manageKey}"/>
+							        	<img data-u="image" src="${basePath}filee/viewPic.do?manageKey=${chapter.middleCoverFirst.manageKey}_x&w=480&h=360" title="${chapter.title}" alt="" data-url="${basePath}chapterDetail.do?k=${chapter.manageKey}"/>
 							        </a>
 							        </li>
 							        </c:forEach>
@@ -114,9 +114,9 @@
 						    <ul id="image-flow-ul">
 						      <c:forEach items="${qualityArchiveList }" var="qa">
 						      	<li>
-						      	<a href="${basePath}dangan.do?id=${qa.id}" target="_blank" title="${qa.title}">
+						      	<a href="${basePath}dangan/${qa.uid}.do" target="_blank" title="${qa.title}">
 						      	<img src="${basePath}js/jquery-lazyload/img/grey.gif"
-				  						data-original="${basePath}filee/viewPic.do?manageKey=${qa.cover.manageKey}">
+				  						data-original="${basePath}filee/viewPic.do?manageKey=${qa.cover.manageKey}_small&h=190&w=230">
 						      	</a>
 						      	<a href="${basePath}dangan.do?id=${qa.id}" target="_blank" title="${qa.title}" class="remark">
 								<span>
@@ -200,7 +200,7 @@
 		  							<td width="415px" style="text-align:center;">
 		  								<div class="table-column">
 			  								<a href="${basePath}chapterDetail.do?k=${hangyezixunTop.manageKey}" target="_blank" title="${hangyezixunTop.title }">
-					  								<img alt="" style="width:415px;height:325px;" src="${basePath}js/jquery-lazyload/img/grey.gif" data-original="${basePath}filee/viewPic.do?manageKey=${hangyezixunTop.middleCoverFirst.manageKey}" alt="${hangyezixunTop.title }">
+					  								<img alt="" style="width:415px;height:325px;" src="${basePath}js/jquery-lazyload/img/grey.gif" data-original="${basePath}filee/viewPic.do?manageKey=${hangyezixunTop.middleCoverFirst.manageKey}_x&h=360&w=480" alt="${hangyezixunTop.title }">
 			  								</a>
 		  								</div>
 		  							</td>
@@ -220,7 +220,7 @@
 		  								<div class="table-column pics" style="padding-left:10px;">
 		  								<c:forEach items="${hangyezixunList1 }" var="c" varStatus="s">
 		  									<a href="${basePath}chapterDetail.do?k=${c.manageKey}" target="_blank" title="${c.title }">
-		  									<img alt="${c.title }" style="width:145px;height:100px;" src="${basePath}js/jquery-lazyload/img/grey.gif" data-original="${basePath}filee/viewPic.do?manageKey=${c.smallCoverFirst.manageKey}">
+		  									<img alt="${c.title }" style="width:145px;height:100px;" src="${basePath}js/jquery-lazyload/img/grey.gif" data-original="${basePath}filee/viewPic.do?manageKey=${c.smallCoverFirst.manageKey}_small&w=480&h=360">
 		  									</a>
 		  								</c:forEach>
 		  								</div>
@@ -229,7 +229,7 @@
 		  								<div class="table-column pics">
 		  								<c:forEach items="${hangyezixunList2 }" var="c" varStatus="s">
 		  									<a href="${basePath}chapterDetail.do?k=${c.manageKey}" target="_blank" title="${c.title }">
-		  										<img alt="${c.title }" style="width:145px;height:100px;" src="${basePath}js/jquery-lazyload/img/grey.gif" data-original="${basePath}filee/viewPic.do?manageKey=${c.smallCoverFirst.manageKey}">
+		  										<img alt="${c.title }" style="width:145px;height:100px;" src="${basePath}js/jquery-lazyload/img/grey.gif" data-original="${basePath}filee/viewPic.do?manageKey=${c.smallCoverFirst.manageKey}_small&w=480&h=360">
 		  									</a>
 		  								</c:forEach>
 		  								</div>
@@ -266,7 +266,7 @@
 		  							<td width="415px" style="text-align:center;">
 		  								<div class="table-column">
 			  								<a href="${basePath}chapterDetail.do?k=${qiyefengcaiTop.manageKey}" target="_blank" title="${qiyefengcaiTop.title}">
-					  								<img alt="" style="width:415px;height:325px;" src="${basePath}js/jquery-lazyload/img/grey.gif" data-original="${basePath}filee/viewPic.do?manageKey=${qiyefengcaiTop.middleCoverFirst.manageKey}">
+					  								<img alt="" style="width:415px;height:325px;" src="${basePath}js/jquery-lazyload/img/grey.gif" data-original="${basePath}filee/viewPic.do?manageKey=${qiyefengcaiTop.middleCoverFirst.manageKey}_x&h=360&w=480">
 			  								</a>
 		  								</div>
 		  							</td>
@@ -296,7 +296,7 @@
 				  										<a href="${basePath}chapterDetail.do?k=${chapter.manageKey}" target="_blank" title="${chapter.title }">
 				  										<img alt="${chapter.title }" style="width:145px;height:100px;" 
 				  										src="${basePath}js/jquery-lazyload/img/grey.gif"
-				  										data-original="${basePath}filee/viewPic.do?manageKey=${chapter.smallCoverFirst.manageKey}">
+				  										data-original="${basePath}filee/viewPic.do?manageKey=${chapter.smallCoverFirst.manageKey}_small&w=480&h=360">
 				  										</a>
 				  										</div>
 				  										<div>
@@ -321,7 +321,8 @@
 				  										<a href="${basePath}chapterDetail.do?k=${chapter.manageKey}" target="_blank" title="${chapter.title }">
 				  											<img alt="${chapter.title }" 
 				  											style="width:145px;height:100px;" 
-				  											src="${basePath}js/jquery-lazyload/img/grey.gif" data-original="${basePath}filee/viewPic.do?manageKey=${chapter.smallCoverFirst.manageKey}">
+				  											src="${basePath}js/jquery-lazyload/img/grey.gif" 
+				  											data-original="${basePath}filee/viewPic.do?manageKey=${chapter.smallCoverFirst.manageKey}_small&w=480&h=360">
 				  										</a>
 				  										</div>
 				  										<div>
@@ -353,7 +354,7 @@
 					  					<c:forEach items="${brandList}" var="b" varStatus="s">
 					  						<div class="img-wrap">
 					  						<img 
-					  						src="${basePath}filee/viewPic.do?manageKey=${b.logo.manageKey}" 
+					  						src="${basePath}filee/viewPic.do?manageKey=${b.logo.manageKey}&h=50&w=150" 
 					  						title="${b.name }" data-href="${b.url}" /> 
 					  						</div>
 					  						<c:if test="${s.count % 18 ==0}"></div></c:if>

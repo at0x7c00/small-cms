@@ -75,19 +75,12 @@
 	  							<c:if test="${not empty projectInfo.cover }">
 	  							<c:choose>
 		  							<c:when test="${projectInfo.cover.video }">
-				  							<div style="width:455px;height:305px;float:right;">
-						  						<video id="my-video" class="video-js" controls preload="auto" width="455" height="305"
-											  poster="${basePath}filee/viewPic.do?manageKey=${projectInfo.cover.manageKey}" data-setup="{}">
-											    <source src="${basePath}filee/downloadFile.do?key=${projectInfo.cover.manageKey}" type='video/mp4'>
-											    <p class="vjs-no-js">
-											      To view this video please enable JavaScript, and consider upgrading to a web browser that
-											      <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-											    </p>
-											  </video>
+				  							<div style="width:455px;height:305px;float:right;" >
+				  								<img alt="" src="${basePath}img/video-bg.png" id="imgplayer" style="cursor:pointer;"/>
 				  							</div>
 		  							</c:when>
 		  							<c:otherwise>
-				  						<img alt="" src="${basePath}filee/viewPic.do?manageKey=${projectInfo.cover.manageKey}" style="width:455px;height:305px;" class="title-img">
+				  						<img alt="" src="${basePath}filee/viewPic.do?manageKey=${projectInfo.cover.manageKey}_x&h=300&w=450" style="width:455px;height:305px;" class="title-img">
 		  							</c:otherwise>
 		  						</c:choose>
 	  							</c:if>
@@ -109,7 +102,7 @@
 									<c:forEach items="${zhiliangqiangqiList}" var="chapter">
 							        <li>
 							        <a href="${basePath}chapterDetail.do?k=${chapter.manageKey}#content" target="_blank">
-							        	<img data-u="image" src="${basePath}filee/viewPic.do?manageKey=${chapter.cover.manageKey}" title="${chapter.title}" data-url="${basePath}chapterDetail.do?k=${chapter.manageKey}"/>
+							        	<img data-u="image" src="${basePath}filee/viewPic.do?manageKey=${chapter.cover.manageKey}_x&w=480&h=360" title="${chapter.title}" data-url="${basePath}chapterDetail.do?k=${chapter.manageKey}"/>
 							        </a>
 							        </li>
 							        </c:forEach>
@@ -157,8 +150,8 @@
 			  							<div class="img-group">
 					  					<c:forEach items="${page.list}" var="b" varStatus="s">
 					  						<div class="img-wrap">
-					  						<img src="${basePath}filee/viewPic.do?manageKey=${b.cover.manageKey}_x" 
-					  						title="${b.title }" data-key="${b.id}" />
+					  						<img src="${basePath}filee/viewPic.do?manageKey=${b.cover.manageKey}_x&h=190&w=230" 
+					  						title="${b.title }" data-key="${b.uid}" />
 					  						<div><n:shorthand length="10" content="${b.title}"></n:shorthand> </div>
 					  						</div>
 					  						<c:if test="${s.count % 8 ==0}"></div></c:if>
@@ -220,7 +213,7 @@
  				$(this).click(function(){
  					var key = $(this).data("key");
  					if(key){
-	 					window.open("${basePath}dangan.do?id=" + key);
+	 					window.open("${basePath}dangan/" + key +".do");
  					}
  				});
  			});
@@ -260,7 +253,18 @@
 			$(".img-container").animate({left:left + "px"});
  		}
  		$(function(){
-   $(".dangan-big-banner").css("background","url(${basePath}resource/frontend/theme/default/css/new/img/dangan-big-banner-mask.png)no-repeat");
+   //$(".dangan-big-banner").css("background","url(${basePath}resource/frontend/theme/default/css/new/img/dangan-big-banner-mask.png)no-repeat");
+   			$("#imgplayer").click(function(){
+   				
+   				$(this).replaceWith('<video id="my-video" class="video-js" controls preload="auto" autoplay="autoplay" width="455" height="305"'
+						  +'poster="${basePath}filee/viewPic.do?manageKey=${projectInfo.cover.manageKey}" data-setup="{}">'
+						  +' <source src="${basePath}filee/downloadFile.do?key=${projectInfo.cover.manageKey}" type=\'video/mp4\'>'
+						  +' <p class="vjs-no-js">'
+						  +'   To view this video please enable JavaScript, and consider upgrading to a web browser that'
+						  +'   <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>'
+						  +'  </p>'
+						  +'</video>');
+   			});
 });
  		</script>
   </body>

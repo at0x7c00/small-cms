@@ -7,6 +7,8 @@
 						   data-targetpanel="${targetPanel}"
 						   data-maxfilesize="100"
 						   data-acceptedfiles="${file_format_picture}"
+						   data-width="480"
+		                   data-height="360"
 						   >
 							<i class="fa fa-plus"></i> <spring:message code="base.function.add"/>
 						</a>
@@ -42,6 +44,8 @@
 		   data-targetpanel="${targetPanel}"
 		   data-maxfilesize="100"
 		   data-acceptedfiles="${file_format_picture}"
+		   		   data-width="140"
+		   data-height="100"
 		   >
 			<i class="fa fa-plus"></i> <spring:message code="base.function.add"/>
 		</a>
@@ -77,6 +81,8 @@
 		   data-targetpanel="${targetPanel}"
 		   data-maxfilesize="100"
 		   data-acceptedfiles="${file_format_picture}"
+		   		   data-width="400"
+		   data-height="700"
 		   >
 			<i class="fa fa-plus"></i> <spring:message code="base.function.add"/>
 		</a>

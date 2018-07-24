@@ -33,7 +33,7 @@
 									<div class="img-div">
 										<c:if test="${not empty chapter.cover}">
 											<a href="${basePath}chapterDetail.do?k=${chapter.manageKey}"  target="_blank" title="${chapter.title}">
-												<img alt="" src="${basePath}filee/viewPic.do?manageKey=${chapter.middleCoverFirst.manageKey}" style="width:285px;height:170px"/>
+												<img alt="" src="${basePath}filee/viewPic.do?manageKey=${chapter.middleCoverFirst.manageKey}_x&h=360&w=480" style="width:285px;height:170px"/>
 											</a>
 										</c:if>
 									</div>

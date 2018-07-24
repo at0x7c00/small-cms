@@ -88,8 +88,16 @@ public class QualityArchiveController  extends BaseController {
      * @param pageInfo 分页查询对象
      * 
      */
+	static boolean updated =false;
     @RequestMapping(value="/list")
     public void list(HttpServletRequest request,QualityArchive qualityArchive,Page pageInfo) {
+    	if(!updated){
+    		List<QualityArchive> ls = qualityArchiveService.findAll(QualityArchive.class);
+    		for(QualityArchive l : ls){
+    			qualityArchiveService.update(l);
+    		}
+    		updated = false;
+    	}
         Page<QualityArchive> qualityArchivePage = qualityArchiveService.getListPage(qualityArchive,pageInfo);
         request.setAttribute("pageBean", qualityArchivePage);
 		listFormParam(request,qualityArchive,pageInfo);

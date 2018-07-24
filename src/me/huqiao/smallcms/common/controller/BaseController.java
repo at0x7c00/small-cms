@@ -1107,8 +1107,8 @@ private Object getSerivceByName(String modelClassName){
 					if(filee==null) continue;
 					filee.setInuse(UseStatus.InUse);
 					commonFileService.update(filee);
-					CommonFile extFile = findExtFile(filee.getManageKey());
-					if(extFile!=null){
+					List<CommonFile> extFiles = findExtFile(filee.getManageKey());
+					for(CommonFile extFile : extFiles){
 						extFile.setInuse(UseStatus.InUse);
 						commonFileService.update(extFile);
 					}
@@ -1119,8 +1119,8 @@ private Object getSerivceByName(String modelClassName){
 			if(filee!=null){
 				filee.setInuse(UseStatus.InUse);
 				commonFileService.update(filee);
-				CommonFile extFile = findExtFile(filee.getManageKey());
-				if(extFile!=null){
+				List<CommonFile> extFiles = findExtFile(filee.getManageKey());
+				for(CommonFile extFile : extFiles){
 					extFile.setInuse(UseStatus.InUse);
 					commonFileService.update(extFile);
 				}
@@ -1139,15 +1139,26 @@ private Object getSerivceByName(String modelClassName){
 				if(filee!=null){
 					filee.setInuse(UseStatus.UnUse);
 					commonFileService.update(filee);
-					CommonFile extFile = findExtFile(filee.getManageKey());
-					if(extFile!=null){
+					List<CommonFile> extFiles = findExtFile(filee.getManageKey());
+					for(CommonFile extFile : extFiles){
 						extFile.setInuse(UseStatus.UnUse);
 						commonFileService.update(extFile);
 					}
 				}
 		}
-		private CommonFile findExtFile(String manageKey){
-			return commonFileService.getEntityByProperty(CommonFile.class, "manageKey", manageKey + "_x");
+		private List<CommonFile> findExtFile(String manageKey){
+			List<CommonFile> files = new ArrayList<CommonFile>();
+			addIfExisted(files,manageKey + "_x");
+			addIfExisted(files,manageKey + "_small");
+			addIfExisted(files,manageKey + "_big");
+			return files;
+		}
+
+		private void addIfExisted(List<CommonFile> files, String manageKey) {
+			CommonFile x = commonFileService.getEntityByProperty(CommonFile.class, "manageKey", manageKey);
+			if(x!=null){
+				files.add(x);
+			}
 		}
 	
 	

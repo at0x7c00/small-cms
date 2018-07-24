@@ -7,6 +7,7 @@
 						   data-targetpanel="${targetPanel}"
 						   data-maxfilesize="100"
 						   data-acceptedfiles=""
+						   data-width="450" data-height="300"
 						   >
 							<i class="fa fa-plus"></i> <spring:message code="base.function.add"/>
 						</a>

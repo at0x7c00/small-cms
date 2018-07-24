@@ -34,6 +34,15 @@
 							<i></i>
 							</label>
 				</section>
+				<section class="col col-4">
+					<label class="input">
+						唯一标示:
+							<font style='color:red' class="required-mark">*</font>
+								<form:input path="uid"
+									id="qualityArchive.uid" type="text"
+									cssClass="textInput required" />
+				</label>
+				</section>
 				
 				<section class="col col-12">
 					<label class="input">

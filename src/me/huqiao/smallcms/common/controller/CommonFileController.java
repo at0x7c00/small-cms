@@ -149,11 +149,13 @@ public class CommonFileController extends BaseController {
 		try {
 			ThumbInfo thumbInfo = null;
 			if(width != null && height != null){
-				thumbInfo = new ThumbInfo(width,height,0.5f,filee.getExtensionName(),folder,filee.getName());
+				thumbInfo = new ThumbInfo(width,height,1f,filee.getExtensionName(),folder,filee.getName());
 			}
-			CommonFile extFile = FileUtil.saveFileOnDisk(folder.getStorePath(),filee.getManageKey(), photofile.getInputStream(),thumbInfo);
-			if(extFile!=null){
-				fileeService.add(extFile);
+			List<CommonFile> extFiles = FileUtil.saveFileOnDisk(folder.getStorePath(),filee.getManageKey(), photofile.getInputStream(),thumbInfo);
+			if(extFiles!=null){
+				for(CommonFile extFile : extFiles){
+					fileeService.add(extFile);
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -323,12 +325,19 @@ public class CommonFileController extends BaseController {
     * @return String null
     */
 	@RequestMapping(value = "/viewPic", method = RequestMethod.GET)
-	public String viewPic(@RequestParam(value = "manageKey")String manageKey,HttpServletRequest request,HttpServletResponse response){
+	public String viewPic(
+			@RequestParam(value = "manageKey")String manageKey,
+			@RequestParam(value = "w",required = false)Integer width,
+			@RequestParam(value = "h",required = false)Integer height,
+			HttpServletRequest request,
+			HttpServletResponse response){
+		
+		autoCreateIfNotExisted(manageKey,width,height);
 		
 		CommonFile filee = fileeService.getEntityByProperty(CommonFile.class, "manageKey", manageKey);
-		if(manageKey.endsWith("_x") && filee==null){
-			manageKey = manageKey.substring(0,manageKey.length() - 2);
-			filee = fileeService.getEntityByProperty(CommonFile.class, "manageKey", manageKey);
+		
+		if(isExtFile(manageKey) && filee==null){
+			filee = getOriginFile(manageKey);
 		}
 		if(filee==null){
 			return null;
@@ -359,6 +368,58 @@ public class CommonFileController extends BaseController {
 		}
 		return null;
 	}
+
+private CommonFile getOriginFile(String manageKey) {
+	CommonFile filee;
+	if(manageKey.endsWith("_x")){
+		manageKey = manageKey.substring(0,manageKey.length() - 2);
+	}else if(manageKey.endsWith("_big")){
+		manageKey = manageKey.substring(0,manageKey.length() - 4);
+	}else{
+		manageKey = manageKey.substring(0,manageKey.length() - 6);
+	}
+	filee = fileeService.getEntityByProperty(CommonFile.class, "manageKey", manageKey);
+	return filee;
+}
+	private void autoCreateIfNotExisted(String manageKey, Integer width,
+		Integer height) {
+		if(width==null || height == null){
+			return;
+		}
+		if(!isExtFile(manageKey)){
+			return;
+		}
+		CommonFile fileex = fileeService.getEntityByProperty(CommonFile.class, "manageKey", manageKey);
+		if(fileex!=null){
+			return;
+		}
+
+		CommonFile originFilee = getOriginFile(manageKey);
+		if(originFilee==null){
+			return;
+		}
+		CommonFolder folder = originFilee.getFolder();
+		
+		ThumbInfo thumbInfo = new ThumbInfo(width,height,1.0f,originFilee.getExtensionName(),folder,originFilee.getName());
+		try{
+			log.info("try to auto create file for " + originFilee.getManageKey() + " by size w=" + width + ",h=" + height);
+			List<CommonFile> extFiles = FileUtil.createThumbImage(new File(originFilee.getFullName()),thumbInfo);
+			if(extFiles!=null){
+				for(CommonFile extFile : extFiles){
+					extFile.setInuse(UseStatus.InUse);;
+					fileeService.add(extFile);
+				}
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		
+	}
+
+	private boolean isExtFile(String manageKey) {
+		return manageKey.endsWith("_x") || manageKey.endsWith("_small") || manageKey.endsWith("_big");
+	}
+
 	/**
 	 * 在线编辑图像
 	 * @param id 文件id

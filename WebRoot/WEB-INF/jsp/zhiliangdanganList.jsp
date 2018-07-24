@@ -58,7 +58,7 @@
 					  					<div class="dangan-pic">
 					  						<c:if test="${not empty qa.cover }">
 						  						<a href="${basePath}dangan.do?id=${qa.id}" target="_blank">
-							  						<img alt="" src="${basePath}filee/viewPic.do?manageKey=${qa.cover.manageKey}"/>
+							  						<img alt="" src="${basePath}filee/viewPic.do?manageKey=${qa.cover.manageKey}_x"/>
 						  						</a>
 					  						</c:if>
 					  					</div>

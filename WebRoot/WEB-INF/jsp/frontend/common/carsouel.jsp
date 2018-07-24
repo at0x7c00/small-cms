@@ -16,7 +16,7 @@
 		<c:forEach items="${carouselList }" var="c">
         <li style="display:none;">
         <a href="${c.url}" target="_blank" title="${c.title}">
-        <img data-u="image"  src="${basePath}filee/viewPic.do?manageKey=${c.picture.manageKey}" title="${c.title}"/>
+        <img data-u="image"  src="${basePath}filee/viewPic.do?manageKey=${c.picture.manageKey}_x&w=1000&h=440" title="${c.title}"/>
         </a>
         </li>
         </c:forEach>

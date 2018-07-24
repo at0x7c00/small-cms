@@ -102,6 +102,7 @@ private String productDesc;
 private QualityArchiveCategory category;
 
 private String key;
+private String uid;
 
 	/**MD5管理ID*/
 	protected String manageKey;
@@ -544,5 +545,18 @@ public UseStatus getStatus(){
 	public void setHomePage(String homePage) {
 		this.homePage = homePage;
 	}
+	
+	@Column(name = "uid",nullable = true)
+	public String getUid() {
+		if(StringUtil.isEmpty(uid)){
+			uid = getId()+"";
+		}
+		return uid;
+	}
+	public void setUid(String uid) {
+		this.uid = uid;
+	}
+	
+	
 	
 }

@@ -101,7 +101,7 @@
 				  							</div>
 		  							</c:when>
 		  							<c:otherwise>
-				  						<img alt="" src="${basePath}filee/viewPic.do?manageKey=${qa.detailCover.manageKey}_x" class="title-img">
+				  						<img alt="" src="${basePath}filee/viewPic.do?manageKey=${qa.detailCover.manageKey}_x&h=330&w=430" class="title-img">
 		  							</c:otherwise>
 		  						</c:choose>
 	  						</c:if>
@@ -152,7 +152,7 @@
 						  <pre class="next">&nbsp;</pre>
 						  <ul style="padding-left:0px;">
 							<c:forEach items="${qa.productDisplay}" var="file" varStatus="s">
-						    <li><a href="javascript:void(0);"><img src="${basePath}filee/viewPic.do?manageKey=${file.manageKey }_x"></a>
+						    <li><a href="javascript:void(0);"><img src="${basePath}filee/viewPic.do?manageKey=${file.manageKey }_x&h=320&w=360"></a>
 						    <p>
 						    	<span class="t">${file.fileNameOnly }</span>
 						    	<span class="c">
@@ -182,7 +182,7 @@
                                 <tbody><tr>
                                    <c:forEach items="${qa.gloryDisplay}" var="p">
                                     <td>
-                                    <img src="${basePath}filee/viewPic.do?manageKey=${p.manageKey}_x" 
+                                    <img src="${basePath}filee/viewPic.do?manageKey=${p.manageKey}_x&w=205&h=275" 
 								alt="butterflies-are-gross" class="post-image" width="205" height="275" />
                                     </td>
                                     </c:forEach>
@@ -194,7 +194,7 @@
                                 <tbody><tr>
                                 <c:forEach items="${qa.gloryDisplay}" var="p">
                                     <td>
-                                    <img src="${basePath}filee/viewPic.do?manageKey=${p.manageKey}_x" 
+                                    <img src="${basePath}filee/viewPic.do?manageKey=${p.manageKey}_x&w=205&h=275" 
 								alt="butterflies-are-gross" class="post-image" width="205" height="275" />
                                     </td>
                                     </c:forEach>
@@ -341,7 +341,8 @@ $("#Index_Box").css("display","block");
 							index = i;
 						}
 						if(src.indexOf("_x")>0){
-							//src = src.substring(0,src.length - 2);
+							src = src.substring(0,src.indexOf("_x"));
+							src += "_big";
 						}
 						var img = $("<img src='"+src+"'/>");
 						images.push(img);
@@ -386,7 +387,7 @@ $("#Index_Box").css("display","block");
 				
 			}
 $(function(){
-   $(".dangan-big-banner.mask").css("background","url(${basePath}resource/frontend/theme/default/css/new/img/dangan-big-banner-mask.png)no-repeat");
+   //$(".dangan-big-banner.mask").css("background","url(${basePath}resource/frontend/theme/default/css/new/img/dangan-big-banner-mask.png)no-repeat");
 });
 		</script>		
 		

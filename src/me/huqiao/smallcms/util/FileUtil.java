@@ -2,14 +2,22 @@ package me.huqiao.smallcms.util;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 
+import org.apache.commons.io.IOUtils;
+import org.apache.log4j.Logger;
+import org.jfree.util.Log;
+
 import me.huqiao.smallcms.common.entity.CommonFile;
+import me.huqiao.smallcms.common.entity.CommonFolder;
 import me.huqiao.smallcms.common.entity.enumtype.UseStatus;
 import net.coobird.thumbnailator.Thumbnails;
 
@@ -19,6 +27,8 @@ import net.coobird.thumbnailator.Thumbnails;
  * @version Version 1.0
  */
 public class FileUtil {
+	
+	final static Logger log = Logger.getLogger(FileUtil.class);
 	/**
 	 * 获取文件扩展名
 	 * @param originalFilename 初始文件名
@@ -58,7 +68,7 @@ public class FileUtil {
 	 * @param is 数据
 	 * @throws IOException 输入输出异常
 	 */
-	public static CommonFile saveFileOnDisk(String path,String fileName,InputStream is,ThumbInfo thumbInfo) throws IOException{
+	public static List<CommonFile> saveFileOnDisk(String path,String fileName,InputStream is,ThumbInfo thumbInfo) throws IOException{
 		File parentDir = new File(path);
 		if(!parentDir.exists()){
 			parentDir.mkdirs();
@@ -76,38 +86,81 @@ public class FileUtil {
 	 * @param data 数据
 	 * @throws IOException 输入输出异常
 	 */
-	public static CommonFile saveFileOnDisk(File file,byte[] data,ThumbInfo thumbInfo) throws IOException{
+	public static List<CommonFile> saveFileOnDisk(File file,byte[] data,ThumbInfo thumbInfo) throws IOException{
 		FileOutputStream fos = new FileOutputStream(file,false);
 		fos.write(data);
 		fos.close();
 		
 		if(thumbInfo!=null){
-			CommonFile cfile = createThumbImage(file, thumbInfo);
-			return cfile;
+			List<CommonFile> cfiles = createThumbImage(file, thumbInfo);
+			return cfiles;
 		}else{
 			return null;
 		}
 	}
 
 
-	private static CommonFile createThumbImage(File file, ThumbInfo thumbInfo)
+	public static List<CommonFile> createThumbImage(File file, ThumbInfo thumbInfo)throws IOException {
+		List<CommonFile> res = new ArrayList<CommonFile>();
+		CommonFile xfile = createXFile(file, 
+				file.getName() + "_x",
+				thumbInfo.getExtensionName(),
+				thumbInfo.getName(),
+				thumbInfo.getFolder(),
+				thumbInfo.getWidth(), 
+				thumbInfo.getHeight());
+		CommonFile big = createXFile(file, 
+				file.getName() + "_big",
+				thumbInfo.getExtensionName(),
+				thumbInfo.getName(),
+				thumbInfo.getFolder(),
+				500, 
+				500);
+		CommonFile small = createXFile(file, 
+				file.getName() + "_small",
+				thumbInfo.getExtensionName(),
+				thumbInfo.getName(),
+				thumbInfo.getFolder(),
+				150, 
+				150);
+		res.add(xfile);
+		res.add(big);
+		res.add(small);
+		return res;
+	}
+
+
+	private static CommonFile createXFile(File file, String key,String ext,String name,CommonFolder folder,int width,int height)
 			throws IOException {
 		CommonFile cfile = new CommonFile();
 		cfile.setInuse(UseStatus.UnUse);
 		cfile.setCreateDate(new Date());
-		cfile.setManageKey(file.getName() + "_x");
-		cfile.setExtensionName(thumbInfo.getExtensionName());
-		cfile.setName(thumbInfo.getName());
+		cfile.setManageKey(key);
+		cfile.setExtensionName(ext);
+		cfile.setName(name);
 		cfile.setStoreName("");
-		cfile.setFolder(thumbInfo.getFolder());
-		BufferedImage bimg = Thumbnails.of(file.getAbsoluteFile()).size(thumbInfo.getWidth(), thumbInfo.getHeight()).keepAspectRatio(true).asBufferedImage();
-		String ext = thumbInfo.getExtensionName();
+		cfile.setFolder(folder);
+		BufferedImage bimg = null;
+		if(file.getName().indexOf(".")<0){
+			File tmp = new File(file.getAbsolutePath() + (ext.indexOf(".") >=0 ? "" : ".") + ext);
+			if(!tmp.exists()){
+				tmp.createNewFile();
+			}
+			FileOutputStream fos = new FileOutputStream(tmp);
+			FileInputStream fis = new FileInputStream(file);
+			IOUtils.copy(fis, fos);
+			fis.close();
+			fos.close();
+			bimg = Thumbnails.of(tmp).size(width,height).keepAspectRatio(true).asBufferedImage();
+			
+		}else{
+			bimg = Thumbnails.of(file).size(width,height).keepAspectRatio(true).asBufferedImage();
+		}
 		if(ext.startsWith(".")){
 			ext = ext.substring(1);
 		}
 		ImageIO.write(bimg, ext, new File(cfile.getFullName()));
-		
-		//.toFile(new File(cfile.getFullName()));
+		log.info("create file:" + cfile.getFullName());
 		return cfile;
 	}
 	
@@ -117,7 +170,7 @@ public class FileUtil {
 	 * @param is 数据
 	 * @throws IOException 输入输出异常
 	 */
-	public static CommonFile saveFileOnDisk(File file,InputStream is,ThumbInfo thumbInfo) throws IOException{
+	public static List<CommonFile> saveFileOnDisk(File file,InputStream is,ThumbInfo thumbInfo) throws IOException{
 		FileOutputStream fos = new FileOutputStream(file,false);
 		byte[] buffer = new byte[1024*1024*10];
 		int len;
@@ -136,12 +189,13 @@ public class FileUtil {
 		}
 
 		if(thumbInfo!=null){
-			CommonFile cfile = createThumbImage(file, thumbInfo);
-			return cfile;
+			List<CommonFile> cfiles = createThumbImage(file, thumbInfo);
+			return cfiles;
 		}else{
 			return null;
 		}
 	}
+	
 	
 	/**
 	 * 保存文件到磁盘，如果该文件已经存在则将会被覆盖
