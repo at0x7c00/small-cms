@@ -252,7 +252,12 @@
 	  								<c:set var="count" value="${count+1}"/>
 	  							</c:if>
 				  				<div style="padding-top:${50 - count * 10}px;">
-					  				联系方式：${qa.phoneNumber}
+				  				    <table>
+				  				    	<tr>
+				  				    		<td width="90px" style="vertical-align: top;">联系方式：</td>
+				  				    		<td><pre  style="margin:0px;padding:0px;">${qa.phoneNumber}</pre></td>
+				  				    	</tr>
+				  				    </table>
 					  			</div>
 				  				<c:if test="${not empty qa.email }">
 					  				<div  style="padding-top:25px;">

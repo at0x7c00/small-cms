@@ -51,10 +51,12 @@
 					<label class="input">
 						联系电话:
 							<font style='color:red' class="required-mark">*</font>
-								<form:input path="phoneNumber"
+							<label class="textarea">
+								<form:textarea path="phoneNumber"
 									id="qualityArchive.phoneNum" type="text"
 									cssClass="textInput required" />
-				</label>
+									</label>
+					</label>
 				</section>
 				<section class="col col-12">
 					<label class="input">

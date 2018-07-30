@@ -155,7 +155,7 @@ public class CommonFileServiceImpl extends BaseServiceImpl<CommonFile> implement
 		fileeDao.delete(file);
 	}
 	
-	@Scheduled(cron = "${cron.filee.two.o-clock.at.middle.night}")
+	//@Scheduled(cron = "${cron.filee.two.o-clock.at.middle.night}")
 	public void deleteFileNotInUsed() {
 		Date before = null;
 		Date now = new Date();
