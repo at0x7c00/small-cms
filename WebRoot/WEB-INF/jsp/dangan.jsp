@@ -251,29 +251,24 @@
 	  							<c:if test="${not empty qa.homePage }">
 	  								<c:set var="count" value="${count+1}"/>
 	  							</c:if>
-				  				<div style="padding-top:${50 - count * 10}px;">
+				  				<div style="padding-top:${65 - count * 10}px;">
 				  				    <table>
 				  				    	<tr>
-				  				    		<td width="90px" style="vertical-align: top;">联系方式：</td>
-				  				    		<td><pre  style="margin:0px;padding:0px;">${qa.phoneNumber}</pre></td>
+				  				    		<td width="80px" style="vertical-align: top;">联系方式：</td>
+				  				    		<td><pre  style="margin:0px;padding:0px;text-align:left">${qa.phoneNumber}</pre></td>
 				  				    	</tr>
 				  				    </table>
 					  			</div>
 				  				<c:if test="${not empty qa.email }">
-					  				<div  style="padding-top:25px;">
+					  				<div  style="text-align:left;padding-left:2px;">
 					  				邮箱：${qa.email}
 					  				</div>
 				  				</c:if>
-				  				<div  style="max-width:420px;text-align:center;padding-top:${not empty qa.email ?'0':'25'}px;">
-				  				<table style="width:100%;">
-				  					<tr>
-				  						<td width="50px" style="vertical-align: top;">地址：</td>
-				  						<td>${qa.address}</td>
-				  					</tr>
-				  				</table>
+				  				<div  style="max-width:420px;text-align:left;padding-top:${not empty qa.email ?'0':'15'}px;;padding-left:2px;">
+				  				地址：${qa.address}
 				  				</div>
 				  				<c:if test="${not empty qa.homePage }">
-				  				<div  style="">
+				  				<div  style="text-align:left;padding-left:2px;">
 				  				主页：<a href="${qa.homePage}" target="_blank">${qa.homePage}</a>
 				  				</div>
 				  				</c:if>

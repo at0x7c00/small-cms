@@ -123,9 +123,15 @@ public class FileUtil {
 				thumbInfo.getFolder(),
 				150, 
 				150);
-		res.add(xfile);
-		res.add(big);
-		res.add(small);
+		if(xfile!=null){
+			res.add(xfile);
+		}
+		if(big!=null){
+			res.add(big);
+		}
+		if(small!=null){
+			res.add(small);
+		}
 		return res;
 	}
 
@@ -151,17 +157,29 @@ public class FileUtil {
 			IOUtils.copy(fis, fos);
 			fis.close();
 			fos.close();
-			bimg = Thumbnails.of(tmp).size(width,height).keepAspectRatio(true).asBufferedImage();
+			try{
+				bimg = Thumbnails.of(tmp).size(width,height).keepAspectRatio(true).asBufferedImage();
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 			
 		}else{
-			bimg = Thumbnails.of(file).size(width,height).keepAspectRatio(true).asBufferedImage();
+			try{
+				bimg = Thumbnails.of(file).size(width,height).keepAspectRatio(true).asBufferedImage();
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 		}
 		if(ext.startsWith(".")){
 			ext = ext.substring(1);
 		}
-		ImageIO.write(bimg, ext, new File(cfile.getFullName()));
-		log.info("create file:" + cfile.getFullName());
-		return cfile;
+		if(bimg!=null){
+			ImageIO.write(bimg, ext, new File(cfile.getFullName()));
+			log.info("create file:" + cfile.getFullName());
+			return cfile;
+		}else{
+			return null;
+		}
 	}
 	
 	/**
