@@ -192,7 +192,7 @@ public class FrontendController {
 	}
 
 	private void qaTop(HttpServletRequest request) {
-		List<QualityArchive> qualityArchiveList = qualityArchiveService.getByProperties(QualityArchive.class, new String[]{"status"}, new Object[]{UseStatus.InUse}, "orderNum", 10);
+		List<QualityArchive> qualityArchiveList = qualityArchiveService.getByProperties(QualityArchive.class, new String[]{"status"}, new Object[]{UseStatus.InUse}, "orderNum desc", 10);
 		request.setAttribute("qualityArchiveList", qualityArchiveList);
 	}
 

@@ -118,7 +118,7 @@
 						      	<img src="${basePath}js/jquery-lazyload/img/grey.gif"
 				  						data-original="${basePath}filee/viewPic.do?manageKey=${qa.cover.manageKey}_small&h=190&w=230">
 						      	</a>
-						      	<a href="${basePath}dangan.do?id=${qa.id}" target="_blank" title="${qa.title}" class="remark">
+						      	<a href="${basePath}dangan/${qa.uid}.do" target="_blank" title="${qa.title}" class="remark">
 								<span>
 								<n:shorthand length="6" content="${qa.title}"></n:shorthand>
 								</span>					

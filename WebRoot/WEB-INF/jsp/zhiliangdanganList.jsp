@@ -57,13 +57,13 @@
 					  				<div class="dangan-item">
 					  					<div class="dangan-pic">
 					  						<c:if test="${not empty qa.cover }">
-						  						<a href="${basePath}dangan.do?id=${qa.id}" target="_blank">
+						  						<a href="${basePath}dangan/${qa.uid}.do" target="_blank">
 							  						<img alt="" src="${basePath}filee/viewPic.do?manageKey=${qa.cover.manageKey}_x"/>
 						  						</a>
 					  						</c:if>
 					  					</div>
 					  					<div class="dangan-abstract" length="37">
-					  						<a href="${basePath}dangan.do?id=${qa.id}" target="_blank"><n:html length="37" value="${qa.abstractContent}"></n:html>&nbsp;</a>
+					  						<a href="${basePath}dangan/${qa.uid}.do" target="_blank"><n:html length="37" value="${qa.abstractContent}"></n:html>&nbsp;</a>
 					  					</div>
 					  				</div>
 					  			</div>
