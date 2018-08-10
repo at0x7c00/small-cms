@@ -158,7 +158,7 @@ public class FrontendController {
 	}
 
 	private void brand(HttpServletRequest request) {
-		List<Brand> brandList = brandService.getByProperties(Brand.class, new String[]{"status"}, new Object[]{UseStatus.InUse}, "orderNum", 10000);
+		List<Brand> brandList = brandService.getByProperties(Brand.class, new String[]{"status"}, new Object[]{UseStatus.InUse}, "orderNum desc", 10000);
 		/*List<List<Brand[]>> brandList = new ArrayList<List<Brand[]>>();
 		
 		log.info(qualityArchiveList.size());

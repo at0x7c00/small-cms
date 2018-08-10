@@ -31,7 +31,7 @@
 			
 			<div class="footer-column" style="width:345px;">
 				<div style="text-align:center;">
-					<img alt="" src="${basePath}resource/brcode.png"/>
+					<img alt="" src="${basePath}resource/brcode.png?v=2.0"/>
 					<h2 style="margin-top:5px;">扫描关注公众号</h2>
 				</div>
 				<%--
