@@ -182,7 +182,7 @@
 								<ul>
 									<c:forEach var="second" items="${top.children}" varStatus="status">
 										<c:if test="${second.isDisplay==1}">
-											<li><a href="${second.url}${second.relName}nav_tab_${second.id}" data-children="${second.childrenUrls}"><spring:message code="${second.i18nCode}"/></a></li>
+												<li><a href="${second.url}${second.relName}nav_tab_${second.id}" data-children="${second.childrenUrls}"><spring:message code="${second.i18nCode}"/></a></li>
 										</c:if>
 									</c:forEach>
 								</ul>

@@ -26,6 +26,7 @@ import me.huqiao.smallcms.sys.service.IRoleService;
 import me.huqiao.smallcms.sys.service.IUserService;
 import me.huqiao.smallcms.util.Constants;
 import me.huqiao.smallcms.util.Md5Util;
+import me.huqiao.smallcms.util.StringUtil;
 import me.huqiao.smallcms.util.web.JsonResult;
 import me.huqiao.smallcms.util.web.LoginInfo;
 import me.huqiao.smallcms.util.web.Page;
@@ -217,7 +218,12 @@ public class UserController extends BaseController {
 		if (!validate(jsonResult, result)) {
 			return jsonResult;
 		}
-		user.setPassword(Md5Util.getMD5Code(textpwd));
+		if(textpwd!=null){
+			textpwd = textpwd.trim();
+		}
+		if(StringUtil.isNotEmpty(textpwd)){
+			user.setPassword(Md5Util.getMD5Code(textpwd));
+		}
 		userService.update(user);
 		jsonResult.setMessage("修改成功");
 		return jsonResult;

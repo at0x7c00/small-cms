@@ -144,6 +144,9 @@
 			
 			setFunctionPointIdsValue();
 			
+			window.setTimeout(function(){
+				$("#treeDemo_66,#treeDemo_71").remove();
+			},1000);
 		});
 		//-->
 	</SCRIPT>

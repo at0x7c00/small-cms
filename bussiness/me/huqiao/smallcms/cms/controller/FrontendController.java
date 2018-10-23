@@ -418,6 +418,9 @@ public class FrontendController {
 	@RequestMapping("dangan/{uid}")
 	public String danganDetail2(HttpServletRequest request,@PathVariable("uid")String uid){
 		QualityArchive qa = qualityArchiveService.getEntityByProperty(QualityArchive.class, "uid", uid);
+		if(qa==null){
+			qa = qualityArchiveService.getEntityByProperty(QualityArchive.class, "title", uid);
+		}
 		if(qa!=null && qa.getStatus()==UseStatus.InUse){
 			request.setAttribute("qa", qa);
 			accessRecord(request,qa.getId());
