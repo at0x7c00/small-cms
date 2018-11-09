@@ -298,6 +298,7 @@
   	  
 		<script>
 $(function(){
+			$("#Index_Box").css("display","block");
 		    var speed = 30//速度数值越大速度越慢
 		    var colee_left2 = document.getElementById("colee_left2");
 		    var colee_left1 = document.getElementById("colee_left1");
@@ -325,7 +326,6 @@ $(function(){
 		    colee_left.onmouseout = function () {
 		        MyMar3 = setInterval(Marquee3, speed)
 		    }
-$("#Index_Box").css("display","block");
 });
 		    
 		   $(function(){
