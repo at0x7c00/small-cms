@@ -192,12 +192,14 @@
                         <td id="colee_left2">
                             <table cellpadding="5px;">
                                 <tbody><tr>
+                                <c:if test="${fn:length(qa.gloryDisplay)>5}">
                                 <c:forEach items="${qa.gloryDisplay}" var="p">
                                     <td>
                                     <img src="${basePath}filee/viewPic.do?manageKey=${p.manageKey}_x&w=205&h=275" 
 								alt="butterflies-are-gross" class="post-image" width="205" height="275" />
                                     </td>
                                     </c:forEach>
+                                </c:if>
                                 </tr>
                             </tbody></table>
                         </td>
@@ -300,6 +302,9 @@ $(function(){
 		    var colee_left2 = document.getElementById("colee_left2");
 		    var colee_left1 = document.getElementById("colee_left1");
 		    var colee_left = document.getElementById("colee_left");
+		    if($("#colee_left1 img").length()<=5){
+		    	return;
+		    }
 		    colee_left2.innerHTML = colee_left1.innerHTML;
 		    var cWidth = $(window).width() - 20;
 		    if(cWidth>1280){
